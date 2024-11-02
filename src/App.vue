@@ -19,11 +19,7 @@ const setTopic = (param) => {
     <div class="wrapper">
       <nav>
         <RouterLink to="/" class="button" @click="setTopic('赛事')">赛事</RouterLink>
-<<<<<<< HEAD
         <RouterLink to="/rank" class="button" @click="setTopic('排位')">排位</RouterLink>
-=======
-        <RouterLink to="/about" class="button" @click="setTopic('排位')">排位</RouterLink>
->>>>>>> bc04a23cb9fa011a1fb26c2cda57e5aad82311b9
       </nav>
       <span class="title-style">
         {{ topic }}
