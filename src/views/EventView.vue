@@ -1,4 +1,5 @@
 <script setup>
+
 </script>
 
 <template>
@@ -6,3 +7,7 @@
     赛事
   </div>
 </template>
+
+<style>
+
+</style>
