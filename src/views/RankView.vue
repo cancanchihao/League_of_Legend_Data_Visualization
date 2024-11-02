@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div>
     排位
   </div>
 </template>
