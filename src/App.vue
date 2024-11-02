@@ -37,7 +37,7 @@ header {
 }
 
 .wrapper {
-  margin-bottom: 10px;
+  padding-bottom: 5px;
   height: 64px;
   margin-top: -20px;
   background-color: #d6e4f4; /* 背景颜色 */
@@ -75,7 +75,6 @@ header {
 nav {
   display: inline-block;
   font-size: 12px;
-  /* text-align: center; */
   margin-right: 30px;
 }
 

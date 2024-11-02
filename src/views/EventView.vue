@@ -3,11 +3,38 @@
 </script>
 
 <template>
-  <div>
-    赛事
-  </div>
+  <section class="mainbox">
+    <div class="column">
+      <div class="chart-container"></div>
+    </div>
+    <div class="column">2</div>
+    <div class="column">3</div>
+  </section>
 </template>
 
-<style>
+<style lang="less" scoped>
+.mainbox {
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0 auto;
+  background-color: aqua;
+  padding: 0.125rem 0.125rem 0;
+  .column {
+    flex: 3;
+    &:nth-child(2) {
+      flex: 5;
+    }
+  }
+}
 
+.chart-container {
+  height: 200px;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
 </style>
