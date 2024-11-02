@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <main>
-    <div>赛事</div>
-  </main>
+  <div>
+    赛事
+  </div>
 </template>
