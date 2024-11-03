@@ -1,6 +1,12 @@
 <script setup>
 import { ref, watch, onMounted, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
+import VChart from 'vue-echarts';
+
+// 注册vchart组件
+const components = {
+  VChart,
+};
 
 // 玩家数据
 const players = ref([
@@ -16,6 +22,9 @@ const selectedPlayer = ref(players.value[0]);
 const chartOptions = ref({
   title: {
     text: selectedPlayer.value.name,
+  },
+  textStyle: {
+      fontSize: 10
   },
   tooltip: {},
   radar: {
@@ -45,6 +54,10 @@ const chartOptions = ref({
 watch(selectedPlayer, (newPlayer) => {
   chartOptions.value.title.text = newPlayer.name;
   chartOptions.value.series[0].data[0].value = newPlayer.stats;
+  // 这里直接调用更新
+  if (chartInstance) {
+    chartInstance.setOption(chartOptions.value); // 更新图表
+  }
 });
 
 // 选择玩家的方法
@@ -72,11 +85,6 @@ onUnmounted(() => {
   window.removeEventListener('resize', chartInstance.resize);
 });
 
-watch(chartOptions, (newOptions) => {
-  if (chartInstance) {
-    chartInstance.setOption(newOptions);
-  }
-});
 </script>
 
 <template>
@@ -89,21 +97,42 @@ watch(chartOptions, (newOptions) => {
         </ul>
         </div>
         <div class="radar-chart" id="radar-chart">
-        <v-chart :options="chartOptions" />
+        <v-chart :options="chartOptions" :auto-resize="true" />
         </div>
     </div>
 </template>
 
-<style>
+<style lang="less" scoped>
+
 .player-list {
-  width: 200px;
+  width: 90px;
+  font-size: 12px;
   display: inline-block;
   vertical-align: top;
+  height: 180px;
+  ul {
+    list-style: none; 
+    padding: 10px; 
+    margin: 0; 
+    li {
+      cursor: pointer;
+      border-bottom: 1px solid blue;
+      padding: 3px;
+      margin-bottom: 5px;
+      transition: font-size 0.3s ease, color 0.3s ease;
+    }
+    li:hover {
+      font-size: 16px;
+      color: rgb(73, 11, 217);
+    }
+  }
 }
 
 .radar-chart {
-  width: 300px;
-  height: 300px;
+  z-index: 1000;
+  padding-top: 10px;
+  width: 270px;
+  height: 200px;
   display: inline-block;
   vertical-align: top;
 }

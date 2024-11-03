@@ -1,3 +1,6 @@
+<!-- 临时文件存放，该文件没有用处！
+可以当剪切板用 -->
+
 <template>
     <div>
         <div class="player-list">

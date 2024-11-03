@@ -32,7 +32,6 @@ import Chart1 from '@/components/chart_1.vue';
 
 .chart-container {
   height: 200px;
-  padding: 10px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 轻微阴影效果 */
   border-radius: 10px;
