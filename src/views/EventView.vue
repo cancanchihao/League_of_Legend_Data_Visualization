@@ -1,11 +1,13 @@
 <script setup>
-
+import Chart1 from '@/components/chart_1.vue';
 </script>
 
 <template>
   <section class="mainbox">
     <div class="column">
-      <div class="chart-container"></div>
+      <div class="chart-container">
+        <Chart1></Chart1>
+      </div>
     </div>
     <div class="column">2</div>
     <div class="column">3</div>
