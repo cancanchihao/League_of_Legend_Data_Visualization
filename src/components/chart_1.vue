@@ -124,21 +124,21 @@ onUnmounted(() => {
 
 <style lang="less" scoped>
 .player-list {
-  width: 90px;
+  width: 150px;
   font-size: 12px;
   display: inline-block;
   vertical-align: top;
   height: 180px;
+  margin: 0px 60px;
   ul {
     list-style: none; 
     padding: 10px; 
-    margin: 0; 
     li {
       font-size: 16px;
       cursor: pointer;
       border-bottom: 1px solid blue;
-      padding: 3px;
-      margin-bottom: 5px;
+      padding: 20px;
+      margin-bottom: 40px;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
     li:hover {
@@ -150,8 +150,8 @@ onUnmounted(() => {
 
 .radar-chart {
   padding-top: 10px;
-  width: 270px;
-  height: 200px;
+  width: 1000px;
+  height: 550px;
   display: inline-block;
   vertical-align: top;
 }

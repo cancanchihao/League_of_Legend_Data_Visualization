@@ -1,8 +1,10 @@
 <script setup>
+import Chart1 from '@/components/chart_1.vue';
+
 </script>
 
 <template>
-    <header> 选手具体数据页面</header>
+    <Chart1/>
 </template>
 
 <style scoped></style>

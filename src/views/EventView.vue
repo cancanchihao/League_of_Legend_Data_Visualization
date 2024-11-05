@@ -1,6 +1,4 @@
 <script setup>
-import Chart1 from '@/components/chart_1.vue';
-
 import { inject } from 'vue';
 
 // 子组件通过 inject 获取父组件提供的函数
@@ -17,7 +15,6 @@ const PlayerListPage = () => {
     <div class="column">
       <div class="chart-container">
         <button class="chart1BUtton" @click="PlayerListPage">进入具体页面</button>
-        <Chart1></Chart1>
       </div>
     </div>
     <div class="column">2</div>
