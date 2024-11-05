@@ -15,7 +15,7 @@ const players = ref([
   { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
   { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
   { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
-  { name: 'Player 6', stats: [40, 65, 100, 80, 75] },
+  { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
 ]);
 
 // 选中的组
@@ -54,9 +54,9 @@ const chartOptions = ref({
 // 监听选中组的变化，更新ECharts配置
 watch(selectedGroup, (newGroup) => {
   let groupIndex;
-  if (newGroup[0] === players.value[0] && newGroup[1] === players.value[1]) {
+  if (newGroup[0] === players.value[0]) {
     groupIndex = 1;
-  } else if (newGroup[0] === players.value[2] && newGroup[1] === players.value[3]) {
+  } else if (newGroup[0] === players.value[2]) {
     groupIndex = 2;
   } else {
     groupIndex = 3;
@@ -134,6 +134,7 @@ onUnmounted(() => {
     padding: 10px; 
     margin: 0; 
     li {
+      font-size: 16px;
       cursor: pointer;
       border-bottom: 1px solid blue;
       padding: 3px;
@@ -141,7 +142,7 @@ onUnmounted(() => {
       transition: font-size 0.3s ease, color 0.3s ease;
     }
     li:hover {
-      font-size: 16px;
+      font-size: 20px;
       color: rgb(73, 11, 217);
     }
   }

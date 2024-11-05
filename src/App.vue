@@ -1,6 +1,18 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
+import { useRouter } from 'vue-router';
+
+const myRouter = useRouter()
+
+const toPlayerListPage = () => {
+  const currentRoute = myRouter.currentRoute.value.name;
+  if (currentRoute !== 'playerList') {
+    myRouter.push({ name: 'playerList' });
+  }
+  console.log("进入具体页面")
+}
+provide('playerList', toPlayerListPage);
 
 const topic = ref('S14世界赛数据一览')
 
@@ -18,7 +30,7 @@ const setTopic = (param) => {
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/" class="button" @click="setTopic('赛事')">赛事</RouterLink>
+        <RouterLink to="/event" class="button" @click="setTopic('赛事')">赛事</RouterLink>
         <RouterLink to="/rank" class="button" @click="setTopic('排位')">排位</RouterLink>
       </nav>
       <span class="title-style">
@@ -27,7 +39,7 @@ const setTopic = (param) => {
     </div>
   </header>
 
-  <RouterView />
+  <router-view></router-view>
 </template>
 
 <style scoped>
@@ -40,36 +52,54 @@ header {
   padding-bottom: 5px;
   height: 64px;
   margin-top: -20px;
-  background-color: #d6e4f4; /* 背景颜色 */
-  border-radius: 5px; /* 圆角边框 */
+  background-color: #d6e4f4;
+  /* 背景颜色 */
+  border-radius: 5px;
+  /* 圆角边框 */
 }
 
 .button {
-  padding: 10px 20px; /* 按钮内边距 */
-  font-size: 16px; /* 字体大小 */
-  font-weight: 600; /* 字体粗细 */
-  color: #ffffff; /* 文字颜色 */
-  background-color: #007bff; /* 背景颜色 */
-  border: none; /* 无边框 */
-  border-radius: 5px; /* 圆角边框 */
-  cursor: pointer; /* 鼠标悬停时显示指针 */
-  transition: all 0.3s ease; /* 平滑过渡效果 */
-  outline: none; /* 去除焦点时的轮廓线 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+  padding: 10px 20px;
+  /* 按钮内边距 */
+  font-size: 16px;
+  /* 字体大小 */
+  font-weight: 600;
+  /* 字体粗细 */
+  color: #ffffff;
+  /* 文字颜色 */
+  background-color: #007bff;
+  /* 背景颜色 */
+  border: none;
+  /* 无边框 */
+  border-radius: 5px;
+  /* 圆角边框 */
+  cursor: pointer;
+  /* 鼠标悬停时显示指针 */
+  transition: all 0.3s ease;
+  /* 平滑过渡效果 */
+  outline: none;
+  /* 去除焦点时的轮廓线 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* 阴影效果 */
 }
 
 .button:hover {
-  background-color: #0056b3; /* 鼠标悬停时的背景颜色 */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2); /* 鼠标悬停时的阴影效果 */
+  background-color: #0056b3;
+  /* 鼠标悬停时的背景颜色 */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  /* 鼠标悬停时的阴影效果 */
 }
 
 .button:active {
-  transform: translateY(2px); /* 点击时的下压效果 */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); /* 点击时的阴影效果 */
+  transform: translateY(2px);
+  /* 点击时的下压效果 */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  /* 点击时的阴影效果 */
 }
 
 .button:focus {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); /* 焦点时的阴影效果 */
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  /* 焦点时的阴影效果 */
 }
 
 nav {
@@ -104,5 +134,4 @@ span {
   color: #333333;
   font-weight: bold;
 }
-
 </style>
