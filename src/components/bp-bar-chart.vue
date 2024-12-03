@@ -1,5 +1,5 @@
 <template>
-    <div class="chart-container" ref="chart" style="width: 100%; height: 400px;"></div>
+    <div class="bp-bar-chart" ref="chart"></div>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
             // 图表配置
             const option = {
                 title: {
-                    text: '英雄数据轮播',
+                    text: 'bp柱状图',
                     left: 'center',
                     textStyle: {
                         fontSize: 18,
@@ -107,8 +107,8 @@ export default {
 </script>
 
 <style scoped>
-.chart-container {
+.bp-bar-chart {
     width: 100%;
-    height: 400px;
+    height: 230px;
 }
 </style>

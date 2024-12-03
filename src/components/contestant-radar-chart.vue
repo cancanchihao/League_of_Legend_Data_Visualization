@@ -108,7 +108,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <div class="player-list">
       <ul>
         <li @click="selectGroup([players[0], players[1]])">位置1</li>
@@ -116,7 +116,7 @@ onUnmounted(() => {
         <li @click="selectGroup([players[4], players[5]])">位置3</li>
       </ul>
     </div>
-    <div class="radar-chart" id="radar-chart">
+    <div id="radar-chart">
       <v-chart :options="chartOptions" :auto-resize="true" />
     </div>
   </div>
@@ -124,35 +124,40 @@ onUnmounted(() => {
 
 <style lang="less" scoped>
 .player-list {
-  width: 150px;
-  font-size: 12px;
+  width: 100px;
+  font-size: 8px;
   display: inline-block;
   vertical-align: top;
-  height: 180px;
-  margin: 0px 60px;
+  height: 100px;
+  margin-right: 50px;
   ul {
     list-style: none; 
     padding: 10px; 
     li {
-      font-size: 16px;
+      font-size: 12px;
       cursor: pointer;
       border-bottom: 1px solid blue;
-      padding: 20px;
-      margin-bottom: 40px;
+      padding: 10px;
+      // margin-bottom: 15px;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
     li:hover {
-      font-size: 20px;
+      font-size: 14px;
       color: rgb(73, 11, 217);
     }
   }
 }
 
-.radar-chart {
+.container {
+  display: flex;
+}
+
+#radar-chart {
   padding-top: 10px;
-  width: 1000px;
-  height: 550px;
+  flex-grow: 1;
+  height: 200px;
   display: inline-block;
   vertical-align: top;
+  margin-bottom: -15px;
 }
 </style>

@@ -1,137 +1,169 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import { ref, provide } from 'vue'
-import { useRouter } from 'vue-router';
+import { ref, reactive, onMounted } from 'vue'
+import contestantRadarChart from './components/contestant-radar-chart.vue';
+import bpBarChart from './components/bp-bar-chart.vue';
+import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
 
-const myRouter = useRouter()
+import 'echarts-wordcloud';
 
-const toPlayerListPage = () => {
-  const currentRoute = myRouter.currentRoute.value.name;
-  if (currentRoute !== 'playerList') {
-    myRouter.push({ name: 'playerList' });
-  }
-  console.log("进入具体页面")
-}
-provide('playerList', toPlayerListPage);
-
-const topic = ref('S14世界赛数据一览')
-
+const topic = ref('big-title')
 const setTopic = (param) => {
-  if (param === '赛事') {
-    topic.value = 'S14世界赛数据一览'
-  } else {
-    topic.value = '英雄联盟排位数据一览'
-  }
+    topic.value = param
 }
+
+const Data = reactive({
+  bpwordcloud: {
+    series: [
+      {
+        gridSize: 20,
+        data: [
+          { name: '封魔剑魂', value: 50, },
+          { name: '双界灵兔', value: 40 },
+          { name: '武器大师', value: 35 },
+          { name: '寒冰射手', value: 30 },
+          { name: '圣锤之毅', value: 25 },
+          { name: "上古领主", value: 20 },
+          { name: '迷失之牙', value: 18 },
+          { name: '虚空之女', value: 15 },
+          { name: '熔铁少女', value: 10 },
+          { name: '爆破鬼才', value: 8 },
+        ],
+      },
+    ],
+  },
+
+})
+
+onMounted(() => { })
 
 </script>
 
 <template>
   <header>
     <div class="wrapper">
-      <nav>
-        <RouterLink to="/event" class="button" @click="setTopic('赛事')">赛事</RouterLink>
-        <RouterLink to="/rank" class="button" @click="setTopic('排位')">排位</RouterLink>
-      </nav>
-      <span class="title-style">
+      <span class="big-title">
         {{ topic }}
       </span>
     </div>
   </header>
 
-  <router-view></router-view>
+  <section class="mainbox">
+    <div class="column">
+      <div class="little-title">
+        战队
+      </div>
+      <div class="chart-container">
+        战队胜场数据轮播
+      </div>
+      <div class="chart-container">
+        战队对战数据热力图
+      </div>
+      <div class="chart-container">
+        战队数据对抗图
+      </div>
+    </div>
+    <div class="column">
+      <div class="little-title">
+        选手
+      </div>
+      <div class="chart-container">
+        选手数据之最
+      </div>
+      <div class="chart-container">
+        选手mvp次数饼图
+      </div>
+      <div class="chart-container">
+        <contestantRadarChart></contestantRadarChart>
+        <div class="history-hero-compete">
+          历史英雄对位（近五场）
+        </div>
+        
+      </div>
+    </div>
+    <div class="column">
+      <div class="little-title">
+        英雄
+      </div>
+      <div class="chart-container">
+        <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
+      </div>
+      <div class="chart-container">
+        <bpBarChart></bpBarChart>
+      </div>
+      <div class="chart-container">
+        英雄数据对抗图
+      </div>
+    </div>
+  </section>
 </template>
 
-<style scoped>
+<style>
+html, body {
+  margin: 0;
+}
+
 header {
   line-height: 3;
   max-height: 100vh;
 }
 
 .wrapper {
-  padding-bottom: 5px;
-  height: 64px;
-  margin-top: -20px;
+  /* padding-bottom: 5px;
+  margin-top: -20px; */
+  height: 50px;
   background-color: #d6e4f4;
   /* 背景颜色 */
   border-radius: 5px;
   /* 圆角边框 */
+  text-align: center;
 }
 
-.button {
-  padding: 10px 20px;
-  /* 按钮内边距 */
-  font-size: 16px;
-  /* 字体大小 */
-  font-weight: 600;
-  /* 字体粗细 */
-  color: #ffffff;
-  /* 文字颜色 */
-  background-color: #007bff;
-  /* 背景颜色 */
-  border: none;
-  /* 无边框 */
-  border-radius: 5px;
-  /* 圆角边框 */
-  cursor: pointer;
-  /* 鼠标悬停时显示指针 */
-  transition: all 0.3s ease;
-  /* 平滑过渡效果 */
-  outline: none;
-  /* 去除焦点时的轮廓线 */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  /* 阴影效果 */
-}
-
-.button:hover {
-  background-color: #0056b3;
-  /* 鼠标悬停时的背景颜色 */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-  /* 鼠标悬停时的阴影效果 */
-}
-
-.button:active {
-  transform: translateY(2px);
-  /* 点击时的下压效果 */
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-  /* 点击时的阴影效果 */
-}
-
-.button:focus {
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
-  /* 焦点时的阴影效果 */
-}
-
-nav {
-  display: inline-block;
-  font-size: 12px;
-  margin-right: 30px;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-span {
-  padding-left: 30%;
-}
-
-.title-style {
+.big-title {
   font-size: 24px;
+  line-height: 100%;
   color: #333333;
   font-weight: bold;
 }
+
+.mainbox {
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0 auto;
+  background-color: rgb(0, 255, 255);
+  padding: 0.125rem 0.125rem 0;
+
+  .column {
+    flex: 1;
+    &:nth-child(2) {
+      border-left: 4px solid rgb(108, 197, 232);
+      border-right: 4px solid rgb(108, 197, 232);
+      .chart-container:nth-child(2) {
+        height: 150px;
+      }
+      .chart-container:nth-child(4) {
+        height: 242px;
+      }
+    }
+  }
+}
+
+.history-hero-compete {
+  border-top: 2px solid rgb(0, 255, 255);
+}
+
+.chart-container {
+  height: 196px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.little-title {
+  text-align: center;
+}
+
 </style>
