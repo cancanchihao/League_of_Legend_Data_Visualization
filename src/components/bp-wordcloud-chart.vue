@@ -136,7 +136,7 @@ onMounted(() => {
 
 #wordcloud-chart {
     flex-grow: 1;
-    height: 200px;
+    height: 28vh;
 }
 
 .dropdown {

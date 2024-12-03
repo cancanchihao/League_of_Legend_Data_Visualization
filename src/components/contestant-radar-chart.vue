@@ -155,7 +155,7 @@ onUnmounted(() => {
 #radar-chart {
   padding-top: 10px;
   flex-grow: 1;
-  height: 200px;
+  height: 24vh;
   display: inline-block;
   vertical-align: top;
   margin-bottom: -15px;

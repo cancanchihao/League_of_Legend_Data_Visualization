@@ -109,6 +109,6 @@ export default {
 <style scoped>
 .bp-bar-chart {
     width: 100%;
-    height: 230px;
+    height: 28vh;
 }
 </style>

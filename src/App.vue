@@ -39,12 +39,10 @@ onMounted(() => { })
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <span class="big-title">
-        {{ topic }}
-      </span>
-    </div>
+  <header class="wrapper">
+    <span class="big-title">
+      {{ topic }}
+    </span>
   </header>
 
   <section class="mainbox">
@@ -104,13 +102,12 @@ html, body {
 
 header {
   line-height: 3;
-  max-height: 100vh;
 }
 
 .wrapper {
   /* padding-bottom: 5px;
   margin-top: -20px; */
-  height: 50px;
+  height: 6vh;
   background-color: #d6e4f4;
   /* 背景颜色 */
   border-radius: 5px;
@@ -139,10 +136,10 @@ header {
       border-left: 4px solid rgb(108, 197, 232);
       border-right: 4px solid rgb(108, 197, 232);
       .chart-container:nth-child(2) {
-        height: 150px;
+        height: 24vh;
       }
       .chart-container:nth-child(4) {
-        height: 242px;
+        height: 32vh;
       }
     }
   }
@@ -153,17 +150,18 @@ header {
 }
 
 .chart-container {
-  height: 196px;
+  height: 28vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 轻微阴影效果 */
   border-radius: 10px;
-  margin: 10px;
+  margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .little-title {
   text-align: center;
+  height: 5vh;
 }
 
 </style>
