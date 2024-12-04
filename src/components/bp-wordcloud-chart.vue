@@ -1,9 +1,6 @@
 <template>
     <div class="container">
         <span id="wordcloud-chart"></span>
-        <span class="dropdown">
-            下拉框
-        </span>
     </div>
 </template>
 
@@ -137,10 +134,6 @@ onMounted(() => {
 #wordcloud-chart {
     flex-grow: 1;
     height: 28vh;
-}
-
-.dropdown {
-    width: 100px;
 }
 
 </style>

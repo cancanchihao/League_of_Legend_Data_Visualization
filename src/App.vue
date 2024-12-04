@@ -3,8 +3,8 @@ import { ref, reactive, onMounted } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
 import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
-
 import 'echarts-wordcloud';
+import heroAgainstChart from './components/hero-against-chart.vue';
 
 const topic = ref('big-title')
 const setTopic = (param) => {
@@ -59,6 +59,11 @@ const Data = reactive({
       { name: '英雄4', matches: 150, pickRate: 0.35, winRate: 0.50 },
       { name: '英雄5', matches: 500, pickRate: 0.6, winRate: 0.48 }
     ]
+  },
+
+  //英雄对抗图数据
+  heroagainst: {
+
   }
 
 })
@@ -118,7 +123,10 @@ onMounted(() => { })
         <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
       </div>
       <div class="chart-container">
-        英雄数据对抗图
+        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
+        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
+        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
+        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
       </div>
     </div>
   </section>

@@ -1,5 +1,5 @@
 <script setup>
-import { ref, watch, onMounted, onUnmounted, defineProps } from 'vue';
+import { ref, watch, onMounted, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
 import VChart from 'vue-echarts';
 
