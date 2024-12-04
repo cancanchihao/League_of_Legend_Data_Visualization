@@ -12,6 +12,8 @@ const setTopic = (param) => {
 }
 
 const Data = reactive({
+
+  // bp词云图数据
   bpwordcloud: {
     series: [
       {
@@ -31,6 +33,33 @@ const Data = reactive({
       },
     ],
   },
+
+  //选手雷达图数据
+  contestantradar: {
+    players: [
+      { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
+      { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
+      { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
+      { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
+      { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
+      { name: 'Player 7', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
+      { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
+    ]
+  },
+
+  //bp柱状图数据
+  bpbar: {
+    herodata: [
+      { name: '英雄1', matches: 200, pickRate: 0.4, winRate: 0.55 },
+      { name: '英雄2', matches: 350, pickRate: 0.5, winRate: 0.45 },
+      { name: '英雄3', matches: 100, pickRate: 0.25, winRate: 0.65 },
+      { name: '英雄4', matches: 150, pickRate: 0.35, winRate: 0.50 },
+      { name: '英雄5', matches: 500, pickRate: 0.6, winRate: 0.48 }
+    ]
+  }
 
 })
 
@@ -71,7 +100,7 @@ onMounted(() => { })
         选手mvp次数饼图
       </div>
       <div class="chart-container">
-        <contestantRadarChart></contestantRadarChart>
+        <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
         <div class="history-hero-compete">
           历史英雄对位（近五场）
         </div>
@@ -86,7 +115,7 @@ onMounted(() => { })
         <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
       </div>
       <div class="chart-container">
-        <bpBarChart></bpBarChart>
+        <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
       </div>
       <div class="chart-container">
         英雄数据对抗图

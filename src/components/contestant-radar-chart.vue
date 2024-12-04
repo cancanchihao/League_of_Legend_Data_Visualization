@@ -1,25 +1,18 @@
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, defineProps } from 'vue';
 import * as echarts from 'echarts';
 import VChart from 'vue-echarts';
 
-// 注册vchart组件
-const components = {
-  VChart,
-};
-
 // 玩家数据
-const players = ref([
-  { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
-  { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
-  { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
-  { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
-  { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
-  { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
-]);
+const props = defineProps({
+  players: {
+    type: Array,
+    required: true,
+  },
+});
 
 // 选中的组
-const selectedGroup = ref([players.value[0], players.value[1]]); // 默认选中第一组
+const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中第一组
 
 // ECharts配置
 const chartOptions = ref({
@@ -54,12 +47,16 @@ const chartOptions = ref({
 // 监听选中组的变化，更新ECharts配置
 watch(selectedGroup, (newGroup) => {
   let groupIndex;
-  if (newGroup[0] === players.value[0]) {
+  if (newGroup[0] === props.players[0]) {
     groupIndex = 1;
-  } else if (newGroup[0] === players.value[2]) {
+  } else if (newGroup[0] === props.players[2]) {
     groupIndex = 2;
-  } else {
+  } else if (newGroup[0] === props.players[4]) {
     groupIndex = 3;
+  } else if (newGroup[0] === props.players[6]) {
+    groupIndex = 4;
+  } else {
+    groupIndex = 5;
   }
   chartOptions.value.title.text = `位置${groupIndex}`; // 更新标题为位置1、2或3
   chartOptions.value.series[0].data = newGroup.map(player => ({
@@ -75,12 +72,16 @@ watch(selectedGroup, (newGroup) => {
 const selectGroup = (group) => {
   selectedGroup.value = group;
   let groupIndex;
-  if (group[0] === players.value[0] && group[1] === players.value[1]) {
+  if (group[0] === props.players[0]) {
     groupIndex = 1;
-  } else if (group[0] === players.value[2] && group[1] === players.value[3]) {
+  } else if (group[0] === props.players[2]) {
     groupIndex = 2;
-  } else {
+  } else if (group[0] === props.players[4]) {
     groupIndex = 3;
+  } else if (group[0] === props.players[6]) {
+    groupIndex = 4;
+  } else {
+    groupIndex = 5;
   }
   chartOptions.value.title.text = `位置${groupIndex}`; // 更新标题为位置1、2或3
 };
@@ -111,9 +112,11 @@ onUnmounted(() => {
   <div class="container">
     <div class="player-list">
       <ul>
-        <li @click="selectGroup([players[0], players[1]])">位置1</li>
-        <li @click="selectGroup([players[2], players[3]])">位置2</li>
-        <li @click="selectGroup([players[4], players[5]])">位置3</li>
+        <li @click="selectGroup([props.players[0], props.players[1]])">位置1</li>
+        <li @click="selectGroup([props.players[2], props.players[3]])">位置2</li>
+        <li @click="selectGroup([props.players[4], props.players[5]])">位置3</li>
+        <li @click="selectGroup([props.players[6], props.players[7]])">位置4</li>
+        <li @click="selectGroup([props.players[8], props.players[9]])">位置5</li>
       </ul>
     </div>
     <div id="radar-chart">
@@ -128,21 +131,20 @@ onUnmounted(() => {
   font-size: 8px;
   display: inline-block;
   vertical-align: top;
-  height: 100px;
-  margin-right: 50px;
+  margin: 0 5vh;
   ul {
     list-style: none; 
-    padding: 10px; 
+    padding: 0 2vh; 
+    margin: 0;
     li {
-      font-size: 12px;
+      font-size: 14px;
       cursor: pointer;
       border-bottom: 1px solid blue;
-      padding: 10px;
-      // margin-bottom: 15px;
+      padding: 1vh 0 1vh 0.5vw;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
     li:hover {
-      font-size: 14px;
+      font-size: 18px;
       color: rgb(73, 11, 217);
     }
   }
