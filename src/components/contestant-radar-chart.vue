@@ -20,7 +20,7 @@ const chartOptions = ref({
     text: '位置1', // 默认标题
   },
   textStyle: {
-      fontSize: 10,
+    fontSize: 10,
   },
   tooltip: {},
   radar: {
@@ -132,10 +132,12 @@ onUnmounted(() => {
   display: inline-block;
   vertical-align: top;
   margin: 0 5vh;
+
   ul {
-    list-style: none; 
-    padding: 0 2vh; 
+    list-style: none;
+    padding: 0 2vh;
     margin: 0;
+
     li {
       font-size: 14px;
       cursor: pointer;

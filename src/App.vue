@@ -6,9 +6,29 @@ import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
 import 'echarts-wordcloud';
 import heroAgainstChart from './components/hero-against-chart.vue';
 
+import heatMap from './components/heatMap.vue';
+
 const topic = ref('big-title')
 const setTopic = (param) => {
-    topic.value = param
+  topic.value = param
+}
+
+
+function generateHeatmapData(teamCount) {
+  const data = [];
+
+  for (let i = 0; i < teamCount; i++) {
+    for (let j = 0; j < teamCount; j++) {
+      if (i === j) {
+        data.push([i, j, "-"]);
+      } else {
+        const winRate = Math.floor(Math.random() * 101); // 随机生成一个 0 到 100 之间的胜率
+        data.push([i, j, winRate]);
+      }
+    }
+  }
+
+  return data;
 }
 
 const Data = reactive({
@@ -63,8 +83,27 @@ const Data = reactive({
 
   //英雄对抗图数据
   heroagainst: {
+  },
+
+  heatMap: {
+    teamNames: [
+      "BLG", "EDG", "RNG", "RA",
+      "WE", "JDG", "IG", "FPX",
+      "AL", "LGD", "OMG", "UP",
+      "TT", "WBG", "TES", "NIP",
+    ],
+
+    heatmapData: generateHeatmapData(16)
+    // heatmapData: [
+    //   [0, 0, "-"], [0, 1, 70], [0, 2, 50], [0, 3, 60],
+    //   [1, 0, 30], [1, 1, "-"], [1, 2, 40], [1, 3, 80],
+    //   [2, 0, 50], [2, 1, 60], [2, 2, "-"], [2, 3, 70],
+    //   [3, 0, 40], [3, 1, 20], [3, 2, 30], [3, 3, "-"],
+    // ]
 
   }
+
+
 
 })
 
@@ -88,7 +127,9 @@ onMounted(() => { })
         战队胜场数据轮播
       </div>
       <div class="chart-container">
-        战队对战数据热力图
+        <!-- 战队对战数据热力图 -->
+        <heatMap :teamNames="Data.heatMap.teamNames" :data="Data.heatMap.heatmapData" title="16支战队对抗胜率热力图" />
+
       </div>
       <div class="chart-container">
         战队数据对抗图
@@ -101,15 +142,14 @@ onMounted(() => { })
       <div class="chart-container">
         选手数据之最
       </div>
-      <div class="chart-container">
+      <!-- <div class="chart-container">
         选手mvp次数饼图
-      </div>
-      <div class="chart-container">
+      </div> -->
+      <div class="hero-compete-chart-container">
         <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
         <div class="history-hero-compete">
           历史英雄对位（近五场）
         </div>
-        
       </div>
     </div>
     <div class="column">
@@ -124,16 +164,14 @@ onMounted(() => { })
       </div>
       <div class="chart-container">
         <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
-        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
-        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
-        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
       </div>
     </div>
   </section>
 </template>
 
 <style>
-html, body {
+html,
+body {
   margin: 0;
 }
 
@@ -169,12 +207,15 @@ header {
 
   .column {
     flex: 1;
+
     &:nth-child(2) {
       border-left: 4px solid rgb(108, 197, 232);
       border-right: 4px solid rgb(108, 197, 232);
+
       .chart-container:nth-child(2) {
         height: 24vh;
       }
+
       .chart-container:nth-child(4) {
         height: 32vh;
       }
@@ -196,9 +237,19 @@ header {
   transition: transform 0.3s ease;
 }
 
+.hero-compete-chart-container {
+  height: 61vh;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+
 .little-title {
   text-align: center;
   height: 5vh;
 }
-
 </style>
