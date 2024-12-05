@@ -54,6 +54,7 @@ const Data = reactive({
     ],
   },
 
+
   //选手雷达图数据
   contestantradar: {
     players: [
