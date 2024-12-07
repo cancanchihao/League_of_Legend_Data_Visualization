@@ -9,7 +9,8 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" style="max-width: 250px;" :items="['2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" style="max-width: 250px;" :items="[
+        '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
         '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
@@ -28,10 +29,15 @@
           <div class="little-title">
             战队
           </div>
-          <div class="chart-container">
-            战队胜场数据轮播
+          <div class="Team_win_rate_ranking-container">
+            <v-container>
+              <!-- <v-toolbar>战队数据排行</v-toolbar> -->
+              <v-data-table-virtual :headers="Data.Team_win_rate_ranking.headers"
+                :items="Data.Team_win_rate_ranking.teams" item-value="name" class="elevation-1" height="16vh">
+              </v-data-table-virtual>
+            </v-container>
           </div>
-          <div class="chart-container">
+          <div class="heatMap-container">
             <!-- 战队对战数据热力图 -->
             <heatMap :teamNames="Data.heatMap.teamNames" :data="Data.heatMap.heatmapData" title="16支战队对抗胜率热力图" />
 
@@ -87,10 +93,10 @@ import heroAgainstChart from './components/hero-against-chart.vue';
 
 import heatMap from './components/heatMap.vue';
 
-const topic = ref('big-title')
-const setTopic = (param) => {
-  topic.value = param
-}
+const topic = ref('2024 全球总决赛')
+// const setTopic = (param) => {
+//   topic.value = param
+// }
 
 
 function generateHeatmapData(teamCount) {
@@ -183,6 +189,34 @@ const Data = reactive({
     //   [2, 0, 50], [2, 1, 60], [2, 2, "-"], [2, 3, 70],
     //   [3, 0, 40], [3, 1, 20], [3, 2, 30], [3, 3, "-"],
     // ]
+
+  },
+
+
+  Team_win_rate_ranking: {
+    headers: [
+      { title: '战队', align: 'start', key: 'teamName', },
+      { title: '胜场', align: 'end', key: 'wins' },
+      { title: '负场', align: 'end', key: 'losses' },
+      { title: '胜率', align: 'end', key: 'winRate', }
+    ],
+    teams: [
+      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+    ]
 
   }
 
@@ -280,6 +314,27 @@ header {
 
 .chart-container {
   height: 28vh;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.Team_win_rate_ranking-container {
+  height: 18vh;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+
+.heatMap-container {
+  height: 38vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 轻微阴影效果 */
