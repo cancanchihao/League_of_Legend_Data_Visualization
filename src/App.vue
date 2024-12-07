@@ -69,7 +69,7 @@
             <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
           </div>
           <div class="chart-container">
-            <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
+            <heroAgainstChart :heroData="Data.heroagainst.herodata"></heroAgainstChart>
           </div>
         </div>
       </section>
@@ -162,6 +162,10 @@ const Data = reactive({
 
   //英雄对抗图数据
   heroagainst: {
+    herodata: [
+      { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
+      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 }
+    ]
   },
 
   heatMap: {

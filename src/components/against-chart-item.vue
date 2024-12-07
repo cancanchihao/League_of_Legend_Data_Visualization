@@ -9,13 +9,30 @@ import {
 } from 'vue';
 import * as echarts from 'echarts';
 
-const chart = ref(null);
+const props = defineProps({
+    line_name: {
+        type: String,
+        required: true,
+    },
+    data1: {
+        type: Number,
+        required: true,
+    },
+    data2: {
+        type: Number,
+        required: true,
+    },
+    hero1: {
+        type: String,
+        required: true,
+    },
+    hero2: {
+        type: String,
+        required: true,
+    },
+});
 
-const line_name = '数据名'
-const data1 = 320;
-const data2 = 210;
-const hero1 = 'Hero1';
-const hero2 = 'Hero2';
+const chart = ref(null);
 
 const renderChart = () => {
     const chartDom = chart.value;
@@ -29,22 +46,22 @@ const renderChart = () => {
             }
         },
         legend: {
-            data: [hero1, hero2],
+            data: [props.hero1, props.hero2],
             orient: 'horizontal',
             itemGap: 10,
-            bottom: '60%',
+            bottom: '30%',
             left: '50vw',
             show: false,
             selected: {
-                [hero1]: true,  // 不允许点击选中或取消选中
-                [hero2]: true,   // 不允许点击选中或取消选中
+                [props.hero1]: true,  // 不允许点击选中或取消选中
+                [props.hero2]: true,   // 不允许点击选中或取消选中
             }
         },
         grid: {
             left: '3%',
             right: '4%',
-            top: '40%',
-            bottom: '20%',
+            top: '20%',
+            bottom: '10%',
             containLabel: true
             
         },
@@ -57,47 +74,47 @@ const renderChart = () => {
                 show: false // 隐藏 x 轴的分割线
             },
             min: 0,
-            max: data1 + data2
+            max: props.data1 + props.data2
         },
         yAxis: {
             type: 'category',
             // 删除 'Mon' 字段，如果只需要一个类别，可以设置 data 为空数组
-            data: [line_name],
+            data: [props.line_name],
             axisTick: {
                 show: false
             },
         },
         series: [{
-                name: hero1,
+                name: props.hero1,
                 type: 'bar',
                 stack: 'total',
                 label: {
                     show: true,
                     fontSize: 10, // 设置标签文本的字体大小
                     formatter: function (params) {
-                        return params.value; // 可修改显示数值
+                        return params.value + '%'; // 可修改显示数值
                     }
                 },
                 emphasis: {
                     focus: 'series'
                 },
-                data: [data1]
+                data: [props.data1]
             },
             {
-                name: hero2,
+                name: props.hero2,
                 type: 'bar',
                 stack: 'total',
                 label: {
                     show: true,
                     fontSize: 10, // 设置标签文本的字体大小
                     formatter: function (params) {
-                        return params.value;
+                        return params.value + '%';
                     }
                 },
                 emphasis: {
                     focus: 'series'
                 },
-                data: [data2]
+                data: [props.data2]
             }
         ]
     };
