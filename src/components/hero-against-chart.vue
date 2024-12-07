@@ -1,7 +1,7 @@
 <template>
     <div class="hero">
         <img :src="'/src/assets/'+props.heroData[0].headimg+'.png'" alt="1">
-        <span class="first_hero">{{ props.heroData[0].name }}</span>
+        <span>{{ props.heroData[0].name }}</span>
         <span>{{ props.heroData[1].name }}</span>
         <img :src="'/src/assets/'+props.heroData[0].headimg+'.png'" alt="1">
     </div>

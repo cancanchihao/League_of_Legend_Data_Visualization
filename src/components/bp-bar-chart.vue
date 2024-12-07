@@ -6,7 +6,6 @@
   import {
     onMounted,
     ref,
-    defineProps
   } from 'vue';
   import * as echarts from 'echarts';
 
