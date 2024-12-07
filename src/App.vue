@@ -1,3 +1,82 @@
+<template>
+  <v-app>
+
+    <!-- 顶部导航栏 -->
+    <v-app-bar class="wrapper">
+      <v-container class="title-container">
+        <span class="big-title">
+          {{ topic }}
+        </span>
+      </v-container>
+
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" style="max-width: 250px;" :items="['2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+        '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+        '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+        '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+        '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+        '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+        '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+        '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+      </v-select>
+    </v-app-bar>
+
+
+    <!-- 主体部分 -->
+    <v-main>
+      <section class="mainbox">
+        <div class="column">
+          <div class="little-title">
+            战队
+          </div>
+          <div class="chart-container">
+            战队胜场数据轮播
+          </div>
+          <div class="chart-container">
+            <!-- 战队对战数据热力图 -->
+            <heatMap :teamNames="Data.heatMap.teamNames" :data="Data.heatMap.heatmapData" title="16支战队对抗胜率热力图" />
+
+          </div>
+          <div class="chart-container">
+            战队数据对抗图
+          </div>
+        </div>
+        <div class="column">
+          <div class="little-title">
+            选手
+          </div>
+          <div class="chart-container">
+            选手数据之最
+          </div>
+          <!-- <div class="chart-container">
+        选手mvp次数饼图
+      </div> -->
+          <div class="hero-compete-chart-container">
+            <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
+            <div class="history-hero-compete">
+              历史英雄对位（近五场）
+            </div>
+
+          </div>
+        </div>
+        <div class="column">
+          <div class="little-title">
+            英雄
+          </div>
+          <div class="chart-container">
+            <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
+          </div>
+          <div class="chart-container">
+            <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
+          </div>
+          <div class="chart-container">
+            <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
+          </div>
+        </div>
+      </section>
+    </v-main>
+  </v-app>
+</template>
+
 <script setup>
 import { ref, reactive, onMounted } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
@@ -112,64 +191,7 @@ onMounted(() => { })
 
 </script>
 
-<template>
-  <header class="wrapper">
-    <span class="big-title">
-      {{ topic }}
-    </span>
-  </header>
 
-  <section class="mainbox">
-    <div class="column">
-      <div class="little-title">
-        战队
-      </div>
-      <div class="chart-container">
-        战队胜场数据轮播
-      </div>
-      <div class="chart-container">
-        <!-- 战队对战数据热力图 -->
-        <heatMap :teamNames="Data.heatMap.teamNames" :data="Data.heatMap.heatmapData" title="16支战队对抗胜率热力图" />
-
-      </div>
-      <div class="chart-container">
-        战队数据对抗图
-      </div>
-    </div>
-    <div class="column">
-      <div class="little-title">
-        选手
-      </div>
-      <div class="chart-container">
-        选手数据之最
-      </div>
-      <!-- <div class="chart-container">
-        选手mvp次数饼图
-      </div> -->
-      <div class="hero-compete-chart-container">
-        <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
-        <div class="history-hero-compete">
-          历史英雄对位（近五场）
-        </div>
-
-      </div>
-    </div>
-    <div class="column">
-      <div class="little-title">
-        英雄
-      </div>
-      <div class="chart-container">
-        <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
-      </div>
-      <div class="chart-container">
-        <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
-      </div>
-      <div class="chart-container">
-        <heroAgainstChart :heroData="Data.bpbar.herodata"></heroAgainstChart>
-      </div>
-    </div>
-  </section>
-</template>
 
 <style>
 html,
@@ -190,6 +212,26 @@ header {
   border-radius: 5px;
   /* 圆角边框 */
   text-align: center;
+
+  display: flex;
+  /* 使用 flex 布局 */
+  justify-content: space-between;
+  /* 保证子元素分布在两侧 */
+  align-items: center;
+  /* 垂直居中对齐 */
+  position: relative;
+  /* 相对定位，使绝对定位生效 */
+}
+
+.title-container {
+  position: absolute;
+  /* 绝对定位，让标题位于父容器中央 */
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  /* 修正偏移 */
+  text-align: center;
+  /* 文本居中 */
 }
 
 .big-title {
@@ -197,6 +239,10 @@ header {
   line-height: 100%;
   color: #333333;
   font-weight: bold;
+
+  text-align: center;
+  /* flex-grow: 1; */
+
 }
 
 .mainbox {
