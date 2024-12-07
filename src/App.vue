@@ -53,9 +53,6 @@
           <div class="chart-container">
             选手数据之最
           </div>
-          <!-- <div class="chart-container">
-        选手mvp次数饼图
-      </div> -->
           <div class="hero-compete-chart-container">
             <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
             <div class="history-hero-compete">
