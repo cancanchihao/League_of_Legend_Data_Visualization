@@ -1,13 +1,38 @@
 <template>
     <div class="hero">
         <img :src="'/src/assets/'+props.heroData[0].headimg+'.png'" alt="1">
-        <span>{{ props.heroData[0].name }}</span>
-        <span>{{ props.heroData[1].name }}</span>
-        <img :src="'/src/assets/'+props.heroData[0].headimg+'.png'" alt="1">
+        <el-button type="primary" class="elb" @click="change(1)">
+            {{ props.heroData[0].name }}
+        </el-button>
+        <el-button type="primary" class="elb" @click="change(2)">
+            {{ props.heroData[1].name }}
+        </el-button>
+        <img :src="'/src/assets/'+props.heroData[1].headimg+'.png'" alt="1">
     </div>
-    <item :line_name='"  胜率 "' :data1="props.heroData[0].winRate" :data2="props.heroData[1].winRate" :hero1="props.heroData[0].name" :hero2="props.heroData[1].name"></item>
-    <item :line_name='"pick率"' :data1="props.heroData[0].pickRate" :data2="props.heroData[1].pickRate" :hero1="props.heroData[0].name" :hero2="props.heroData[1].name"></item>
-    <item :line_name='"ban率 "' :data1="props.heroData[0].banRate" :data2="props.heroData[1].banRate" :hero1="props.heroData[0].name" :hero2="props.heroData[1].name"></item>
+    <item
+        :line_name='"  胜率 "'
+        :data1="props.heroData[0].winRate"
+        :data2="props.heroData[1].winRate"
+        :obj1="props.heroData[0].name"
+        :obj2="props.heroData[1].name"
+        :selectedItem="selectedItem">
+    </item>
+    <item 
+        :line_name='"pick率"' 
+        :data1="props.heroData[0].pickRate" 
+        :data2="props.heroData[1].pickRate" 
+        :obj1="props.heroData[0].name" 
+        :obj2="props.heroData[1].name"
+        :selectedItem="selectedItem">
+    </item>
+    <item 
+        :line_name='"ban率"' 
+        :data1="props.heroData[0].banRate" 
+        :data2="props.heroData[1].banRate" 
+        :obj1="props.heroData[0].name" 
+        :obj2="props.heroData[1].name"
+        :selectedItem="selectedItem">
+    </item>
 </template>
 
 <script setup>
@@ -25,6 +50,17 @@ const props = defineProps({
     },
 });
 
+const selectedItem = ref(0); // 响应式的 selectedItem
+
+// 更新 selectedItem
+const change = (id) => {
+    if (selectedItem.value === id) {
+        selectedItem.value += 2;
+    } else {
+        selectedItem.value = id;
+    }
+};
+
 </script>
 
 <style scoped>
@@ -32,12 +68,14 @@ const props = defineProps({
     display: flex;
     justify-content: space-between;
     width: 100%;
-    text-align: center;
+    align-items: center;
     padding: 0 3vw;
 }
 
-span {
+.elb {
     display: inline-flex;
     align-items: center;
+    position: relative; /* 使 z-index 生效 */
+    z-index: 10; /* 设置更高的 z-index */
 }
 </style>
