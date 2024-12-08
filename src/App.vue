@@ -43,7 +43,7 @@
 
           </div>
           <div class="chart-container">
-            战队数据对抗图
+            <teamAgainstChart :teamData="Data.teamagainst.teamdata"></teamAgainstChart>
           </div>
         </div>
         <div class="column">
@@ -87,6 +87,7 @@ import bpBarChart from './components/bp-bar-chart.vue';
 import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
 import 'echarts-wordcloud';
 import heroAgainstChart from './components/hero-against-chart.vue';
+import teamAgainstChart from './components/team-against-chart.vue';
 
 import heatMap from './components/heatMap.vue';
 
@@ -168,6 +169,13 @@ const Data = reactive({
     herodata: [
       { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
       { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 }
+    ]
+  },
+
+  teamagainst: {
+    teamdata: [
+      { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
+      { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
     ]
   },
 

@@ -3,10 +3,7 @@
 </template>
 
 <script setup>
-import {
-    onMounted,
-    ref
-} from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import * as echarts from 'echarts';
 
 const props = defineProps({
@@ -22,40 +19,39 @@ const props = defineProps({
         type: Number,
         required: true,
     },
-    hero1: {
+    obj1: {
         type: String,
         required: true,
     },
-    hero2: {
+    obj2: {
         type: String,
         required: true,
     },
+    selectedItem: {
+        type: Number,
+        required: true, // 传递过来的选中项
+    }
 });
 
 const chart = ref(null);
+const myChart = ref(null);
 
 const renderChart = () => {
     const chartDom = chart.value;
-    const myChart = echarts.init(chartDom);
+    myChart.value = echarts.init(chartDom);
 
     const option = {
         tooltip: {
             trigger: 'axis',
-            axisPointer: {
-                type: 'shadow'
-            }
+            axisPointer: { type: 'shadow' }
         },
         legend: {
-            data: [props.hero1, props.hero2],
+            data: [props.obj1, props.obj2],
             orient: 'horizontal',
             itemGap: 10,
             bottom: '30%',
             left: '50vw',
-            show: false,
-            selected: {
-                [props.hero1]: true,  // 不允许点击选中或取消选中
-                [props.hero2]: true,   // 不允许点击选中或取消选中
-            }
+            show: false, // 初始隐藏 legend
         },
         grid: {
             left: '3%',
@@ -63,81 +59,75 @@ const renderChart = () => {
             top: '20%',
             bottom: '10%',
             containLabel: true
-            
         },
         xAxis: {
             type: 'value',
-            axisLabel: {
-                show: false
-            },
-            splitLine: {
-                show: false // 隐藏 x 轴的分割线
-            },
+            axisLabel: { show: false },
+            splitLine: { show: false },
             min: 0,
             max: props.data1 + props.data2
         },
         yAxis: {
             type: 'category',
-            // 删除 'Mon' 字段，如果只需要一个类别，可以设置 data 为空数组
             data: [props.line_name],
-            axisTick: {
-                show: false
-            },
+            axisTick: { show: false }
         },
-        series: [{
-                name: props.hero1,
+        series: [
+            {
+                name: props.obj1,
                 type: 'bar',
                 stack: 'total',
                 label: {
                     show: true,
-                    fontSize: 10, // 设置标签文本的字体大小
-                    formatter: function (params) {
-                        return params.value + '%'; // 可修改显示数值
-                    }
+                    fontSize: 10,
+                    formatter: (params) => params.value + '%'
                 },
-                emphasis: {
-                    focus: 'series'
-                },
-                data: [props.data1]
+                emphasis: { focus: 'series' },
+                data: [props.data1],
             },
             {
-                name: props.hero2,
+                name: props.obj2,
                 type: 'bar',
                 stack: 'total',
                 label: {
                     show: true,
-                    fontSize: 10, // 设置标签文本的字体大小
-                    formatter: function (params) {
-                        return params.value + '%';
-                    }
+                    fontSize: 10,
+                    formatter: (params) => params.value + '%'
                 },
-                emphasis: {
-                    focus: 'series'
-                },
-                data: [props.data2]
+                emphasis: { focus: 'series' },
+                data: [props.data2],
             }
         ]
     };
 
-    myChart.setOption(option);
+    myChart.value.setOption(option);
+    window.addEventListener('resize', () => myChart.value.resize());
+};
 
-    const itemGap = window.innerWidth * 0.11;
-    const itemWidth = window.innerWidth * 0.015;
-    myChart.setOption({
-        legend: {
-            itemWidth: itemWidth,
-            itemGap: itemGap
-        }
-    });
+// 监听 selectedItem，触发图例切换
+watch(() => props.selectedItem, (newVal) => {
+  if (newVal) {
+    handleLegendToggle(newVal);
+  }
+  console.log("111"); // 确认是否进入 watch
+});
 
-    window.addEventListener('resize', () => {
-        myChart.resize();
-    });
+const handleLegendToggle = (objid) => {
+    if (objid === 1 || objid === 3) {
+        myChart.value.dispatchAction({
+            type: 'legendToggleSelect',
+            name: props.obj1
+        });
+    } else {
+        myChart.value.dispatchAction({
+            type: 'legendToggleSelect',
+            name: props.obj2
+        });
+    }
 };
 
 onMounted(() => {
     renderChart();
-
 });
 </script>
 
