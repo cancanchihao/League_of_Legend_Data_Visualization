@@ -37,6 +37,10 @@ const chart = ref(null);
 const myChart = ref(null);
 
 const renderChart = () => {
+    if (myChart.value) {
+        myChart.value.dispose();
+    }
+  
     const chartDom = chart.value;
     myChart.value = echarts.init(chartDom);
 
@@ -109,12 +113,10 @@ watch(() => props.selectedItem, (newVal) => {
     if (newVal) {
         handleLegendToggle(newVal);
     }
-    console.log("111"); // 确认是否进入 watch
 });
 // 监听 obj1 或 obj2 的变化，重新绘制图表
 watch([() => props.obj1, () => props.obj2], () => {
     renderChart(); // 当 obj1 或 obj2 改变时重新绘制图表
-
 });
 
 const handleLegendToggle = (objid) => {

@@ -10,9 +10,6 @@ import 'echarts-wordcloud';
 import { onMounted } from "vue";
 // 引入 lodash 中的 merge、深克隆
 import merge from 'lodash/merge';
-const emit = defineEmits<{
-    (event: 'wordClick', word: string): void;
-}>();
 
 const emit = defineEmits<{
     (event: 'wordClick', word: string): void;

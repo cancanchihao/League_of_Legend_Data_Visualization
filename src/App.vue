@@ -130,6 +130,11 @@ import 'echarts-wordcloud';
 
 const topic = ref('2024 全球总决赛')
 
+interface Header {
+  title: string;
+  align: "start" | "end" | "center";  // 限定 align 的值
+  key: string;
+}
 
 const Data = reactive({
 
@@ -139,7 +144,7 @@ const Data = reactive({
       { title: '胜场', align: 'end', key: 'matches_won' },
       { title: '负场', align: 'end', key: 'matches_lose' },
       { title: '胜率', align: 'end', key: 'win_rate', }
-    ],
+    ] as Header[],
     teams: []
   },
 
@@ -217,7 +222,7 @@ const Data = reactive({
           { name: '虚空之女', value: 15 },
           { name: '熔铁少女', value: 10 },
           { name: '爆破鬼才', value: 8 },
-        ],
+        ] as { name: string; value: number }[],
       },
     ],
   },
