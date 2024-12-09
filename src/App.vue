@@ -81,15 +81,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted } from 'vue'
+import { ref, reactive, onMounted, onBeforeMount } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
 import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
 import 'echarts-wordcloud';
 import heroAgainstChart from './components/hero-against-chart.vue';
 import teamAgainstChart from './components/team-against-chart.vue';
-
 import heatMap from './components/heatMap.vue';
+
+import axios from 'axios'
 
 const topic = ref('2024 全球总决赛')
 // const setTopic = (param) => {
@@ -200,27 +201,30 @@ const Data = reactive({
 
   Team_win_rate_ranking: {
     headers: [
-      { title: '战队', align: 'start', key: 'teamName', },
-      { title: '胜场', align: 'end', key: 'wins' },
-      { title: '负场', align: 'end', key: 'losses' },
-      { title: '胜率', align: 'end', key: 'winRate', }
+      { title: '战队', align: 'start', key: 'team', },
+      { title: '胜场', align: 'end', key: 'matches_won' },
+      { title: '负场', align: 'end', key: 'matches_lose' },
+      { title: '胜率', align: 'end', key: 'win_rate', }
     ],
+    // teams: [
+    //   { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+    //   { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+    //   { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+    //   { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+    //   { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+    //   { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+    //   { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+    //   { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+    //   { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+    //   { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+    //   { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
+    //   { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
+    //   { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
+    //   { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
+    //   { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+    // ]
     teams: [
-      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
-      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
-      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
-      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
-      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
-      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
-      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
-      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
-      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
-      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
-      { teamName: '战队A', wins: 15, losses: 5, winRate: 75 },
-      { teamName: '战队B', wins: 20, losses: 10, winRate: 66.67 },
-      { teamName: '战队C', wins: 10, losses: 5, winRate: 66.67 },
-      { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
-      { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
+      { team: '战队A', matches_won: 15, matches_lose: 5, win_rate: 75 },
     ]
 
   }
@@ -229,8 +233,39 @@ const Data = reactive({
 
 })
 
-onMounted(() => { })
+onMounted(() => {
 
+})
+
+onBeforeMount(() => {
+  getChart1Data()
+})
+
+let abc = ref('2017 LPL 春季赛')
+
+function getChart1Data() {
+  console.log('正确获取图1的数据')
+  console
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    headers: {
+      "x-requested-with": "XMLHttpRequest"
+    },
+    params: {
+      matchType: abc.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+      Data.Team_win_rate_ranking.teams = response.data.data
+    }
+    else {
+      console.log("code=", response.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
 </script>
 
 
