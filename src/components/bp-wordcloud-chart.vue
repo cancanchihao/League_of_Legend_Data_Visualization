@@ -14,6 +14,9 @@ const emit = defineEmits<{
     (event: 'wordClick', word: string): void;
 }>();
 
+const emit = defineEmits<{
+    (event: 'wordClick', word: string): void;
+}>();
 
 const props = withDefaults(
     defineProps<{
@@ -21,7 +24,6 @@ const props = withDefaults(
     }>(),
     {},
 )
-
 
 // 词云图默认属性
 const defaultSeries = [{
