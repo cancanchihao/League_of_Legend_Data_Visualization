@@ -106,10 +106,15 @@ const renderChart = () => {
 
 // 监听 selectedItem，触发图例切换
 watch(() => props.selectedItem, (newVal) => {
-  if (newVal) {
-    handleLegendToggle(newVal);
-  }
-  console.log("111"); // 确认是否进入 watch
+    if (newVal) {
+        handleLegendToggle(newVal);
+    }
+    console.log("111"); // 确认是否进入 watch
+});
+// 监听 obj1 或 obj2 的变化，重新绘制图表
+watch([() => props.obj1, () => props.obj2], () => {
+    renderChart(); // 当 obj1 或 obj2 改变时重新绘制图表
+
 });
 
 const handleLegendToggle = (objid) => {

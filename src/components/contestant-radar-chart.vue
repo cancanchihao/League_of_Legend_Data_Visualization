@@ -145,6 +145,7 @@ onUnmounted(() => {
       padding: 1vh 0 1vh 0.5vw;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
+
     li:hover {
       font-size: 18px;
       color: rgb(73, 11, 217);
@@ -154,6 +155,7 @@ onUnmounted(() => {
 
 .container {
   display: flex;
+  margin-bottom: 2vh;
 }
 
 #radar-chart {
