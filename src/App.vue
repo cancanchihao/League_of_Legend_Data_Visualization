@@ -9,7 +9,7 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" style="max-width: 250px;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="max-width: 250px;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -223,9 +223,7 @@ const Data = reactive({
     //   { teamName: '战队D', wins: 25, losses: 15, winRate: 62.5 },
     //   { teamName: '战队E', wins: 30, losses: 20, winRate: 60 },
     // ]
-    teams: [
-      { team: '战队A', matches_won: 15, matches_lose: 5, win_rate: 75 },
-    ]
+    teams: []
 
   }
 
@@ -241,17 +239,17 @@ onBeforeMount(() => {
   getChart1Data()
 })
 
-let abc = ref('2017 LPL 春季赛')
+
 
 function getChart1Data() {
+  // newValue 可以替换topic
   console.log('正确获取图1的数据')
-  console
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
-    headers: {
-      "x-requested-with": "XMLHttpRequest"
-    },
+    // headers: {
+    //   "x-requested-with": "XMLHttpRequest"
+    // },
     params: {
-      matchType: abc.value
+      matchType: topic.value
     }
   }).then(response => {
     console.log(response)
@@ -260,7 +258,7 @@ function getChart1Data() {
       Data.Team_win_rate_ranking.teams = response.data.data
     }
     else {
-      console.log("code=", response.code)
+      console.log("code=", response.data.code)
     }
   }).catch(error => {
     console.log(error)
