@@ -66,7 +66,7 @@
             英雄
           </div>
           <div class="chart-container">
-            <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
+            <bpWordcloudChart :options="Data.bpwordcloud" @wordClick="bpwordcloudclick"></bpWordcloudChart>
           </div>
           <div class="chart-container">
             <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
@@ -80,7 +80,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, reactive, onMounted, onBeforeMount } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
@@ -89,8 +89,9 @@ import 'echarts-wordcloud';
 import heroAgainstChart from './components/hero-against-chart.vue';
 import teamAgainstChart from './components/team-against-chart.vue';
 import heatMap from './components/heatMap.vue';
+import axios from 'axios';
 
-import axios from 'axios'
+
 
 const topic = ref('2024 全球总决赛')
 // const setTopic = (param) => {
@@ -169,10 +170,12 @@ const Data = reactive({
   heroagainst: {
     herodata: [
       { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 }
+      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
+      { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
     ]
   },
 
+  //队伍对抗图数据
   teamagainst: {
     teamdata: [
       { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
@@ -180,6 +183,7 @@ const Data = reactive({
     ]
   },
 
+  //队伍热力图数据
   heatMap: {
     teamNames: [
       "BLG", "EDG", "RNG", "RA",
@@ -199,6 +203,7 @@ const Data = reactive({
   },
 
 
+  //轮播图数据
   Team_win_rate_ranking: {
     headers: [
       { title: '战队', align: 'start', key: 'team', },
@@ -231,15 +236,29 @@ const Data = reactive({
 
 })
 
-onMounted(() => {
+const bpwordcloudclick = (word: string) => {
+  console.log('点击了词：', word);
+  console.log('当前 heroagainst.herodata:', Data.heroagainst.herodata);
 
-})
+  if (!Data.heroagainst || !Data.heroagainst.herodata) {
+    console.error('heroagainst 或 heroagainst.herodata 未定义');
+    return;
+  }
+
+  const targetIndex = Data.heroagainst.herodata.findIndex(item => item.name === word);
+  if (targetIndex !== -1) {
+    [Data.heroagainst.herodata[0], Data.heroagainst.herodata[targetIndex]] = [Data.heroagainst.herodata[targetIndex], Data.heroagainst.herodata[0]];
+    console.log('互换成功', Data.heroagainst.herodata[0]);
+  } else {
+    console.log('未找到对应的英雄');
+  }
+};
+
+onMounted(() => {})
 
 onBeforeMount(() => {
   getChart1Data()
 })
-
-
 
 function getChart1Data() {
   // newValue 可以替换topic

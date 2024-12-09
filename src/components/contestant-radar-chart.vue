@@ -154,6 +154,7 @@ onUnmounted(() => {
 
 .container {
   display: flex;
+  margin-bottom: 2vh;
 }
 
 #radar-chart {
