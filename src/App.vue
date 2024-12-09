@@ -30,23 +30,23 @@
             战队
           </div>
 
-          <div class="chart-1-container">
-            <v-container>
-              <!-- <v-toolbar>战队数据排行</v-toolbar> -->
-              <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                class="elevation-1" height="16vh">
-              </v-data-table-virtual>
-            </v-container>
-          </div>
+          <v-container class="chart-1-container">
+            <!-- 图1 -->
+            <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
+              class="elevation-1" height="16vh">
+            </v-data-table-virtual>
+          </v-container>
 
-          <div class="chart-2-container">
-            <!-- 战队对战数据热力图 -->
+
+          <v-container class="chart-2-container">
+            <!-- 图2 -->
             <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" title="16支战队对抗胜率热力图" />
-          </div>
+          </v-container>
 
-          <div class="chart-container">
+          <v-container class="chart-3-container">
+            <!-- 图3 -->
             <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
-          </div>
+          </v-container>
 
         </div>
 
@@ -56,17 +56,32 @@
             选手
           </div>
 
-          <div class="chart-container">
-            数据之最
-          </div>
+          <v-container class="chart-4-container">
+            <!-- 图4 -->
+            <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
+          </v-container>
 
-          <div class="chart-container">
-            散点图
-          </div>
+          <v-container class="chart-5-container">
+            <!-- 图5 -->
+            <v-row>
+              <v-col>
+                <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
+                  style="max-height: 50px;" />
+              </v-col>
+              <v-col>
+                <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
+                  style="max-height: 50px;" />
+              </v-col>
+            </v-row>
 
-          <div class="chart-container">
-            <contestantRadarChart :players="Data.contestantradar.players"></contestantRadarChart>
-          </div>
+            <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
+              :y-axis="Data.chart5.yAxis" />
+          </v-container>
+
+          <v-container class="chart-6-container">
+            <!-- 图6 -->
+            <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
+          </v-container>
 
         </div>
 
@@ -76,17 +91,20 @@
             英雄
           </div>
 
-          <div class="chart-container">
-            <bpWordcloudChart :options="Data.chart7"></bpWordcloudChart>
-          </div>
+          <v-container class="chart-7-container">
+            <!-- 图7 -->
+            <bpWordcloudChart :options="Data.chart7" @wordClick="bpwordcloudclick"></bpWordcloudChart>
+          </v-container>
 
-          <div class="chart-container">
-            <bpBarChart :heroData="Data.bpbar.herodata"></bpBarChart>
-          </div>
+          <v-container class="chart-8-container">
+            <!-- 图8 -->
+            <bpBarChart :heroData="Data.chart8.herodata"></bpBarChart>
+          </v-container>
 
-          <div class="chart-container">
-            <heroAgainstChart :heroData="Data.heroagainst.herodata"></heroAgainstChart>
-          </div>
+          <v-container class="chart-9-container">
+            <!-- 图9 -->
+            <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+          </v-container>
 
         </div>
       </section>
@@ -94,7 +112,7 @@
   </v-app>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, reactive, onMounted, onBeforeMount } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
@@ -102,12 +120,15 @@ import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
 import heroAgainstChart from './components/hero-against-chart.vue';
 import teamAgainstChart from './components/team-against-chart.vue';
 import heatMap from './components/heatMap.vue';
+import boxPlot from './components/box-plot.vue';
+import scatterChart from './components/scatter-chart.vue';
 
 import axios from 'axios'
 import 'echarts-wordcloud';
 
 
 const topic = ref('2024 全球总决赛')
+
 
 const Data = reactive({
 
@@ -138,13 +159,44 @@ const Data = reactive({
   chart4: {
     playerBoxPlotData: [
       { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
-      { player: 'xiaohu', kills: 8, deaths: 8, assists: 7 },
-      { player: 'xiaohu', kills: 9, deaths: 7, assists: 12 },
-      { player: 'xiaohu', kills: 10, deaths: 15, assists: 10 },
-      { player: 'xiaohu', kills: 11, deaths: 9, assists: 6 },
-      { player: 'xiaohu', kills: 12, deaths: 9, assists: 7 },
-      { player: 'xiaohu', kills: 14, deaths: 14, assists: 6 },
-      { player: 'xiaohu', kills: 19, deaths: 12, assists: 7 },
+      { player: 'faker', kills: 8, deaths: 8, assists: 7 },
+      { player: 'knight', kills: 9, deaths: 7, assists: 12 },
+      { player: 'bin', kills: 10, deaths: 15, assists: 10 },
+      { player: 'on', kills: 11, deaths: 9, assists: 6 },
+      { player: 'jkl', kills: 12, deaths: 9, assists: 7 },
+      { player: 'theshy', kills: 14, deaths: 14, assists: 6 },
+      { player: 'doinb', kills: 19, deaths: 12, assists: 7 },
+    ],
+  },
+
+  chart5: {
+    xAxis: ref('gold'),
+    yAxis: ref('damage'),
+    axisOptions: ['gold', 'damage', 'tanking', 'cs'],
+    scatterDiagramData: [
+      { player: 'xiaohu', gold: 7785, damage: 8545, tanking: 16456, cs: 456, },
+      { player: 'xiaohu', gold: 7457, damage: 5455, tanking: 8456, cs: 123, },
+      { player: 'xiaohu', gold: 6547, damage: 12545, tanking: 7456, cs: 333, },
+      { player: 'xiaohu', gold: 4745, damage: 7545, tanking: 9456, cs: 222, },
+      { player: 'xiaohu', gold: 5745, damage: 4545, tanking: 5456, cs: 389, },
+      { player: 'xiaohu', gold: 6666, damage: 13545, tanking: 6456, cs: 356, },
+    ]
+  },
+
+
+  //选手雷达图数据
+  chart6: {
+    players: [
+      { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
+      { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
+      { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
+      { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
+      { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
+      { name: 'Player 7', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
+      { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
+      { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
     ]
   },
 
@@ -169,24 +221,9 @@ const Data = reactive({
     ],
   },
 
-  //选手雷达图数据
-  contestantradar: {
-    players: [
-      { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
-      { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
-      { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
-      { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
-      { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
-      { name: 'Player 7', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
-      { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
-    ]
-  },
 
   //bp柱状图数据
-  bpbar: {
+  chart8: {
     herodata: [
       { name: '英雄1', matches: 200, pickRate: 0.4, winRate: 0.55 },
       { name: '英雄2', matches: 350, pickRate: 0.5, winRate: 0.45 },
@@ -197,18 +234,37 @@ const Data = reactive({
   },
 
   //英雄对抗图数据
-  heroagainst: {
+  chart9: {
     herodata: [
       { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 }
+      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
+      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
+      { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
     ]
   },
 
 
 })
 
-onMounted(() => {
+const bpwordcloudclick = (word: string) => {
+  console.log('点击了词：', word);
+  console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
 
+  if (!Data.chart9 || !Data.chart9.herodata) {
+    console.error('heroagainst 或 heroagainst.herodata 未定义');
+    return;
+  }
+
+  const targetIndex = Data.chart9.herodata.findIndex(item => item.name === word);
+  if (targetIndex !== -1) {
+    [Data.chart9.herodata[0], Data.chart9.herodata[targetIndex]] = [Data.chart9.herodata[targetIndex], Data.chart9.herodata[0]];
+    console.log('互换成功', Data.chart9.herodata[0]);
+  } else {
+    console.log('未找到对应的英雄');
+  }
+};
+
+onMounted(() => {
 })
 
 onBeforeMount(() => {
@@ -232,7 +288,7 @@ function getChart1Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.Team_win_rate_ranking.teams = response.data.data
+      Data.chart1.teams = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -354,18 +410,9 @@ header {
 }
 
 
-.chart-container {
-  height: 28vh;
-  background-color: #fff;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-}
 
 .chart-1-container {
-  height: 18vh;
+  height: 350px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 轻微阴影效果 */
@@ -376,7 +423,77 @@ header {
 
 
 .chart-2-container {
-  height: 38vh;
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-3-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-4-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-5-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-6-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-7-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-8-container {
+  height: 350px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  /* 轻微阴影效果 */
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+}
+
+.chart-9-container {
+  height: 350px;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   /* 轻微阴影效果 */
