@@ -45,7 +45,7 @@
           </div>
 
           <div class="chart-container">
-            <teamAgainstChart :teamData="Data.teamagainst.teamdata"></teamAgainstChart>
+            <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
           </div>
 
         </div>
@@ -77,7 +77,7 @@
           </div>
 
           <div class="chart-container">
-            <bpWordcloudChart :options="Data.bpwordcloud"></bpWordcloudChart>
+            <bpWordcloudChart :options="Data.chart7"></bpWordcloudChart>
           </div>
 
           <div class="chart-container">
@@ -107,23 +107,6 @@ import axios from 'axios'
 import 'echarts-wordcloud';
 
 
-// function generateHeatmapData(teamCount) {
-//   const data = [];
-
-//   for (let i = 0; i < teamCount; i++) {
-//     for (let j = 0; j < teamCount; j++) {
-//       if (i === j) {
-//         data.push([i, j, "-"]);
-//       } else {
-//         const winRate = Math.floor(Math.random() * 101); // 随机生成一个 0 到 100 之间的胜率
-//         data.push([i, j, winRate]);
-//       }
-//     }
-//   }
-
-//   return data;
-// }
-
 const topic = ref('2024 全球总决赛')
 
 const Data = reactive({
@@ -141,26 +124,32 @@ const Data = reactive({
   chart2: {
     teamNames: [],
     heatMapData: []
-    // teamNames: [
-    //   "BLG", "EDG", "RNG", "RA",
-    //   "WE", "JDG", "IG", "FPX",
-    //   "AL", "LGD", "OMG", "UP",
-    //   "TT", "WBG", "TES", "NIP",
-    // ],
-
-    // heatmapData: generateHeatmapData(16)
-    // heatmapData: [
-    //   [0, 0, "-"], [0, 1, 70], [0, 2, 50], [0, 3, 60],
-    //   [1, 0, 30], [1, 1, "-"], [1, 2, 40], [1, 3, 80],
-    //   [2, 0, 50], [2, 1, 60], [2, 2, "-"], [2, 3, 70],
-    //   [3, 0, 40], [3, 1, 20], [3, 2, 30], [3, 3, "-"],
-    // ]
-
   },
 
 
+  //队伍对抗图
+  chart3: {
+    teamData: [
+      { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
+      { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
+    ]
+  },
+
+  chart4: {
+    playerBoxPlotData: [
+      { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
+      { player: 'xiaohu', kills: 8, deaths: 8, assists: 7 },
+      { player: 'xiaohu', kills: 9, deaths: 7, assists: 12 },
+      { player: 'xiaohu', kills: 10, deaths: 15, assists: 10 },
+      { player: 'xiaohu', kills: 11, deaths: 9, assists: 6 },
+      { player: 'xiaohu', kills: 12, deaths: 9, assists: 7 },
+      { player: 'xiaohu', kills: 14, deaths: 14, assists: 6 },
+      { player: 'xiaohu', kills: 19, deaths: 12, assists: 7 },
+    ]
+  },
+
   // bp词云图数据
-  bpwordcloud: {
+  chart7: {
     series: [
       {
         gridSize: 20,
@@ -215,12 +204,6 @@ const Data = reactive({
     ]
   },
 
-  teamagainst: {
-    teamdata: [
-      { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
-      { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
-    ]
-  },
 
 })
 
