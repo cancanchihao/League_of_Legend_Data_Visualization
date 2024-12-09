@@ -112,8 +112,8 @@
   </v-app>
 </template>
 
+
 <script setup lang="ts">
-<script setup lang = "ts" >
 import { ref, reactive, onMounted, onBeforeMount } from 'vue'
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
