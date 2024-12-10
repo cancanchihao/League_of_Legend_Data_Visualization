@@ -9,7 +9,7 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="max-width: 250px;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="max-width: 33vh;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -390,8 +390,10 @@ header {
 
 .mainbox {
   display: flex;
-  min-width: 1024px;
-  max-width: 1920px;
+  /* min-width: 1024px;
+  max-width: 1920px; */
+  min-width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   background-color: rgb(0, 255, 255);
   padding: 0.125rem 0.125rem 0;
@@ -417,91 +419,92 @@ header {
 
 
 .chart-1-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+
 }
 
 
 .chart-2-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-3-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-4-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-5-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-6-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-7-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-8-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
 }
 
 .chart-9-container {
-  height: 350px;
+  height: 40vh;
+  width: 33.3vh;
   background-color: #fff;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  /* 轻微阴影效果 */
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
