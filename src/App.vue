@@ -9,7 +9,7 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="width: 100%;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getData" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -280,9 +280,17 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
+  getData()
+})
+
+function getData() {
   getChart1Data()
   getChart2Data()
-})
+  getChart4Data()
+  getChart5Data()
+  getChart7Data()
+  getChart8Data()
+}
 
 function getChart1Data() {
   // newValue 可以替换topic
@@ -319,6 +327,29 @@ function getChart2Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart2.teamNames = response.data.data.teams
+      Data.chart2.heatMapData = response.data.data.heatMapDatas
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart4Data() {
+  console.log('正在获取图4的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
 
 
     }
@@ -331,7 +362,142 @@ function getChart2Data() {
 }
 
 
+function getChart5Data() {
+  console.log('正在获取图5的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
 
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart7Data() {
+  console.log('正在获取图7的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart8Data() {
+  console.log('正在获取图8的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart3Data() {
+  console.log('正在获取图3的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.team1,
+      team2: Data.chart3.team1,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart6Data() {
+  console.log('正在获取图6的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.team1,
+      team2: Data.chart3.team1,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart9Data() {
+  console.log('正在获取图9的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      hero1: Data.chart9.hero1,
+      hero2: Data.chart9.hero2,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
 </script>
 
 
