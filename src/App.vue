@@ -40,7 +40,7 @@
 
           <v-container class="chart-2-container">
             <!-- 图2 -->
-            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" title="16支战队对抗胜率热力图" />
+            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" title="战队对抗胜率热力图" />
           </v-container>
 
           <v-container class="chart-3-container">
@@ -98,10 +98,12 @@
 
           <v-container class="chart-8-container">
             <!-- 图8 -->
-            <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' style="width: 100%;" :items="[
+            <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
               '胜率', 'ban率', 'pick率',]">
             </v-select>
-            <bpBarChart :heroData="Data.chart8.herodata"></bpBarChart>
+            <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
+            <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
+            </v-pagination>
           </v-container>
 
           <v-container class="chart-9-container">
@@ -205,16 +207,16 @@ const Data = reactive({
   chart6: {
     //KDA  CS   gold  damage   tanking
     players: [
-      { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
-      { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
-      { name: 'Player 3', stats: [90, 85, 80, 70, 70] },
-      { name: 'Player 4', stats: [60, 90, 50, 65, 65] },
-      { name: 'Player 5', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 6', stats: [40, 65, 99, 80, 75] },
-      { name: 'Player 7', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
-      { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
-      { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
+      { name: 'Bin', stats: [80, 70, 90, 85, 75] },
+      { name: 'Zeus', stats: [70, 80, 60, 90, 95] },
+      { name: 'Xun', stats: [90, 85, 80, 70, 70] },
+      { name: 'Oner', stats: [60, 90, 50, 65, 65] },
+      { name: 'knight', stats: [50, 60, 70, 95, 35] },
+      { name: 'Faker', stats: [40, 65, 99, 80, 75] },
+      { name: 'elk', stats: [50, 60, 70, 95, 35] },
+      { name: 'gumayusi', stats: [40, 65, 99, 80, 75] },
+      { name: 'On', stats: [50, 60, 70, 95, 35] },
+      { name: 'Keria', stats: [40, 65, 99, 80, 75] },
     ],
 
   },
@@ -243,21 +245,18 @@ const Data = reactive({
 
   //bp柱状图数据
   chart8: {
-    herodata: [
-      { name: '英雄1', banRate: 0.3, pickRate: 0.4, winRate: 0.55 },
-      { name: '英雄2', banRate: 0.1, pickRate: 0.5, winRate: 0.45 },
-      { name: '英雄3', banRate: 0.2, pickRate: 0.25, winRate: 0.65 },
-      { name: '英雄4', banRate: 0.22, pickRate: 0.35, winRate: 0.50 },
-      { name: '英雄5', banRate: 0.05, pickRate: 0.6, winRate: 0.48 },
-      { name: '英雄6', banRate: 0.3, pickRate: 0.4, winRate: 0.55 },
-      { name: '英雄7', banRate: 0.1, pickRate: 0.5, winRate: 0.45 },
-      { name: '英雄8', banRate: 0.2, pickRate: 0.25, winRate: 0.65 },
-      { name: '英雄9', banRate: 0.22, pickRate: 0.35, winRate: 0.50 },
-      { name: '英雄10', banRate: 0.05, pickRate: 0.6, winRate: 0.48 },
+    heroData: [
+      { name: '封魔剑魂', banRate: 30, pickRate: 33, winRate: 54 },
+      { name: '双界灵兔', banRate: 17, pickRate: 32, winRate: 43 },
+      { name: '武器大师', banRate: 13, pickRate: 12, winRate: 54 },
+      { name: '寒冰射手', banRate: 22, pickRate: 54, winRate: 34 },
+      { name: '上古领主', banRate: 5, pickRate: 32, winRate: 70 },
+      { name: '圣锤之毅', banRate: 23, pickRate: 43, winRate: 56 },
+      { name: '虚空之女', banRate: 12, pickRate: 100, winRate: 76 },
     ],
     sortWay: '胜率',
-    totalPage: 0,
-    currentPage: 1,
+    totalPage: 6,
+    currentPage: 1
   },
 
   //英雄对抗图数据
@@ -270,13 +269,11 @@ const Data = reactive({
     ],
     hero1: '',
     hero2: '',
-    //   heroAgainstData: [
-    //     { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
-    //     { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
-    //   ]
-    // },
-
-  }
+    // heroAgainstData: [
+    //   { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
+    //   { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
+    // ]
+  },
 })
 
 const bpwordcloudclick = (word: string) => {
