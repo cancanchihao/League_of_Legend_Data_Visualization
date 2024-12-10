@@ -9,7 +9,7 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="max-width: 33vh;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -146,12 +146,12 @@ const Data = reactive({
       { title: '负场', align: 'end', key: 'matches_lose' },
       { title: '胜率', align: 'end', key: 'win_rate', }
     ] as Header[],
-    teams: []
+    teams: [],
   },
 
   chart2: {
     teamNames: [],
-    heatMapData: []
+    heatMapData: [],
   },
 
 
@@ -160,7 +160,10 @@ const Data = reactive({
     teamData: [
       { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
       { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
-    ]
+    ],
+    team1: '',
+    team2: '',
+
   },
 
   chart4: {
@@ -204,7 +207,7 @@ const Data = reactive({
       { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
       { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
       { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
-    ]
+    ],
   },
 
   // bp词云图数据
@@ -232,12 +235,12 @@ const Data = reactive({
   //bp柱状图数据
   chart8: {
     herodata: [
-      { name: '英雄1', matches: 200, pickRate: 0.4, winRate: 0.55 },
-      { name: '英雄2', matches: 350, pickRate: 0.5, winRate: 0.45 },
-      { name: '英雄3', matches: 100, pickRate: 0.25, winRate: 0.65 },
-      { name: '英雄4', matches: 150, pickRate: 0.35, winRate: 0.50 },
-      { name: '英雄5', matches: 500, pickRate: 0.6, winRate: 0.48 }
-    ]
+      { name: '英雄1', banRate: 0.3, pickRate: 0.4, winRate: 0.55 },
+      { name: '英雄2', banRate: 0.1, pickRate: 0.5, winRate: 0.45 },
+      { name: '英雄3', banRate: 0.2, pickRate: 0.25, winRate: 0.65 },
+      { name: '英雄4', banRate: 0.22, pickRate: 0.35, winRate: 0.50 },
+      { name: '英雄5', banRate: 0.05, pickRate: 0.6, winRate: 0.48 }
+    ],
   },
 
   //英雄对抗图数据
@@ -247,7 +250,9 @@ const Data = reactive({
       { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
       { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
       { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
-    ]
+    ],
+    hero1: '',
+    hero2: '',
   },
 
 
