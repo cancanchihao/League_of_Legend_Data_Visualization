@@ -115,6 +115,9 @@
 
 <script setup lang="ts">
 import { ref, reactive, onMounted, onBeforeMount } from 'vue'
+import axios from 'axios'
+import 'echarts-wordcloud';
+
 import contestantRadarChart from './components/contestant-radar-chart.vue';
 import bpBarChart from './components/bp-bar-chart.vue';
 import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
@@ -124,8 +127,6 @@ import heatMap from './components/heatMap.vue';
 import boxPlot from './components/box-plot.vue';
 import scatterChart from './components/scatter-chart.vue';
 
-import axios from 'axios'
-import 'echarts-wordcloud';
 
 
 const topic = ref('2024 全球总决赛')
