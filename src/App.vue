@@ -9,7 +9,7 @@
         </span>
       </v-container>
 
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getChart1Data" style="max-width: 33vh;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getData" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -98,6 +98,9 @@
 
           <v-container class="chart-8-container">
             <!-- 图8 -->
+            <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' style="width: 100%;" :items="[
+              '胜率', 'ban率', 'pick率',]">
+            </v-select>
             <bpBarChart :heroData="Data.chart8.herodata"></bpBarChart>
           </v-container>
 
@@ -146,12 +149,12 @@ const Data = reactive({
       { title: '负场', align: 'end', key: 'matches_lose' },
       { title: '胜率', align: 'end', key: 'win_rate', }
     ] as Header[],
-    teams: []
+    teams: [],
   },
 
   chart2: {
     teamNames: [],
-    heatMapData: []
+    heatMapData: [],
   },
 
 
@@ -160,7 +163,14 @@ const Data = reactive({
     teamData: [
       { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
       { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
-    ]
+    ],
+    team1: '',
+    team2: '',
+    // teamAgainstData: [
+    //   { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
+    //   { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 },
+    // ],
+
   },
 
   chart4: {
@@ -193,6 +203,7 @@ const Data = reactive({
 
   //选手雷达图数据
   chart6: {
+    //KDA  CS   gold  damage   tanking
     players: [
       { name: 'Player 1', stats: [80, 70, 90, 85, 75] },
       { name: 'Player 2', stats: [70, 80, 60, 90, 95] },
@@ -204,7 +215,8 @@ const Data = reactive({
       { name: 'Player 8', stats: [40, 65, 99, 80, 75] },
       { name: 'Player 9', stats: [50, 60, 70, 95, 35] },
       { name: 'Player 10', stats: [40, 65, 99, 80, 75] },
-    ]
+    ],
+
   },
 
   // bp词云图数据
@@ -232,12 +244,20 @@ const Data = reactive({
   //bp柱状图数据
   chart8: {
     herodata: [
-      { name: '英雄1', matches: 200, pickRate: 0.4, winRate: 0.55 },
-      { name: '英雄2', matches: 350, pickRate: 0.5, winRate: 0.45 },
-      { name: '英雄3', matches: 100, pickRate: 0.25, winRate: 0.65 },
-      { name: '英雄4', matches: 150, pickRate: 0.35, winRate: 0.50 },
-      { name: '英雄5', matches: 500, pickRate: 0.6, winRate: 0.48 }
-    ]
+      { name: '英雄1', banRate: 0.3, pickRate: 0.4, winRate: 0.55 },
+      { name: '英雄2', banRate: 0.1, pickRate: 0.5, winRate: 0.45 },
+      { name: '英雄3', banRate: 0.2, pickRate: 0.25, winRate: 0.65 },
+      { name: '英雄4', banRate: 0.22, pickRate: 0.35, winRate: 0.50 },
+      { name: '英雄5', banRate: 0.05, pickRate: 0.6, winRate: 0.48 },
+      { name: '英雄6', banRate: 0.3, pickRate: 0.4, winRate: 0.55 },
+      { name: '英雄7', banRate: 0.1, pickRate: 0.5, winRate: 0.45 },
+      { name: '英雄8', banRate: 0.2, pickRate: 0.25, winRate: 0.65 },
+      { name: '英雄9', banRate: 0.22, pickRate: 0.35, winRate: 0.50 },
+      { name: '英雄10', banRate: 0.05, pickRate: 0.6, winRate: 0.48 },
+    ],
+    sortWay: '胜率',
+    totalPage: 0,
+    currentPage: 1,
   },
 
   //英雄对抗图数据
@@ -247,10 +267,16 @@ const Data = reactive({
       { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
       { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
       { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
-    ]
-  },
+    ],
+    hero1: '',
+    hero2: '',
+    //   heroAgainstData: [
+    //     { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
+    //     { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
+    //   ]
+    // },
 
-
+  }
 })
 
 const bpwordcloudclick = (word: string) => {
@@ -275,9 +301,17 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
+  getData()
+})
+
+function getData() {
   getChart1Data()
   getChart2Data()
-})
+  getChart4Data()
+  getChart5Data()
+  getChart7Data()
+  getChart8Data()
+}
 
 function getChart1Data() {
   // newValue 可以替换topic
@@ -314,6 +348,29 @@ function getChart2Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart2.teamNames = response.data.data.teams
+      Data.chart2.heatMapData = response.data.data.heatMapDatas
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart4Data() {
+  console.log('正在获取图4的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
 
 
     }
@@ -326,7 +383,142 @@ function getChart2Data() {
 }
 
 
+function getChart5Data() {
+  console.log('正在获取图5的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
 
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart7Data() {
+  console.log('正在获取图7的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart8Data() {
+  console.log('正在获取图8的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart3Data() {
+  console.log('正在获取图3的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.team1,
+      team2: Data.chart3.team1,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart6Data() {
+  console.log('正在获取图6的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.team1,
+      team2: Data.chart3.team1,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+
+function getChart9Data() {
+  console.log('正在获取图9的数据')
+  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+    params: {
+      matchType: topic.value,
+      hero1: Data.chart9.hero1,
+      hero2: Data.chart9.hero2,
+    }
+  }).then(response => {
+    console.log(response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+
+
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
 </script>
 
 
