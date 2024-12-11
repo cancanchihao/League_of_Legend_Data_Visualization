@@ -291,6 +291,7 @@ const heatmapclick = (team1: string, team2: string) => {
   // TODO:
   // 获取新英雄数据
   // getChart3Data();
+  // getChart6Data();
   // if ( !== -1) {
   //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
   // } else {

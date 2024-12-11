@@ -1,16 +1,16 @@
 <script setup>
-import { ref, watch, onMounted, onUnmounted } from 'vue';
+import { ref, watch, onMounted, onUnmounted, reactive } from 'vue';
 import * as echarts from 'echarts';
 import VChart from 'vue-echarts';
 
 // 位置数组
-const positions = [
-  '打野',
+const positions = reactive([
   '上单',
+  '打野',
   '中单',
   'ADC',
   '辅助'
-];
+]);
 
 // 玩家数据
 const props = defineProps({
@@ -26,7 +26,7 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 // ECharts配置
 const chartOptions = ref({
   title: {
-    text: '打野', // 默认标题
+    text: positions[0], // 默认标题
   },
   textStyle: {
     fontSize: 10,
@@ -122,6 +122,14 @@ onUnmounted(() => {
   }
   window.removeEventListener('resize', chartInstance.resize);
 });
+
+// 监听传入的 players 数据变化，重新绘制图表
+watch(() => props.players, (newPlayers) => {
+  // 更新图表
+  if (chartInstance) {
+    chartInstance.setOption(chartOptions.value);
+  }
+}, { deep: true }); // deep: true 确保能够监听 players 数组中每个对象的变化
 
 </script>
 
