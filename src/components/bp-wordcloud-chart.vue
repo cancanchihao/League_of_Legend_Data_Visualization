@@ -1,6 +1,6 @@
 <template>
-    <div class="container">
-        <span id="wordcloud-chart"></span>
+    <div class="container" style='display: flex;'>
+        <span id="wordcloud-chart" style=' flex-grow: 1; height: 40vh;'></span>
     </div>
 </template>
 
@@ -141,13 +141,4 @@ onMounted(() => {
 })
 </script>
 
-<style scoped lang="scss">
-.container {
-    display: flex;
-}
-
-#wordcloud-chart {
-    flex-grow: 1;
-    height: 28vh;
-}
-</style>
+<style scoped lang="scss"></style>
