@@ -127,8 +127,9 @@ function DrawWordCloud() {
 
     // 设置点击事件
     mychart.on('click', (params) => {
-        if (params && params.data && params.data.name) {
-            const clickedWord = params.data.name;  // 获取点击的词
+        const data = params.data as WordCloudData;
+        if (data && data.name) {
+            const clickedWord = data.name;  // 获取点击的词
             emit('wordClick', clickedWord);         // 触发自定义事件，传递点击的词
         }
     })
