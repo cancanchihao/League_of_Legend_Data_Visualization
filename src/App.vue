@@ -159,12 +159,11 @@ const Data = reactive({
     heatMapData: [],
   },
 
-
   //队伍对抗图
   chart3: {
     teamData: [
-      { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
-      { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
+      { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
+      { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 }
     ],
     team1: '',
     team2: '',
@@ -175,6 +174,7 @@ const Data = reactive({
 
   },
 
+  // 箱线图数据
   chart4: {
     playerBoxPlotData: [
       { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
@@ -188,6 +188,7 @@ const Data = reactive({
     ],
   },
 
+  // 散点图数据
   chart5: {
     xAxis: ref('gold'),
     yAxis: ref('damage'),
@@ -257,13 +258,9 @@ const Data = reactive({
   //英雄对抗图数据
   chart9: {
     herodata: [
-      { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
-      { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
+      { name: '疾风剑豪', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
+      { name: '盲僧', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
     ],
-    hero1: '',
-    hero2: '',
     // heroAgainstData: [
     //   { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
     //   { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
@@ -271,22 +268,18 @@ const Data = reactive({
   },
 })
 
-const bpwordcloudclick = (word: string) => {
-  console.log('点击了词：', word);
+const bpwordcloudclick = (clickname: string) => {
+  console.log('点击英雄：', clickname);
   console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
 
-  if (!Data.chart9 || !Data.chart9.herodata) {
-    console.error('heroagainst 或 heroagainst.herodata 未定义');
-    return;
-  }
-
-  const targetIndex = Data.chart9.herodata.findIndex(item => item.name === word);
-  if (targetIndex !== -1) {
-    [Data.chart9.herodata[0], Data.chart9.herodata[targetIndex]] = [Data.chart9.herodata[targetIndex], Data.chart9.herodata[0]];
-    console.log('互换成功', Data.chart9.herodata[0]);
-  } else {
-    console.log('未找到对应的英雄');
-  }
+  // TODO:
+  // 获取新英雄数据
+  // getChart9Data();
+  // if ( !== -1) {
+  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
+  // } else {
+  //   console.log('未找到对应的英雄');
+  // }
 };
 
 onMounted(() => {
@@ -494,8 +487,8 @@ function getChart9Data() {
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
     params: {
       matchType: topic.value,
-      hero1: Data.chart9.hero1,
-      hero2: Data.chart9.hero2,
+      hero1: Data.chart9.herodata[0].name,
+      hero2: Data.chart9.herodata[1].name,
     }
   }).then(response => {
     console.log(response)
