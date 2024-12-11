@@ -237,7 +237,7 @@ const Data = reactive({
       { name: '虚空之女', value: 15 },
       { name: '熔铁少女', value: 10 },
       { name: '爆破鬼才', value: 8 },
-    ] as { name: string; value: number }[],
+    ],
   },
 
 
