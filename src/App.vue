@@ -9,6 +9,9 @@
         </span>
       </v-container>
 
+      <!-- <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+        <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + '暗裔剑魔'"></v-img>
+      </v-avatar> -->
       <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getData" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
@@ -40,7 +43,7 @@
 
           <v-container class="chart-2-container">
             <!-- 图2 -->
-            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" title="战队对抗胜率热力图" />
+            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"  @wordClick="heatmapclick" title="战队对抗胜率热力图" />
           </v-container>
 
           <v-container class="chart-3-container">
@@ -154,6 +157,7 @@ const Data = reactive({
     teams: [],
   },
 
+  // 热力图数据
   chart2: {
     teamNames: [],
     heatMapData: [],
@@ -165,8 +169,6 @@ const Data = reactive({
       { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
       { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 }
     ],
-    team1: '',
-    team2: '',
     // teamAgainstData: [
     //   { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
     //   { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 },
@@ -275,6 +277,20 @@ const bpwordcloudclick = (clickname: string) => {
   // TODO:
   // 获取新英雄数据
   // getChart9Data();
+  // if ( !== -1) {
+  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
+  // } else {
+  //   console.log('未找到对应的英雄');
+  // }
+};
+
+const heatmapclick = (team1: string, team2: string) => {
+  console.log('点击队伍：', team1, team2);
+  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
+
+  // TODO:
+  // 获取新英雄数据
+  // getChart3Data();
   // if ( !== -1) {
   //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
   // } else {
@@ -439,8 +455,8 @@ function getChart3Data() {
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
     params: {
       matchType: topic.value,
-      team1: Data.chart3.team1,
-      team2: Data.chart3.team1,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
     console.log(response)
@@ -463,8 +479,8 @@ function getChart6Data() {
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
     params: {
       matchType: topic.value,
-      team1: Data.chart3.team1,
-      team2: Data.chart3.team1,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
     console.log(response)

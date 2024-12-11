@@ -1,13 +1,17 @@
 <template>
     <div class="hero">
-        <img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[0].name" :alt=props.heroData[0].name>
+        <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+            <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[0].name" :alt=props.heroData[0].name></v-img>
+        </v-avatar>
         <el-button type="primary" class="elb" @click="change(1)">
             {{ props.heroData[0].name }}
         </el-button>
-        <el-button type="primary" class="elb" @click="change(2)">
+        <el-button type="warning" class="elb" @click="change(2)">
             {{ props.heroData[1].name }}
         </el-button>
-        <img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[1].name" :alt=props.heroData[1].name>
+        <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+            <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[1].name" :alt=props.heroData[1].name></v-img>
+        </v-avatar>    
     </div>
     <item
         :line_name='"对位胜场"'
@@ -61,8 +65,8 @@ import item from './against-chart-item.vue';
 
 const props = defineProps({
     heroData: {
-      type: Array,
-      required: true,
+        type: Array,
+        required: true,
     },
 });
 
@@ -91,7 +95,9 @@ const change = (id) => {
 .elb {
     display: inline-flex;
     align-items: center;
-    position: relative; /* 使 z-index 生效 */
-    z-index: 10; /* 设置更高的 z-index */
+    position: relative;
+    /* 使 z-index 生效 */
+    z-index: 10;
+    /* 设置更高的 z-index */
 }
 </style>

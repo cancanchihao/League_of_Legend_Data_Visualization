@@ -25,7 +25,7 @@ export default defineComponent({
             default: "Heatmap",
         },
     },
-    setup(props) {
+    setup(props, { emit }) {
         // 使用 `onMounted` 或 `nextTick` 确保 DOM 渲染完成后再初始化 ECharts
         onMounted(() => {
             nextTick(() => {
@@ -111,7 +111,7 @@ export default defineComponent({
                             const team1 = props.teamNames[xIndex];
                             const team2 = props.teamNames[yIndex];
 
-                            // 打印结果或做其他操作
+                            emit('wordClick', team1, team2);
                             console.log(`点击的战队是: ${team1} 和 ${team2}`);
                         }
                     });
