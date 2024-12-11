@@ -335,7 +335,7 @@ function getChart1Data() {
 
 function getChart2Data() {
   console.log('正在获取图2的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/team/getHeatMap', {
     params: {
       matchType: topic.value
     }
@@ -358,7 +358,7 @@ function getChart2Data() {
 
 function getChart4Data() {
   console.log('正在获取图4的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/player/getBoxPlot', {
     params: {
       matchType: topic.value
     }
@@ -366,7 +366,7 @@ function getChart4Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
-
+      Data.chart4.playerBoxPlotData = response.data.data
 
     }
     else {
@@ -380,7 +380,7 @@ function getChart4Data() {
 
 function getChart5Data() {
   console.log('正在获取图5的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/player/getScatterDiagram', {
     params: {
       matchType: topic.value
     }
@@ -388,8 +388,7 @@ function getChart5Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
-
-
+      Data.chart5.scatterDiagramData = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -402,7 +401,7 @@ function getChart5Data() {
 
 function getChart7Data() {
   console.log('正在获取图7的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/hero/getCloudDiagram', {
     params: {
       matchType: topic.value
     }
@@ -410,7 +409,7 @@ function getChart7Data() {
     console.log(response)
     if (response.data.code == 200) {
       console.log('code=200')
-
+      Data.chart7.bpWordCloudData = response.data.data
 
     }
     else {
