@@ -12,7 +12,7 @@
       <!-- <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
         <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + '暗裔剑魔'"></v-img>
       </v-avatar> -->
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getData" style="width: 100%;" :items="[
+      <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getData" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
         '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
@@ -178,16 +178,17 @@ const Data = reactive({
 
   // 箱线图数据
   chart4: {
-    playerBoxPlotData: [
-      { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
-      { player: 'faker', kills: 8, deaths: 8, assists: 7 },
-      { player: 'knight', kills: 9, deaths: 7, assists: 12 },
-      { player: 'bin', kills: 10, deaths: 15, assists: 10 },
-      { player: 'on', kills: 11, deaths: 9, assists: 6 },
-      { player: 'jkl', kills: 12, deaths: 9, assists: 7 },
-      { player: 'theshy', kills: 14, deaths: 14, assists: 6 },
-      { player: 'doinb', kills: 19, deaths: 12, assists: 7 },
-    ],
+    // playerBoxPlotData: [
+    //   { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
+    //   { player: 'faker', kills: 8, deaths: 8, assists: 7 },
+    //   { player: 'knight', kills: 9, deaths: 7, assists: 12 },
+    //   { player: 'bin', kills: 10, deaths: 15, assists: 10 },
+    //   { player: 'on', kills: 11, deaths: 9, assists: 6 },
+    //   { player: 'jkl', kills: 12, deaths: 9, assists: 7 },
+    //   { player: 'theshy', kills: 14, deaths: 14, assists: 6 },
+    //   { player: 'doinb', kills: 19, deaths: 12, assists: 7 },
+    // ],
+    playerBoxPlotData: []
   },
 
   // 散点图数据
@@ -195,14 +196,15 @@ const Data = reactive({
     xAxis: ref('gold'),
     yAxis: ref('damage'),
     axisOptions: ['gold', 'damage', 'tanking', 'cs'],
-    scatterDiagramData: [
-      { player: 'xiaohu', gold: 7785, damage: 8545, tanking: 16456, cs: 456, },
-      { player: 'xiaohu', gold: 7457, damage: 5455, tanking: 8456, cs: 123, },
-      { player: 'xiaohu', gold: 6547, damage: 12545, tanking: 7456, cs: 333, },
-      { player: 'xiaohu', gold: 4745, damage: 7545, tanking: 9456, cs: 222, },
-      { player: 'xiaohu', gold: 5745, damage: 4545, tanking: 5456, cs: 389, },
-      { player: 'xiaohu', gold: 6666, damage: 13545, tanking: 6456, cs: 356, },
-    ]
+    // scatterDiagramData: [
+    //   { player: 'xiaohu', gold: 7785, damage: 8545, tanking: 16456, cs: 456, },
+    //   { player: 'xiaohu', gold: 7457, damage: 5455, tanking: 8456, cs: 123, },
+    //   { player: 'xiaohu', gold: 6547, damage: 12545, tanking: 7456, cs: 333, },
+    //   { player: 'xiaohu', gold: 4745, damage: 7545, tanking: 9456, cs: 222, },
+    //   { player: 'xiaohu', gold: 5745, damage: 4545, tanking: 5456, cs: 389, },
+    //   { player: 'xiaohu', gold: 6666, damage: 13545, tanking: 6456, cs: 356, },
+    // ]
+    scatterDiagramData: []
   },
 
 
@@ -226,32 +228,34 @@ const Data = reactive({
 
   // bp词云图数据
   chart7: {
-    bpWordCloudData: [
-      { name: '封魔剑魂', value: 50, },
-      { name: '双界灵兔', value: 40 },
-      { name: '武器大师', value: 35 },
-      { name: '寒冰射手', value: 30 },
-      { name: '圣锤之毅', value: 25 },
-      { name: "上古领主", value: 20 },
-      { name: '迷失之牙', value: 18 },
-      { name: '虚空之女', value: 15 },
-      { name: '熔铁少女', value: 10 },
-      { name: '爆破鬼才', value: 8 },
-    ],
+    // bpWordCloudData: [
+    //   { name: '封魔剑魂', value: 50, },
+    //   { name: '双界灵兔', value: 40 },
+    //   { name: '武器大师', value: 35 },
+    //   { name: '寒冰射手', value: 30 },
+    //   { name: '圣锤之毅', value: 25 },
+    //   { name: "上古领主", value: 20 },
+    //   { name: '迷失之牙', value: 18 },
+    //   { name: '虚空之女', value: 15 },
+    //   { name: '熔铁少女', value: 10 },
+    //   { name: '爆破鬼才', value: 8 },
+    // ],
+    bpWordCloudData: []
   },
 
 
   //bp柱状图数据
   chart8: {
-    heroData: [
-      { name: '封魔剑魂', banRate: 30, pickRate: 33, winRate: 54 },
-      { name: '双界灵兔', banRate: 17, pickRate: 32, winRate: 43 },
-      { name: '武器大师', banRate: 13, pickRate: 12, winRate: 54 },
-      { name: '寒冰射手', banRate: 22, pickRate: 54, winRate: 34 },
-      { name: '上古领主', banRate: 5, pickRate: 32, winRate: 70 },
-      { name: '圣锤之毅', banRate: 23, pickRate: 43, winRate: 56 },
-      { name: '虚空之女', banRate: 12, pickRate: 100, winRate: 76 },
-    ],
+    // heroData: [
+    //   { name: '封魔剑魂', banRate: 30, pickRate: 33, winRate: 54 },
+    //   { name: '双界灵兔', banRate: 17, pickRate: 32, winRate: 43 },
+    //   { name: '武器大师', banRate: 13, pickRate: 12, winRate: 54 },
+    //   { name: '寒冰射手', banRate: 22, pickRate: 54, winRate: 34 },
+    //   { name: '上古领主', banRate: 5, pickRate: 32, winRate: 70 },
+    //   { name: '圣锤之毅', banRate: 23, pickRate: 43, winRate: 56 },
+    //   { name: '虚空之女', banRate: 12, pickRate: 100, winRate: 76 },
+    // ],
+    heroData: [],
     sortWay: '胜率',
     totalPage: 6,
     currentPage: 1
@@ -307,26 +311,28 @@ onBeforeMount(() => {
 })
 
 function getData() {
+  console.log(topic.value)
   getChart1Data()
   getChart2Data()
   getChart4Data()
   getChart5Data()
   getChart7Data()
-  getChart8Data()
+  // getChart8Data()
+
+  // getChart3Data()
+  // getChart6Data()
+  // getChart9Data()
 }
 
 function getChart1Data() {
   // newValue 可以替换topic
   console.log('正在获取图1的数据')
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
-    // headers: {
-    //   "x-requested-with": "XMLHttpRequest"
-    // },
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图1的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart1.teams = response.data.data
@@ -342,12 +348,12 @@ function getChart1Data() {
 
 function getChart2Data() {
   console.log('正在获取图2的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/team/getHeatMap', {
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图2的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart2.teamNames = response.data.data.teams
@@ -365,15 +371,15 @@ function getChart2Data() {
 
 function getChart4Data() {
   console.log('正在获取图4的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/player/getBoxPlot', {
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图4的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-
+      Data.chart4.playerBoxPlotData = response.data.data
 
     }
     else {
@@ -387,16 +393,15 @@ function getChart4Data() {
 
 function getChart5Data() {
   console.log('正在获取图5的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/player/getScatterDiagram', {
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图5的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-
-
+      Data.chart5.scatterDiagramData = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -409,16 +414,15 @@ function getChart5Data() {
 
 function getChart7Data() {
   console.log('正在获取图7的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/hero/getCloudDiagram', {
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图7的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-
-
+      Data.chart7.bpWordCloudData = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -431,14 +435,15 @@ function getChart7Data() {
 
 function getChart8Data() {
   console.log('正在获取图8的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value
     }
   }).then(response => {
-    console.log(response)
+    console.log('图8的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      //
 
 
     }
@@ -453,16 +458,17 @@ function getChart8Data() {
 
 function getChart3Data() {
   console.log('正在获取图3的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
       team1: Data.chart3.teamData[0].name,
       team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
-    console.log(response)
+    console.log('图3的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      //
 
 
     }
@@ -477,16 +483,17 @@ function getChart3Data() {
 
 function getChart6Data() {
   console.log('正在获取图6的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
       team1: Data.chart3.teamData[0].name,
       team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
-    console.log(response)
+    console.log('图6的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      //
 
 
     }
@@ -501,16 +508,17 @@ function getChart6Data() {
 
 function getChart9Data() {
   console.log('正在获取图9的数据')
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
+  axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
       hero1: Data.chart9.herodata[0].name,
       hero2: Data.chart9.herodata[1].name,
     }
   }).then(response => {
-    console.log(response)
+    console.log('图9的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      //
 
 
     }
