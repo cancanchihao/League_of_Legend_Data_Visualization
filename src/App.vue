@@ -9,6 +9,9 @@
         </span>
       </v-container>
 
+      <!-- <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+        <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + '暗裔剑魔'"></v-img>
+      </v-avatar> -->
       <v-select label="选择赛段" v-model='topic' class="ml-auto" @change="getData" style="width: 100%;" :items="[
         '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
         '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
