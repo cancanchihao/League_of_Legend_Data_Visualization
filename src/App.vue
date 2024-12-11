@@ -42,9 +42,14 @@
 
 
           <v-container class="chart-2-container">
-            <!-- 图2 -->
-            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
-              title="战队对抗胜率热力图" />
+            <template v-if="Data.chart2.isChart2Visible">
+              <!-- 图2 -->
+              <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
+                style="position: relative;" title="战队对抗胜率热力图" />
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
           <v-container class="chart-3-container">
@@ -160,103 +165,104 @@ const Data = reactive({
         "team": "T1",
         "matches_won": 13,
         "matches_lose": 4,
-        "win_rate": 0.7647
+        "win_rate": 76.47
       },
       {
         "team": "BLG",
         "matches_won": 13,
         "matches_lose": 6,
-        "win_rate": 0.6842
+        "win_rate": 68.42
       },
       {
         "team": "LNG",
         "matches_won": 4,
         "matches_lose": 3,
-        "win_rate": 0.5714
+        "win_rate": 57.14
       },
       {
         "team": "HLE",
         "matches_won": 6,
         "matches_lose": 5,
-        "win_rate": 0.5455
+        "win_rate": 54.55
       },
       {
         "team": "GEN",
         "matches_won": 7,
         "matches_lose": 6,
-        "win_rate": 0.5385
+        "win_rate": 53.85
       },
       {
         "team": "TL",
         "matches_won": 5,
         "matches_lose": 5,
-        "win_rate": 0.5
+        "win_rate": 50
       },
       {
         "team": "FLY",
         "matches_won": 7,
         "matches_lose": 7,
-        "win_rate": 0.5
+        "win_rate": 50
       },
       {
         "team": "WBG",
         "matches_won": 8,
         "matches_lose": 8,
-        "win_rate": 0.5
+        "win_rate": 50
       },
       {
         "team": "TES",
         "matches_won": 4,
         "matches_lose": 4,
-        "win_rate": 0.5
+        "win_rate": 50
       },
       {
         "team": "GAM",
         "matches_won": 3,
         "matches_lose": 5,
-        "win_rate": 0.375
+        "win_rate": 37.5
       },
       {
         "team": "G2",
         "matches_won": 3,
         "matches_lose": 5,
-        "win_rate": 0.375
+        "win_rate": 37.5
       },
       {
         "team": "FNC",
         "matches_won": 2,
         "matches_lose": 4,
-        "win_rate": 0.3333
+        "win_rate": 33.33
       },
       {
         "team": "DK",
         "matches_won": 3,
         "matches_lose": 6,
-        "win_rate": 0.3333
+        "win_rate": 33.33
       },
       {
         "team": "PSG",
         "matches_won": 1,
         "matches_lose": 4,
-        "win_rate": 0.2
+        "win_rate": 20
       },
       {
         "team": "MDK",
         "matches_won": 1,
         "matches_lose": 4,
-        "win_rate": 0.2
+        "win_rate": 20
       },
       {
         "team": "PNG",
         "matches_won": 0,
         "matches_lose": 4,
-        "win_rate": 0.0
+        "win_rate": 0
       }
     ],
   },
 
   // 热力图数据
   chart2: {
+    isChart2Visible: true,
     teamNames: [
       "PSG",
       "T1",
@@ -304,7 +310,7 @@ const Data = reactive({
       [
         0,
         5,
-        0.0
+        100.0
       ],
       [
         0,
@@ -324,7 +330,7 @@ const Data = reactive({
       [
         0,
         9,
-        0.0
+        100.0
       ],
       [
         0,
@@ -339,7 +345,7 @@ const Data = reactive({
       [
         0,
         12,
-        0.0
+        100.0
       ],
       [
         0,
@@ -349,7 +355,7 @@ const Data = reactive({
       [
         0,
         14,
-        100.0
+        0.0
       ],
       [
         0,
@@ -379,7 +385,7 @@ const Data = reactive({
       [
         1,
         4,
-        80.0
+        25.0
       ],
       [
         1,
@@ -399,7 +405,7 @@ const Data = reactive({
       [
         1,
         8,
-        100.0
+        0.0
       ],
       [
         1,
@@ -414,17 +420,17 @@ const Data = reactive({
       [
         1,
         11,
-        100.0
+        0.0
       ],
       [
         1,
         12,
-        70.0
+        33.33
       ],
       [
         1,
         13,
-        80.0
+        25.0
       ],
       [
         1,
@@ -469,12 +475,12 @@ const Data = reactive({
       [
         2,
         6,
-        100.0
+        0.0
       ],
       [
         2,
         7,
-        30.0
+        66.67
       ],
       [
         2,
@@ -504,7 +510,7 @@ const Data = reactive({
       [
         2,
         13,
-        0.0
+        100.0
       ],
       [
         2,
@@ -514,7 +520,7 @@ const Data = reactive({
       [
         2,
         15,
-        0.0
+        100.0
       ],
       [
         3,
@@ -544,17 +550,17 @@ const Data = reactive({
       [
         3,
         5,
-        30.0
+        66.67
       ],
       [
         3,
         6,
-        70.0
+        33.33
       ],
       [
         3,
         7,
-        0.0
+        100.0
       ],
       [
         3,
@@ -569,12 +575,12 @@ const Data = reactive({
       [
         3,
         10,
-        0.0
+        100.0
       ],
       [
         3,
         11,
-        100.0
+        0.0
       ],
       [
         3,
@@ -604,7 +610,7 @@ const Data = reactive({
       [
         4,
         1,
-        30.0
+        75.0
       ],
       [
         4,
@@ -624,84 +630,84 @@ const Data = reactive({
       [
         4,
         5,
-        60.0
-      ],
-      [
-        4,
-        6,
-        "-"
-      ],
-      [
-        4,
-        7,
-        100.0
-      ],
-      [
-        4,
-        8,
-        "-"
-      ],
-      [
-        4,
-        9,
-        50.0
-      ],
-      [
-        4,
-        10,
-        "-"
-      ],
-      [
-        4,
-        11,
-        "-"
-      ],
-      [
-        4,
-        12,
-        "-"
-      ],
-      [
-        4,
-        13,
-        100.0
-      ],
-      [
-        4,
-        14,
-        "-"
-      ],
-      [
-        4,
-        15,
-        "-"
-      ],
-      [
-        5,
-        0,
-        100.0
-      ],
-      [
-        5,
-        1,
-        "-"
-      ],
-      [
-        5,
-        2,
-        "-"
-      ],
-      [
-        5,
-        3,
-        70.0
-      ],
-      [
-        5,
-        4,
         40.0
       ],
       [
+        4,
+        6,
+        "-"
+      ],
+      [
+        4,
+        7,
+        0.0
+      ],
+      [
+        4,
+        8,
+        "-"
+      ],
+      [
+        4,
+        9,
+        50.0
+      ],
+      [
+        4,
+        10,
+        "-"
+      ],
+      [
+        4,
+        11,
+        "-"
+      ],
+      [
+        4,
+        12,
+        "-"
+      ],
+      [
+        4,
+        13,
+        0.0
+      ],
+      [
+        4,
+        14,
+        "-"
+      ],
+      [
+        4,
+        15,
+        "-"
+      ],
+      [
+        5,
+        0,
+        0.0
+      ],
+      [
+        5,
+        1,
+        "-"
+      ],
+      [
+        5,
+        2,
+        "-"
+      ],
+      [
+        5,
+        3,
+        33.33
+      ],
+      [
+        5,
+        4,
+        60.0
+      ],
+      [
         5,
         5,
         "-"
@@ -709,7 +715,7 @@ const Data = reactive({
       [
         5,
         6,
-        100.0
+        0.0
       ],
       [
         5,
@@ -724,7 +730,7 @@ const Data = reactive({
       [
         5,
         9,
-        30.0
+        66.67
       ],
       [
         5,
@@ -754,7 +760,7 @@ const Data = reactive({
       [
         5,
         15,
-        0.0
+        100.0
       ],
       [
         6,
@@ -769,12 +775,12 @@ const Data = reactive({
       [
         6,
         2,
-        0.0
+        100.0
       ],
       [
         6,
         3,
-        30.0
+        66.67
       ],
       [
         6,
@@ -784,7 +790,7 @@ const Data = reactive({
       [
         6,
         5,
-        0.0
+        100.0
       ],
       [
         6,
@@ -829,7 +835,7 @@ const Data = reactive({
       [
         6,
         14,
-        70.0
+        33.33
       ],
       [
         6,
@@ -849,17 +855,17 @@ const Data = reactive({
       [
         7,
         2,
-        70.0
+        33.33
       ],
       [
         7,
         3,
-        100.0
+        0.0
       ],
       [
         7,
         4,
-        0.0
+        100.0
       ],
       [
         7,
@@ -879,7 +885,7 @@ const Data = reactive({
       [
         7,
         8,
-        0.0
+        100.0
       ],
       [
         7,
@@ -889,7 +895,7 @@ const Data = reactive({
       [
         7,
         10,
-        80.0
+        25.0
       ],
       [
         7,
@@ -899,7 +905,7 @@ const Data = reactive({
       [
         7,
         12,
-        0.0
+        100.0
       ],
       [
         7,
@@ -914,7 +920,7 @@ const Data = reactive({
       [
         7,
         15,
-        70.0
+        33.33
       ],
       [
         8,
@@ -924,7 +930,7 @@ const Data = reactive({
       [
         8,
         1,
-        0.0
+        100.0
       ],
       [
         8,
@@ -954,7 +960,7 @@ const Data = reactive({
       [
         8,
         7,
-        100.0
+        0.0
       ],
       [
         8,
@@ -964,7 +970,7 @@ const Data = reactive({
       [
         8,
         9,
-        0.0
+        100.0
       ],
       [
         8,
@@ -974,12 +980,12 @@ const Data = reactive({
       [
         8,
         11,
-        100.0
+        0.0
       ],
       [
         8,
         12,
-        30.0
+        66.67
       ],
       [
         8,
@@ -999,7 +1005,7 @@ const Data = reactive({
       [
         9,
         0,
-        100.0
+        0.0
       ],
       [
         9,
@@ -1024,7 +1030,7 @@ const Data = reactive({
       [
         9,
         5,
-        70.0
+        33.33
       ],
       [
         9,
@@ -1039,7 +1045,7 @@ const Data = reactive({
       [
         9,
         8,
-        100.0
+        0.0
       ],
       [
         9,
@@ -1059,7 +1065,7 @@ const Data = reactive({
       [
         9,
         12,
-        30.0
+        75.0
       ],
       [
         9,
@@ -1094,7 +1100,7 @@ const Data = reactive({
       [
         10,
         3,
-        100.0
+        0.0
       ],
       [
         10,
@@ -1114,7 +1120,7 @@ const Data = reactive({
       [
         10,
         7,
-        30.0
+        75.0
       ],
       [
         10,
@@ -1154,7 +1160,7 @@ const Data = reactive({
       [
         10,
         15,
-        100.0
+        0.0
       ],
       [
         11,
@@ -1164,7 +1170,7 @@ const Data = reactive({
       [
         11,
         1,
-        0.0
+        100.0
       ],
       [
         11,
@@ -1174,7 +1180,7 @@ const Data = reactive({
       [
         11,
         3,
-        0.0
+        100.0
       ],
       [
         11,
@@ -1199,7 +1205,7 @@ const Data = reactive({
       [
         11,
         8,
-        0.0
+        100.0
       ],
       [
         11,
@@ -1239,12 +1245,12 @@ const Data = reactive({
       [
         12,
         0,
-        100.0
+        0.0
       ],
       [
         12,
         1,
-        30.0
+        66.67
       ],
       [
         12,
@@ -1274,17 +1280,17 @@ const Data = reactive({
       [
         12,
         7,
-        100.0
+        0.0
       ],
       [
         12,
         8,
-        70.0
+        33.33
       ],
       [
         12,
         9,
-        80.0
+        25.0
       ],
       [
         12,
@@ -1309,7 +1315,7 @@ const Data = reactive({
       [
         12,
         14,
-        100.0
+        0.0
       ],
       [
         12,
@@ -1324,12 +1330,12 @@ const Data = reactive({
       [
         13,
         1,
-        30.0
+        75.0
       ],
       [
         13,
         2,
-        100.0
+        0.0
       ],
       [
         13,
@@ -1339,7 +1345,7 @@ const Data = reactive({
       [
         13,
         4,
-        0.0
+        100.0
       ],
       [
         13,
@@ -1394,12 +1400,12 @@ const Data = reactive({
       [
         13,
         15,
-        100.0
+        0.0
       ],
       [
         14,
         0,
-        0.0
+        100.0
       ],
       [
         14,
@@ -1429,7 +1435,7 @@ const Data = reactive({
       [
         14,
         6,
-        30.0
+        66.67
       ],
       [
         14,
@@ -1459,7 +1465,7 @@ const Data = reactive({
       [
         14,
         12,
-        0.0
+        100.0
       ],
       [
         14,
@@ -1489,7 +1495,7 @@ const Data = reactive({
       [
         15,
         2,
-        100.0
+        0.0
       ],
       [
         15,
@@ -1504,7 +1510,7 @@ const Data = reactive({
       [
         15,
         5,
-        100.0
+        0.0
       ],
       [
         15,
@@ -1514,7 +1520,7 @@ const Data = reactive({
       [
         15,
         7,
-        30.0
+        66.67
       ],
       [
         15,
@@ -1529,7 +1535,7 @@ const Data = reactive({
       [
         15,
         10,
-        0.0
+        100.0
       ],
       [
         15,
@@ -1544,7 +1550,7 @@ const Data = reactive({
       [
         15,
         13,
-        0.0
+        100.0
       ],
       [
         15,
@@ -1557,9 +1563,6 @@ const Data = reactive({
         "-"
       ]
     ],
-
-
-
   },
 
   //队伍对抗图
@@ -3175,7 +3178,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
-
+  position: relative;
 }
 
 
@@ -3187,6 +3190,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-3-container {
@@ -3197,6 +3201,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-4-container {
@@ -3207,6 +3212,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-5-container {
@@ -3217,6 +3223,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-6-container {
@@ -3227,6 +3234,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-7-container {
@@ -3237,6 +3245,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-8-container {
@@ -3247,6 +3256,7 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
 }
 
 .chart-9-container {
@@ -3257,5 +3267,13 @@ header {
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
+  position: relative;
+}
+
+.progress-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 </style>
