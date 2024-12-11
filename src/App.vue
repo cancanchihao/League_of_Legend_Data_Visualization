@@ -33,16 +33,34 @@
             战队
           </div>
 
+          <template v-if="Data.chart2.isChartVisible">
+
+          </template>
+          <template v-else>
+            <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+          </template>
+
+
+
+
+
+
+
           <v-container class="chart-1-container">
-            <!-- 图1 -->
-            <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-              class="elevation-1" style="width: 100%;height:100%">
-            </v-data-table-virtual>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图1 -->
+              <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
+                class="elevation-1" style="width: 100%;height:100%">
+              </v-data-table-virtual>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
 
           <v-container class="chart-2-container">
-            <template v-if="Data.chart2.isChart2Visible">
+            <template v-if="Data.chart2.isChartVisible">
               <!-- 图2 -->
               <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
                 style="position: relative;" title="战队对抗胜率热力图" />
@@ -52,11 +70,16 @@
             </template>
           </v-container>
 
-          <v-container class="chart-3-container">
-            <!-- 图3 -->
-            <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
-          </v-container>
 
+          <v-container class="chart-3-container">
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图3 -->
+              <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
+          </v-container>
         </div>
 
 
@@ -66,30 +89,46 @@
           </div>
 
           <v-container class="chart-4-container">
-            <!-- 图4 -->
-            <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图4 -->
+              <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
+
 
           <v-container class="chart-5-container">
-            <!-- 图5 -->
-            <v-row>
-              <v-col>
-                <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
-                  style="max-height: 50px;" />
-              </v-col>
-              <v-col>
-                <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
-                  style="max-height: 50px;" />
-              </v-col>
-            </v-row>
-
-            <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
-              :y-axis="Data.chart5.yAxis" />
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图5 -->
+              <v-row>
+                <v-col>
+                  <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
+                    style="max-height: 50px;" />
+                </v-col>
+                <v-col>
+                  <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
+                    style="max-height: 50px;" />
+                </v-col>
+              </v-row>
+              <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
+                :y-axis="Data.chart5.yAxis" />
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
+
           <v-container class="chart-6-container">
-            <!-- 图6 -->
-            <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图6 -->
+              <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
         </div>
@@ -101,23 +140,40 @@
           </div>
 
           <v-container class="chart-7-container">
-            <!-- 图7 -->
-            <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图7 -->
+              <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
+
 
           <v-container class="chart-8-container">
-            <!-- 图8 -->
-            <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
-              '胜率', 'ban率', 'pick率',]">
-            </v-select>
-            <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
-            <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
-            </v-pagination>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图8 -->
+              <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
+                '胜率', 'ban率', 'pick率',]">
+              </v-select>
+              <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
+              <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
+              </v-pagination>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
+
           <v-container class="chart-9-container">
-            <!-- 图9 -->
-            <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+            <template v-if="Data.chart2.isChartVisible">
+              <!-- 图9 -->
+              <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+            </template>
+            <template v-else>
+              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+            </template>
           </v-container>
 
         </div>
@@ -154,6 +210,7 @@ interface Header {
 const Data = reactive({
 
   chart1: {
+    isChartVisible: true,
     headers: [
       { title: '战队', align: 'start', key: 'team', },
       { title: '胜场', align: 'end', key: 'matches_won' },
@@ -262,7 +319,7 @@ const Data = reactive({
 
   // 热力图数据
   chart2: {
-    isChart2Visible: true,
+    isChartVisible: true,
     teamNames: [
       "PSG",
       "T1",
@@ -1567,6 +1624,7 @@ const Data = reactive({
 
   //队伍对抗图
   chart3: {
+    isChartVisible: true,
     teamData: [
       { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
       { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 }
@@ -1575,6 +1633,7 @@ const Data = reactive({
 
   // 箱线图数据
   chart4: {
+    isChartVisible: true,
     playerBoxPlotData: [
       {
         "player": "369",
@@ -2068,6 +2127,7 @@ const Data = reactive({
 
   // 散点图数据
   chart5: {
+    isChartVisible: true,
     xAxis: ref('gold'),
     yAxis: ref('damage'),
     axisOptions: ['gold', 'damage', 'tanking', 'cs'],
@@ -2646,6 +2706,7 @@ const Data = reactive({
 
   //选手雷达图数据
   chart6: {
+    isChartVisible: true,
     //KDA  CS   gold  damage   tanking
     players: [
       { name: 'Bin', stats: [20, 10.1, 400, 28885, 22275] },
@@ -2664,6 +2725,7 @@ const Data = reactive({
 
   // bp词云图数据
   chart7: {
+    isChartVisible: true,
     bpWordCloudData: [
       {
         "name": "双界灵兔",
@@ -2796,6 +2858,7 @@ const Data = reactive({
 
   //bp柱状图数据
   chart8: {
+    isChartVisible: true,
     heroData: [
       { name: '封魔剑魂', banRate: 30, pickRate: 33, winRate: 54 },
       { name: '双界灵兔', banRate: 17, pickRate: 32, winRate: 43 },
@@ -2813,6 +2876,7 @@ const Data = reactive({
 
   //英雄对抗图数据
   chart9: {
+    isChartVisible: true,
     herodata: [
       { name: '疾风剑豪', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
       { name: '盲僧', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
