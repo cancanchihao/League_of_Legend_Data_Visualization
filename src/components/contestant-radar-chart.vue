@@ -38,13 +38,13 @@ const chartOptions = ref({
         color: '#999',
         fontWeight: 'bold', // 设置字体为加粗
         fontSize: 14,
-        
+
       }
     },
     indicator: [ // KDA，CS，gold，damage，tanking
-      { name: 'KDA', max: 100 },
-      { name: '场均补刀', max: 1000 },
-      { name: '场均经济', max: 30000 },
+      { name: 'KDA', max: 30 },
+      { name: '场均补刀', max: 11 },
+      { name: '场均经济', max: 500 },
       { name: '场均输出', max: 50000 },
       { name: '场均承伤', max: 50000 },
     ],
@@ -75,7 +75,7 @@ watch(selectedGroup, (newGroup) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
   chartOptions.value.series[0].data = newGroup.map(player => ({
     value: player.stats,
     name: player.name,
@@ -100,7 +100,7 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
 };
 
 let chartInstance;
@@ -162,8 +162,10 @@ onUnmounted(() => {
       padding: 2vh 0 2vh 1vw;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
+
     li:last-child {
-        border-bottom: none; /* 移除最后一个 li 的 bottom border */
+      border-bottom: none;
+      /* 移除最后一个 li 的 bottom border */
     }
 
     li:hover {

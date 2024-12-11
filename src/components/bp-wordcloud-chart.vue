@@ -1,6 +1,6 @@
 <template>
     <div class="container" style='display: flex;'>
-        <span id="wordcloud-chart" style=' flex-grow: 1; height: 40vh;'></span>
+        <span id="wordcloud-chart" style=' flex-grow: 1; height: 40vh;width: 100%;'></span>
     </div>
 </template>
 
@@ -14,8 +14,8 @@ const emit = defineEmits<{
 }>();
 
 type WordCloudData = {
-  name: string;
-  value: number;
+    name: string;
+    value: number;
 };
 
 const props = withDefaults(
@@ -112,7 +112,7 @@ const defaultSeries = [{
                     }
                 },
      */
-    gridSize: 20,
+    gridSize: 1,
     data: props.data
 }]
 

@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 给 div 元素设置一个 id 来引用 -->
-        <div id="heatmap" style="width: 70vh; height: 40vh;"></div>
+        <div id="heatmap" style="width: 100%; height: 40vh;"></div>
     </div>
 </template>
 
