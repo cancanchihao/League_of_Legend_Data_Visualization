@@ -93,7 +93,7 @@
 
           <v-container class="chart-7-container">
             <!-- 图7 -->
-            <bpWordcloudChart :options="Data.chart7" @wordClick="bpwordcloudclick"></bpWordcloudChart>
+            <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
           </v-container>
 
           <v-container class="chart-8-container">
@@ -223,22 +223,17 @@ const Data = reactive({
 
   // bp词云图数据
   chart7: {
-    series: [
-      {
-        gridSize: 20,
-        data: [
-          { name: '封魔剑魂', value: 50, },
-          { name: '双界灵兔', value: 40 },
-          { name: '武器大师', value: 35 },
-          { name: '寒冰射手', value: 30 },
-          { name: '圣锤之毅', value: 25 },
-          { name: "上古领主", value: 20 },
-          { name: '迷失之牙', value: 18 },
-          { name: '虚空之女', value: 15 },
-          { name: '熔铁少女', value: 10 },
-          { name: '爆破鬼才', value: 8 },
-        ] as { name: string; value: number }[],
-      },
+    bpWordCloudData: [
+      { name: '封魔剑魂', value: 50, },
+      { name: '双界灵兔', value: 40 },
+      { name: '武器大师', value: 35 },
+      { name: '寒冰射手', value: 30 },
+      { name: '圣锤之毅', value: 25 },
+      { name: "上古领主", value: 20 },
+      { name: '迷失之牙', value: 18 },
+      { name: '虚空之女', value: 15 },
+      { name: '熔铁少女', value: 10 },
+      { name: '爆破鬼才', value: 8 },
     ],
   },
 

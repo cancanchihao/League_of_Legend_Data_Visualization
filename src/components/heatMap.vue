@@ -101,6 +101,21 @@ export default defineComponent({
                     // 设置图表选项
                     chart.setOption(option);
 
+                    // 监听点击事件
+                    chart.on('click', (params) => {
+                        if (params && params.data) {
+                            const xIndex = params.data[0]; // 获取点击点的 X 轴索引
+                            const yIndex = params.data[1]; // 获取点击点的 Y 轴索引
+
+                            // 根据 xIndex 和 yIndex 获取对应的战队名称
+                            const team1 = props.teamNames[xIndex];
+                            const team2 = props.teamNames[yIndex];
+
+                            // 打印结果或做其他操作
+                            console.log(`点击的战队是: ${team1} 和 ${team2}`);
+                        }
+                    });
+
                     // // 监听窗口大小变化
                     // window.addEventListener("resize", chart.resize);
                 } else {

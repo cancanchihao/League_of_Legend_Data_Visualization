@@ -15,9 +15,14 @@ const emit = defineEmits<{
     (event: 'wordClick', word: string): void;
 }>();
 
+type WordCloudData = {
+  name: string;
+  value: number;
+};
+
 const props = withDefaults(
     defineProps<{
-        options: any
+        data: WordCloudData[]
     }>(),
     {},
 )
@@ -64,7 +69,6 @@ const defaultSeries = [{
      * 词间距, 距离越大，单词之间的间距越大, 单位像素
      * 这里间距太小的话，会出现大词把小词套住的情况，比如一个大的口字，中间会有比较大的空隙，这时候他会把一些很小的字放在口字里面，这样的话，鼠标就无法选中里面的那个小字
      */
-    gridSize: 8,
     // 设置为true可以使单词部分在画布之外绘制, 允许绘制大于画布大小的单词
     drawOutOfBound: false,
     /**
@@ -110,16 +114,15 @@ const defaultSeries = [{
                     }
                 },
      */
-    data: []
+    gridSize: 20,
+    data: props.data
 }]
-let seriesData = props.options.series;
-const series = merge({}, defaultSeries[0], seriesData[0]) // {}表示合并后的新对象，可以传入一个空对象作为初始值
 
 function DrawWordCloud() {
     // 词云
     let mychart = echarts.init(document.getElementById("wordcloud-chart")) // 可以设置主题色'dark'
     mychart.setOption({
-        series: series
+        series: defaultSeries[0]
     })
 
     // 设置点击事件
