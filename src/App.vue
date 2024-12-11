@@ -43,7 +43,7 @@
 
           <v-container class="chart-2-container">
             <!-- 图2 -->
-            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" title="战队对抗胜率热力图" />
+            <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"  @wordClick="heatmapclick" title="战队对抗胜率热力图" />
           </v-container>
 
           <v-container class="chart-3-container">
@@ -157,20 +157,18 @@ const Data = reactive({
     teams: [],
   },
 
+  // 热力图数据
   chart2: {
     teamNames: [],
     heatMapData: [],
   },
 
-
   //队伍对抗图
   chart3: {
     teamData: [
-      { name: '队伍1', headimg: '1', winRate: 42, BloodRate: 47, TowerRate: 57, DragonRate: 55 },
-      { name: '队伍2', headimg: '1', winRate: 55, BloodRate: 62, TowerRate: 55, DragonRate: 48 }
+      { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
+      { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 }
     ],
-    team1: '',
-    team2: '',
     // teamAgainstData: [
     //   { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
     //   { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 },
@@ -178,6 +176,7 @@ const Data = reactive({
 
   },
 
+  // 箱线图数据
   chart4: {
     // playerBoxPlotData: [
     //   { player: 'xiaohu', kills: 7, deaths: 5, assists: 6 },
@@ -192,6 +191,7 @@ const Data = reactive({
     playerBoxPlotData: []
   },
 
+  // 散点图数据
   chart5: {
     xAxis: ref('gold'),
     yAxis: ref('damage'),
@@ -264,13 +264,9 @@ const Data = reactive({
   //英雄对抗图数据
   chart9: {
     herodata: [
-      { name: '英雄1', headimg: '1', winRate: 42, pickRate: 20, banRate: 10 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
-      { name: '英雄2', headimg: '1', winRate: 55, pickRate: 40, banRate: 20 },
-      { name: '封魔剑魂', headimg: '2', winRate: 55, pickRate: 40, banRate: 20 },
+      { name: '疾风剑豪', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
+      { name: '盲僧', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
     ],
-    hero1: '',
-    hero2: '',
     // heroAgainstData: [
     //   { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
     //   { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
@@ -278,22 +274,32 @@ const Data = reactive({
   },
 })
 
-const bpwordcloudclick = (word: string) => {
-  console.log('点击了词：', word);
+const bpwordcloudclick = (clickname: string) => {
+  console.log('点击英雄：', clickname);
   console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
 
-  if (!Data.chart9 || !Data.chart9.herodata) {
-    console.error('heroagainst 或 heroagainst.herodata 未定义');
-    return;
-  }
+  // TODO:
+  // 获取新英雄数据
+  // getChart9Data();
+  // if ( !== -1) {
+  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
+  // } else {
+  //   console.log('未找到对应的英雄');
+  // }
+};
 
-  const targetIndex = Data.chart9.herodata.findIndex(item => item.name === word);
-  if (targetIndex !== -1) {
-    [Data.chart9.herodata[0], Data.chart9.herodata[targetIndex]] = [Data.chart9.herodata[targetIndex], Data.chart9.herodata[0]];
-    console.log('互换成功', Data.chart9.herodata[0]);
-  } else {
-    console.log('未找到对应的英雄');
-  }
+const heatmapclick = (team1: string, team2: string) => {
+  console.log('点击队伍：', team1, team2);
+  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
+
+  // TODO:
+  // 获取新英雄数据
+  // getChart3Data();
+  // if ( !== -1) {
+  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
+  // } else {
+  //   console.log('未找到对应的英雄');
+  // }
 };
 
 onMounted(() => {
@@ -454,8 +460,8 @@ function getChart3Data() {
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
-      team1: Data.chart3.team1,
-      team2: Data.chart3.team1,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
     console.log('图3的数据:', response)
@@ -479,8 +485,8 @@ function getChart6Data() {
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
-      team1: Data.chart3.team1,
-      team2: Data.chart3.team1,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
     }
   }).then(response => {
     console.log('图6的数据:', response)
@@ -504,8 +510,8 @@ function getChart9Data() {
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
-      hero1: Data.chart9.hero1,
-      hero2: Data.chart9.hero2,
+      hero1: Data.chart9.herodata[0].name,
+      hero2: Data.chart9.herodata[1].name,
     }
   }).then(response => {
     console.log('图9的数据:', response)

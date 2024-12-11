@@ -83,11 +83,14 @@ const renderChart = () => {
                 stack: 'total',
                 label: {
                     show: true,
-                    fontSize: 10,
-                    formatter: (params) => params.value + '%'
+                    fontSize: 16,
+                    formatter: (params) => params.value,
                 },
                 emphasis: { focus: 'series' },
                 data: [props.data1],
+                itemStyle: {
+                    color: '#409EFF',
+                }
             },
             {
                 name: props.obj2,
@@ -95,11 +98,14 @@ const renderChart = () => {
                 stack: 'total',
                 label: {
                     show: true,
-                    fontSize: 10,
-                    formatter: (params) => params.value + '%'
+                    fontSize: 16,
+                    formatter: (params) => params.value
                 },
                 emphasis: { focus: 'series' },
                 data: [props.data2],
+                itemStyle: {
+                    color: '#E6A23C',
+                }
             }
         ]
     };

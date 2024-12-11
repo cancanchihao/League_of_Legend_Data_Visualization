@@ -3,6 +3,15 @@ import { ref, watch, onMounted, onUnmounted } from 'vue';
 import * as echarts from 'echarts';
 import VChart from 'vue-echarts';
 
+// 位置数组
+const positions = [
+  '打野',
+  '上单',
+  '中单',
+  'ADC',
+  '辅助'
+];
+
 // 玩家数据
 const props = defineProps({
   players: {
@@ -17,19 +26,27 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 // ECharts配置
 const chartOptions = ref({
   title: {
-    text: '位置1', // 默认标题
+    text: '打野', // 默认标题
   },
   textStyle: {
     fontSize: 10,
   },
   tooltip: {},
   radar: {
-    indicator: [
-      { name: 'Attack', max: 100 },
-      { name: 'Defense', max: 100 },
-      { name: 'Skill', max: 100 },
-      { name: 'Strategy', max: 100 },
-      { name: 'Teamwork', max: 100 },
+    name: {
+      textStyle: {
+        color: '#999',
+        fontWeight: 'bold', // 设置字体为加粗
+        fontSize: 14,
+        
+      }
+    },
+    indicator: [ // KDA，CS，gold，damage，tanking
+      { name: 'KDA', max: 100 },
+      { name: '场均补刀', max: 1000 },
+      { name: '场均经济', max: 30000 },
+      { name: '场均输出', max: 50000 },
+      { name: '场均承伤', max: 50000 },
     ],
   },
   series: [
@@ -58,7 +75,7 @@ watch(selectedGroup, (newGroup) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `位置${groupIndex}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
   chartOptions.value.series[0].data = newGroup.map(player => ({
     value: player.stats,
     name: player.name,
@@ -83,7 +100,7 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `位置${groupIndex}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
 };
 
 let chartInstance;
@@ -112,11 +129,11 @@ onUnmounted(() => {
   <div class="container">
     <div class="player-list">
       <ul>
-        <li @click="selectGroup([props.players[0], props.players[1]])">位置1</li>
-        <li @click="selectGroup([props.players[2], props.players[3]])">位置2</li>
-        <li @click="selectGroup([props.players[4], props.players[5]])">位置3</li>
-        <li @click="selectGroup([props.players[6], props.players[7]])">位置4</li>
-        <li @click="selectGroup([props.players[8], props.players[9]])">位置5</li>
+        <li @click="selectGroup([props.players[0], props.players[1]])">{{ positions[0] }}</li>
+        <li @click="selectGroup([props.players[2], props.players[3]])">{{ positions[1] }}</li>
+        <li @click="selectGroup([props.players[4], props.players[5]])">{{ positions[2] }}</li>
+        <li @click="selectGroup([props.players[6], props.players[7]])">{{ positions[3] }}</li>
+        <li @click="selectGroup([props.players[8], props.players[9]])">{{ positions[4] }}</li>
       </ul>
     </div>
     <div id="radar-chart">
@@ -139,11 +156,14 @@ onUnmounted(() => {
     margin: 0;
 
     li {
-      font-size: 14px;
+      font-size: 16px;
       cursor: pointer;
       border-bottom: 1px solid blue;
-      padding: 1vh 0 1vh 0.5vw;
+      padding: 2vh 0 2vh 1vw;
       transition: font-size 0.3s ease, color 0.3s ease;
+    }
+    li:last-child {
+        border-bottom: none; /* 移除最后一个 li 的 bottom border */
     }
 
     li:hover {
@@ -161,7 +181,7 @@ onUnmounted(() => {
 #radar-chart {
   padding-top: 10px;
   flex-grow: 1;
-  height: 24vh;
+  height: 30vh;
   display: inline-block;
   vertical-align: top;
   margin-bottom: -15px;
