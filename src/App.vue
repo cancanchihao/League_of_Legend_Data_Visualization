@@ -2934,9 +2934,6 @@ const bpwordcloudclick = (clickname: string) => {
 const heatmapclick = (team1: string, team2: string) => {
   console.log('点击队伍：', team1, team2);
   console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
-  Data.chart3.teamData[0].name = '222';
-  Data.chart6.players[0].name = '222';
-  console.log('Data.chart6.players[0].name：', Data.chart6.players[0].name);
   // TODO:
   // 获取新英雄数据
   // getChart3Data();

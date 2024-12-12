@@ -127,7 +127,8 @@ onUnmounted(() => {
 watch(() => props.players, () => {
   console.log('触发刷新');
   console.log(chartInstance.value);
-  chartOptions.value.series[0].data = newPlayers.map(player => ({
+
+  chartOptions.value.series[0].data = selectedGroup.value.map(player => ({
     value: player.stats,
     name: player.name,
   }));
@@ -135,6 +136,7 @@ watch(() => props.players, () => {
   if (chartInstance.value) {
     chartInstance.value.setOption(chartOptions.value, true); // 第二个参数 true 表示完全刷新
   }
+  selectedGroup.value = [props.players[0], props.players[1]];
 }, { deep: true }); // deep: true 确保能够监听 players 数组中每个对象的变化
 
 </script>
