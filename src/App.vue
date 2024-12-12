@@ -1,184 +1,205 @@
 <template>
   <v-app>
 
-    <!-- 顶部导航栏 -->
-    <v-app-bar class="wrapper">
-      <v-container class="title-container">
-        <span class="big-title">
-          {{ topic }}
-        </span>
+    <!-- 全屏覆盖层 -->
+    <!-- <v-overlay v-if="showOverlay">
+      <v-container class="overlay-container" absolute>
+        <v-img src="src/assets/overLay.jpg" contain class="overlay-image"></v-img>
+        <div class="overlay-content">
+          <h1 class="overlay-title">欢迎来到比赛数据平台</h1>
+          <p class="overlay-description">
+            这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，
+            帮助您快速了解赛事动态。
+          </p>
+          <v-btn color="primary" large @click="startApp">开始</v-btn>
+        </div>
       </v-container>
+    </v-overlay> -->
 
-      <!-- <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
-        <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + '暗裔剑魔'"></v-img>
-      </v-avatar> -->
-      <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getData" style="width: 20vh;" :items="[
-        '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-        '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-        '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-        '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-        '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-        '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-        '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-        '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
-      </v-select>
-    </v-app-bar>
+    <!-- 全屏遮罩层 -->
+    <div v-if="showOverlay" class="full-screen-overlay">
+      <v-img src="src/assets/overLay.jpg" cover class="overlay-image full-screen-image">
+        <div class="overlay-content centered-content">
+          <div class="overlay-box">
+            <h1 class="overlay-title">欢迎来到比赛数据平台</h1>
+            <p class="overlay-description">
+              这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，
+              帮助您快速了解赛事动态。
+            </p>
+            <v-btn color="primary" large @click="startApp">开始</v-btn>
+          </div>
+        </div>
+      </v-img>
+    </div>
 
 
-    <!-- 主体部分 -->
-    <v-main>
-      <section class="mainbox">
-        <div class="column">
-          <div class="little-title">
-            战队
+
+    <!-- 主页面内容 -->
+    <template v-else>
+      <!-- 顶部导航栏 -->
+      <v-app-bar class="wrapper">
+        <v-container class="title-container">
+          <span class="big-title">
+            {{ topic }}
+          </span>
+        </v-container>
+        <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getData" style="width: 20vh;"
+          :items="[
+            '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+            '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+            '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+            '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+            '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+            '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+            '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+            '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+        </v-select>
+      </v-app-bar>
+
+
+      <!-- 主体部分 -->
+      <v-main>
+        <section class="mainbox">
+          <div class="column">
+            <div class="little-title">
+              战队
+            </div>
+
+
+            <v-container class="chart-1-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图1 -->
+                <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
+                  class="elevation-1" style="width: 100%;height:100%">
+                </v-data-table-virtual>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
+
+
+            <v-container class="chart-2-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图2 -->
+                <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
+                  style="position: relative;" title="战队对抗胜率热力图" />
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
+
+
+            <v-container class="chart-3-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图3 -->
+                <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
           </div>
 
-          <template v-if="Data.chart2.isChartVisible">
 
-          </template>
-          <template v-else>
-            <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-          </template>
+          <div class="column">
+            <div class="little-title">
+              选手
+            </div>
 
-
-
-
-
-
-
-          <v-container class="chart-1-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图1 -->
-              <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                class="elevation-1" style="width: 100%;height:100%">
-              </v-data-table-virtual>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
+            <v-container class="chart-4-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图4 -->
+                <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
 
-          <v-container class="chart-2-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图2 -->
-              <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
-                style="position: relative;" title="战队对抗胜率热力图" />
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
+            <v-container class="chart-5-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图5 -->
+                <v-row>
+                  <v-col>
+                    <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
+                      style="max-height: 50px;" />
+                  </v-col>
+                  <v-col>
+                    <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
+                      style="max-height: 50px;" />
+                  </v-col>
+                </v-row>
+                <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
+                  :y-axis="Data.chart5.yAxis" />
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
 
-          <v-container class="chart-3-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图3 -->
-              <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
-        </div>
+            <v-container class="chart-6-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图6 -->
+                <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
-
-        <div class="column">
-          <div class="little-title">
-            选手
           </div>
 
-          <v-container class="chart-4-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图4 -->
-              <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
+
+          <div class="column">
+            <div class="little-title">
+              英雄
+            </div>
+
+            <v-container class="chart-7-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图7 -->
+                <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
 
-          <v-container class="chart-5-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图5 -->
-              <v-row>
-                <v-col>
-                  <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
-                    style="max-height: 50px;" />
-                </v-col>
-                <v-col>
-                  <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
-                    style="max-height: 50px;" />
-                </v-col>
-              </v-row>
-              <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
-                :y-axis="Data.chart5.yAxis" />
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
+            <v-container class="chart-8-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图8 -->
+                <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
+                  '胜率', 'ban率', 'pick率',]">
+                </v-select>
+                <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
+                <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
+                </v-pagination>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
 
-          <v-container class="chart-6-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图6 -->
-              <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
+            <v-container class="chart-9-container">
+              <template v-if="Data.chart2.isChartVisible">
+                <!-- 图9 -->
+                <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+              </template>
+              <template v-else>
+                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+              </template>
+            </v-container>
 
-        </div>
-
-
-        <div class="column">
-          <div class="little-title">
-            英雄
           </div>
-
-          <v-container class="chart-7-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图7 -->
-              <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
-
-
-          <v-container class="chart-8-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图8 -->
-              <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
-                '胜率', 'ban率', 'pick率',]">
-              </v-select>
-              <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
-              <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
-              </v-pagination>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
-
-
-          <v-container class="chart-9-container">
-            <template v-if="Data.chart2.isChartVisible">
-              <!-- 图9 -->
-              <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
-            </template>
-            <template v-else>
-              <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-            </template>
-          </v-container>
-
-        </div>
-      </section>
-    </v-main>
+        </section>
+      </v-main>
+    </template>
   </v-app>
 </template>
 
@@ -200,6 +221,12 @@ import scatterChart from './components/scatter-chart.vue';
 
 
 const topic = ref('2024 全球总决赛')
+const showOverlay = ref(true)
+
+function startApp() {
+  showOverlay.value = false
+}
+
 
 interface Header {
   title: string;
@@ -320,6 +347,7 @@ const Data = reactive({
   // 热力图数据
   chart2: {
     isChartVisible: true,
+    isDataReady: false,
     teamNames: [
       "PSG",
       "T1",
@@ -2726,6 +2754,7 @@ const Data = reactive({
   // bp词云图数据
   chart7: {
     isChartVisible: true,
+    isDataReady: false,
     bpWordCloudData: [
       {
         "name": "双界灵兔",
@@ -2921,18 +2950,22 @@ onMounted(() => {
 })
 
 onBeforeMount(() => {
-  getData()
+  // getData()
 })
 
 function getData() {
   console.log(topic.value)
-  getChart1Data()
   getChart2Data()
+  getChart7Data()
+
+
+  getChart1Data()
   getChart4Data()
   getChart5Data()
-  getChart7Data()
   // getChart8Data()
 
+  // while (!Data.chart2.isDataReady || !Data.chart7.isDataReady) {
+  // }
   // getChart3Data()
   // getChart6Data()
   // getChart9Data()
@@ -2941,6 +2974,7 @@ function getData() {
 function getChart1Data() {
   // newValue 可以替换topic
   console.log('正在获取图1的数据')
+  Data.chart1.isChartVisible = false
   axios.get('http://192.168.198.10:8080/team/getWinRate', {
     params: {
       matchType: topic.value
@@ -2949,6 +2983,7 @@ function getChart1Data() {
     console.log('图1的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart1.isChartVisible = true
       Data.chart1.teams = response.data.data
     }
     else {
@@ -2962,6 +2997,7 @@ function getChart1Data() {
 
 function getChart2Data() {
   console.log('正在获取图2的数据')
+  Data.chart2.isChartVisible = false
   axios.get('http://192.168.198.10:8080/team/getHeatMap', {
     params: {
       matchType: topic.value
@@ -2970,6 +3006,8 @@ function getChart2Data() {
     console.log('图2的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart2.isChartVisible = true
+      Data.chart2.isDataReady = true
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
 
@@ -2985,6 +3023,7 @@ function getChart2Data() {
 
 function getChart4Data() {
   console.log('正在获取图4的数据')
+  Data.chart4.isChartVisible = false
   axios.get('http://192.168.198.10:8080/player/getBoxPlot', {
     params: {
       matchType: topic.value
@@ -2993,6 +3032,7 @@ function getChart4Data() {
     console.log('图4的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart4.isChartVisible = true
       Data.chart4.playerBoxPlotData = response.data.data
 
     }
@@ -3007,6 +3047,7 @@ function getChart4Data() {
 
 function getChart5Data() {
   console.log('正在获取图5的数据')
+  Data.chart5.isChartVisible = false
   axios.get('http://192.168.198.10:8080/player/getScatterDiagram', {
     params: {
       matchType: topic.value
@@ -3015,6 +3056,7 @@ function getChart5Data() {
     console.log('图5的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart5.isChartVisible = true
       Data.chart5.scatterDiagramData = response.data.data
     }
     else {
@@ -3028,6 +3070,7 @@ function getChart5Data() {
 
 function getChart7Data() {
   console.log('正在获取图7的数据')
+  Data.chart7.isChartVisible = false
   axios.get('http://192.168.198.10:8080/hero/getCloudDiagram', {
     params: {
       matchType: topic.value
@@ -3036,6 +3079,8 @@ function getChart7Data() {
     console.log('图7的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart7.isChartVisible = true
+      Data.chart7.isDataReady = true
       Data.chart7.bpWordCloudData = response.data.data
     }
     else {
@@ -3049,6 +3094,7 @@ function getChart7Data() {
 
 function getChart8Data() {
   console.log('正在获取图8的数据')
+  Data.chart8.isChartVisible = false
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value
@@ -3057,6 +3103,7 @@ function getChart8Data() {
     console.log('图8的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart8.isChartVisible = true
       //
 
 
@@ -3072,6 +3119,7 @@ function getChart8Data() {
 
 function getChart3Data() {
   console.log('正在获取图3的数据')
+  Data.chart3.isChartVisible = false
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
@@ -3082,6 +3130,7 @@ function getChart3Data() {
     console.log('图3的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart3.isChartVisible = true
       //
 
 
@@ -3097,6 +3146,7 @@ function getChart3Data() {
 
 function getChart6Data() {
   console.log('正在获取图6的数据')
+  Data.chart6.isChartVisible = false
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
@@ -3107,6 +3157,7 @@ function getChart6Data() {
     console.log('图6的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart6.isChartVisible = true
       //
 
 
@@ -3122,6 +3173,7 @@ function getChart6Data() {
 
 function getChart9Data() {
   console.log('正在获取图9的数据')
+  Data.chart9.isChartVisible = false
   axios.get('http://192.168.198.10:8080/', {
     params: {
       matchType: topic.value,
@@ -3132,6 +3184,7 @@ function getChart9Data() {
     console.log('图9的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
+      Data.chart9.isChartVisible = true
       //
 
 
@@ -3339,5 +3392,55 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.full-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.full-screen-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.centered-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.overlay-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-shadow: none;
+}
+
+.overlay-description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #555;
+  text-shadow: none;
 }
 </style>
