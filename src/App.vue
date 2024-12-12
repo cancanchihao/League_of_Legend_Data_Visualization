@@ -79,7 +79,7 @@
             <v-container class="chart-3-container">
               <template v-if="Data.chart3.isChartVisible">
                 <!-- 图3 -->
-                <teamAgainstChart :teamData="Data.chart3.teamData">
+                <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
                 </teamAgainstChart>
               </template>
               <template v-else>
@@ -3152,9 +3152,9 @@ function getChart2Data() {
       console.log('code=200')
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
-
       Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
       Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
+      Data.chart2.isChartVisible = true
       getChart3Data()
       getChart6Data()
     }
@@ -3225,9 +3225,9 @@ function getChart7Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart7.bpWordCloudData = response.data.data
-
       Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
       Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
+      Data.chart5.isChartVisible = true
       getChart9Data()
     }
     else {

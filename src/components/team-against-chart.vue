@@ -1,15 +1,22 @@
 <template>
     <div class="team">
-        <img :src="'http://192.168.198.10:8080/team/teamImg?teamName=' + props.teamData[0].name"
-            :alt=props.teamData[0].name>
+        <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+            <v-img
+                :src="'http://192.168.198.10:8080/team/teamImg?teamName=' + props.teamData[0].name + '&&matchType=' + props.matchType"></v-img>
+        </v-avatar>
         <el-button type="primary" class="elb" @click="change(1)">
             {{ props.teamData[0].name }}
         </el-button>
         <el-button type="warning" class="elb" @click="change(2)">
             {{ props.teamData[1].name }}
         </el-button>
-        <img :src="'http://192.168.198.10:8080/team/teamImg?teamName=' + props.teamData[1].name"
-            :alt=props.teamData[1].name>
+        <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
+            <v-img
+                :src="'http://192.168.198.10:8080/team/teamImg?teamName=' + props.teamData[1].name + '&&matchType=' + props.matchType"></v-img>
+        </v-avatar>
+
+
+
     </div>
     <item :line_name='"历史比分"' :data1="props.teamData[0].winCount" :data2="props.teamData[1].winCount"
         :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"></item>
@@ -36,6 +43,10 @@ const props = defineProps({
         type: Array,
         required: true,
     },
+    matchType: {
+        type: String,
+        required: true,
+    }
 });
 
 const selectedItem = ref(0); // 响应式的 selectedItem
