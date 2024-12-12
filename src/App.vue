@@ -347,7 +347,6 @@ const Data = reactive({
   // 热力图数据
   chart2: {
     isChartVisible: true,
-    isDataReady: false,
     teamNames: [
       "PSG",
       "T1",
@@ -2858,7 +2857,6 @@ const Data = reactive({
   // bp词云图数据
   chart7: {
     isChartVisible: true,
-    isDataReady: false,
     bpWordCloudData: [
       {
         "name": "双界灵兔",
@@ -3100,6 +3098,9 @@ onBeforeMount(() => {
 
 function getData() {
   console.log(topic.value)
+  Data.chart3.isChartVisible = false
+  Data.chart6.isChartVisible = false
+  Data.chart9.isChartVisible = false
   getChart2Data()
   getChart7Data()
 
@@ -3109,11 +3110,8 @@ function getData() {
   getChart5Data()
   getChart8Data()
 
-  while (!Data.chart2.isDataReady || !Data.chart7.isDataReady) {
-  }
-  getChart3Data()
-  getChart6Data()
-  getChart9Data()
+  // getChart3Data() getChart6Data()  写到getChart2Data()里面了
+  // getChart9Data()  写到  getChart7Data()里面了
 }
 
 function getChart1Data() {
@@ -3152,12 +3150,13 @@ function getChart2Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart2.isChartVisible = true
-      Data.chart2.isDataReady = true
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
 
       Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
       Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
+      getChart3Data()
+      getChart6Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3227,11 +3226,11 @@ function getChart7Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart7.isChartVisible = true
-      Data.chart7.isDataReady = true
       Data.chart7.bpWordCloudData = response.data.data
 
       Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
       Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
+      getChart9Data()
     }
     else {
       console.log("code=", response.data.code)
