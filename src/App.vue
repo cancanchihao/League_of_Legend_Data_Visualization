@@ -2905,29 +2905,18 @@ const bpwordcloudclick = (clickname: string) => {
   console.log('点击英雄：', clickname);
   console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
 
-  // TODO:
-  // 获取新英雄数据
-  // getChart9Data();
-  // if ( !== -1) {
-  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
-  // } else {
-  //   console.log('未找到对应的英雄');
-  // }
+  [Data.chart9.herodata[0].name, Data.chart9.herodata[1].name] = [clickname, Data.chart9.herodata[0].name];
+  getChart9Data();
 };
 
 const heatmapclick = (team1: string, team2: string) => {
   console.log('点击队伍：', team1, team2);
   console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
 
-  // TODO:
-  // 获取新英雄数据
-  // getChart3Data();
-  // getChart6Data();
-  // if ( !== -1) {
-  //   [Data.chart9.herodata[0], Data.chart9.herodata[1]] = [, Data.chart9.herodata[0]];
-  // } else {
-  //   console.log('未找到对应的英雄');
-  // }
+  [Data.chart3.teamData[0].name, Data.chart3.teamData[1].name] = [team1, team2];
+  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
+  getChart3Data();
+  getChart6Data();
 };
 
 onMounted(() => {

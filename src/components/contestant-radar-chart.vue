@@ -38,7 +38,7 @@ const chartOptions = ref({
         color: '#999',
         fontWeight: 'bold', // 设置字体为加粗
         fontSize: 14,
-
+        
       }
     },
     indicator: [ // KDA，CS，gold，damage，tanking
@@ -75,13 +75,13 @@ watch(selectedGroup, (newGroup) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
   chartOptions.value.series[0].data = newGroup.map(player => ({
     value: player.stats,
     name: player.name,
   }));
-  if (chartInstance) {
-    chartInstance.setOption(chartOptions.value); // 更新图表
+  if (chartInstance.value) {
+    chartInstance.value.setOption(chartOptions.value); // 更新图表
   }
 });
 
@@ -100,35 +100,43 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
-  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
+  chartOptions.value.title.text = `${positions[groupIndex-1]}`; // 更新标题为位置1、2或3
 };
 
-let chartInstance;
+const chartInstance = ref(null);
 
 onMounted(() => {
   const chartDom = document.getElementById('radar-chart');
-  chartInstance = echarts.init(chartDom);
-  chartInstance.setOption(chartOptions.value);
+  chartInstance.value = echarts.init(chartDom);
+  chartInstance.value.setOption(chartOptions.value);
 
   // 监听窗口大小变化
   window.addEventListener('resize', () => {
-    chartInstance.resize();
+    chartInstance.value.resize();
   });
 });
 
 onUnmounted(() => {
-  if (chartInstance) {
-    chartInstance.dispose();
+  if (chartInstance.value) {
+    chartInstance.value.dispose();
   }
-  window.removeEventListener('resize', chartInstance.resize);
+  window.removeEventListener('resize', chartInstance.value.resize);
 });
 
 // 监听传入的 players 数据变化，重新绘制图表
-watch(() => props.players, (newPlayers) => {
-  // 更新图表
-  if (chartInstance) {
-    chartInstance.setOption(chartOptions.value);
+watch(() => props.players, () => {
+  console.log('触发刷新');
+  console.log(chartInstance.value);
+
+  chartOptions.value.series[0].data = selectedGroup.value.map(player => ({
+    value: player.stats,
+    name: player.name,
+  }));
+
+  if (chartInstance.value) {
+    chartInstance.value.setOption(chartOptions.value, true); // 第二个参数 true 表示完全刷新
   }
+  selectedGroup.value = [props.players[0], props.players[1]];
 }, { deep: true }); // deep: true 确保能够监听 players 数组中每个对象的变化
 
 </script>
@@ -170,10 +178,8 @@ watch(() => props.players, (newPlayers) => {
       padding: 2vh 0 2vh 1vw;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
-
     li:last-child {
-      border-bottom: none;
-      /* 移除最后一个 li 的 bottom border */
+        border-bottom: none; /* 移除最后一个 li 的 bottom border */
     }
 
     li:hover {
