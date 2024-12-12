@@ -51,10 +51,10 @@
 
 
             <v-container class="chart-1-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart1.isChartVisible">
                 <!-- 图1 -->
                 <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                  class="elevation-1" style="width: 100%;height:100%">
+                  class="elevation-1" style="width: 100%;height:100%;">
                 </v-data-table-virtual>
               </template>
               <template v-else>
@@ -76,9 +76,10 @@
 
 
             <v-container class="chart-3-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart3.isChartVisible">
                 <!-- 图3 -->
-                <teamAgainstChart :teamData="Data.chart3.teamData"></teamAgainstChart>
+                <teamAgainstChart :teamData="Data.chart3.teamData">
+                </teamAgainstChart>
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
@@ -93,7 +94,7 @@
             </div>
 
             <v-container class="chart-4-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart4.isChartVisible">
                 <!-- 图4 -->
                 <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
               </template>
@@ -104,7 +105,7 @@
 
 
             <v-container class="chart-5-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart5.isChartVisible">
                 <!-- 图5 -->
                 <v-row>
                   <v-col>
@@ -116,8 +117,8 @@
                       style="max-height: 50px;" />
                   </v-col>
                 </v-row>
-                <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="Data.chart5.xAxis"
-                  :y-axis="Data.chart5.yAxis" />
+                <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
+                  :y-axis="chart5Axis(Data.chart5.yAxis)" />
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
@@ -126,7 +127,7 @@
 
 
             <v-container class="chart-6-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart6.isChartVisible">
                 <!-- 图6 -->
                 <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
               </template>
@@ -144,7 +145,7 @@
             </div>
 
             <v-container class="chart-7-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart7.isChartVisible">
                 <!-- 图7 -->
                 <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
               </template>
@@ -155,13 +156,14 @@
 
 
             <v-container class="chart-8-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart8.isChartVisible">
                 <!-- 图8 -->
-                <v-select label="排序方式" class="ml-auto" v-model='Data.chart8.sortWay' :items="[
-                  '胜率', 'ban率', 'pick率',]">
+                <v-select label="排序方式" @update:model-value="getChart8Data" class="ml-auto" v-model='Data.chart8.item'
+                  :items="['胜率', 'ban率', 'pick率',]">
                 </v-select>
                 <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
-                <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5">
+                <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
+                  @update:model-value="getChart8Data">
                 </v-pagination>
               </template>
               <template v-else>
@@ -171,7 +173,7 @@
 
 
             <v-container class="chart-9-container">
-              <template v-if="Data.chart2.isChartVisible">
+              <template v-if="Data.chart9.isChartVisible">
                 <!-- 图9 -->
                 <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
               </template>
@@ -211,6 +213,20 @@ function startApp() {
   showOverlay.value = false
 }
 
+function chart5Axis(axis) {
+  if (axis == '分均经济') {
+    return 'gold'
+  }
+  if (axis == '场均伤害') {
+    return 'damage'
+  }
+  if (axis == '场均承伤') {
+    return 'tanking'
+  }
+  if (axis == '分均补刀') {
+    return 'cs'
+  }
+}
 
 interface Header {
   title: string;
@@ -1638,8 +1654,22 @@ const Data = reactive({
   chart3: {
     isChartVisible: true,
     teamData: [
-      { name: 'BLG', baron: 1, dragon: 2, turts: 3, KDA: 7, winCount: 2 },
-      { name: 'T1', baron: 3, dragon: 1, turts: 5, KDA: 10, winCount: 1 }
+      {
+        "name": "BLG",
+        "baron": 0.74,
+        "dragon": 2.11,
+        "turts": 7.26,
+        "winCount": 2,
+        "kda": 4.345
+      },
+      {
+        "name": "T1",
+        "baron": 0.88,
+        "dragon": 2.59,
+        "turts": 7.35,
+        "winCount": 4,
+        "kda": 5.271
+      }
     ],
   },
 
@@ -2140,9 +2170,9 @@ const Data = reactive({
   // 散点图数据
   chart5: {
     isChartVisible: true,
-    xAxis: ref('gold'),
-    yAxis: ref('damage'),
-    axisOptions: ['gold', 'damage', 'tanking', 'cs'],
+    xAxis: ref('分均经济'),
+    yAxis: ref('场均伤害'),
+    axisOptions: ['分均经济', '场均伤害', '场均承伤', '分均补刀'],
     scatterDiagramData: [
       {
         "player": "369",
@@ -2721,16 +2751,106 @@ const Data = reactive({
     isChartVisible: true,
     //KDA  CS   gold  damage   tanking
     players: [
-      { name: 'Bin', stats: [20, 10.1, 400, 28885, 22275] },
-      { name: 'Zeus', stats: [30, 10.2, 400, 22290, 22295] },
-      { name: 'Xun', stats: [20, 9.9, 400, 21370, 22270] },
-      { name: 'Oner', stats: [10, 9, 400, 21165, 22265] },
-      { name: 'knight', stats: [17, 9, 400, 12395, 22235] },
-      { name: 'Faker', stats: [23, 9, 400, 22380, 22275] },
-      { name: 'elk', stats: [11, 9, 400, 17795, 22235] },
-      { name: 'gumayusi', stats: [5, 9, 400, 22280, 22275] },
-      { name: 'On', stats: [13, 9, 400, 14495, 22235] },
-      { name: 'Keria', stats: [12, 9, 400, 22280, 22275] },
+      {
+        "name": "Bin",
+        "stats": [
+          4.3,
+          7.9,
+          393.2,
+          15968.1,
+          19708.8
+        ]
+      },
+      {
+        "name": "Zeus",
+        "stats": [
+          4.8,
+          8.0,
+          401.0,
+          14177.6,
+          19482.6
+        ]
+      },
+      {
+        "name": "Xun",
+        "stats": [
+          5.1,
+          5.7,
+          334.8,
+          11710.1,
+          30734.5
+        ]
+      },
+      {
+        "name": "Oner",
+        "stats": [
+          5.9,
+          6.6,
+          362.5,
+          10463.5,
+          29986.9
+        ]
+      },
+      {
+        "name": "Knight",
+        "stats": [
+          6.3,
+          8.3,
+          412.5,
+          22252.9,
+          19086.7
+        ]
+      },
+      {
+        "name": "Faker",
+        "stats": [
+          4.4,
+          8.2,
+          404.3,
+          16110.5,
+          19988.3
+        ]
+      },
+      {
+        "name": "Elk",
+        "stats": [
+          4.2,
+          9.1,
+          434.8,
+          24383.6,
+          14102.8
+        ]
+      },
+      {
+        "name": "Gumayusi",
+        "stats": [
+          6.4,
+          10.3,
+          469.7,
+          20139.1,
+          11701.9
+        ]
+      },
+      {
+        "name": "On",
+        "stats": [
+          2.9,
+          1.2,
+          241.5,
+          4747.9,
+          14681.1
+        ]
+      },
+      {
+        "name": "Keria",
+        "stats": [
+          5.3,
+          1.2,
+          255.5,
+          6263.7,
+          12998.1
+        ]
+      }
     ],
 
   },
@@ -2871,33 +2991,85 @@ const Data = reactive({
 
   //bp柱状图数据
   chart8: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     heroData: [
-      { name: '封魔剑魂', banRate: 30, pickRate: 33, winRate: 54 },
-      { name: '双界灵兔', banRate: 17, pickRate: 32, winRate: 43 },
-      { name: '武器大师', banRate: 13, pickRate: 12, winRate: 54 },
-      { name: '寒冰射手', banRate: 22, pickRate: 54, winRate: 34 },
-      { name: '上古领主', banRate: 5, pickRate: 32, winRate: 70 },
-      { name: '圣锤之毅', banRate: 23, pickRate: 43, winRate: 56 },
-      { name: '虚空之女', banRate: 12, pickRate: 100, winRate: 76 },
+      {
+        "name": "双界灵兔",
+        "banRate": 80.0,
+        "pickRate": 16.25,
+        "winRate": 62.0
+      },
+      {
+        "name": "封魔剑魂",
+        "banRate": 60.0,
+        "pickRate": 35.0,
+        "winRate": 61.0
+      },
+      {
+        "name": "寒冰射手",
+        "banRate": 55.0,
+        "pickRate": 25.0,
+        "winRate": 70.0
+      },
+      {
+        "name": "复仇之矛",
+        "banRate": 51.25,
+        "pickRate": 23.75,
+        "winRate": 63.0
+      },
+      {
+        "name": "上古领主",
+        "banRate": 46.25,
+        "pickRate": 41.25,
+        "winRate": 73.0
+      },
+      {
+        "name": "爆破鬼才",
+        "banRate": 43.75,
+        "pickRate": 12.5,
+        "winRate": 40.0
+      },
+      {
+        "name": "武器大师",
+        "banRate": 36.25,
+        "pickRate": 46.25,
+        "winRate": 51.0
+      },
+      {
+        "name": "圣锤之毅",
+        "banRate": 33.75,
+        "pickRate": 20.0,
+        "winRate": 31.0
+      }
     ],
     // heroData: [],
-    sortWay: '胜率',
-    totalPage: 6,
-    currentPage: 1
+    item: '胜率',
+    sortWay: 'win_Rate',
+    totalPage: 12,
+    currentPage: 1,
   },
 
   //英雄对抗图数据
   chart9: {
     isChartVisible: true,
     herodata: [
-      { name: '疾风剑豪', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
-      { name: '盲僧', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
+      {
+        "name": "封魔剑魂",
+        "winCount": 4,
+        "gold": 417.0,
+        "damage": 27125.08,
+        "tanking": 21456.43,
+        "kda": 6.0
+      },
+      {
+        "name": "双界灵兔",
+        "winCount": 2,
+        "gold": 402.0,
+        "damage": 18101.18,
+        "tanking": 24212.35,
+        "kda": 3.0
+      }
     ],
-    // heroAgainstData: [
-    //   { name: '剑魔', winCount: 1, KDA: 4, gold: 23451, damage: 12343, tanking: 23323 },
-    //   { name: '剑豪', winCount: 3, KDA: 3, gold: 13451, damage: 22343, tanking: 13323 },
-    // ]
   },
 })
 
@@ -2935,13 +3107,13 @@ function getData() {
   getChart1Data()
   getChart4Data()
   getChart5Data()
-  // getChart8Data()
+  getChart8Data()
 
-  // while (!Data.chart2.isDataReady || !Data.chart7.isDataReady) {
-  // }
-  // getChart3Data()
-  // getChart6Data()
-  // getChart9Data()
+  while (!Data.chart2.isDataReady || !Data.chart7.isDataReady) {
+  }
+  getChart3Data()
+  getChart6Data()
+  getChart9Data()
 }
 
 function getChart1Data() {
@@ -2984,6 +3156,8 @@ function getChart2Data() {
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
 
+      Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
+      Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
     }
     else {
       console.log("code=", response.data.code)
@@ -3055,6 +3229,9 @@ function getChart7Data() {
       Data.chart7.isChartVisible = true
       Data.chart7.isDataReady = true
       Data.chart7.bpWordCloudData = response.data.data
+
+      Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
+      Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
     }
     else {
       console.log("code=", response.data.code)
@@ -3068,17 +3245,28 @@ function getChart7Data() {
 function getChart8Data() {
   console.log('正在获取图8的数据')
   Data.chart8.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/', {
+  if (Data.chart8.item == '胜率') {
+    Data.chart8.sortWay = 'win_rate'
+  } else if (Data.chart8.item == 'pick率') {
+    Data.chart8.sortWay = 'pick_rate'
+  } else if (Data.chart8.item == 'ban率') {
+    Data.chart8.sortWay = 'ban_rate'
+  }
+
+  axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
     params: {
-      matchType: topic.value
+      matchType: topic.value,
+      currentPage: Data.chart8.currentPage,
+      sortWay: Data.chart8.sortWay,
     }
   }).then(response => {
     console.log('图8的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart8.isChartVisible = true
-      //
 
+      Data.chart8.totalPage = response.data.totalPage
+      Data.chart8.heroData = response.data.herodatas
 
     }
     else {
@@ -3093,7 +3281,7 @@ function getChart8Data() {
 function getChart3Data() {
   console.log('正在获取图3的数据')
   Data.chart3.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/', {
+  axios.get('http://192.168.198.10:8080/team/getTeamComp', {
     params: {
       matchType: topic.value,
       team1: Data.chart3.teamData[0].name,
@@ -3104,9 +3292,8 @@ function getChart3Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart3.isChartVisible = true
-      //
 
-
+      Data.chart3.teamData = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -3120,7 +3307,7 @@ function getChart3Data() {
 function getChart6Data() {
   console.log('正在获取图6的数据')
   Data.chart6.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/', {
+  axios.get('http://192.168.198.10:8080/player/getPlayerComp', {
     params: {
       matchType: topic.value,
       team1: Data.chart3.teamData[0].name,
@@ -3131,9 +3318,8 @@ function getChart6Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart6.isChartVisible = true
-      //
 
-
+      Data.chart6.players = response.data.data
     }
     else {
       console.log("code=", response.data.code)
@@ -3147,7 +3333,7 @@ function getChart6Data() {
 function getChart9Data() {
   console.log('正在获取图9的数据')
   Data.chart9.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/', {
+  axios.get('http://192.168.198.10:8080/hero/getHeroComp', {
     params: {
       matchType: topic.value,
       hero1: Data.chart9.herodata[0].name,
@@ -3158,9 +3344,8 @@ function getChart9Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart9.isChartVisible = true
-      //
 
-
+      Data.chart9.herodata = response.data.data
     }
     else {
       console.log("code=", response.data.code)

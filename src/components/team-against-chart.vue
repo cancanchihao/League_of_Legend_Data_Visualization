@@ -13,7 +13,7 @@
     </div>
     <item :line_name='"历史比分"' :data1="props.teamData[0].winCount" :data2="props.teamData[1].winCount"
         :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"></item>
-    <item :line_name='"   KDA   "' :data1="props.teamData[0].KDA" :data2="props.teamData[1].KDA"
+    <item :line_name='"   KDA   "' :data1="props.teamData[0].kda" :data2="props.teamData[1].kda"
         :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"></item>
     <item :line_name='"场均大龙"' :data1="props.teamData[0].baron" :data2="props.teamData[1].baron"
         :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"></item>
