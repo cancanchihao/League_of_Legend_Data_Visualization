@@ -2930,6 +2930,7 @@ const heatmapclick = (team1: string, team2: string) => {
   console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
 
   [Data.chart3.teamData[0].name, Data.chart3.teamData[1].name] = [team1, team2];
+  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
   getChart3Data();
   getChart6Data();
 };
