@@ -20,6 +20,7 @@
 
     <!-- 主页面内容 -->
     <template v-else>
+
       <!-- 顶部导航栏 -->
       <v-app-bar class="wrapper">
         <v-container class="title-container">
@@ -3126,8 +3127,8 @@ function getChart1Data() {
     console.log('图1的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart1.isChartVisible = true
       Data.chart1.teams = response.data.data
+      Data.chart1.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3149,9 +3150,10 @@ function getChart2Data() {
     console.log('图2的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart2.isChartVisible = true
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
+      Data.chart2.isChartVisible = true
+      console.log(Data.chart2.teamNames)
       getChart3Data()
       getChart6Data()
     }
@@ -3175,9 +3177,8 @@ function getChart4Data() {
     console.log('图4的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart4.isChartVisible = true
       Data.chart4.playerBoxPlotData = response.data.data
-
+      Data.chart4.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3199,8 +3200,8 @@ function getChart5Data() {
     console.log('图5的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart5.isChartVisible = true
       Data.chart5.scatterDiagramData = response.data.data
+      Data.chart5.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3222,8 +3223,8 @@ function getChart7Data() {
     console.log('图7的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart7.isChartVisible = true
       Data.chart7.bpWordCloudData = response.data.data
+      Data.chart7.isChartVisible = true
       getChart9Data()
     }
     else {
@@ -3256,11 +3257,9 @@ function getChart8Data() {
     console.log('图8的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart8.isChartVisible = true
-
       Data.chart8.totalPage = response.data.totalPage
       Data.chart8.heroData = response.data.herodatas
-
+      Data.chart8.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3274,6 +3273,9 @@ function getChart8Data() {
 function getChart3Data() {
   console.log('正在获取图3的数据')
   Data.chart3.isChartVisible = false
+  console.log(topic.value)
+  console.log(Data.chart3.teamData[0].name)
+  console.log(Data.chart3.teamData[1].name)
   axios.get('http://192.168.198.10:8080/team/getTeamComp', {
     params: {
       matchType: topic.value,
@@ -3284,9 +3286,8 @@ function getChart3Data() {
     console.log('图3的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart3.isChartVisible = true
-
       Data.chart3.teamData = response.data.data
+      Data.chart3.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3300,6 +3301,8 @@ function getChart3Data() {
 function getChart6Data() {
   console.log('正在获取图6的数据')
   Data.chart6.isChartVisible = false
+  console.log(Data.chart3.teamData[0].name)
+  console.log(Data.chart3.teamData[1].name)
   axios.get('http://192.168.198.10:8080/player/getPlayerComp', {
     params: {
       matchType: topic.value,
@@ -3310,9 +3313,8 @@ function getChart6Data() {
     console.log('图6的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart6.isChartVisible = true
-
       Data.chart6.players = response.data.data
+      Data.chart6.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
@@ -3326,6 +3328,8 @@ function getChart6Data() {
 function getChart9Data() {
   console.log('正在获取图9的数据')
   Data.chart9.isChartVisible = false
+  console.log(Data.chart9.herodata[0].name)
+  console.log(Data.chart9.herodata[1].name)
   axios.get('http://192.168.198.10:8080/hero/getHeroComp', {
     params: {
       matchType: topic.value,
@@ -3336,9 +3340,8 @@ function getChart9Data() {
     console.log('图9的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart9.isChartVisible = true
-
       Data.chart9.herodata = response.data.data
+      Data.chart9.isChartVisible = true
     }
     else {
       console.log("code=", response.data.code)
