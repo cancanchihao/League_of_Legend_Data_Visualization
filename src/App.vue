@@ -3152,8 +3152,9 @@ function getChart2Data() {
       console.log('code=200')
       Data.chart2.teamNames = response.data.data.teams
       Data.chart2.heatMapData = response.data.data.heatMapDatas
-      Data.chart2.isChartVisible = true
-      console.log(Data.chart2.teamNames)
+
+      Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
+      Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
       getChart3Data()
       getChart6Data()
     }
@@ -3224,7 +3225,9 @@ function getChart7Data() {
     if (response.data.code == 200) {
       console.log('code=200')
       Data.chart7.bpWordCloudData = response.data.data
-      Data.chart7.isChartVisible = true
+
+      Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
+      Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
       getChart9Data()
     }
     else {
