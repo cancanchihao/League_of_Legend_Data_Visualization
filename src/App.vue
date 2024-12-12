@@ -1,27 +1,11 @@
 <template>
   <v-app>
-
-    <!-- 全屏覆盖层 -->
-    <!-- <v-overlay v-if="showOverlay">
-      <v-container class="overlay-container" absolute>
-        <v-img src="src/assets/overLay.jpg" contain class="overlay-image"></v-img>
-        <div class="overlay-content">
-          <h1 class="overlay-title">欢迎来到比赛数据平台</h1>
-          <p class="overlay-description">
-            这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，
-            帮助您快速了解赛事动态。
-          </p>
-          <v-btn color="primary" large @click="startApp">开始</v-btn>
-        </div>
-      </v-container>
-    </v-overlay> -->
-
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
       <v-img src="src/assets/overLay.jpg" cover class="overlay-image full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
-            <h1 class="overlay-title">欢迎来到比赛数据平台</h1>
+            <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
             <p class="overlay-description">
               这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，
               帮助您快速了解赛事动态。
