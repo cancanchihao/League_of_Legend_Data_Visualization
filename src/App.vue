@@ -157,7 +157,7 @@
 
 
             <v-container class="chart-8-container">
-              <!-- <template v-if="Data.chart8.isChartVisible">
+              <template v-if="Data.chart8.isChartVisible">
                 <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data" class="ml-auto"
                   :items="['胜率', 'ban率', 'pick率',]">
                 </v-select>
@@ -168,7 +168,7 @@
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template> -->
+              </template>
             </v-container>
 
 
@@ -3237,8 +3237,7 @@ function getChart8Data() {
   } else if (Data.chart8.item == 'ban率') {
     Data.chart8.sortWay = 'ban_rate'
   }
-  console.log('当前页:', Data.chart8.currentPage)
-  console.log(Data.chart8.sortWay)
+  Data.chart8.currentPage = 1
   axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
     params: {
       matchType: topic.value,
@@ -3249,8 +3248,8 @@ function getChart8Data() {
     console.log('图8的数据:', response)
     if (response.data.code == 200) {
       console.log('code=200')
-      Data.chart8.totalPage = response.data.totalPage
-      Data.chart8.heroData = response.data.herodatas
+      Data.chart8.totalPage = response.data.data.totalPage
+      Data.chart8.heroData = response.data.data.herodatas
       Data.chart8.isChartVisible = true
       //图8获取到再获取图9的数据
       getChart9Data()
@@ -3273,8 +3272,6 @@ function updateChart8Data() {
   } else if (Data.chart8.item == 'ban率') {
     Data.chart8.sortWay = 'ban_rate'
   }
-  console.log('当前页:', Data.chart8.currentPage)
-  console.log('排序方式:', Data.chart8.sortWay)
   axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
     params: {
       matchType: topic.value,
