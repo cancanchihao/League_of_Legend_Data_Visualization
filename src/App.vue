@@ -28,7 +28,7 @@
             {{ topic }}
           </span>
         </v-container>
-        <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getData" style="width: 20vh;"
+        <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data" style="width: 20vh;"
           :items="[
             '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
             '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
@@ -157,19 +157,18 @@
 
 
             <v-container class="chart-8-container">
-              <template v-if="Data.chart8.isChartVisible">
-                <!-- 图8 -->
-                <v-select label="排序方式" @update:model-value="getChart8Data" class="ml-auto" v-model='Data.chart8.item'
+              <!-- <template v-if="Data.chart8.isChartVisible">
+                <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data" class="ml-auto"
                   :items="['胜率', 'ban率', 'pick率',]">
                 </v-select>
                 <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
                 <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
-                  @update:model-value="getChart8Data">
+                  @update:model-value="updateChart8Data">
                 </v-pagination>
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
+              </template> -->
             </v-container>
 
 
@@ -236,9 +235,8 @@ interface Header {
 }
 
 const Data = reactive({
-
   chart1: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     headers: [
       { title: '战队', align: 'start', key: 'team', },
       { title: '胜场', align: 'end', key: 'matches_won' },
@@ -347,7 +345,7 @@ const Data = reactive({
 
   // 热力图数据
   chart2: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     teamNames: [
       "PSG",
       "T1",
@@ -1652,7 +1650,7 @@ const Data = reactive({
 
   //队伍对抗图
   chart3: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     teamData: [
       {
         "name": "BLG",
@@ -2169,7 +2167,7 @@ const Data = reactive({
 
   // 散点图数据
   chart5: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     xAxis: ref('分均经济'),
     yAxis: ref('场均伤害'),
     axisOptions: ['分均经济', '场均伤害', '场均承伤', '分均补刀'],
@@ -2748,7 +2746,7 @@ const Data = reactive({
 
   //选手雷达图数据
   chart6: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     //KDA  CS   gold  damage   tanking
     players: [
       {
@@ -2857,7 +2855,7 @@ const Data = reactive({
 
   // bp词云图数据
   chart7: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     bpWordCloudData: [
       {
         "name": "双界灵兔",
@@ -3050,7 +3048,7 @@ const Data = reactive({
 
   //英雄对抗图数据
   chart9: {
-    isChartVisible: true,
+    isChartVisible: ref(true),
     herodata: [
       {
         "name": "封魔剑魂",
@@ -3086,8 +3084,8 @@ const heatmapclick = (team1: string, team2: string) => {
 
   [Data.chart3.teamData[0].name, Data.chart3.teamData[1].name] = [team1, team2];
   console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
-  getChart3Data();
-  getChart6Data();
+  updateChart3Data();
+  updateChart6Data();
 };
 
 onMounted(() => {
@@ -3097,23 +3095,6 @@ onBeforeMount(() => {
   // getData()
 })
 
-function getData() {
-  console.log(topic.value)
-  Data.chart3.isChartVisible = false
-  Data.chart6.isChartVisible = false
-  Data.chart9.isChartVisible = false
-  getChart2Data()
-  getChart7Data()
-
-
-  getChart1Data()
-  getChart4Data()
-  getChart5Data()
-  getChart8Data()
-
-  // getChart3Data() getChart6Data()  写到getChart2Data()里面了
-  // getChart9Data()  写到  getChart7Data()里面了
-}
 
 function getChart1Data() {
   // newValue 可以替换topic
@@ -3129,6 +3110,8 @@ function getChart1Data() {
       console.log('code=200')
       Data.chart1.teams = response.data.data
       Data.chart1.isChartVisible = true
+      //图1获取到再获取图2的数据
+      getChart2Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3155,8 +3138,8 @@ function getChart2Data() {
       Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
       Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
       Data.chart2.isChartVisible = true
+      //图2获取到再获取图3的数据
       getChart3Data()
-      getChart6Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3180,6 +3163,8 @@ function getChart4Data() {
       console.log('code=200')
       Data.chart4.playerBoxPlotData = response.data.data
       Data.chart4.isChartVisible = true
+      //图4获取到再获取图5的数据
+      getChart5Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3203,6 +3188,8 @@ function getChart5Data() {
       console.log('code=200')
       Data.chart5.scatterDiagramData = response.data.data
       Data.chart5.isChartVisible = true
+      //图5获取到再获取图6的数据
+      getChart6Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3227,8 +3214,9 @@ function getChart7Data() {
       Data.chart7.bpWordCloudData = response.data.data
       Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
       Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
-      Data.chart5.isChartVisible = true
-      getChart9Data()
+      Data.chart7.isChartVisible = true
+      //图7获取到再获取图8的数据
+      getChart8Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3249,7 +3237,8 @@ function getChart8Data() {
   } else if (Data.chart8.item == 'ban率') {
     Data.chart8.sortWay = 'ban_rate'
   }
-
+  console.log('当前页:', Data.chart8.currentPage)
+  console.log(Data.chart8.sortWay)
   axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
     params: {
       matchType: topic.value,
@@ -3263,6 +3252,8 @@ function getChart8Data() {
       Data.chart8.totalPage = response.data.totalPage
       Data.chart8.heroData = response.data.herodatas
       Data.chart8.isChartVisible = true
+      //图8获取到再获取图9的数据
+      getChart9Data()
     }
     else {
       console.log("code=", response.data.code)
@@ -3272,9 +3263,71 @@ function getChart8Data() {
   })
 }
 
+function updateChart8Data() {
+  console.log('正在更新图8的数据')
+  Data.chart8.isChartVisible = false
+  if (Data.chart8.item == '胜率') {
+    Data.chart8.sortWay = 'win_rate'
+  } else if (Data.chart8.item == 'pick率') {
+    Data.chart8.sortWay = 'pick_rate'
+  } else if (Data.chart8.item == 'ban率') {
+    Data.chart8.sortWay = 'ban_rate'
+  }
+  console.log('当前页:', Data.chart8.currentPage)
+  console.log('排序方式:', Data.chart8.sortWay)
+  axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
+    params: {
+      matchType: topic.value,
+      currentPage: Data.chart8.currentPage,
+      sortWay: Data.chart8.sortWay,
+    }
+  }).then(response => {
+    console.log('图8的数据:', response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+      Data.chart8.totalPage = response.data.data.totalPage
+      Data.chart8.heroData = response.data.data.herodatas
+      Data.chart8.isChartVisible = true
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
 
 function getChart3Data() {
   console.log('正在获取图3的数据')
+  Data.chart3.isChartVisible = false
+  console.log(topic.value)
+  console.log(Data.chart3.teamData[0].name)
+  console.log(Data.chart3.teamData[1].name)
+  axios.get('http://192.168.198.10:8080/team/getTeamComp', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
+    }
+  }).then(response => {
+    console.log('图3的数据:', response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+      Data.chart3.teamData = response.data.data
+      Data.chart3.isChartVisible = true
+      //图3获取到再获取图4的数据
+      getChart4Data()
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+function updateChart3Data() {
+  console.log('正在更新图3的数据')
   Data.chart3.isChartVisible = false
   console.log(topic.value)
   console.log(Data.chart3.teamData[0].name)
@@ -3300,9 +3353,36 @@ function getChart3Data() {
   })
 }
 
-
 function getChart6Data() {
   console.log('正在获取图6的数据')
+  Data.chart6.isChartVisible = false
+  console.log(Data.chart3.teamData[0].name)
+  console.log(Data.chart3.teamData[1].name)
+  axios.get('http://192.168.198.10:8080/player/getPlayerComp', {
+    params: {
+      matchType: topic.value,
+      team1: Data.chart3.teamData[0].name,
+      team2: Data.chart3.teamData[1].name,
+    }
+  }).then(response => {
+    console.log('图6的数据:', response)
+    if (response.data.code == 200) {
+      console.log('code=200')
+      Data.chart6.players = response.data.data
+      Data.chart6.isChartVisible = true
+      //图6获取到再获取图7的数据
+      getChart7Data()
+    }
+    else {
+      console.log("code=", response.data.code)
+    }
+  }).catch(error => {
+    console.log(error)
+  })
+}
+
+function updateChart6Data() {
+  console.log('正在更新图6的数据')
   Data.chart6.isChartVisible = false
   console.log(Data.chart3.teamData[0].name)
   console.log(Data.chart3.teamData[1].name)
@@ -3327,7 +3407,6 @@ function getChart6Data() {
   })
 }
 
-
 function getChart9Data() {
   console.log('正在获取图9的数据')
   Data.chart9.isChartVisible = false
@@ -3345,6 +3424,7 @@ function getChart9Data() {
       console.log('code=200')
       Data.chart9.herodata = response.data.data
       Data.chart9.isChartVisible = true
+      //数据全部获取完毕
     }
     else {
       console.log("code=", response.data.code)
