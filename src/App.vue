@@ -1665,7 +1665,7 @@ const Data = reactive({
         "baron": 0.88,
         "dragon": 2.59,
         "turts": 7.35,
-        "winCount": 4,
+        "winCount": 3,
         "kda": 5.271
       }
     ],
