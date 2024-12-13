@@ -12,9 +12,15 @@ const positions = reactive([
   '辅助'
 ]);
 
+const clickedStates = ref([true, false, false, false, false]);
+
 // 玩家数据
 const props = defineProps({
   players: {
+    type: Array,
+    required: true,
+  },
+  team: {
     type: Array,
     required: true,
   },
@@ -27,6 +33,21 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 const chartOptions = ref({
   title: {
     text: positions[0], // 默认标题
+  },
+  legend: {
+    data: selectedGroup.value.map(player => ({
+      name: player.name,
+    })),
+    itemGap: 100, // 设置项之间的间距
+    padding: [5, 0], // 增加左右内边距
+    left: '20%',
+    right: '5%',
+    textStyle: {
+      fontSize: 16, // 增加文字大小
+    },
+    itemWidth: 30, // 增加图例项宽度
+    itemHeight: 17,
+    selectedMode: false,
   },
   textStyle: {
     fontSize: 10,
@@ -75,7 +96,12 @@ watch(selectedGroup, (newGroup) => {
   } else {
     groupIndex = 5;
   }
+  clickedStates.value = clickedStates.value.map(() => false);
+  clickedStates.value[groupIndex - 1] = true;
   chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
+  chartOptions.value.legend.data = newGroup.map(player => ({
+    name: player.name,
+  }));
   chartOptions.value.series[0].data = newGroup.map(player => ({
     value: player.stats,
     name: player.name,
@@ -100,6 +126,7 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
+  
   chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
 };
 
@@ -145,11 +172,11 @@ watch(() => props.players, () => {
   <div class="container">
     <div class="player-list">
       <ul>
-        <li @click="selectGroup([props.players[0], props.players[1]])">{{ positions[0] }}</li>
-        <li @click="selectGroup([props.players[2], props.players[3]])">{{ positions[1] }}</li>
-        <li @click="selectGroup([props.players[4], props.players[5]])">{{ positions[2] }}</li>
-        <li @click="selectGroup([props.players[6], props.players[7]])">{{ positions[3] }}</li>
-        <li @click="selectGroup([props.players[8], props.players[9]])">{{ positions[4] }}</li>
+        <li @click="selectGroup([props.players[0], props.players[1]])" :class="{ clicked: clickedStates[0] }" >{{ positions[0] }}</li>
+        <li @click="selectGroup([props.players[2], props.players[3]])" :class="{ clicked: clickedStates[1] }" >{{ positions[1] }}</li>
+        <li @click="selectGroup([props.players[4], props.players[5]])" :class="{ clicked: clickedStates[2] }" >{{ positions[2] }}</li>
+        <li @click="selectGroup([props.players[6], props.players[7]])" :class="{ clicked: clickedStates[3] }" >{{ positions[3] }}</li>
+        <li @click="selectGroup([props.players[8], props.players[9]])" :class="{ clicked: clickedStates[4] }" >{{ positions[4] }}</li>
       </ul>
     </div>
     <div id="radar-chart">
@@ -185,10 +212,16 @@ watch(() => props.players, () => {
     }
 
     li:hover {
-      font-size: 18px;
+      font-size: 20px;
       color: rgb(73, 11, 217);
     }
   }
+}
+
+.clicked {
+  font-size: 20px !important;
+  font-weight: 600;
+  color: rgb(73, 11, 217);
 }
 
 .container {
@@ -197,9 +230,9 @@ watch(() => props.players, () => {
 }
 
 #radar-chart {
-  padding-top: 10px;
+  padding-top: 3vh;
   flex-grow: 1;
-  height: 30vh;
+  height: 37vh;
   display: inline-block;
   vertical-align: top;
   margin-bottom: -15px;

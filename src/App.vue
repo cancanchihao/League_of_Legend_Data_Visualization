@@ -130,7 +130,7 @@
             <v-container class="chart-6-container">
               <template v-if="Data.chart6.isChartVisible">
                 <!-- 图6 -->
-                <contestantRadarChart :players="Data.chart6.players"></contestantRadarChart>
+                <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData"></contestantRadarChart>
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
