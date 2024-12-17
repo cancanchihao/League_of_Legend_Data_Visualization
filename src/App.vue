@@ -351,7 +351,7 @@ header {
 }
 
 .chart-5-container {
-  height: 40vh;
+  height: 42vh;
   width: 33.3vw;
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);

@@ -195,7 +195,6 @@ watch(() => props.players, () => {
 
   ul {
     list-style: none;
-    padding-top: 1vh;
     margin: 0;
 
     li {
@@ -221,13 +220,12 @@ watch(() => props.players, () => {
 
 .container {
   display: flex;
-  margin-bottom: 2vh;
 }
 
 #radar-chart {
-  padding-top: 3vh;
+  padding-top: 2vh;
   flex-grow: 1;
-  height: 37vh;
+  height: 35vh;
   display: inline-block;
   vertical-align: top;
   margin-bottom: -15px;
