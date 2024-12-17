@@ -2,15 +2,15 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img>
+      <!-- <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img> -->
       <v-img src="src/assets/1.png" cover class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
-            <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
+            <h1 class="overlay-title">欢迎来到英雄联盟比赛数据分析平台</h1>
             <p class="overlay-description">
               这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，帮助您快速了解赛事动态。
             </p>
-            <v-btn color="primary" large @click="startApp">开始</v-btn>
+            <v-btn size="x-large" color="primary" large @click="startApp">开始</v-btn>
           </div>
         </div>
       </v-img>
@@ -22,23 +22,23 @@
         <v-img src="src/assets/3.png" class="background-image" cover>
           <v-app-bar class="wrapper">
             <v-row>
-              <v-col cols="2"></v-col>
-              <v-col cols="2"></v-col>
+              <v-col cols="4"></v-col>
               <v-col cols="4">
-                <v-card-title class="text-center text-black">{{ topic }}</v-card-title>
+                <v-card-title class="text-center " :style="{ color: 'orange', fontWeight: 'bold', fontSize: '34px' }">
+                  {{ topic }}
+                </v-card-title>
               </v-col>
               <v-col cols="2"></v-col>
               <v-col cols="2">
-                <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data"
-                  :item-disabled="true" :items="[
-                    '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-                    '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-                    '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-                    '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-                    '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-                    '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-                    '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-                    '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+                <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data" :items="[
+                  '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+                  '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+                  '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+                  '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+                  '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+                  '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+                  '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+                  '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
                 </v-select>
               </v-col>
 
@@ -111,14 +111,14 @@
                 <v-container class="chart-5-container" style="position: relative;">
                   <template v-if="Data.chart5.isChartVisible">
                     <v-row>
-                      <v-col cols="2.5">
+                      <v-col cols="2.7">
                         <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined
                           class="text-white" label="横坐标" style="max-height: 50px; " />
                       </v-col>
-                      <v-col cols="7">
+                      <v-col cols="6.6">
                         <v-card-title class="text-center text-white">选手伤害、承伤、经济、补刀散点图</v-card-title>
                       </v-col>
-                      <v-col cols="2.5">
+                      <v-col cols="2.7">
                         <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
                           class="text-white" label="纵坐标" style="max-height: 50px; " />
                       </v-col>
@@ -174,7 +174,7 @@
                         <v-card-title class="text-center text-white">英雄胜率、Ban率、Pick率柱状图</v-card-title>
                       </v-col>
                       <v-col cols="2.5">
-                        <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
+                        <v-select label="排序方式(横向)" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
                           class="text-white" :items="['胜率', 'ban率', 'pick率',]">
                         </v-select>
                       </v-col>
@@ -225,20 +225,15 @@ header {
   /* padding-bottom: 5px;
   margin-top: -20px; */
   height: 6vh;
-  /* background-color: rgb(20, 12, 44) !important; */
+  background-color: #2e2e2e !important;
   /* 背景颜色 */
   border-radius: 5px;
-  /* 圆角边框 */
-  text-align: center;
+  /* text-align: center;
   background-color: '';
   display: flex;
-  /* 使用 flex 布局 */
   justify-content: space-between;
-  /* 保证子元素分布在两侧 */
   align-items: center;
-  /* 垂直居中对齐 */
-  position: relative;
-  /* 相对定位，使绝对定位生效 */
+  position: relative; */
 }
 
 .title-container {
@@ -287,6 +282,7 @@ header {
   .column {
     flex: 1;
     margin-right: 1vw;
+
     &:nth-child(2) {
       .chart-container:nth-child(2) {
         margin-right: none;
