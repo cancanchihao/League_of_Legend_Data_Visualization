@@ -193,7 +193,7 @@ watch(() => props.players, () => {
 
   ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 1vw;
 
     li {
       color: rgb(255, 255, 255);
