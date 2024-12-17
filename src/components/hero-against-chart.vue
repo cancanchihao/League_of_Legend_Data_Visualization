@@ -16,24 +16,24 @@
         </v-avatar>
     </div>
     <item :line_name='"对位胜场"' :data1="props.heroData[0].winCount" :data2="props.heroData[1].winCount"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem"
-        :color1="'#67C23A'" :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
+        :color2="'#909399'">
     </item>
     <item :line_name='"   KDA   "' :data1="props.heroData[0].kda" :data2="props.heroData[1].kda"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem"
-        :color1="'#67C23A'" :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
+        :color2="'#909399'">
     </item>
     <item :line_name='"场均经济"' :data1="props.heroData[0].gold" :data2="props.heroData[1].gold"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem"
-        :color1="'#67C23A'" :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
+        :color2="'#909399'">
     </item>
     <item :line_name='"场均伤害"' :data1="props.heroData[0].damage" :data2="props.heroData[1].damage"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem"
-        :color1="'#67C23A'" :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
+        :color2="'#909399'">
     </item>
     <item :line_name='"场均承伤"' :data1="props.heroData[0].tanking" :data2="props.heroData[1].tanking"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem"
-        :color1="'#67C23A'" :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
+        :color2="'#909399'">
     </item>
 </template>
 

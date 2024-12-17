@@ -52,8 +52,9 @@
 
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
+                    <v-card-title>战队排行</v-card-title>
                     <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      class="elevation-1" style="width: 100%;height:100%;background:'';">
+                      class="data-table" style="width: 100%;height:100%;background-color:transparent;">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
@@ -451,14 +452,6 @@ header {
   height: 100%;
   z-index: -1;
   object-fit: cover;
-
-  /* width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative; */
 }
 </style>
 

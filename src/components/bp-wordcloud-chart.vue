@@ -27,6 +27,7 @@ const props = withDefaults(
 
 // 词云图默认属性
 const defaultSeries = [{
+    background: '',
     type: 'wordCloud',
     /**
      * 绘制词云的形状, 值为回调函数 或 关键字, 默认 circle
@@ -118,7 +119,7 @@ const defaultSeries = [{
 
 function DrawWordCloud() {
     // 词云
-    let mychart = echarts.init(document.getElementById("wordcloud-chart"), 'dark') // 可以设置主题色'dark'
+    let mychart = echarts.init(document.getElementById("wordcloud-chart")) // 可以设置主题色'dark'
     mychart.setOption({
         series: defaultSeries[0]
     })

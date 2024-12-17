@@ -48,11 +48,12 @@ const renderChart = () => {
     if (myChart.value) {
         myChart.value.dispose();
     }
-  
+
     const chartDom = chart.value;
-    myChart.value = echarts.init(chartDom, 'dark');
+    myChart.value = echarts.init(chartDom);
 
     const option = {
+        background: '',
         tooltip: {
             trigger: 'axis',
             axisPointer: { type: 'shadow' }
