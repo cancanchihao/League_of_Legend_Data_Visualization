@@ -91,7 +91,7 @@ onMounted(() => {
         name: 'Ban率',
         type: 'bar',
         data: banRates,
-        color: '#e74c3c', // 更鲜艳的红色
+        color: '#e15759', // 更鲜艳的红色
         barWidth: 12, // 控制柱状图的宽度
         itemStyle: {
           shadowColor: 'rgba(231, 76, 60, 0.5)', // 阴影效果
@@ -102,7 +102,7 @@ onMounted(() => {
         name: 'Pick率',
         type: 'bar',
         data: pickRates,
-        color: '#2ecc71', // 活力绿色
+        color: '#59a14f', // 活力绿色
         barWidth: 12, // 控制柱状图的宽度
         itemStyle: {
           shadowColor: 'rgba(46, 204, 113, 0.5)', // 阴影效果
@@ -113,7 +113,7 @@ onMounted(() => {
         name: '胜率',
         type: 'bar',
         data: winRates,
-        color: '#3498db', // 清新的蓝色
+        color: '#a0cbe8', // 清新的蓝色
         barWidth: 12, // 控制柱状图的宽度
         itemStyle: {
           shadowColor: 'rgba(52, 152, 219, 0.5)', // 阴影效果

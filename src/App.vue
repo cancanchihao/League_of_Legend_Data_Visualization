@@ -175,7 +175,7 @@
                       </v-col>
                       <v-col cols="2.5">
                         <v-select label="排序方式(横向)" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
-                          class="text-white" :items="['胜率', 'ban率', 'pick率',]">
+                          class="text-white" :items="['Ban率', 'Pick率', '胜率',]">
                         </v-select>
                       </v-col>
                     </v-row>
@@ -3321,7 +3321,7 @@ const Data = reactive({
       }
     ],
     // heroData: [],
-    item: '胜率',
+    item: 'Ban率',
     sortWay: 'win_Rate',
     totalPage: 12,
     currentPage: 1,
@@ -3543,9 +3543,9 @@ function updateChart8Data() {
   Data.chart8.isChartVisible = false
   if (Data.chart8.item == '胜率') {
     Data.chart8.sortWay = 'win_rate'
-  } else if (Data.chart8.item == 'pick率') {
+  } else if (Data.chart8.item == 'Pick率') {
     Data.chart8.sortWay = 'pick_rate'
-  } else if (Data.chart8.item == 'ban率') {
+  } else if (Data.chart8.item == 'Ban率') {
     Data.chart8.sortWay = 'ban_rate'
   }
   axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
