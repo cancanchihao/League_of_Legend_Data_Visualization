@@ -34,7 +34,7 @@ export default defineComponent({
 
                 // 确保元素存在后再初始化 ECharts
                 if (heatmapElement) {
-                    const chart = echarts.init(heatmapElement);
+                    const chart = echarts.init(heatmapElement, 'dark');
 
                     // ECharts 配置项
                     const option = {

@@ -130,7 +130,7 @@ const renderChart = () => {
 };
 
 onMounted(() => {
-    myChart = echarts.init(chart.value);
+    myChart = echarts.init(chart.value, 'dark');
     renderChart();
 });
 

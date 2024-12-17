@@ -42,7 +42,7 @@ const renderChart = () => {
     }
   
     const chartDom = chart.value;
-    myChart.value = echarts.init(chartDom);
+    myChart.value = echarts.init(chartDom, 'dark');
 
     const option = {
         tooltip: {

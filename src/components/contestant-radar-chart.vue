@@ -33,6 +33,9 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 const chartOptions = ref({
   title: {
     text: positions[0], // 默认标题
+    textStyle: {
+      color: 'white',
+    }
   },
   legend: {
     data: selectedGroup.value.map(player => ({
@@ -59,7 +62,6 @@ const chartOptions = ref({
         color: '#999',
         fontWeight: 'bold', // 设置字体为加粗
         fontSize: 14,
-
       }
     },
     indicator: [ // KDA，CS，gold，damage，tanking
@@ -134,7 +136,7 @@ const chartInstance = ref(null);
 
 onMounted(() => {
   const chartDom = document.getElementById('radar-chart');
-  chartInstance.value = echarts.init(chartDom);
+  chartInstance.value = echarts.init(chartDom, 'dark');
   chartInstance.value.setOption(chartOptions.value);
 
   // 监听窗口大小变化
@@ -195,33 +197,28 @@ watch(() => props.players, () => {
 
   ul {
     list-style: none;
-    padding: 0 2vh;
+    padding-top: 1vh;
     margin: 0;
 
     li {
-      font-size: 16px;
+      color: rgb(240, 215, 183);
+      font-size: 18px;
       cursor: pointer;
-      border-bottom: 1px solid blue;
-      padding: 2vh 0 2vh 1vw;
+      padding: 3vh 0 0 0;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
 
-    li:last-child {
-      border-bottom: none;
-      /* 移除最后一个 li 的 bottom border */
-    }
-
     li:hover {
-      font-size: 20px;
-      color: rgb(73, 11, 217);
+      font-size: 22px;
+      color: rgb(238, 78, 78);
     }
   }
 }
 
 .clicked {
-  font-size: 20px !important;
+  font-size: 22px !important;
   font-weight: 600;
-  color: rgb(73, 11, 217);
+  color: rgb(255, 0, 0) !important;
 }
 
 .container {

@@ -4,10 +4,10 @@
             <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[0].name"
                 :alt=props.heroData[0].name></v-img>
         </v-avatar>
-        <el-button type="primary" class="elb" @click="change(1)">
+        <el-button type="success" class="elb" @click="change(1)">
             {{ props.heroData[0].name }}
         </el-button>
-        <el-button type="warning" class="elb" @click="change(2)">
+        <el-button type="info" class="elb" @click="change(2)">
             {{ props.heroData[1].name }}
         </el-button>
         <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">

@@ -3449,7 +3449,7 @@ header {
   /* padding-bottom: 5px;
   margin-top: -20px; */
   height: 6vh;
-  background-color: #d6e4f4;
+  background-color: rgb(20, 12, 44) !important;
   /* 背景颜色 */
   border-radius: 5px;
   /* 圆角边框 */
@@ -3479,7 +3479,7 @@ header {
 .big-title {
   font-size: 24px;
   line-height: 100%;
-  color: #333333;
+  color: #fff;
   font-weight: bold;
 
   text-align: center;
@@ -3489,7 +3489,10 @@ header {
 
 .little-title {
   text-align: center;
-  height: 5vh;
+  font-size: 24px;
+  font-weight: bold;
+  color:#fff;
+  height: 3vh;
 }
 
 .mainbox {
@@ -3499,20 +3502,16 @@ header {
   min-width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  background-color: rgb(0, 255, 255);
+  background-color: rgb(20, 12, 44);
   padding: 0.125rem 0.125rem 0;
 
   .column {
     flex: 1;
 
     &:nth-child(2) {
-      border-left: 4px solid rgb(108, 197, 232);
-      border-right: 4px solid rgb(108, 197, 232);
-
       .chart-container:nth-child(2) {
         height: 24vh;
       }
-
       .chart-container:nth-child(4) {
         height: 32vh;
       }
@@ -3525,101 +3524,111 @@ header {
 .chart-1-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 
 .chart-2-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-3-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-4-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-5-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-6-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-7-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding-top: 0 !important;
+  padding: 0 !important;
 }
 
 .chart-8-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .chart-9-container {
   height: 40vh;
   width: 33.3vh;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 1vh;
   transition: transform 0.3s ease;
   position: relative;
+  padding: 0 !important;
 }
 
 .progress-center {

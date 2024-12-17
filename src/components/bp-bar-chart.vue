@@ -14,7 +14,7 @@ const props = defineProps({
 const chart = ref(null)
 
 onMounted(() => {
-  const myChart = echarts.init(chart.value)
+  const myChart = echarts.init(chart.value, 'dark')
 
   const names = props.herodata.map(hero => hero.name)
   const banRates = props.herodata.map(hero => hero.banRate)

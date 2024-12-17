@@ -18,7 +18,7 @@ const chartContainer = ref(null);
 const updateChart = () => {
     if (!chartContainer.value) return;
 
-    const myChart = echarts.init(chartContainer.value); // 初始化图表
+    const myChart = echarts.init(chartContainer.value, 'dark'); // 初始化图表
 
     // 准备数据，确保 x 和 y 是有效的数据字段
     const seriesData = props.data.map(item => ({
