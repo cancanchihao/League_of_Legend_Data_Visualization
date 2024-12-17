@@ -2,13 +2,13 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/background.jpg" cover class="full-screen-image">
+      <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img>
+      <v-img src="src/assets/1.png" cover class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
             <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
             <p class="overlay-description">
-              这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，
-              帮助您快速了解赛事动态。
+              这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，帮助您快速了解赛事动态。
             </p>
             <v-btn color="primary" large @click="startApp">开始</v-btn>
           </div>
@@ -426,7 +426,6 @@ header {
   width: 100%;
   z-index: 1000;
   overflow-y: auto;
-  /* 使得这个容器可滚动 */
 }
 
 /* .full-screen-image {
@@ -438,6 +437,8 @@ header {
   align-items: center;
   position: relative;
 } */
+
+
 
 .centered-content {
   position: absolute;
