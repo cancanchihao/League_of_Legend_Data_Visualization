@@ -21,7 +21,6 @@
     <!-- 主页面内容 -->
     <template v-else>
       <div>
-        <v-img src="src/assets/1.png" cover class="background-image">
           <v-img src="src/assets/3.png" class="background-image" cover>
             <v-app-bar class="wrapper">
               <v-row>
