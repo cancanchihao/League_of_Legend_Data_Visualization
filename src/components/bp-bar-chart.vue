@@ -22,6 +22,7 @@ onMounted(() => {
   const winRates = props.herodata.map(hero => hero.winRate)
 
   const option = {
+    backgroundColor: 'transparent', 
     tooltip: {
       trigger: 'axis',
       axisPointer: {

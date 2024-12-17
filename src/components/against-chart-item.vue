@@ -53,6 +53,7 @@ const renderChart = () => {
     myChart.value = echarts.init(chartDom, 'dark');
 
     const option = {
+        backgroundColor: 'transparent',
         tooltip: {
             trigger: 'axis',
             axisPointer: { type: 'shadow' }

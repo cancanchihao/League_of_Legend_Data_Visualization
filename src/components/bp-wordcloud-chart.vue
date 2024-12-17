@@ -119,7 +119,8 @@ const defaultSeries = [{
 function DrawWordCloud() {
     // 词云
     let mychart = echarts.init(document.getElementById("wordcloud-chart"), 'dark') // 可以设置主题色'dark'
-    mychart.setOption({
+    mychart.setOption({ 
+        backgroundColor: 'transparent', 
         series: defaultSeries[0]
     })
 
