@@ -24,24 +24,24 @@
             <v-row>
               <v-col cols="4"></v-col>
               <v-col cols="4">
-                <v-card-title class="text-center " :style="{ color: 'orange', fontWeight: 'bold', fontSize: '34px' }">
+                <v-card-title class="text-center" :style="{ color: 'orange', fontWeight: 'bold', fontSize: '34px' }">
                   {{ topic }}
                 </v-card-title>
               </v-col>
               <v-col cols="2"></v-col>
-              <v-col cols="2">
-                <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data" :items="[
-                  '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-                  '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-                  '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-                  '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-                  '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-                  '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-                  '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-                  '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+              <v-col cols="2" class="d-flex justify-center align-center">
+                <v-select label="选择赛段" v-model='topic' class="ml-auto text-white" @update:model-value="getChart1Data"
+                  :items="[
+                    '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+                    '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+                    '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+                    '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+                    '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+                    '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+                    '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+                    '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
                 </v-select>
               </v-col>
-
             </v-row>
           </v-app-bar>
 
