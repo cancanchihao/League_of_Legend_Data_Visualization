@@ -49,9 +49,9 @@
           <v-main>
             <section class="mainbox">
               <div class="column">
-                <div class="little-title">
+                <v-card-title class="little-title">
                   战队
-                </div>
+                </v-card-title>
 
 
                 <v-container class="chart-1-container">
@@ -93,9 +93,9 @@
 
 
               <div class="column">
-                <div class="little-title">
+                <v-card-title class="little-title">
                   选手
-                </div>
+                </v-card-title>
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
@@ -150,9 +150,9 @@
 
 
               <div class="column">
-                <div class="little-title">
+                <v-card-title class="little-title">
                   英雄
-                </div>
+                </v-card-title>
 
                 <v-container class="chart-7-container">
                   <template v-if="Data.chart7.isChartVisible">
@@ -171,10 +171,10 @@
                     <v-row>
                       <v-col cols="2.5"></v-col>
                       <v-col cols="7">
-                        <v-card-title class="text-center text-white">英雄胜率、Ban率、Pick率柱状图</v-card-title>
+                        <v-card-title class="text-center text-white">英雄胜率、bp率柱状图</v-card-title>
                       </v-col>
-                      <v-col cols="2.5">
-                        <v-select label="排序方式(横向)" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
+                      <v-col cols="3">
+                        <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
                           class="text-white" :items="['Ban率', 'Pick率', '胜率',]">
                         </v-select>
                       </v-col>
@@ -260,8 +260,8 @@ header {
 
 .little-title {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  font-size: 24px !important;
+  font-weight: bold !important;
   color: #fff;
   margin-top: 1vh;
 }

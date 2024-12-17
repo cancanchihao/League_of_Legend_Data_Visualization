@@ -193,13 +193,13 @@ watch(() => props.players, () => {
 
   ul {
     list-style: none;
-    margin: 0;
+    margin: 0 0 0 1vw;
 
     li {
       color: rgb(255, 255, 255);
       font-size: 18px;
       cursor: pointer;
-      padding: 3vh 0 0 0;
+      padding: 0 0 3vh 0;
       transition: font-size 0.3s ease, color 0.3s ease;
     }
 

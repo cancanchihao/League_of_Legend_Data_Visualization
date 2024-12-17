@@ -15,26 +15,35 @@
                 :alt=props.heroData[1].name></v-img>
         </v-avatar>
     </div>
-    <item :line_name='"对位胜场"' :data1="props.heroData[0].winCount" :data2="props.heroData[1].winCount"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
-        :color1="'#fce38a'" :color2="'#f38181'">
-    </item>
-    <item :line_name='"   KDA   "' :data1="props.heroData[0].kda" :data2="props.heroData[1].kda"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
-        :color1="'#fce38a'" :color2="'#f38181'">
-    </item>
-    <item :line_name='"场均经济"' :data1="props.heroData[0].gold" :data2="props.heroData[1].gold"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
-        :color1="'#fce38a'" :color2="'#f38181'">
-    </item>
-    <item :line_name='"场均伤害"' :data1="props.heroData[0].damage" :data2="props.heroData[1].damage"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
-        :color1="'#fce38a'" :color2="'#f38181'">
-    </item>
-    <item :line_name='"场均承伤"' :data1="props.heroData[0].tanking" :data2="props.heroData[1].tanking"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
-        :color1="'#fce38a'" :color2="'#f38181'">
-    </item>
+
+    <!-- 当两个 winCount 都为 0 时，显示提示信息 -->
+    <div v-if="props.heroData[0].winCount === 0 && props.heroData[1].winCount === 0" class="no-matches">
+        该英雄间无对位情况
+    </div>
+
+    <div v-else>
+        <item :line_name='"对位胜场"' :data1="props.heroData[0].winCount" :data2="props.heroData[1].winCount"
+            :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+            :color1="'#fce38a'" :color2="'#f38181'">
+        </item>
+        <item :line_name='"   KDA   "' :data1="props.heroData[0].kda" :data2="props.heroData[1].kda"
+            :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+            :color1="'#fce38a'" :color2="'#f38181'">
+        </item>
+        <item :line_name='"场均经济"' :data1="props.heroData[0].gold" :data2="props.heroData[1].gold"
+            :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+            :color1="'#fce38a'" :color2="'#f38181'">
+        </item>
+        <item :line_name='"场均伤害"' :data1="props.heroData[0].damage" :data2="props.heroData[1].damage"
+            :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+            :color1="'#fce38a'" :color2="'#f38181'">
+        </item>
+        <item :line_name='"场均承伤"' :data1="props.heroData[0].tanking" :data2="props.heroData[1].tanking"
+            :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+            :color1="'#fce38a'" :color2="'#f38181'">
+        </item>
+    </div>
+    
 </template>
 
 <script setup>
@@ -91,5 +100,12 @@ const change = (id) => {
 .button2 {
     background-color: #f38181; /* 设置第二个按钮的背景色 */
     font-size: 18px;
+}
+
+.no-matches {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  padding-top: 10vh;
 }
 </style>
