@@ -2,7 +2,7 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img>
+      <!-- <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img> -->
       <v-img src="src/assets/1.png" cover class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
@@ -58,7 +58,7 @@
                   <template v-if="Data.chart1.isChartVisible">
                     <v-card-title class="text-center text-white">战队排行</v-card-title>
                     <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      style="width: 100%;height:100%;background:transparent;color: aliceblue;">
+                      style="width: 100%; height: 33vh; background:transparent; color: aliceblue; margin: 0;">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
@@ -116,7 +116,7 @@
                           class="text-white" label="横坐标" style="max-height: 50px; " />
                       </v-col>
                       <v-col cols="7">
-                        <v-card-title class="text-center text-white">选手伤害、承伤、经济、补刀散点图</v-card-title>
+                        <v-card-title class="text-center text-white">选手数据散点图</v-card-title>
                       </v-col>
                       <v-col cols="2.5">
                         <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
@@ -287,15 +287,9 @@ header {
   .column {
     flex: 1;
     margin-right: 1vw;
-
     &:nth-child(2) {
       .chart-container:nth-child(2) {
-        height: 24vh;
         margin-right: none;
-      }
-
-      .chart-container:nth-child(4) {
-        height: 32vh;
       }
     }
   }
@@ -315,7 +309,7 @@ header {
 
 
 .chart-2-container {
-  height: 40vh;
+  height: 45vh;
   width: 33.3vw;
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -344,14 +338,14 @@ header {
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 2vh 0;
+  margin: 3.3vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
 }
 
 .chart-5-container {
-  height: 42vh;
+  height: 45vh;
   width: 33.3vw;
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -380,7 +374,7 @@ header {
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 2vh 0;
+  margin: 3.3vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding-top: 0 !important;
@@ -388,7 +382,7 @@ header {
 }
 
 .chart-8-container {
-  height: 40vh;
+  height: 45vh;
   width: 33.3vw;
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -424,6 +418,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   z-index: 1000;
   overflow-y: auto;
 }
