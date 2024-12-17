@@ -41,7 +41,8 @@ const chartOptions = ref({
     left: '20%',
     right: '5%',
     textStyle: {
-      fontSize: 16, // 增加文字大小
+      fontSize: 18, // 增加文字大小
+      color: 'white',
     },
     itemWidth: 30, // 增加图例项宽度
     itemHeight: 17,
@@ -54,7 +55,7 @@ const chartOptions = ref({
   radar: {
     name: {
       textStyle: {
-        color: '#999',
+        color: 'white',
         fontWeight: 'bold', // 设置字体为加粗
         fontSize: 14,
       }
@@ -95,7 +96,6 @@ watch(selectedGroup, (newGroup) => {
   }
   clickedStates.value = clickedStates.value.map(() => false);
   clickedStates.value[groupIndex - 1] = true;
-  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
   chartOptions.value.legend.data = newGroup.map(player => ({
     name: player.name,
   }));
@@ -123,8 +123,6 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
-
-  chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
 };
 
 const chartInstance = ref(null);
@@ -201,7 +199,7 @@ watch(() => props.players, () => {
     margin: 0;
 
     li {
-      color: rgb(240, 215, 183);
+      color: rgb(255, 255, 255);
       font-size: 18px;
       cursor: pointer;
       padding: 3vh 0 0 0;
