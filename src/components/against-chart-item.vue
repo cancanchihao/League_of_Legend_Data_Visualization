@@ -83,7 +83,11 @@ const renderChart = () => {
         yAxis: {
             type: 'category',
             data: [props.line_name],
-            axisTick: { show: false }
+            axisTick: { show: false },
+            axisLabel: {
+                color: '#ffffff', // 设置 y 轴标签字体颜色为白色
+                fontSize: 16,
+            }
         },
         series: [
             {
