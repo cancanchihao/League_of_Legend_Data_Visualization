@@ -27,6 +27,14 @@ const props = defineProps({
         type: String,
         required: true,
     },
+    color1: {
+        type: String,
+        required: true,
+    },
+    color2: {
+        type: String,
+        required: true,
+    },
     selectedItem: {
         type: Number,
         required: true, // 传递过来的选中项
@@ -89,7 +97,7 @@ const renderChart = () => {
                 emphasis: { focus: 'series' },
                 data: [props.data1],
                 itemStyle: {
-                    color: '#409EFF',
+                    color: props.color1,
                 }
             },
             {
@@ -104,7 +112,7 @@ const renderChart = () => {
                 emphasis: { focus: 'series' },
                 data: [props.data2],
                 itemStyle: {
-                    color: '#E6A23C',
+                    color: props.color2,
                 }
             }
         ]
