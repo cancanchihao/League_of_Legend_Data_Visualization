@@ -287,10 +287,11 @@ header {
 
   .column {
     flex: 1;
-
+    margin-right: 1vw;
     &:nth-child(2) {
       .chart-container:nth-child(2) {
         height: 24vh;
+        margin-right: none;
       }
 
       .chart-container:nth-child(4) {
@@ -303,7 +304,7 @@ header {
 .chart-1-container {
   height: 40vh;
   width: 33.3vw;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -316,7 +317,7 @@ header {
 .chart-2-container {
   height: 45vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -328,7 +329,7 @@ header {
 .chart-3-container {
   height: 35vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -340,7 +341,7 @@ header {
 .chart-4-container {
   height: 40vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -352,7 +353,7 @@ header {
 .chart-5-container {
   height: 40vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -364,7 +365,7 @@ header {
 .chart-6-container {
   height: 40vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -376,7 +377,7 @@ header {
 .chart-7-container {
   height: 40vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -389,7 +390,7 @@ header {
 .chart-8-container {
   height: 45vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
@@ -401,7 +402,7 @@ header {
 .chart-9-container {
   height: 35vh;
   width: 33.3vw;
-  background-color: rgba(255, 255, 255, 0);
+  background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   margin: 2vh 0;
