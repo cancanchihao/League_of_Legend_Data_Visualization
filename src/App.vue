@@ -21,7 +21,7 @@
     <!-- 主页面内容 -->
     <template v-else>
       <div>
-        <v-img src="src/assets/3.png" class="background-image">
+        <v-img src="src/assets/1.png" class="background-image">
           <v-app-bar class="wrapper">
             <v-container class="title-container">
               <span class="big-title">
@@ -53,7 +53,7 @@
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
                     <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      class="elevation-1" style="width: 100%;height:100%;background:'';">
+                      class="elevation-1" style="width: 100%;height:100%;background:'#333';">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
