@@ -1,6 +1,6 @@
 <template>
     <div class="container" style='display: flex;'>
-        <span id="wordcloud-chart" style=' flex-grow: 1; height: 40vh;width: 100%;'></span>
+        <span id="wordcloud-chart" style=' flex-grow: 1; height: 34vh;width: 100%;'></span>
     </div>
 </template>
 
