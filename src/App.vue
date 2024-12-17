@@ -116,7 +116,7 @@
                           class="text-white" label="横坐标" style="max-height: 50px; " />
                       </v-col>
                       <v-col cols="6.6">
-                        <v-card-title class="text-center text-white">选手伤害、承伤、经济、补刀散点图</v-card-title>
+                        <v-card-title class="text-center text-white">选手数据散点图</v-card-title>
                       </v-col>
                       <v-col cols="2.7">
                         <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
@@ -414,6 +414,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  height: 100vh;
   z-index: 1000;
   overflow-y: auto;
 }
