@@ -33,13 +33,11 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 const chartOptions = ref({
   backgroundColor: '',
   legend: {
+    orient: 'vertical', 
     data: selectedGroup.value.map(player => ({
       name: player.name,
     })),
-    itemGap: 100, // 设置项之间的间距
-    padding: [5, 0], // 增加左右内边距
-    left: '20%',
-    right: '5%',
+    left: '0',
     textStyle: {
       fontSize: 18, // 增加文字大小
       color: 'white',
