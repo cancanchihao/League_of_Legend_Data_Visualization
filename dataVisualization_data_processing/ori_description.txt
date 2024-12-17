@@ -1,0 +1,27 @@
+#大局信息
+'MatchID'		大局的比赛ID
+'matchType'	赛事类型
+'gameset'		第几小局
+'MatchDate'	比赛日期
+
+#小局
+'Duration'		小局持续时间
+'win'			胜利方
+#小局队伍总体数据
+Team1/2：队伍1/2
+_ergion:	队伍国家地区
+_ Baron	大龙数
+_ Dra	小龙数
+_ Turts	推塔数
+_banN..	第N个ban的英雄
+#队伍选手数据
+_playerN		选手N（1：上单TOP；2：打野JUG；3：中单MID；4：射手ADC；5：辅助SUP）
+_	_name	选手名字
+_	_pick	选择的英雄
+_	_K		击杀
+_	_D		死亡
+_	_A		助攻
+_	_CS		补刀
+_	_gold	经济
+_	_damage		输出
+_	_tanking		承伤
