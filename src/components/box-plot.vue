@@ -75,6 +75,11 @@ const renderChart = () => {
     };
 
     myChart.setOption({
+        backgroundColor: '',
+        title: {
+            text: '箱线图',
+            position: 'mid'
+        },
         tooltip: {
             trigger: 'item',
             formatter: tooltipFormatter,
@@ -130,7 +135,7 @@ const renderChart = () => {
 };
 
 onMounted(() => {
-    myChart = echarts.init(chart.value, 'dark');
+    myChart = echarts.init(chart.value,);
     renderChart();
 });
 

@@ -2,7 +2,7 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/background.jpg" cover class="overlay-image full-screen-image">
+      <v-img src="src/assets/background.jpg" class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
             <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
@@ -20,175 +20,449 @@
 
     <!-- 主页面内容 -->
     <template v-else>
-
-      <!-- 顶部导航栏 -->
-      <v-app-bar class="wrapper">
-        <v-container class="title-container">
-          <span class="big-title">
-            {{ topic }}
-          </span>
-        </v-container>
-        <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data" style="width: 20vh;"
-          :items="[
-            '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-            '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-            '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-            '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-            '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-            '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-            '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-            '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
-        </v-select>
-      </v-app-bar>
-
-
-      <!-- 主体部分 -->
-      <v-main>
-        <section class="mainbox">
-          <div class="column">
-            <div class="little-title">
-              战队
-            </div>
-
-
-            <v-container class="chart-1-container">
-              <template v-if="Data.chart1.isChartVisible">
-                <!-- 图1 -->
-                <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                  class="elevation-1" style="width: 100%;height:100%;">
-                </v-data-table-virtual>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
+      <div>
+        <v-img src="src/assets/1.png" class="background-image">
+          <v-app-bar class="wrapper">
+            <v-container class="title-container">
+              <span class="big-title">
+                {{ topic }}
+              </span>
             </v-container>
+            <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data"
+              style="width: 20vh;" :items="[
+                '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+                '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+                '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+                '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+                '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+                '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+                '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+                '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+            </v-select>
+          </v-app-bar>
 
 
-            <v-container class="chart-2-container">
-              <template v-if="Data.chart2.isChartVisible">
-                <!-- 图2 -->
-                <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData" @wordClick="heatmapclick"
-                  style="position: relative;" title="战队对抗胜率热力图" />
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+          <v-main>
+            <section class="mainbox">
+              <div class="column">
+                <div class="little-title">
+                  战队
+                </div>
 
 
-            <v-container class="chart-3-container">
-              <template v-if="Data.chart3.isChartVisible">
-                <!-- 图3 -->
-                <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
-                </teamAgainstChart>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
-          </div>
+                <v-container class="chart-1-container">
+                  <template v-if="Data.chart1.isChartVisible">
+                    <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
+                      class="elevation-1" style="width: 100%;height:100%;">
+                    </v-data-table-virtual>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
 
 
-          <div class="column">
-            <div class="little-title">
-              选手
-            </div>
-
-            <v-container class="chart-4-container">
-              <template v-if="Data.chart4.isChartVisible">
-                <!-- 图4 -->
-                <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+                <v-container class="chart-2-container">
+                  <template v-if="Data.chart2.isChartVisible">
+                    <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"
+                      @wordClick="heatmapclick" style="position: relative;" title="战队对抗胜率热力图" />
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
 
 
-            <v-container class="chart-5-container">
-              <template v-if="Data.chart5.isChartVisible">
-                <!-- 图5 -->
-                <v-row>
-                  <v-col>
-                    <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined label="横坐标"
-                      style="max-height: 50px;" />
-                  </v-col>
-                  <v-col>
-                    <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined label="纵坐标"
-                      style="max-height: 50px;" />
-                  </v-col>
-                </v-row>
-                <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
-                  :y-axis="chart5Axis(Data.chart5.yAxis)" />
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+                <v-container class="chart-3-container">
+                  <template v-if="Data.chart3.isChartVisible">
+                    <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
+                    </teamAgainstChart>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
+              </div>
 
 
-            <v-container class="chart-6-container">
-              <template v-if="Data.chart6.isChartVisible">
-                <!-- 图6 -->
-                <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
-                </contestantRadarChart>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+              <div class="column">
+                <div class="little-title">
+                  选手
+                </div>
 
-          </div>
-
-
-          <div class="column">
-            <div class="little-title">
-              英雄
-            </div>
-
-            <v-container class="chart-7-container">
-              <template v-if="Data.chart7.isChartVisible">
-                <!-- 图7 -->
-                <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick"></bpWordcloudChart>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+                <v-container class="chart-4-container">
+                  <template v-if="Data.chart4.isChartVisible">
+                    <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
 
 
-            <v-container class="chart-8-container">
-              <template v-if="Data.chart8.isChartVisible">
-                <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data" class="ml-auto"
-                  :items="['胜率', 'ban率', 'pick率',]">
-                </v-select>
-                <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
-                <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
-                  @update:model-value="updateChart8Data">
-                </v-pagination>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+                <v-container class="chart-5-container">
+                  <template v-if="Data.chart5.isChartVisible">
+                    <v-row>
+                      <v-col>
+                        <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined
+                          label="横坐标" style="max-height: 50px;" />
+                      </v-col>
+                      <v-col>
+                        <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
+                          label="纵坐标" style="max-height: 50px;" />
+                      </v-col>
+                    </v-row>
+                    <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
+                      :y-axis="chart5Axis(Data.chart5.yAxis)" />
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
 
 
-            <v-container class="chart-9-container">
-              <template v-if="Data.chart9.isChartVisible">
-                <!-- 图9 -->
-                <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
-              </template>
-              <template v-else>
-                <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
-              </template>
-            </v-container>
+                <v-container class="chart-6-container">
+                  <template v-if="Data.chart6.isChartVisible">
+                    <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
+                    </contestantRadarChart>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
 
-          </div>
-        </section>
-      </v-main>
+              </div>
+
+
+              <div class="column">
+                <div class="little-title">
+                  英雄
+                </div>
+
+                <v-container class="chart-7-container">
+                  <template v-if="Data.chart7.isChartVisible">
+                    <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick">
+                    </bpWordcloudChart>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
+
+
+                <v-container class="chart-8-container">
+                  <template v-if="Data.chart8.isChartVisible">
+                    <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
+                      class="ml-auto" :items="['胜率', 'ban率', 'pick率',]">
+                    </v-select>
+                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
+                    <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
+                      @update:model-value="updateChart8Data">
+                    </v-pagination>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
+
+
+                <v-container class="chart-9-container">
+                  <template v-if="Data.chart9.isChartVisible">
+                    <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+                  </template>
+                  <template v-else>
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                  </template>
+                </v-container>
+
+              </div>
+            </section>
+          </v-main>
+        </v-img>
+      </div>
     </template>
   </v-app>
 </template>
+
+
+<style>
+html,
+body {
+  margin: 0;
+}
+
+header {
+  line-height: 3;
+}
+
+.wrapper {
+  /* padding-bottom: 5px;
+  margin-top: -20px; */
+  height: 6vh;
+  /* background-color: rgb(20, 12, 44) !important; */
+  /* 背景颜色 */
+  border-radius: 5px;
+  /* 圆角边框 */
+  text-align: center;
+  background-color: '';
+  display: flex;
+  /* 使用 flex 布局 */
+  justify-content: space-between;
+  /* 保证子元素分布在两侧 */
+  align-items: center;
+  /* 垂直居中对齐 */
+  position: relative;
+  /* 相对定位，使绝对定位生效 */
+}
+
+.title-container {
+  background-color: '';
+  position: absolute;
+  /* 绝对定位，让标题位于父容器中央 */
+  left: 50%;
+  /* 水平居中 */
+  transform: translateX(-50%);
+  /* 修正偏移 */
+  text-align: center;
+  /* 文本居中 */
+}
+
+.big-title {
+  font-size: 24px;
+  line-height: 100%;
+  color: #fff;
+  font-weight: bold;
+
+  text-align: center;
+  /* flex-grow: 1; */
+
+}
+
+.little-title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  color: #fff;
+  height: 3vh;
+}
+
+.mainbox {
+  display: flex;
+  /* min-width: 1024px;
+  max-width: 1920px; */
+  min-width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  /* background-color: rgb(20, 12, 44); */
+  padding: 0.125rem 0.125rem 0;
+
+  .column {
+    flex: 1;
+
+    &:nth-child(2) {
+      .chart-container:nth-child(2) {
+        height: 24vh;
+      }
+
+      .chart-container:nth-child(4) {
+        height: 32vh;
+      }
+    }
+  }
+}
+
+
+
+.chart-1-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+
+.chart-2-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-3-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-4-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-5-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-6-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-7-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding-top: 0 !important;
+  padding: 0 !important;
+}
+
+.chart-8-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+}
+
+.chart-9-container {
+  height: 30vh;
+  width: 33.3vh;
+  background-color: rgba(255, 255, 255, 0);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  margin: 1vh;
+  transition: transform 0.3s ease;
+  position: relative;
+  padding: 0 !important;
+
+  background-color: rgba(255, 255, 255, 0.8);
+  /* 半透明白色背景 */
+  padding: 16px;
+  /* 增加内部间距 */
+}
+
+.progress-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.full-screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+
+.full-screen-image {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.centered-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.overlay-box {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.overlay-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+  text-shadow: none;
+}
+
+.overlay-description {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: #555;
+  text-shadow: none;
+}
+
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  object-fit: cover;
+
+  /* width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative; */
+}
+</style>
+
+
 
 
 <script setup lang="ts">
@@ -1666,7 +1940,7 @@ const Data = reactive({
         "baron": 0.88,
         "dragon": 2.59,
         "turts": 7.35,
-        "winCount": 3,
+        "winCount": 4,
         "kda": 5.271
       }
     ],
@@ -3071,6 +3345,7 @@ const Data = reactive({
   },
 })
 
+//两个图的点击事件
 const bpwordcloudclick = (clickname: string) => {
   console.log('点击英雄：', clickname);
   console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
@@ -3089,14 +3364,8 @@ const heatmapclick = (team1: string, team2: string) => {
   updateChart6Data();
 };
 
-onMounted(() => {
-})
 
-onBeforeMount(() => {
-  // getData()
-})
-
-
+//获取数据的函数
 function getChart1Data() {
   // newValue 可以替换topic
   console.log('正在获取图1的数据')
@@ -3432,259 +3701,3 @@ function getChart9Data() {
   })
 }
 </script>
-
-
-
-<style>
-html,
-body {
-  margin: 0;
-}
-
-header {
-  line-height: 3;
-}
-
-.wrapper {
-  /* padding-bottom: 5px;
-  margin-top: -20px; */
-  height: 6vh;
-  background-color: rgb(20, 12, 44) !important;
-  /* 背景颜色 */
-  border-radius: 5px;
-  /* 圆角边框 */
-  text-align: center;
-
-  display: flex;
-  /* 使用 flex 布局 */
-  justify-content: space-between;
-  /* 保证子元素分布在两侧 */
-  align-items: center;
-  /* 垂直居中对齐 */
-  position: relative;
-  /* 相对定位，使绝对定位生效 */
-}
-
-.title-container {
-  position: absolute;
-  /* 绝对定位，让标题位于父容器中央 */
-  left: 50%;
-  /* 水平居中 */
-  transform: translateX(-50%);
-  /* 修正偏移 */
-  text-align: center;
-  /* 文本居中 */
-}
-
-.big-title {
-  font-size: 24px;
-  line-height: 100%;
-  color: #fff;
-  font-weight: bold;
-
-  text-align: center;
-  /* flex-grow: 1; */
-
-}
-
-.little-title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color:#fff;
-  height: 3vh;
-}
-
-.mainbox {
-  display: flex;
-  /* min-width: 1024px;
-  max-width: 1920px; */
-  min-width: 100%;
-  max-width: 100%;
-  margin: 0 auto;
-  background-color: rgb(20, 12, 44);
-  padding: 0.125rem 0.125rem 0;
-
-  .column {
-    flex: 1;
-
-    &:nth-child(2) {
-      .chart-container:nth-child(2) {
-        height: 24vh;
-      }
-      .chart-container:nth-child(4) {
-        height: 32vh;
-      }
-    }
-  }
-}
-
-
-
-.chart-1-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-
-.chart-2-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-3-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-4-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-5-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-6-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-7-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding-top: 0 !important;
-  padding: 0 !important;
-}
-
-.chart-8-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.chart-9-container {
-  height: 40vh;
-  width: 33.3vh;
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin: 1vh;
-  transition: transform 0.3s ease;
-  position: relative;
-  padding: 0 !important;
-}
-
-.progress-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.full-screen-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1000;
-}
-
-.full-screen-image {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.centered-content {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: white;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
-}
-
-.overlay-box {
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 2rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.overlay-title {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-  color: #333;
-  text-shadow: none;
-}
-
-.overlay-description {
-  font-size: 1.25rem;
-  margin-bottom: 2rem;
-  color: #555;
-  text-shadow: none;
-}
-</style>
