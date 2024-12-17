@@ -83,7 +83,7 @@ const updateChart = () => {
         },
         series: [
             {
-                symbolSize: 8, // 点的大小
+                symbolSize: 6, // 点的大小
                 data: seriesData, // 数据源
                 type: 'scatter',
                 itemStyle: {
