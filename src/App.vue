@@ -3,7 +3,7 @@
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
       <!-- <v-img src="src/assets/background.jpg" cover class="full-screen-image"></v-img> -->
-      <v-img src="src/assets/1.png" cover class="full-screen-image">
+      <v-img src="src/assets/1.jpg" cover class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
             <h1 class="overlay-title">欢迎来到英雄联盟比赛数据分析平台</h1>
@@ -24,7 +24,7 @@
             <v-row>
               <v-col cols="4"></v-col>
               <v-col cols="4">
-                <v-card-title class="text-center" :style="{ color: 'orange', fontWeight: 'bold', fontSize: '34px' }">
+                <v-card-title class="text-center" :style="{ color: '#d4a860', fontWeight: 'bold', fontSize: '34px' }">
                   {{ topic }}
                 </v-card-title>
               </v-col>
@@ -226,6 +226,7 @@ header {
   margin-top: -20px; */
   height: 6vh;
   background-color: #2e2e2e !important;
+
   /* 背景颜色 */
   border-radius: 5px;
   /* text-align: center;
@@ -414,7 +415,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   z-index: 1000;
   overflow-y: auto;
 }
