@@ -1,6 +1,6 @@
 <!-- BarChart.vue -->
 <template>
-  <div ref="chart" style="width: 100%; height: 36vh;"></div>
+  <div ref="chart" style="width: 100%; height: 40vh; margin-top: -4vh;"></div>
 </template>
 
 <script setup>
