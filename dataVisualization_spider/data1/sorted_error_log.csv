@@ -1,0 +1,1757 @@
+MatchID,Error
+30,could not convert string to float: '-'
+50,'NoneType' object has no attribute 'group'
+113,list index out of range
+808,list index out of range
+841,list index out of range
+1005,"float() argument must be a string or a real number, not 'NoneType'"
+1071,list index out of range
+1072,list index out of range
+1073,list index out of range
+1074,invalid literal for int() with base 10: ''
+1075,list index out of range
+1076,list index out of range
+1077,list index out of range
+1078,invalid literal for int() with base 10: ''
+1079,list index out of range
+1080,invalid literal for int() with base 10: ''
+1081,list index out of range
+1082,list index out of range
+1083,list index out of range
+1084,list index out of range
+1085,list index out of range
+1086,invalid literal for int() with base 10: ''
+1087,list index out of range
+1088,invalid literal for int() with base 10: ''
+1089,list index out of range
+1090,invalid literal for int() with base 10: ''
+1091,list index out of range
+1098,list index out of range
+1109,list index out of range
+1130,'NoneType' object has no attribute 'group'
+1144,invalid literal for int() with base 10: ''
+1154,list index out of range
+1156,invalid literal for int() with base 10: ''
+1160,invalid literal for int() with base 10: ''
+1161,invalid literal for int() with base 10: ''
+1163,list index out of range
+1166,list index out of range
+1167,invalid literal for int() with base 10: ''
+1169,list index out of range
+1172,list index out of range
+1173,list index out of range
+1174,list index out of range
+1175,list index out of range
+1177,list index out of range
+1179,list index out of range
+1181,list index out of range
+1184,list index out of range
+1188,list index out of range
+1190,list index out of range
+1192,invalid literal for int() with base 10: ''
+1194,invalid literal for int() with base 10: ''
+1196,list index out of range
+1200,list index out of range
+1201,invalid literal for int() with base 10: ''
+1202,list index out of range
+1204,invalid literal for int() with base 10: ''
+1206,invalid literal for int() with base 10: ''
+1209,list index out of range
+1210,invalid literal for int() with base 10: ''
+1211,invalid literal for int() with base 10: ''
+1212,invalid literal for int() with base 10: ''
+1214,invalid literal for int() with base 10: ''
+1216,invalid literal for int() with base 10: ''
+1217,invalid literal for int() with base 10: ''
+1218,list index out of range
+1220,list index out of range
+1222,list index out of range
+1225,list index out of range
+1226,invalid literal for int() with base 10: ''
+1229,list index out of range
+1230,invalid literal for int() with base 10: ''
+1232,list index out of range
+1234,invalid literal for int() with base 10: ''
+1237,invalid literal for int() with base 10: ''
+1241,list index out of range
+1243,invalid literal for int() with base 10: ''
+1245,invalid literal for int() with base 10: ''
+1249,invalid literal for int() with base 10: ''
+1250,invalid literal for int() with base 10: ''
+1252,invalid literal for int() with base 10: ''
+1254,list index out of range
+1256,list index out of range
+1258,list index out of range
+1260,invalid literal for int() with base 10: ''
+1261,invalid literal for int() with base 10: ''
+1263,list index out of range
+1264,list index out of range
+1271,list index out of range
+1276,invalid literal for int() with base 10: ''
+1279,'NoneType' object has no attribute 'group'
+1280,'NoneType' object has no attribute 'group'
+1281,'NoneType' object has no attribute 'group'
+1283,list index out of range
+1429,list index out of range
+1432,'NoneType' object has no attribute 'group'
+1449,'NoneType' object has no attribute 'group'
+1456,list index out of range
+1460,'NoneType' object has no attribute 'group'
+1461,'NoneType' object has no attribute 'group'
+1463,'NoneType' object has no attribute 'group'
+1464,'NoneType' object has no attribute 'group'
+1466,'NoneType' object has no attribute 'group'
+1467,'NoneType' object has no attribute 'group'
+1469,'NoneType' object has no attribute 'group'
+1470,'NoneType' object has no attribute 'group'
+1472,'NoneType' object has no attribute 'group'
+1473,'NoneType' object has no attribute 'group'
+1475,list index out of range
+1478,'NoneType' object has no attribute 'group'
+1483,'NoneType' object has no attribute 'group'
+1484,'NoneType' object has no attribute 'group'
+1486,'NoneType' object has no attribute 'group'
+1487,'NoneType' object has no attribute 'group'
+1489,'NoneType' object has no attribute 'group'
+1490,'NoneType' object has no attribute 'group'
+1492,'NoneType' object has no attribute 'group'
+1493,'NoneType' object has no attribute 'group'
+1494,'NoneType' object has no attribute 'group'
+1495,'NoneType' object has no attribute 'group'
+1496,'NoneType' object has no attribute 'group'
+1497,'NoneType' object has no attribute 'group'
+1506,'NoneType' object has no attribute 'group'
+1507,'NoneType' object has no attribute 'group'
+1509,'NoneType' object has no attribute 'group'
+1510,'NoneType' object has no attribute 'group'
+1512,'NoneType' object has no attribute 'group'
+1513,'NoneType' object has no attribute 'group'
+1514,'NoneType' object has no attribute 'group'
+1515,'NoneType' object has no attribute 'group'
+1516,'NoneType' object has no attribute 'group'
+1517,list index out of range
+1518,'NoneType' object has no attribute 'group'
+1519,'NoneType' object has no attribute 'group'
+1520,'NoneType' object has no attribute 'group'
+1521,'NoneType' object has no attribute 'group'
+1522,'NoneType' object has no attribute 'group'
+1532,'NoneType' object has no attribute 'group'
+1533,'NoneType' object has no attribute 'group'
+1535,'NoneType' object has no attribute 'group'
+1536,'NoneType' object has no attribute 'group'
+1538,'NoneType' object has no attribute 'group'
+1539,'NoneType' object has no attribute 'group'
+1541,'NoneType' object has no attribute 'group'
+1542,'NoneType' object has no attribute 'group'
+1543,list index out of range
+1544,'NoneType' object has no attribute 'group'
+1545,'NoneType' object has no attribute 'group'
+1551,invalid literal for int() with base 10: ''
+1555,'NoneType' object has no attribute 'group'
+1556,'NoneType' object has no attribute 'group'
+1558,'NoneType' object has no attribute 'group'
+1559,'NoneType' object has no attribute 'group'
+1561,'NoneType' object has no attribute 'group'
+1562,'NoneType' object has no attribute 'group'
+1563,invalid literal for int() with base 10: ''
+1564,'NoneType' object has no attribute 'group'
+1565,'NoneType' object has no attribute 'group'
+1567,'NoneType' object has no attribute 'group'
+1568,'NoneType' object has no attribute 'group'
+1578,'NoneType' object has no attribute 'group'
+1579,'NoneType' object has no attribute 'group'
+1581,'NoneType' object has no attribute 'group'
+1582,'NoneType' object has no attribute 'group'
+1584,'NoneType' object has no attribute 'group'
+1585,'NoneType' object has no attribute 'group'
+1587,'NoneType' object has no attribute 'group'
+1588,'NoneType' object has no attribute 'group'
+1589,'NoneType' object has no attribute 'group'
+1590,'NoneType' object has no attribute 'group'
+1591,'NoneType' object has no attribute 'group'
+1592,'NoneType' object has no attribute 'group'
+1620,invalid literal for int() with base 10: ''
+1645,list index out of range
+1646,list index out of range
+1649,invalid literal for int() with base 10: ''
+1651,list index out of range
+1652,list index out of range
+1653,list index out of range
+1655,list index out of range
+1656,list index out of range
+1658,list index out of range
+1659,invalid literal for int() with base 10: ''
+1660,list index out of range
+1661,invalid literal for int() with base 10: ''
+1664,invalid literal for int() with base 10: ''
+1665,list index out of range
+1666,list index out of range
+1673,list index out of range
+1674,list index out of range
+1675,list index out of range
+1676,list index out of range
+1677,list index out of range
+1678,list index out of range
+1679,list index out of range
+1680,list index out of range
+1681,list index out of range
+1682,list index out of range
+1683,list index out of range
+1684,list index out of range
+1685,list index out of range
+1686,list index out of range
+1687,list index out of range
+1688,list index out of range
+1689,list index out of range
+1690,list index out of range
+1691,list index out of range
+1692,list index out of range
+1693,list index out of range
+1694,list index out of range
+1695,list index out of range
+1696,list index out of range
+1697,list index out of range
+1698,list index out of range
+1699,list index out of range
+1700,list index out of range
+1701,list index out of range
+1702,list index out of range
+1703,list index out of range
+1704,list index out of range
+1705,list index out of range
+1706,list index out of range
+1707,list index out of range
+1708,list index out of range
+1709,list index out of range
+1710,list index out of range
+1711,list index out of range
+1712,list index out of range
+1713,list index out of range
+1714,list index out of range
+1715,list index out of range
+1716,list index out of range
+1717,list index out of range
+1718,list index out of range
+1719,list index out of range
+1720,list index out of range
+1721,list index out of range
+1722,list index out of range
+1723,list index out of range
+1724,list index out of range
+1725,list index out of range
+1726,list index out of range
+1727,list index out of range
+1728,list index out of range
+1729,list index out of range
+1730,list index out of range
+1731,list index out of range
+1732,list index out of range
+1733,list index out of range
+1734,list index out of range
+1735,list index out of range
+1736,list index out of range
+1737,list index out of range
+1738,list index out of range
+1739,list index out of range
+1740,list index out of range
+1741,list index out of range
+1742,list index out of range
+1743,list index out of range
+1744,list index out of range
+1745,list index out of range
+1746,list index out of range
+1747,list index out of range
+1748,list index out of range
+1749,list index out of range
+1750,list index out of range
+1751,list index out of range
+1752,list index out of range
+1753,list index out of range
+1754,list index out of range
+1755,list index out of range
+1756,list index out of range
+1757,list index out of range
+1758,list index out of range
+1759,list index out of range
+1760,list index out of range
+1761,list index out of range
+1762,list index out of range
+1763,list index out of range
+1764,list index out of range
+1765,list index out of range
+1766,list index out of range
+1767,list index out of range
+1768,list index out of range
+1769,list index out of range
+1770,list index out of range
+1771,list index out of range
+1772,list index out of range
+1773,list index out of range
+1774,list index out of range
+1775,list index out of range
+1776,list index out of range
+1777,list index out of range
+1778,list index out of range
+1779,list index out of range
+1780,list index out of range
+1781,list index out of range
+1782,list index out of range
+1783,list index out of range
+1784,list index out of range
+1785,list index out of range
+1786,list index out of range
+1787,list index out of range
+1788,list index out of range
+1789,list index out of range
+1790,list index out of range
+1791,list index out of range
+1792,list index out of range
+1793,list index out of range
+1794,list index out of range
+1796,list index out of range
+1797,list index out of range
+1798,list index out of range
+1799,list index out of range
+1800,list index out of range
+1801,list index out of range
+1820,list index out of range
+1824,list index out of range
+1842,invalid literal for int() with base 10: ''
+1868,invalid literal for int() with base 10: ''
+1923,list index out of range
+1925,invalid literal for int() with base 10: ''
+1936,invalid literal for int() with base 10: ''
+2065,list index out of range
+2067,list index out of range
+2071,list index out of range
+2079,list index out of range
+2083,list index out of range
+2106,list index out of range
+2130,invalid literal for int() with base 10: ''
+2173,list index out of range
+2280,list index out of range
+2282,list index out of range
+2285,invalid literal for int() with base 10: ''
+2300,'NoneType' object has no attribute 'group'
+2311,'NoneType' object has no attribute 'group'
+2320,list index out of range
+2326,list index out of range
+2329,list index out of range
+2341,list index out of range
+2345,list index out of range
+2354,list index out of range
+2361,list index out of range
+2362,list index out of range
+2363,list index out of range
+2364,list index out of range
+2494,"float() argument must be a string or a real number, not 'NoneType'"
+10694,list index out of range
+12019,invalid literal for int() with base 10: ''
+12262,"float() argument must be a string or a real number, not 'NoneType'"
+12263,"float() argument must be a string or a real number, not 'NoneType'"
+12264,"float() argument must be a string or a real number, not 'NoneType'"
+12265,"float() argument must be a string or a real number, not 'NoneType'"
+12266,"float() argument must be a string or a real number, not 'NoneType'"
+12267,"float() argument must be a string or a real number, not 'NoneType'"
+12710,list index out of range
+12956,list index out of range
+12958,list index out of range
+13015,list index out of range
+13857,list index out of range
+13858,list index out of range
+13859,list index out of range
+13860,list index out of range
+14091,list index out of range
+14092,list index out of range
+14093,list index out of range
+14094,list index out of range
+14095,list index out of range
+14096,list index out of range
+14097,list index out of range
+14098,list index out of range
+14099,list index out of range
+14100,list index out of range
+14101,list index out of range
+14102,list index out of range
+14103,list index out of range
+14104,list index out of range
+14105,list index out of range
+14106,list index out of range
+14107,list index out of range
+14108,list index out of range
+14109,list index out of range
+14110,list index out of range
+14111,list index out of range
+14112,list index out of range
+14113,list index out of range
+14114,list index out of range
+14115,list index out of range
+14116,list index out of range
+14117,list index out of range
+14118,list index out of range
+14119,list index out of range
+14120,list index out of range
+14121,list index out of range
+14122,list index out of range
+14123,list index out of range
+14124,list index out of range
+14125,list index out of range
+14126,list index out of range
+14127,list index out of range
+14128,list index out of range
+14129,list index out of range
+14130,list index out of range
+14131,list index out of range
+14132,list index out of range
+14133,list index out of range
+14134,list index out of range
+14135,list index out of range
+14136,list index out of range
+14137,list index out of range
+14138,list index out of range
+14139,list index out of range
+14140,list index out of range
+14141,list index out of range
+14142,list index out of range
+14143,list index out of range
+14144,list index out of range
+14145,list index out of range
+14146,list index out of range
+14147,list index out of range
+14148,list index out of range
+14149,list index out of range
+14150,list index out of range
+14151,list index out of range
+14152,list index out of range
+14153,list index out of range
+14154,list index out of range
+14155,list index out of range
+14156,list index out of range
+14157,list index out of range
+14158,list index out of range
+14159,list index out of range
+14160,list index out of range
+14161,list index out of range
+14162,list index out of range
+14163,list index out of range
+14164,list index out of range
+14165,list index out of range
+14166,list index out of range
+14167,list index out of range
+14168,list index out of range
+14169,list index out of range
+14170,list index out of range
+14171,list index out of range
+14172,list index out of range
+14173,list index out of range
+14174,list index out of range
+14175,list index out of range
+14176,list index out of range
+14177,list index out of range
+14178,list index out of range
+14179,list index out of range
+14181,list index out of range
+14182,list index out of range
+14183,list index out of range
+14184,list index out of range
+14185,list index out of range
+14186,list index out of range
+14187,list index out of range
+14188,list index out of range
+14189,list index out of range
+14190,list index out of range
+14191,list index out of range
+14192,list index out of range
+14193,list index out of range
+14194,list index out of range
+14195,list index out of range
+14196,list index out of range
+14197,list index out of range
+14198,list index out of range
+14199,list index out of range
+14206,list index out of range
+14207,list index out of range
+14208,list index out of range
+14209,list index out of range
+14210,list index out of range
+14211,list index out of range
+14212,list index out of range
+14213,list index out of range
+14214,list index out of range
+14216,list index out of range
+14217,list index out of range
+14218,list index out of range
+14219,list index out of range
+14220,list index out of range
+14221,list index out of range
+14222,list index out of range
+14223,list index out of range
+14224,list index out of range
+14225,list index out of range
+14226,list index out of range
+14227,list index out of range
+14228,list index out of range
+14229,list index out of range
+14230,list index out of range
+14231,list index out of range
+14232,list index out of range
+14233,list index out of range
+14234,list index out of range
+14235,list index out of range
+14236,list index out of range
+14237,list index out of range
+14238,list index out of range
+14239,list index out of range
+14240,list index out of range
+14241,list index out of range
+14242,list index out of range
+14243,list index out of range
+14244,list index out of range
+14245,list index out of range
+14246,list index out of range
+14247,list index out of range
+14248,list index out of range
+14249,list index out of range
+14250,list index out of range
+14251,list index out of range
+14252,list index out of range
+14253,list index out of range
+14254,list index out of range
+14255,list index out of range
+14256,list index out of range
+14257,list index out of range
+14258,list index out of range
+14259,list index out of range
+14260,list index out of range
+14261,list index out of range
+14262,list index out of range
+14263,list index out of range
+14264,list index out of range
+14265,list index out of range
+14266,list index out of range
+14267,list index out of range
+14268,list index out of range
+14269,list index out of range
+14270,list index out of range
+14271,list index out of range
+14272,list index out of range
+14273,list index out of range
+14274,list index out of range
+14275,list index out of range
+14276,list index out of range
+14277,list index out of range
+14278,list index out of range
+14279,list index out of range
+14280,list index out of range
+14281,list index out of range
+14282,list index out of range
+14283,list index out of range
+14284,list index out of range
+14285,list index out of range
+14286,list index out of range
+14287,list index out of range
+14288,list index out of range
+14289,list index out of range
+14290,list index out of range
+14364,list index out of range
+14365,list index out of range
+14366,list index out of range
+14368,list index out of range
+14403,list index out of range
+14405,list index out of range
+14407,list index out of range
+16108,list index out of range
+18552,could not convert string to float: '-'
+18558,could not convert string to float: '-'
+19859,list index out of range
+19862,list index out of range
+20527,'NoneType' object has no attribute 'group'
+20789,list index out of range
+22298,list index out of range
+22299,list index out of range
+22300,list index out of range
+22301,list index out of range
+22302,list index out of range
+22303,list index out of range
+22304,list index out of range
+22305,list index out of range
+22306,list index out of range
+22307,list index out of range
+22308,list index out of range
+22309,list index out of range
+22310,list index out of range
+22311,list index out of range
+22476,list index out of range
+22477,list index out of range
+22478,list index out of range
+22479,list index out of range
+22480,list index out of range
+22481,list index out of range
+22482,list index out of range
+22483,list index out of range
+22484,list index out of range
+22485,list index out of range
+22486,list index out of range
+22487,list index out of range
+22488,list index out of range
+22489,list index out of range
+22490,list index out of range
+22493,list index out of range
+22494,list index out of range
+22495,list index out of range
+22510,list index out of range
+22518,list index out of range
+22520,list index out of range
+22521,list index out of range
+22522,list index out of range
+22523,list index out of range
+22524,list index out of range
+22525,list index out of range
+22590,list index out of range
+22591,list index out of range
+22592,list index out of range
+23208,list index out of range
+23502,list index out of range
+25488,list index out of range
+25489,list index out of range
+25492,list index out of range
+25500,list index out of range
+26102,invalid literal for int() with base 10: ''
+27289,list index out of range
+27295,list index out of range
+27311,list index out of range
+27344,list index out of range
+27351,list index out of range
+27353,list index out of range
+27354,list index out of range
+27358,list index out of range
+27359,list index out of range
+27360,list index out of range
+27361,list index out of range
+27365,list index out of range
+27444,list index out of range
+27725,list index out of range
+28512,list index out of range
+30094,list index out of range
+30096,list index out of range
+30098,list index out of range
+30399,list index out of range
+30665,list index out of range
+30678,list index out of range
+30882,list index out of range
+30911,list index out of range
+30915,list index out of range
+31207,list index out of range
+31214,list index out of range
+33834,list index out of range
+33837,list index out of range
+36374,list index out of range
+37778,list index out of range
+37779,list index out of range
+37780,list index out of range
+37781,list index out of range
+37874,list index out of range
+37875,list index out of range
+37877,list index out of range
+37878,list index out of range
+37879,list index out of range
+37880,list index out of range
+37881,list index out of range
+37882,list index out of range
+37883,list index out of range
+37884,list index out of range
+37885,list index out of range
+37886,list index out of range
+37887,list index out of range
+37888,list index out of range
+37940,list index out of range
+38201,list index out of range
+38202,list index out of range
+38319,list index out of range
+39384,list index out of range
+39394,list index out of range
+40087,list index out of range
+40090,list index out of range
+40111,list index out of range
+40138,list index out of range
+40141,list index out of range
+40142,list index out of range
+40146,list index out of range
+40147,list index out of range
+40165,list index out of range
+40171,list index out of range
+40204,list index out of range
+40212,list index out of range
+40216,list index out of range
+40232,list index out of range
+40234,list index out of range
+40236,list index out of range
+40492,list index out of range
+40958,list index out of range
+40959,list index out of range
+40960,list index out of range
+40961,list index out of range
+40962,list index out of range
+41101,list index out of range
+41103,list index out of range
+41108,list index out of range
+41120,list index out of range
+41393,list index out of range
+41396,list index out of range
+42308,list index out of range
+42319,list index out of range
+42569,list index out of range
+42960,list index out of range
+42962,list index out of range
+42964,list index out of range
+42965,list index out of range
+43334,list index out of range
+43376,list index out of range
+43401,list index out of range
+43403,list index out of range
+43406,list index out of range
+43407,list index out of range
+43428,list index out of range
+43433,list index out of range
+43537,list index out of range
+43541,list index out of range
+43644,list index out of range
+43648,list index out of range
+44114,list index out of range
+44127,list index out of range
+44147,list index out of range
+44150,list index out of range
+44152,list index out of range
+44155,list index out of range
+44159,list index out of range
+44161,list index out of range
+44180,list index out of range
+44184,list index out of range
+44188,list index out of range
+44190,list index out of range
+44192,list index out of range
+44195,list index out of range
+44197,list index out of range
+44306,list index out of range
+44346,list index out of range
+44347,list index out of range
+44348,list index out of range
+44404,list index out of range
+44420,list index out of range
+44421,list index out of range
+44422,list index out of range
+44423,list index out of range
+44424,list index out of range
+44425,list index out of range
+44426,list index out of range
+44427,list index out of range
+44428,list index out of range
+44430,list index out of range
+44431,list index out of range
+44432,list index out of range
+44433,list index out of range
+44434,list index out of range
+44435,list index out of range
+44436,list index out of range
+44437,list index out of range
+44438,list index out of range
+44439,list index out of range
+44440,list index out of range
+44441,list index out of range
+44442,list index out of range
+44443,list index out of range
+44598,list index out of range
+44599,list index out of range
+44600,list index out of range
+44601,list index out of range
+44753,list index out of range
+44756,list index out of range
+44976,list index out of range
+44993,list index out of range
+46116,list index out of range
+46118,list index out of range
+46120,list index out of range
+46121,list index out of range
+46122,list index out of range
+46123,list index out of range
+46391,list index out of range
+46765,list index out of range
+46766,list index out of range
+46767,list index out of range
+46768,list index out of range
+46769,list index out of range
+46770,list index out of range
+46771,list index out of range
+46772,list index out of range
+46773,list index out of range
+46774,list index out of range
+46775,list index out of range
+46776,list index out of range
+46777,list index out of range
+46778,list index out of range
+46779,list index out of range
+46780,list index out of range
+46781,list index out of range
+46782,list index out of range
+46783,list index out of range
+46815,list index out of range
+46816,list index out of range
+46817,list index out of range
+46818,list index out of range
+46819,list index out of range
+46820,list index out of range
+46821,list index out of range
+46822,list index out of range
+46823,list index out of range
+46824,list index out of range
+46825,list index out of range
+46826,list index out of range
+46827,list index out of range
+46828,list index out of range
+46829,list index out of range
+46830,list index out of range
+46831,list index out of range
+46832,list index out of range
+46833,list index out of range
+46834,list index out of range
+46835,list index out of range
+46836,list index out of range
+46837,list index out of range
+46838,list index out of range
+46839,list index out of range
+46840,list index out of range
+46841,list index out of range
+46842,list index out of range
+46843,list index out of range
+46844,list index out of range
+46845,list index out of range
+46846,list index out of range
+46847,list index out of range
+46848,list index out of range
+46849,list index out of range
+46850,list index out of range
+46851,list index out of range
+47604,list index out of range
+53463,list index out of range
+54996,list index out of range
+55029,list index out of range
+55092,list index out of range
+55105,list index out of range
+55106,list index out of range
+55107,list index out of range
+55108,list index out of range
+55109,list index out of range
+55206,list index out of range
+55207,list index out of range
+55208,list index out of range
+55209,list index out of range
+55210,list index out of range
+55840,list index out of range
+55851,list index out of range
+55852,list index out of range
+55853,list index out of range
+55854,list index out of range
+56017,list index out of range
+56050,list index out of range
+56297,list index out of range
+56298,list index out of range
+56299,list index out of range
+57791,list index out of range
+57792,list index out of range
+57793,list index out of range
+57794,list index out of range
+57795,list index out of range
+57796,list index out of range
+57797,list index out of range
+57798,list index out of range
+57799,list index out of range
+57800,list index out of range
+57801,list index out of range
+57802,list index out of range
+57959,list index out of range
+57960,list index out of range
+57961,list index out of range
+57962,list index out of range
+57963,list index out of range
+57964,list index out of range
+57965,list index out of range
+57966,list index out of range
+57967,list index out of range
+57968,list index out of range
+57969,list index out of range
+57970,list index out of range
+57971,list index out of range
+57972,list index out of range
+57973,list index out of range
+57974,list index out of range
+57975,list index out of range
+57976,list index out of range
+57977,list index out of range
+57978,list index out of range
+57979,list index out of range
+57980,list index out of range
+57981,list index out of range
+57982,list index out of range
+57983,list index out of range
+57984,list index out of range
+57985,list index out of range
+57986,list index out of range
+57987,list index out of range
+57988,list index out of range
+57989,list index out of range
+58007,list index out of range
+58008,list index out of range
+58016,list index out of range
+58017,list index out of range
+58018,list index out of range
+58019,list index out of range
+58020,list index out of range
+58021,list index out of range
+58998,list index out of range
+58999,list index out of range
+59000,list index out of range
+59001,list index out of range
+59002,list index out of range
+59003,list index out of range
+59004,list index out of range
+59005,list index out of range
+59006,list index out of range
+59007,list index out of range
+59008,list index out of range
+59009,list index out of range
+59010,list index out of range
+59011,list index out of range
+59012,list index out of range
+59013,list index out of range
+59014,list index out of range
+59015,list index out of range
+59613,list index out of range
+60235,could not convert string to float: '7.2k'
+60244,list index out of range
+60279,list index out of range
+62934,list index out of range
+62937,list index out of range
+63773,list index out of range
+63776,list index out of range
+63777,list index out of range
+63778,list index out of range
+63779,list index out of range
+63780,list index out of range
+64802,list index out of range
+64805,list index out of range
+64807,list index out of range
+64808,list index out of range
+64809,list index out of range
+64810,list index out of range
+64811,list index out of range
+64812,list index out of range
+65400,list index out of range
+65730,list index out of range
+65734,list index out of range
+66819,list index out of range
+66820,list index out of range
+66821,list index out of range
+66822,list index out of range
+66823,list index out of range
+66824,list index out of range
+66825,list index out of range
+66833,list index out of range
+66834,list index out of range
+66835,list index out of range
+66837,list index out of range
+66841,list index out of range
+66842,list index out of range
+66843,list index out of range
+66844,list index out of range
+66847,list index out of range
+66849,list index out of range
+66852,list index out of range
+66853,list index out of range
+66855,list index out of range
+66856,list index out of range
+66858,list index out of range
+66859,list index out of range
+66862,list index out of range
+66863,list index out of range
+66957,list index out of range
+66986,list index out of range
+66987,list index out of range
+66988,list index out of range
+66989,list index out of range
+66990,list index out of range
+66991,list index out of range
+66992,list index out of range
+66994,list index out of range
+66995,list index out of range
+66996,list index out of range
+66998,list index out of range
+66999,list index out of range
+67001,list index out of range
+67002,list index out of range
+67003,list index out of range
+67004,list index out of range
+67006,list index out of range
+67008,list index out of range
+67009,list index out of range
+67010,list index out of range
+67011,list index out of range
+67012,list index out of range
+67013,list index out of range
+67014,list index out of range
+67015,list index out of range
+67016,list index out of range
+67017,list index out of range
+67018,list index out of range
+67019,list index out of range
+67020,list index out of range
+67021,list index out of range
+67022,list index out of range
+67023,list index out of range
+67024,list index out of range
+67025,list index out of range
+67026,list index out of range
+67027,list index out of range
+67028,list index out of range
+67029,list index out of range
+67030,list index out of range
+67031,list index out of range
+67032,list index out of range
+67033,list index out of range
+67034,list index out of range
+67035,list index out of range
+67036,list index out of range
+67037,list index out of range
+67038,list index out of range
+67039,list index out of range
+67040,list index out of range
+67041,list index out of range
+67042,list index out of range
+67043,list index out of range
+67044,list index out of range
+67045,list index out of range
+67794,list index out of range
+67823,list index out of range
+68174,list index out of range
+68246,list index out of range
+68611,list index out of range
+68612,list index out of range
+68614,list index out of range
+68694,list index out of range
+68712,list index out of range
+68765,list index out of range
+69178,list index out of range
+71140,list index out of range
+71518,list index out of range
+71643,list index out of range
+71683,"float() argument must be a string or a real number, not 'NoneType'"
+71691,"float() argument must be a string or a real number, not 'NoneType'"
+71695,"float() argument must be a string or a real number, not 'NoneType'"
+71698,"float() argument must be a string or a real number, not 'NoneType'"
+71700,"float() argument must be a string or a real number, not 'NoneType'"
+71701,"float() argument must be a string or a real number, not 'NoneType'"
+71725,"float() argument must be a string or a real number, not 'NoneType'"
+71733,"float() argument must be a string or a real number, not 'NoneType'"
+71763,list index out of range
+71777,list index out of range
+71779,list index out of range
+71788,list index out of range
+71797,list index out of range
+71804,list index out of range
+71809,list index out of range
+71815,list index out of range
+71826,list index out of range
+72879,list index out of range
+73081,list index out of range
+73083,list index out of range
+73087,list index out of range
+73654,list index out of range
+73655,list index out of range
+73656,list index out of range
+73743,list index out of range
+73799,list index out of range
+75452,"float() argument must be a string or a real number, not 'NoneType'"
+75453,"float() argument must be a string or a real number, not 'NoneType'"
+75454,"float() argument must be a string or a real number, not 'NoneType'"
+75455,"float() argument must be a string or a real number, not 'NoneType'"
+75458,"float() argument must be a string or a real number, not 'NoneType'"
+75459,"float() argument must be a string or a real number, not 'NoneType'"
+75460,"float() argument must be a string or a real number, not 'NoneType'"
+75461,"float() argument must be a string or a real number, not 'NoneType'"
+75462,"float() argument must be a string or a real number, not 'NoneType'"
+75463,"float() argument must be a string or a real number, not 'NoneType'"
+75466,"float() argument must be a string or a real number, not 'NoneType'"
+75467,"float() argument must be a string or a real number, not 'NoneType'"
+75468,"float() argument must be a string or a real number, not 'NoneType'"
+75469,"float() argument must be a string or a real number, not 'NoneType'"
+75470,"float() argument must be a string or a real number, not 'NoneType'"
+75471,"float() argument must be a string or a real number, not 'NoneType'"
+75474,"float() argument must be a string or a real number, not 'NoneType'"
+75475,"float() argument must be a string or a real number, not 'NoneType'"
+75476,"float() argument must be a string or a real number, not 'NoneType'"
+75477,"float() argument must be a string or a real number, not 'NoneType'"
+75478,"float() argument must be a string or a real number, not 'NoneType'"
+75479,"float() argument must be a string or a real number, not 'NoneType'"
+75482,"float() argument must be a string or a real number, not 'NoneType'"
+75483,"float() argument must be a string or a real number, not 'NoneType'"
+75485,"float() argument must be a string or a real number, not 'NoneType'"
+75486,"float() argument must be a string or a real number, not 'NoneType'"
+75493,"float() argument must be a string or a real number, not 'NoneType'"
+75495,"float() argument must be a string or a real number, not 'NoneType'"
+75564,"float() argument must be a string or a real number, not 'NoneType'"
+75567,"float() argument must be a string or a real number, not 'NoneType'"
+75767,list index out of range
+75768,list index out of range
+75769,list index out of range
+75770,list index out of range
+75771,list index out of range
+75772,list index out of range
+75773,list index out of range
+75774,list index out of range
+76094,list index out of range
+76095,list index out of range
+76096,list index out of range
+76097,list index out of range
+76098,list index out of range
+76099,list index out of range
+76100,list index out of range
+76101,list index out of range
+76102,list index out of range
+76103,list index out of range
+76104,list index out of range
+76105,list index out of range
+76106,list index out of range
+76107,list index out of range
+76108,list index out of range
+76109,list index out of range
+76110,list index out of range
+76111,list index out of range
+76112,list index out of range
+76113,list index out of range
+76114,list index out of range
+76115,list index out of range
+76116,list index out of range
+76117,list index out of range
+76118,list index out of range
+76119,list index out of range
+76120,list index out of range
+76121,list index out of range
+76122,list index out of range
+76123,list index out of range
+76124,list index out of range
+76125,list index out of range
+76126,list index out of range
+76127,list index out of range
+76128,list index out of range
+76129,list index out of range
+76130,list index out of range
+76131,list index out of range
+76132,list index out of range
+76133,list index out of range
+76284,list index out of range
+76285,list index out of range
+76286,list index out of range
+76287,list index out of range
+76290,list index out of range
+76827,list index out of range
+76829,list index out of range
+76830,list index out of range
+76831,list index out of range
+76832,list index out of range
+76833,list index out of range
+76834,list index out of range
+76835,list index out of range
+76836,list index out of range
+76837,list index out of range
+76838,list index out of range
+76839,list index out of range
+76840,list index out of range
+76841,list index out of range
+76842,list index out of range
+76843,list index out of range
+76844,list index out of range
+76845,list index out of range
+76846,list index out of range
+76847,list index out of range
+76848,list index out of range
+76850,list index out of range
+76851,list index out of range
+76852,list index out of range
+76868,list index out of range
+76869,list index out of range
+76870,list index out of range
+76871,list index out of range
+76872,list index out of range
+76873,list index out of range
+76874,list index out of range
+76875,list index out of range
+76876,list index out of range
+76877,list index out of range
+76878,list index out of range
+76879,list index out of range
+76880,list index out of range
+76881,list index out of range
+76882,list index out of range
+76883,list index out of range
+76884,list index out of range
+76885,list index out of range
+76886,list index out of range
+76887,list index out of range
+76888,list index out of range
+76889,list index out of range
+76890,list index out of range
+76891,list index out of range
+76892,list index out of range
+76893,list index out of range
+76894,list index out of range
+76895,list index out of range
+76896,list index out of range
+76897,list index out of range
+76906,list index out of range
+76912,list index out of range
+77221,list index out of range
+78206,list index out of range
+78207,list index out of range
+78208,list index out of range
+78209,list index out of range
+78210,list index out of range
+78211,list index out of range
+78808,list index out of range
+78810,list index out of range
+78812,list index out of range
+78813,list index out of range
+78814,list index out of range
+78815,list index out of range
+78842,list index out of range
+78844,list index out of range
+78845,list index out of range
+78846,list index out of range
+78847,list index out of range
+78848,list index out of range
+78849,list index out of range
+78850,list index out of range
+78851,list index out of range
+78852,list index out of range
+78853,list index out of range
+78854,list index out of range
+78857,list index out of range
+78859,list index out of range
+78860,list index out of range
+78861,list index out of range
+78862,list index out of range
+78898,list index out of range
+78899,list index out of range
+78900,list index out of range
+78905,list index out of range
+78906,list index out of range
+78961,list index out of range
+78962,list index out of range
+78967,list index out of range
+78968,list index out of range
+79103,list index out of range
+79105,list index out of range
+79107,list index out of range
+79109,list index out of range
+79110,list index out of range
+79111,list index out of range
+79112,list index out of range
+79113,list index out of range
+79114,list index out of range
+79115,list index out of range
+79116,list index out of range
+79117,list index out of range
+79130,list index out of range
+79131,list index out of range
+79132,list index out of range
+79133,list index out of range
+79134,list index out of range
+79543,list index out of range
+79548,list index out of range
+79553,list index out of range
+79558,list index out of range
+79564,list index out of range
+79569,list index out of range
+79584,list index out of range
+79796,list index out of range
+79797,list index out of range
+79798,list index out of range
+79799,list index out of range
+79800,list index out of range
+79801,list index out of range
+79802,list index out of range
+79803,list index out of range
+79804,list index out of range
+79805,list index out of range
+79810,list index out of range
+79811,list index out of range
+79812,list index out of range
+79813,list index out of range
+79814,list index out of range
+79815,list index out of range
+79816,list index out of range
+79817,list index out of range
+79818,list index out of range
+79819,list index out of range
+79822,list index out of range
+79823,list index out of range
+79824,list index out of range
+79825,list index out of range
+79826,list index out of range
+79827,list index out of range
+79828,list index out of range
+79829,list index out of range
+79830,list index out of range
+79831,list index out of range
+79834,list index out of range
+79835,list index out of range
+79836,list index out of range
+79837,list index out of range
+79838,list index out of range
+79839,list index out of range
+79840,list index out of range
+79841,list index out of range
+79842,list index out of range
+79843,list index out of range
+79844,list index out of range
+79845,list index out of range
+79846,list index out of range
+79847,list index out of range
+79848,list index out of range
+79849,list index out of range
+79850,list index out of range
+79851,list index out of range
+79852,list index out of range
+79853,list index out of range
+79854,list index out of range
+79855,list index out of range
+79856,list index out of range
+79857,list index out of range
+79858,list index out of range
+79859,list index out of range
+79860,list index out of range
+79861,list index out of range
+79862,list index out of range
+79863,list index out of range
+79864,list index out of range
+79865,list index out of range
+79866,list index out of range
+79867,list index out of range
+79868,list index out of range
+79869,list index out of range
+79870,list index out of range
+79871,list index out of range
+79872,list index out of range
+79873,list index out of range
+79874,list index out of range
+79875,list index out of range
+79876,list index out of range
+79877,list index out of range
+79878,list index out of range
+79879,list index out of range
+79880,list index out of range
+79881,list index out of range
+79882,list index out of range
+79883,list index out of range
+79884,list index out of range
+79885,list index out of range
+80035,list index out of range
+80036,list index out of range
+80037,list index out of range
+80038,list index out of range
+80069,list index out of range
+80070,list index out of range
+80071,list index out of range
+80072,list index out of range
+80073,list index out of range
+80124,list index out of range
+80125,list index out of range
+80126,list index out of range
+80127,list index out of range
+80128,list index out of range
+80134,list index out of range
+80135,list index out of range
+80136,list index out of range
+80137,list index out of range
+80138,list index out of range
+80139,list index out of range
+80140,list index out of range
+80141,list index out of range
+80142,list index out of range
+80143,list index out of range
+80215,list index out of range
+80216,list index out of range
+80217,list index out of range
+80218,list index out of range
+80219,list index out of range
+80264,list index out of range
+80265,list index out of range
+80266,list index out of range
+80267,list index out of range
+80284,list index out of range
+80285,list index out of range
+80286,list index out of range
+80287,list index out of range
+80289,list index out of range
+80290,list index out of range
+80291,list index out of range
+80304,list index out of range
+80372,list index out of range
+80373,list index out of range
+80374,list index out of range
+80375,list index out of range
+80376,list index out of range
+80377,list index out of range
+80382,list index out of range
+80383,list index out of range
+80414,list index out of range
+80415,list index out of range
+80416,list index out of range
+80417,list index out of range
+80418,list index out of range
+80419,list index out of range
+80420,list index out of range
+80421,list index out of range
+80422,list index out of range
+80423,list index out of range
+80424,list index out of range
+80425,list index out of range
+80491,list index out of range
+80492,list index out of range
+80493,list index out of range
+80496,list index out of range
+80497,list index out of range
+80498,list index out of range
+80499,list index out of range
+80500,list index out of range
+80501,list index out of range
+80502,list index out of range
+80503,list index out of range
+80505,list index out of range
+80507,list index out of range
+80508,list index out of range
+80509,list index out of range
+80510,list index out of range
+80511,list index out of range
+80512,list index out of range
+80513,list index out of range
+80514,list index out of range
+80515,list index out of range
+80517,list index out of range
+80518,list index out of range
+80519,list index out of range
+80520,list index out of range
+80521,list index out of range
+80522,list index out of range
+80523,list index out of range
+80525,list index out of range
+80528,list index out of range
+80530,list index out of range
+80531,list index out of range
+80532,list index out of range
+80533,list index out of range
+80535,list index out of range
+80536,list index out of range
+80537,list index out of range
+80539,list index out of range
+80540,list index out of range
+80542,list index out of range
+80543,list index out of range
+80544,list index out of range
+80545,list index out of range
+80546,list index out of range
+80547,list index out of range
+80548,list index out of range
+80549,list index out of range
+80551,list index out of range
+80552,list index out of range
+80553,list index out of range
+80554,list index out of range
+80556,list index out of range
+80557,list index out of range
+80558,list index out of range
+80560,list index out of range
+80561,list index out of range
+80563,list index out of range
+80564,list index out of range
+80565,list index out of range
+80566,list index out of range
+80567,list index out of range
+80568,list index out of range
+80570,list index out of range
+80571,list index out of range
+80572,list index out of range
+80573,list index out of range
+80574,list index out of range
+80576,list index out of range
+80577,list index out of range
+80578,list index out of range
+80579,list index out of range
+80580,list index out of range
+80583,list index out of range
+80584,list index out of range
+80585,list index out of range
+80586,list index out of range
+80587,list index out of range
+80588,list index out of range
+80589,list index out of range
+80590,list index out of range
+80591,list index out of range
+80592,list index out of range
+80593,list index out of range
+80594,list index out of range
+80595,list index out of range
+80596,list index out of range
+80599,list index out of range
+80600,list index out of range
+80601,list index out of range
+80602,list index out of range
+80603,list index out of range
+80604,list index out of range
+80605,list index out of range
+80625,list index out of range
+80889,list index out of range
+80890,list index out of range
+80891,list index out of range
+80892,list index out of range
+80893,list index out of range
+80918,list index out of range
+80919,list index out of range
+80920,list index out of range
+80921,list index out of range
+80924,list index out of range
+80925,list index out of range
+80926,list index out of range
+80934,list index out of range
+80938,list index out of range
+80939,list index out of range
+80940,list index out of range
+80941,list index out of range
+81142,list index out of range
+81143,list index out of range
+81144,list index out of range
+81145,list index out of range
+81146,list index out of range
+81147,list index out of range
+81148,list index out of range
+81149,list index out of range
+81150,list index out of range
+81151,list index out of range
+81152,list index out of range
+81153,list index out of range
+81154,list index out of range
+81157,list index out of range
+81158,list index out of range
+81166,list index out of range
+81167,list index out of range
+81168,list index out of range
+81169,list index out of range
+81170,list index out of range
+81336,list index out of range
+81337,list index out of range
+81338,list index out of range
+81339,list index out of range
+81341,list index out of range
+81343,list index out of range
+81344,list index out of range
+81345,list index out of range
+81353,list index out of range
+81354,list index out of range
+81358,list index out of range
+81359,list index out of range
+81360,list index out of range
+81374,list index out of range
+81376,list index out of range
+81377,list index out of range
+81378,list index out of range
+81380,list index out of range
+81381,list index out of range
+81382,list index out of range
+81383,list index out of range
+81384,list index out of range
+81385,list index out of range
+81386,list index out of range
+81488,list index out of range
+81490,list index out of range
+81492,list index out of range
+81494,list index out of range
+81495,list index out of range
+81496,list index out of range
+81498,list index out of range
+81499,list index out of range
+81500,list index out of range
+81501,list index out of range
+81515,list index out of range
+81516,list index out of range
+81532,list index out of range
+81533,list index out of range
+81534,list index out of range
+81539,list index out of range
+81540,list index out of range
+81557,list index out of range
+81559,list index out of range
+81560,list index out of range
+81561,list index out of range
+81562,list index out of range
+81631,list index out of range
+81633,list index out of range
+81634,list index out of range
+81635,list index out of range
+81636,list index out of range
+81637,list index out of range
+81638,list index out of range
+81639,list index out of range
+81640,list index out of range
+81641,list index out of range
+81642,list index out of range
+81643,list index out of range
+81714,list index out of range
+81715,list index out of range
+81716,list index out of range
+81717,list index out of range
+81719,list index out of range
+81721,list index out of range
+81722,list index out of range
+81723,list index out of range
+81726,list index out of range
+81728,list index out of range
+81729,list index out of range
+81730,list index out of range
+81731,list index out of range
+81734,list index out of range
+81735,list index out of range
+81738,list index out of range
+81739,list index out of range
+81740,list index out of range
+81741,list index out of range
+81760,list index out of range
+81761,list index out of range
+81772,list index out of range
+81774,list index out of range
+81775,list index out of range
+82061,list index out of range
+82062,list index out of range
+82063,list index out of range
+82064,list index out of range
+82065,list index out of range
+82066,list index out of range
+82067,list index out of range
+82068,list index out of range
+82069,list index out of range
+82070,list index out of range
+82071,list index out of range
+82072,list index out of range
+82073,list index out of range
+82074,list index out of range
+82075,list index out of range
+82076,list index out of range
+82077,list index out of range
+82078,list index out of range
+82152,list index out of range
+82153,list index out of range
+82154,list index out of range
+82155,list index out of range
+82156,list index out of range
+82157,list index out of range
+82158,list index out of range
+82159,list index out of range
+82411,list index out of range
+83747,list index out of range
+83748,list index out of range
+83749,list index out of range
+83750,list index out of range
+83751,list index out of range
+83752,list index out of range
+83753,list index out of range
+83754,list index out of range
+84740,list index out of range
+84741,list index out of range
+84742,list index out of range
+84743,list index out of range
+84744,list index out of range
+84745,list index out of range
+84746,list index out of range
+84747,list index out of range
+84748,list index out of range
+84749,list index out of range
+84750,list index out of range
+84751,list index out of range
+84752,list index out of range
+84753,list index out of range
+84754,list index out of range
+84755,list index out of range
+84756,list index out of range
+84757,list index out of range
+84758,list index out of range
+84759,list index out of range
+84760,list index out of range
+84761,list index out of range
+84762,list index out of range
+84763,list index out of range
+84764,list index out of range
+84765,list index out of range
+84766,list index out of range
+84767,list index out of range
+84768,list index out of range
+84769,list index out of range
+84770,list index out of range
+84771,list index out of range
+84772,list index out of range
+84773,list index out of range
+84774,list index out of range
+84775,list index out of range
+84776,list index out of range
+84777,list index out of range
+84778,list index out of range
+84779,list index out of range
+84780,list index out of range
+84781,list index out of range
+84782,list index out of range
+84783,list index out of range
+84784,list index out of range
+84816,list index out of range
+84817,list index out of range
+84818,list index out of range
+84819,list index out of range
+84820,list index out of range
+84821,list index out of range
+84822,list index out of range
+84823,list index out of range
+84824,list index out of range
+84827,list index out of range
+84828,list index out of range
+84829,list index out of range
+84830,list index out of range
+84831,list index out of range
+84832,list index out of range
+84833,list index out of range
+84835,list index out of range
+84836,list index out of range
+84837,list index out of range
+84838,list index out of range
+84839,list index out of range
+84840,list index out of range
+84841,list index out of range
+84842,list index out of range
+84843,list index out of range
+84844,list index out of range
+84845,list index out of range
+84846,list index out of range
+84847,list index out of range
+84848,list index out of range
+84849,list index out of range
+84850,list index out of range
+84851,list index out of range
+84852,list index out of range
+84853,list index out of range
+84854,list index out of range
+84855,list index out of range
+84856,list index out of range
+84857,list index out of range
+84858,list index out of range
+84859,list index out of range
+84860,list index out of range
+84861,list index out of range
+85205,list index out of range
+85207,list index out of range
+85209,list index out of range
+85210,list index out of range
+85216,list index out of range
