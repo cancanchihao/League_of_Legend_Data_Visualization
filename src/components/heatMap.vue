@@ -38,9 +38,13 @@ export default defineComponent({
 
                     // ECharts 配置项
                     const option = {
+                        backgroundColor: '',
                         title: {
-                            text: props.title,
+                            text: '战队胜率热力图',
                             left: "center",
+                            textStyle: {
+                                color: 'white',
+                            }
                         },
                         tooltip: {
                             position: "top",
