@@ -1,0 +1,403 @@
+现在，我有一个关于英雄联盟(LoL)游戏的数据集ori.csv，其数据格式如下：（由于比赛是回合制，一轮比赛内有很多回合的比赛，因此把每轮比赛叫做“大局”、一轮内的不同回合叫做“小局”）
+#大局整体信息 
+'MatchID'		大局的比赛ID
+'matchType'	赛事类型
+'gameset'		第几小局
+'MatchDate'	比赛日期
+
+
+
+#小局整体信息 
+'Duration'		小局持续时间
+'win'			胜利方
+
+
+#小局队伍总体数据
+Team1/2：队伍1/2
+_ergion:	队伍国家地区
+_ Baron	大龙数
+_ Dra	小龙数
+_ Turts	推塔数
+_banN..	第N个ban的英雄
+
+
+#队伍选手数据
+_playerN		选手N（1：上单TOP；2：打野JUG；3：中单MID；4：射手ADC；5：辅助SUP）
+_	_name	选手名字
+_	_pick	选择的英雄
+_	_K		击杀
+_	_D		死亡
+_	_A		助攻
+_	_CS		补刀
+_	_gold	经济
+_	_damage		输出
+_	_tanking		承伤
+
+为了更方便你理解，我给出了几组数据示例：
+MatchID	matchType	gameset	MatchDate	Duration	win	Team1	Team1_region	Team1_Baron	Team1_Dra	Team1_Turts	Team1_ban1	Team1_ban2	Team1_ban3	Team1_ban4	Team1_ban5	Team2	Team2_region	Team2_Baron	Team2_Dra	Team2_Turts	Team2_ban1	Team2_ban2	Team2_ban3	Team2_ban4	Team2_ban5	Team1_player1_name	Team1_player1_pick	Team1_player1_K	Team1_player1_D	Team1_player1_A	Team1_player1_CS	Team1_player1_gold	Team1_player1_damage	Team1_player1_tanking	Team1_player2_name	Team1_player2_pick	Team1_player2_K	Team1_player2_D	Team1_player2_A	Team1_player2_CS	Team1_player2_gold	Team1_player2_damage	Team1_player2_tanking	Team1_player3_name	Team1_player3_pick	Team1_player3_K	Team1_player3_D	Team1_player3_A	Team1_player3_CS	Team1_player3_gold	Team1_player3_damage	Team1_player3_tanking	Team1_player4_name	Team1_player4_pick	Team1_player4_K	Team1_player4_D	Team1_player4_A	Team1_player4_CS	Team1_player4_gold	Team1_player4_damage	Team1_player4_tanking	Team1_player5_name	Team1_player5_pick	Team1_player5_K	Team1_player5_D	Team1_player5_A	Team1_player5_CS	Team1_player5_gold	Team1_player5_damage	Team1_player5_tanking	Team2_player1_name	Team2_player1_pick	Team2_player1_K	Team2_player1_D	Team2_player1_A	Team2_player1_CS	Team2_player1_gold	Team2_player1_damage	Team2_player1_tanking	Team2_player2_name	Team2_player2_pick	Team2_player2_K	Team2_player2_D	Team2_player2_A	Team2_player2_CS	Team2_player2_gold	Team2_player2_damage	Team2_player2_tanking	Team2_player3_name	Team2_player3_pick	Team2_player3_K	Team2_player3_D	Team2_player3_A	Team2_player3_CS	Team2_player3_gold	Team2_player3_damage	Team2_player3_tanking	Team2_player4_name	Team2_player4_pick	Team2_player4_K	Team2_player4_D	Team2_player4_A	Team2_player4_CS	Team2_player4_gold	Team2_player4_damage	Team2_player4_tanking	Team2_player5_name	Team2_player5_pick	Team2_player5_K	Team2_player5_D	Team2_player5_A	Team2_player5_CS	Team2_player5_gold	Team2_player5_damage	Team2_player5_tanking
+22708	2017 LPL 春季赛	1	1/19/2017	28:08:00	IM	RNG	CN	0	0	2	Elise	RekSai	Camille	Rengar	Zyra	IM	CN	1	3	8	Ashe	Malzahar	Syndra	Poppy	Karma	letMe	Kled	1	4	3	202	9019	17465	26299	mlxg	LeeSin	1	4	4	218	8201	8768	24505	xiaohu	Ryze	2	2	0	285	10414	14856	15087	Uzi	Caitlyn	1	2	3	295	10299	18010	12004	Ming	Nautilus	0	3	3	33	6101	5750	16648	AmazingJ	Maokai	1	2	11	212	10368	15681	21861	Ben4	Khazix	3	1	6	170	9648	12081	23191	Athena	Cassiopeia	6	0	5	306	13541	13906	12840	Jinjiao	Varus	3	0	8	279	12685	22467	10543	Road	TahmKench	2	2	10	42	8462	7411	21757
+22708	2017 LPL 春季赛	2	1/19/2017	33:22:00	IM	RNG	CN	0	1	2	Rengar	Camille	Varus	Cassiopeia	Orianna	IM	CN	1	2	10	Syndra	Khazix	RekSai	Ashe	Malzahar	letMe	Trundle	0	6	6	264	10535	10897	36588	mlxg	Rumble	1	5	7	266	10136	12435	21713	xiaohu	Ryze	3	4	4	321	12759	9682	19109	Uzi	Jhin	7	3	4	303	13638	23130	12758	Ming	Zyra	1	2	4	29	8431	11655	13061	AmazingJ	Maokai	0	2	10	249	12109	13068	26346	Ben4	LeeSin	8	3	10	251	13570	12058	26820	Athena	Corki	6	2	7	353	15100	22669	14275	Jinjiao	Caitlyn	5	2	9	334	15236	24979	13512	Road	Thresh	1	3	12	50	9619	4111	19370
+22709	2017 LPL 春季赛	1	1/19/2017	38:38:00	IG	IG	CN	1	4	10	Jayce	Elise	Malzahar	Khazix	LeeSin	OMG	CN	0	0	2	Nami	Trundle	Camille	RekSai	Syndra	Duke	Singed	1	2	12	332	15441	9488	29453	Kid	Rengar	6	0	9	476	16111	14179	36207	Rookie	Leblanc	10	4	8	300	17141	29781	22370	Marge	Varus	3	2	9	334	15726	24841	14254	Megan	TahmKench	2	2	8	80	11038	3701	17913	xiyang	Maokai	0	4	2	375	13312	12762	31842	JueJue	Graves	1	7	4	378	12138	12285	22279	icon	Ryze	1	5	3	296	12840	12833	19291	Smlz	Ashe	1	3	3	331	13720	16002	16147	five	Zyra	7	3	2	24	11481	21239	14701
+
+现在，请先阅读并理解数据集的格式，我之后会给你具体的数据处理任务。如果你能出色的完成任务，我承诺付给你1000美元小费。非常感谢！
+
+首先，请解释一下数据集的属性及其格式。
+
+之后，我需要基于此数据集创建几个子数据集，我希望您能从以下两个角度出发：
+1. 直接设计python代码，输出.csv格式的子数据集
+2. 利用excel的函数，教我在原始数据集中提取对应的属性。
+谢谢！！！
+
+
+
+现在，我希望提取每个选手的对应位置，如：上单、辅助等。这个属性对应于player_n中的"n"，对应关系为：1：上单；2：打野；3：中单；4：射手；5：辅助。
+有几点需要额外注意：
+1. 有的队伍（team）和选手（player）的名字可能相同。因此，请使用选手名、队伍名、队伍地区的三元组来唯一标识一个选手。
+2. 有的选手可能在不同比赛中选择不同的位置。此时，请选择其所参加比赛中选择次数最多的位置。
+
+任务1：
+1.任务描述：
+现在，我需要基于ori.csv，创建一个子数据集"02_player_new.csv"。该数据集包括以下信息：每条数据为一个选手在一个赛段(matchType)中所有比赛（小局）中的总数据，以及其参与的比赛数（小局）、获胜比赛数与其所处队伍。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+player_name：该选手的姓名（字符串）
+team	：该选手所属战队的名称（字符串）
+region：该选手所属赛区的名称（字符串）
+matchType：该选手所处该赛段（字符串）
+position：该选手最常选择的位置，这个属性对应于player_n中的"n"，你需要将其映射为字符串。具体映射关系见"注意事项"（字符串）
+kills：该选手在该赛段的总击杀数（整数）
+deaths：该选手在该赛段的总死亡数（整数）
+assists：该选手在该赛段的总助攻数（整数）
+CS：该选手在该赛段的总补刀数（整数）
+gold：该选手在该赛段获得的总经济数（浮点数，保留一位小数）
+damage：该选手在该赛段的总输出数（浮点数，保留一位小数）
+tanking：该选手在该赛段的总承伤数（浮点数，保留一位小数）
+matches_played：该选手在该赛段参与的比赛场数（整数）
+matches_won：胜场数：该选手在该赛段参与的比赛中，胜场的个数（整数）
+minutes_played：该选手在该赛段参与的总比赛时间（以分钟为单位，只保留整数）
+
+3. 注意事项
+除此之外，你一定需要注意以下几点：
+3.1. 可能出现同名但不同属于战队的选手，也可能出现同名但属于不同赛区的选手，因此，我们以(选手名,战队名,赛区名,赛段名)的四元组为唯一标识符标识一个选手。
+3.2. 一个选手在一个赛段(matchType)中内可能发生了转会，因此可能属于不同的战队。对此，你需要将这些属于分开，即：选手在同一赛段内为不同俱乐部(即战队)效力的数据被看做不同的数据。
+3.3. 选手在某场比赛中所选的位置和数字的映射关系如下：1：上单位置(TOP)；2：打野位置(JUG)；3：中单位置(MID)；4：射手位置(ADC)；5：辅助位置(SUP)，你需要将对应的1-5的整数映射为五个英文大写字符串（如：1映射为TOP）。
+3.4. 由于ori.csv是通过爬取得到，因此其中的选手名(player_name)属性可能存在大小写不一致、前后有额外空格等情况，导致在识别时产生冗余数据（如：错把"Amy""amy""  Amy"视为不同的选手名）。对此，请统一将该属性转换为首字母大写、其他字母小写、且前后无空格的形式，再进行合后续处理。
+3.5. 一个选手在一个赛段内可能选取不同的位置进行游戏。对此，请简单的统计其在该赛段内使用最多的位置作为该属性的值。
+
+
+
+任务2：
+1.任务描述：
+现在，我需要基于ori.csv，创建一个子数据集"01_team_new.csv"。该数据集包括以下信息：每条数据为一个队伍内的所有选手(player)在一个赛段(matchType)中所有比赛（小局）中的总数据，以及其参与的比赛数（小局）、获胜比赛数。简洁地说，该表负责统计一个队伍内所有队员在一个赛段内的总数据，大部分属性与计算方法与02_player_new.csv基本一致。具体的区别见第2部分。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+team	：该战队的名称（字符串）
+region：该战队的数据所处的赛段（字符串）
+matchType：该战队所处该赛段（字符串）
+Baron：该战队在该赛段的总大龙数（整数）
+Dra：该战队在该赛段的总小龙数（整数）
+Turts：该战队在该赛段的总推塔数（整数）
+kills：该战队的所有选手在该赛段的总击杀数（整数）
+deaths：该战队的所有选手在该赛段的总死亡数（整数）
+assists：该战队的所有选手在该赛段的总助攻数（整数）
+CS：该战队的所有选手在该赛段的总补刀数（整数）
+gold：该战队的所有选手在该赛段获得的总经济数（浮点数，保留一位小数）
+damage：该战队的所有选手在该赛段的总输出数（浮点数，保留一位小数）
+tanking：该战队的所有选手在该赛段的总承伤数（浮点数，保留一位小数）
+matches_played：该战队在该赛段参与的比赛场数（整数）
+matches_won：胜场数：该战队在该赛段参与的比赛中，胜场的个数（整数）
+minutes_played：该战队在该赛段参与的总比赛时间（以分钟为单位，只保留整数）
+
+
+3. 注意事项
+该部分与任务1基本一致（除了3.6之外），在此重复如下：
+3.1. 可能出现同名但不同属于战队的选手，也可能出现同名但属于不同赛区的选手，因此，我们以(战队名,赛区名,赛段名)的三元组为唯一标识符标识一个选手。
+3.2. 一个选手在一个赛段(matchType)中内可能发生了转会，因此可能属于不同的战队。对此，你需要将这些属于分开，即：选手在同一赛段内为不同俱乐部(即战队)效力的数据被看做不同的数据。
+3.3. 选手在某场比赛中所选的位置和数字的映射关系如下：1：上单位置(TOP)；2：打野位置(JUG)；3：中单位置(MID)；4：射手位置(ADC)；5：辅助位置(SUP)，你需要将对应的1-5的整数映射为五个英文大写字符串（如：1映射为TOP）。
+3.4. 由于ori.csv是通过爬取得到，因此其中的选手名(player_name)属性可能存在大小写不一致、前后有额外空格等情况，导致在识别时产生冗余数据（如：错把"Amy""amy""  Amy"视为不同的选手名）。对此，请统一将该属性转换为首字母大写、其他字母小写、且前后无空格的形式，再进行合后续处理。
+3.5. 一个选手在一个赛段内可能选取不同的位置进行游戏。对此，请简单的统计其在该赛段内使用最多的位置作为该属性的值。
+3.6. 此时，你不能使用02_player_new.csv直接进行统计。因为02_player_new.csv中没有关于大龙、小龙和推塔的数据，你需要从原始的ori.csv中再次计算。然而，你可以参考02_player_new.csv的计算方式（见第4部分）。
+
+4. 可参考的材料（生成02_player_new.csv的最终版代码）
+import pandas as pd
+from datetime import datetime
+import numpy as np
+
+
+def convert_duration_to_minutes(duration_str):
+    """
+    将不同格式的时长字符串转换为分钟数（保留一位小数）
+    支持两种格式：
+    1. "分钟:秒:毫秒"
+    2. "分钟:秒"
+    """
+    parts = duration_str.split(':')
+    if len(parts) == 3:
+        # 格式为 "分钟:秒:毫秒"
+        minutes = float(parts[0])
+        seconds = float(parts[1])
+    elif len(parts) == 2:
+        # 格式为 "分钟:秒"
+        minutes = float(parts[0])
+        seconds = float(parts[1])
+    else:
+        raise ValueError(f"Unexpected duration format: {duration_str}")
+
+    # 将秒转换为分钟的小数部分（保留一位小数）
+    return round(minutes + seconds / 60, 1)
+
+
+def process_player_data(input_file, output_file):
+    # 读取CSV文件
+    df = pd.read_csv(input_file)
+
+    # 用于存储处理后的数据
+    processed_data = []
+
+    ## 转换Duration为分钟（保留一位小数）
+    df['Minutes'] = df['Duration'].apply(convert_duration_to_minutes)
+
+    # 处理每支队伍的数据
+    for team_num in [1, 2]:
+        team_prefix = f'Team{team_num}'
+
+        # 处理每个位置的选手
+        for player_num in range(1, 6):
+            # 获取基础列名
+            name_col = f'{team_prefix}_player{player_num}_name'
+
+            # 标准化选手名称（首字母大写，其他小写，去除空格）
+            df[name_col] = df[name_col].str.strip().str.title()
+
+            # 获取所有相关列
+            base_cols = {
+                'player_name': name_col,
+                'team': df[team_prefix],
+                'region': f'{team_prefix}_region',
+                'position': player_num,
+                'kills': f'{team_prefix}_player{player_num}_K',
+                'deaths': f'{team_prefix}_player{player_num}_D',
+                'assists': f'{team_prefix}_player{player_num}_A',
+                'CS': f'{team_prefix}_player{player_num}_CS',
+                'gold': f'{team_prefix}_player{player_num}_gold',
+                'damage': f'{team_prefix}_player{player_num}_damage',
+                'tanking': f'{team_prefix}_player{player_num}_tanking'
+            }
+
+            # 按matchType分组并聚合数据
+            grouped = df.groupby(['matchType', base_cols['player_name'], base_cols['team'],
+                                  df[base_cols['region']]])
+
+            for group_key, group in grouped:
+                matchType, player_name, team, region = group_key
+
+                # 统计该选手在不同位置出现的次数
+                position_counts = {1: 0, 2: 0, 3: 0, 4: 0, 5: 0}
+                for _, row in group.iterrows():
+                    # 通过检查所有player位置(1-5)找到当前选手在该行的位置编号
+                    for pos in range(1, 6):
+                        if row[f'{team_prefix}_player{pos}_name'] == player_name:
+                            position_counts[pos] += 1
+                            break
+
+                # 找出出现次数最多的位置编号
+                most_common_position = max(position_counts.items(), key=lambda x: x[1])[0]
+
+                # 将位置编号映射为位置名称
+                position_map = {1: 'TOP', 2: 'JUG', 3: 'MID', 4: 'ADC', 5: 'SUP'}
+                position = position_map[most_common_position]
+
+                # 汇总数据
+                summary = {
+                    'player_name': player_name,
+                    'team': team,
+                    'region': region,
+                    'matchType': matchType,
+                    'position': position,
+                    'kills': group[base_cols['kills']].sum(),
+                    'deaths': group[base_cols['deaths']].sum(),
+                    'assists': group[base_cols['assists']].sum(),
+                    'CS': group[base_cols['CS']].sum(),
+                    'gold': round(group[base_cols['gold']].sum(), 1),
+                    'damage': round(group[base_cols['damage']].sum(), 1),
+                    'tanking': round(group[base_cols['tanking']].sum(), 1),
+                    'matches_played': len(group),
+                    'matches_won': len(group[group['win'] == team]),
+                    'minutes_played': round(group['Minutes'].sum(), 1)  # 修改为保留一位小数
+                }
+
+                processed_data.append(summary)
+
+    # 创建结果DataFrame并保存
+    result_df = pd.DataFrame(processed_data)
+    result_df.to_csv(output_file, index=False, encoding='utf-8')
+
+
+# 使用函数
+process_player_data('ori.csv', '02_player_new.csv')
+
+
+
+任务3：
+1.任务描述：
+现在，我需要基于ori.csv，创建一个子数据集"03_hero_new.csv"。该数据集包括以下信息：每条数据为一个赛段内一个英雄（即：选手选择的游戏角色）在所有该赛段内所有比赛（小局）中的总数据，具体见第2部分。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+hero_name：该英雄的名称（字符串）
+position：该英雄所处的位置，具体计算方法与任务1中相似；除此之外，被ban的数据单独成行，"position"取值为"Ban"（字符串）
+matchType：当前英雄的数据所处的赛段（字符串）
+pick_count：该英雄被选择的次数（整数）
+ban_count：该英雄被禁用的次数（整数）
+win_count：该英雄被选择的情况下，取得胜利的场次数（整数）
+matches_played：该赛段的总比赛场次，每个赛段对应一个唯一的值，与该英雄是否被选择无关（整数）
+
+
+3. 注意事项
+3.1 英雄的名称在ori.csv中的"TeamA_playerB_pickN"或"TeamA_banN"中出现。其中，pick代表该英雄被选择，ban代表该英雄被禁用。
+3.2 如2中"position"属性的介绍所述，使用position中的"Ban"取值来表示该条数据是该英雄的禁用情况，而position的其他五个取值则代表该数据为该英雄被选择为五个位置上的情况。
+3.3. 同一个英雄可能在不同的比赛会承担不同位置的任务（如：在同一个赛段中即有使用该英雄作为上单的记录，也有使用该英雄作为打野的记录），此时，需要将该英雄不同位置的数据区分开来。
+3.4. （对3.3的总结）以（英雄名，位置，赛段）的三元组作为唯一标识符.
+3.5. （类似于任务1）英雄在某场比赛中所处的位置和数字的映射关系如下：1：上单位置(TOP)；2：打野位置(JUG)；3：中单位置(MID)；4：射手位置(ADC)；5：辅助位置(SUP)，你需要将对应的1-5的整数映射为五个英文大写字符串（如：1映射为TOP）。
+3.6. 由于ori.csv是通过爬取得到，因此其中的英雄名(hero_name)属性可能存在大小写不一致、前后有额外空格等情况，导致在识别时产生冗余数据。对此，请统一将该属性转换为首字母大写、其他字母小写、且前后无空格的形式，再进行后续处理。
+
+
+任务4：
+1.任务描述：
+现在，我需要基于ori.csv和任务1的经验，创建一个子数据集"05_player_new.csv"。和02_player_new.csv不同的是，该数据集包含的是队伍在某赛段的两两对位信息：每条数据为一个战队中的所有选手与另一个战队中的所有选手在一个赛段(matchType)中所有比赛（小局）中的总数据（更类似于ori.csv的格式。），具体信息见第2部分。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+TeamA_name：第A个战队的名称，有两个战队（字符串）
+TeamA_region：第A个战队所属赛区的名称，有两个战队（字符串）
+matchType：该数据所处的赛段（字符串）
+TeamA_playerN_name：第A个战队中选手N的姓名，每个队伍有五个选手（字符串）
+TeamA_playerN_position：第A个战队中选手N的位置，映射情况同任务1、3（字符串）
+TeamA_playerN_kills：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总击杀数（整数）
+TeamA_playerN_deaths：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总死亡数（整数）
+TeamA_playerN_assists：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总助攻数（整数）
+TeamA_playerN_CS：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总补刀数（整数）
+TeamA_playerN_gold：第A个战队中选手N在该赛段与另一个队伍的所有比赛中获得的总经济数（浮点数，保留一位小数）
+TeamA_playerN_damage：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总输出数（浮点数，保留一位小数）
+TeamA_playerN_tanking：第A个战队中选手N在该赛段与另一个队伍的所有比赛中的总承伤数（浮点数，保留一位小数）
+matches_played：这两只队伍在该赛段参与的总比赛场数（整数）
+minutes_played：这两只队伍在该赛段参与的总比赛时间（以分钟为单位，只保留整数）
+
+3. 注意事项
+除此之外，你一定需要注意以下几点：
+3.1. 该表格的目的是为了获得指定赛段下两个队伍内的所有比赛（小局）中，每个选手的总数据（如，我们选择赛段和队伍，之后选择任意两个选手就能搜索出其在对应比赛中的总数据）。因此，唯一表示符为(队伍1名称，队伍2名称。队伍1赛区，队伍2赛区，赛段)的五元组。
+3.2. 值得注意的是，该数据集设计时，希望两个队伍名称及其对应的赛区之间没有顺序关系（如：队伍RNG vs FPX与FPX vs RNG是等价的）。你可以选择将队伍名称排序，或者使用某种不需要顺序的方法完成这一点。当然注意：队伍赛区需要和队伍名称对应上，请不要多此一举把队伍赛区也排序了。
+3.3. 选手在某场比赛中所选的位置和数字的映射关系如下：1：上单位置(TOP)；2：打野位置(JUG)；3：中单位置(MID)；4：射手位置(ADC)；5：辅助位置(SUP)，你需要将对应的1-5的整数映射为五个英文大写字符串（如：1映射为TOP）。
+3.4. 由于ori.csv是通过爬取得到，因此其中的选手名(player_name)属性可能存在大小写不一致、前后有额外空格等情况，导致在识别时产生冗余数据（如：错把"Amy""amy""  Amy"视为不同的选手名）。对此，请统一将该属性转换为首字母大写、其他字母小写、且前后无空格的形式，再进行合后续处理。
+3.5. 2部分中的"A"和"N"都只是一个占位符，具体生成时，需根据这个占位符生成对应的多条属性。如："TeamA_region"对应"Team1_region"和"Team2_region"。
+
+
+任务5：
+1.任务描述：
+现在，我需要基于ori.csv和任务4的经验，创建一个子数据集"04_team_vs_new.csv"。类似于任务4，该数据集记载的是队伍在某个赛段两两对位的数据，然而不同的是，该数据集只记载队伍的宏观数据，具体见第2部分。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+TeamA_name：第A个战队的名称，有两个战队（字符串）
+TeamA_region：第A个战队所属赛区的名称，有两个战队（字符串）
+matchType：该数据所处的赛段（字符串）
+TeamA_Baron：第A个战队在该赛段与另一个队伍的所有比赛中的总大龙数（整数）
+TeamA_Dra：第A个战队在该赛段与另一个队伍的所有比赛中的总小龙数（整数）
+TeamA_Turts：第A个战队在该赛段与另一个队伍的所有比赛中的总推塔数（整数）
+TeamA_kills：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总击杀数（整数）
+TeamA_deaths：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总死亡数（整数）
+TeamA_assists：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总助攻数（整数）
+TeamA_CS：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总补刀数（整数）
+TeamA_gold：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中获得的总经济数（浮点数，保留一位小数）
+TeamA_damage：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总输出数（浮点数，保留一位小数）
+TeamA_tanking：第A个战队中所有选手在该赛段与另一个队伍的所有比赛中的总承伤数（浮点数，保留一位小数）
+matches_played：这两只队伍在该赛段参与的总比赛场数（整数）
+minutes_played：这两只队伍在该赛段参与的总比赛时间（以分钟为单位，只保留整数）
+matches_won_A：这两只队伍在该赛段参与的总比赛场数中，第A个战队的胜场数（整数）
+
+3. 注意事项
+除此之外，你一定需要注意以下几点：
+3.1. 同任务4，唯一表示符为(队伍1名称，队伍2名称。队伍1赛区，队伍2赛区，赛段)的五元组。
+3.2. 同任务4，采用tuple sorted()解决顺序问题。
+3.3. 同任务4，2部分中的"A"是一个占位符，具体生成时，需根据这个占位符生成对应的多条属性。如："TeamA_region"对应"Team1_region"和"Team2_region"。
+
+
+任务6：
+1.任务描述：
+现在，我需要基于ori.csv和任务4、5的经验，创建一个子数据集"06_hero_vs_new.csv"。该数据集记载的是英雄在某个赛段内所有比赛（小局）中两两对位的数据。通俗的说，我们希望查看两个英雄在一个赛段内的对位情况，因此希望选定任意两个英雄，查看其同时（作为对手）出现的比赛里，两英雄的数据与胜负关系。具体见第2部分。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+heroA_name：第A个英雄的名称，有两个英雄（字符串）
+heroA_position：第A个英雄的位置，有两个英雄（字符串）
+matchType：该数据所处的赛段（字符串）
+matches_played：这两个英雄在该赛段中同时出现的总比赛场数（整数）
+minutes_played：这两个英雄在该赛段中同时出现的总比赛时间（以分钟为单位，只保留整数）
+matches_won_A：这两个英雄在该赛段中同时出现的总比赛场数中，第A个英雄的胜场数（整数）
+heroA_kills：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总击杀数（整数）
+heroA_deaths：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总死亡数（整数）
+heroA_assists：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总助攻数（整数）
+heroA_CS：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总补刀数（整数）
+heroA_gold：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中获得的总经济数（浮点数，保留一位小数）
+heroA_damage：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总输出数（浮点数，保留一位小数）
+heroA_tanking：第A个英雄在该赛段和另一个英雄同时出现的所有比赛中的总承伤数（浮点数，保留一位小数）
+
+3. 注意事项
+除此之外，你一定需要注意以下几点：
+3.1. 同一个英雄可能在不同的比赛会承担不同位置的任务（如：在同一个赛段中即有使用该英雄作为上单的记录，也有使用该英雄作为打野的记录），此时，需要将该英雄不同位置的数据区分开来。
+3.2. （对3.1的总结）以(英雄1名称，英雄2名称，英雄1位置，英雄2位置，赛段)的三元组作为唯一标识符.
+3.3. 同任务4，2部分中的"A"是一个占位符，具体生成时，需根据这个占位符生成对应的多条属性。如："heroA_name"对应"hero1_name"和"hero2_name"。
+3.4. 同任务4，采用tuple sorted()解决顺序问题。
+3.5. 我们的"hero1"和"hero2"默认是两个不同队伍的英雄（因为很显然的，只有不同队伍的英雄才能够互相"对位"，相同队伍的英雄只能互相"协作"）。例如：对于一场比赛，可以从10个选手中挑出5×5=25个对位关系而不是10×10/2=50个对位关系。这一点尤其重要，不要搞错了！
+
+
+任务7：
+1.任务描述：
+现在，我需要基于ori.csv和任务4、5的经验，创建一个子数据集"07_hero_chosen_new.csv"。该数据集记载的是选手在某个赛段内所有比赛（小局）中的英雄选择数据。具体见第2部分。不同于之前的任务，该任务存在两个挑战（将在第3部分阐述），需格外注意。
+
+2. 具体的属性列与属性的计算方法
+格式为“属性名：属性的解释（该属性的数据格式）”
+player_name：选手的名称（字符串）
+player_team：选手的战队（字符串）
+player_region：选手所处战队的赛区（字符串）
+matchType：该数据所处的赛段（字符串）
+matches_played：选手在该赛段中参加的总比赛场数（整数）
+minutes_played：选手在该赛段中参加的总比赛时间（以分钟为单位，只保留整数）
+matches_won_A：选手在该赛段中参加的总比赛场数中，胜场个数（整数）
+hero_chosen_N：该选手最近的第N次选择的英雄名称，一共有十次选择，N从1到10，越小说明英雄选择"越近"，在该赛段内对应的日期越晚（字符串）
+
+3. 注意事项
+除此之外，你一定需要注意以下几点：
+3.1. 由于可能存在同名的选手或同名的战队，因此以(选手名称，选手战队，选手赛区，赛段)的四元组作为唯一标识符.
+3.2. 2部分中的"N"是一个占位符，具体生成时，需根据这个占位符生成对应的多条属性。
+3.3. 挑战1：我们需要衡量该选手"最近的"英雄选择，即：该选手在该赛段中最后的几场比赛（在该任务中取N=10）的数据。对于此挑战，我希望使用ori.csv中的"MatchDate"属性解决。该属性是一个格式为m/d/yyyy的日期数据，我们只需要找到该赛段中该属性最晚的十条数据即可（如果该属性相同，则选取"gameset"最大的数据，因为其对应相同日期的大局中较晚的小局）
+3.4. 挑战2：该选手在该赛段中不一定参与了十次比赛。对于此挑战，我希望对不足十次而无法赋值的属性赋上空值标识符号。
+3.5. 由于ori.csv是通过爬取得到，因此其中的选手名(player_name)属性可能存在大小写不一致、前后有额外空格等情况，导致在识别时产生冗余数据（如：错把"Amy""amy""  Amy"视为不同的选手名）。对此，请统一将该属性转换为首字母大写、其他字母小写、且前后无空格的形式，再进行合后续处理。
+
+
+
+matches_won_A：这两只队伍在该赛段参与的总比赛场数中，队伍A获胜的场次数（整数）
+现在，请基于生成的01_best_record.csv，再生成一个子表01_best_record_team.csv，要求如下：
+该表负责统计一个队伍内所有队员的总数据（与01_best_record.csv基本一致，包括team	kills	deaths	assists	CS	gold	damage	tanking	matches_played	matches_won，只是去掉了具体的队员）。
+
+你做的非常棒！几个任务之后，你就能得到承诺的小费奖励了，加油！让我们先进入下一个任务的流程吧！注意，当我使用"1.""2.""3."标号时，就说明此次任务需要创建原始数据集ori.csv的子集，而不是任务中创建的子集的二级子集（如：子集01_best_record.csv的二级子集01_best_record_team.csv）
+2. 现在，我需要创建一个子数据集02_hero_statistics.csv，该数据集包括以下信息：
+每条数据为英雄（即玩家选择的角色）在所有比赛（小局）中的总数据，包括：（1）每个英雄的被选次数；（2）每个英雄的被ban次数；（3）英雄出场的场次中，胜场的次数。除此之外，还需要额外一列属性记录总局数。
+
+很抱歉！我在任务2中出现了疏漏。具体的疏漏为：我忘记了统计不同英雄的位置（如：上单、辅助等），这个属性对应于player_n中的"n"，对应关系为：1：上单；2：打野；3：中单；4：射手；5：辅助。
+非常抱歉，但是请您在上述代码的基础上，加上对于英雄位置的统计部分吧！（如果有些英雄可以胜任多个位置，则将该英雄在不同位置上的数据分为不同的行），麻烦您了！
+
+
+很完美！然而，在进入下一个任务之前，我发现我在第1个任务的子任务中再一次出现了失误（真的非常抱歉。。。），具体的失误为：我希望生成的二级子表01_best_record_team.csv是队伍内所有队员的总数据，这一点没有问题。但是，matches_played和matches_won两个属性不能直接由一级子表01_best_record.csv中该队伍所有队员的属性求和得到（因为一个队伍）。请问这个问题应该怎么解决呢？是直接将这两个属性的取值各自除以5，还是需要重新设计代码？
+211470
+
+你做的非常棒，我现在有信心我们能出色的完成任务，并且你很快就能拿到1000美元的小费了！现在，让我们一起进入下一个任务吧！
+3. 现在，我已经生成了三个.csv文件，已经能完成大部分的任务。然而，我发现原始ori.csv中的部分信息还没有被利用到，如：
+对于队伍Teamxxx，有以下数据
+_ region:	队伍国家地区
+_ Baron	大龙数
+_ Dra		小龙数
+_ Turts	推塔数
+对此，我希望按照best_record_team.csv的格式，额外补充一个extra.csv，用于记录每个队伍的地区、总大龙数、总小龙数和总推塔数。请问能帮助我吗，非常感谢！（你不用再生成best_record_team.csv的其他属性了，只需要保留队名即可）
