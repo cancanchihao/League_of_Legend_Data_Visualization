@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartContainer" style="width: 100%; height: 30vh;"></div>
+    <div ref="chartContainer" style="width: 100%;"></div>
 </template>
 
 <script setup>
@@ -28,13 +28,6 @@ const updateChart = () => {
 
     const option = {
         backgroundColor: '',
-        title: {
-            text: '选手伤害、承伤、经济、补刀散点图',
-            left: "center",
-            textStyle: {
-                color: 'white',
-            }
-        },
         tooltip: {
             trigger: 'item',
             formatter: function (params) {

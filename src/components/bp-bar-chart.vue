@@ -1,6 +1,6 @@
 <!-- BarChart.vue -->
 <template>
-  <div ref="chart" style="width: 100%; height: 400px;"></div>
+  <div ref="chart" style="width: 100%; height: 36vh;"></div>
 </template>
 
 <script setup>
@@ -22,7 +22,7 @@ onMounted(() => {
   const winRates = props.herodata.map(hero => hero.winRate)
 
   const option = {
-    backgroundColor: 'transparent', 
+    backgroundColor: 'transparent',
     tooltip: {
       trigger: 'axis',
       axisPointer: {

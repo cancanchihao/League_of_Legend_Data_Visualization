@@ -27,6 +27,13 @@ const props = withDefaults(
 
 // 词云图默认属性
 const defaultSeries = [{
+    title: {
+        text: '英雄胜率、Ban率、Pick率柱状图',
+        left: "center",
+        textStyle: {
+            color: 'white',
+        }
+    },
     background: '',
     type: 'wordCloud',
     /**

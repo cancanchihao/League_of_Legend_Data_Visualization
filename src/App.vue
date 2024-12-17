@@ -21,24 +21,30 @@
     <!-- 主页面内容 -->
     <template v-else>
       <div>
-        <v-img src="src/assets/1.png" class="background-image">
+        <v-img src="src/assets/3.png" class="background-image" cover>
           <v-app-bar class="wrapper">
-            <v-container class="title-container">
-              <span class="big-title">
-                {{ topic }}
-              </span>
-            </v-container>
-            <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data"
-              style="width: 20vh;" :items="[
-                '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-                '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-                '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-                '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-                '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-                '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-                '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-                '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
-            </v-select>
+            <v-row>
+              <v-col cols="2"></v-col>
+              <v-col cols="2"></v-col>
+              <v-col cols="4">
+                <v-card-title class="text-center text-black">{{ topic }}</v-card-title>
+              </v-col>
+              <v-col cols="2"></v-col>
+              <v-col cols="2">
+                <v-select label="选择赛段" v-model='topic' class="ml-auto" @update:model-value="getChart1Data"
+                  :item-disabled="true" :items="[
+                    '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
+                    '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
+                    '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
+                    '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
+                    '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
+                    '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
+                    '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
+                    '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+                </v-select>
+              </v-col>
+
+            </v-row>
           </v-app-bar>
 
 
@@ -52,7 +58,7 @@
 
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
-                    <v-card-title>战队排行</v-card-title>
+                    <v-card-title class="text-center text-white">战队排行</v-card-title>
                     <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
                       class="data-table" style="width: 100%;height:100%;background-color:transparent;">
                     </v-data-table-virtual>
@@ -65,6 +71,7 @@
 
                 <v-container class="chart-2-container">
                   <template v-if="Data.chart2.isChartVisible">
+                    <v-card-title class="text-center text-white">队伍胜率热力图</v-card-title>
                     <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"
                       @wordClick="heatmapclick" style="position: relative;" />
                   </template>
@@ -76,6 +83,7 @@
 
                 <v-container class="chart-3-container">
                   <template v-if="Data.chart3.isChartVisible">
+                    <v-card-title class="text-center text-white">队伍对抗图</v-card-title>
                     <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
                     </teamAgainstChart>
                   </template>
@@ -93,6 +101,7 @@
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
+                    <v-card-title class="text-center text-white">选手击杀、死亡、助攻箱线图</v-card-title>
                     <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
                   </template>
                   <template v-else>
@@ -101,20 +110,25 @@
                 </v-container>
 
 
-                <v-container class="chart-5-container">
+                <v-container class="chart-5-container" style="position: relative;">
                   <template v-if="Data.chart5.isChartVisible">
                     <v-row>
-                      <v-col>
+                      <v-col cols="2.5">
                         <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined
-                          label="横坐标" style="max-height: 50px;" />
+                          class="text-white" label="横坐标" style="max-height: 50px; " />
                       </v-col>
-                      <v-col>
+                      <v-col cols="7">
+                        <v-card-title class="text-center text-white">选手伤害、承伤、经济、补刀散点图</v-card-title>
+                      </v-col>
+                      <v-col cols="2.5">
                         <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
-                          label="纵坐标" style="max-height: 50px;" />
+                          class="text-white" label="纵坐标" style="max-height: 50px; " />
                       </v-col>
+
                     </v-row>
+                    <br>
                     <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
-                      :y-axis="chart5Axis(Data.chart5.yAxis)" />
+                      :y-axis="chart5Axis(Data.chart5.yAxis)" style="height: 36vh;" />
                   </template>
                   <template v-else>
                     <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
@@ -122,8 +136,10 @@
                 </v-container>
 
 
+
                 <v-container class="chart-6-container">
                   <template v-if="Data.chart6.isChartVisible">
+                    <v-card-title class="text-center text-white">选手雷达图</v-card-title>
                     <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
                     </contestantRadarChart>
                   </template>
@@ -142,6 +158,7 @@
 
                 <v-container class="chart-7-container">
                   <template v-if="Data.chart7.isChartVisible">
+                    <v-card-title class="text-center text-white">英雄bp数据词云图</v-card-title>
                     <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick">
                     </bpWordcloudChart>
                   </template>
@@ -153,12 +170,21 @@
 
                 <v-container class="chart-8-container">
                   <template v-if="Data.chart8.isChartVisible">
-                    <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
-                      class="ml-auto" :items="['胜率', 'ban率', 'pick率',]">
-                    </v-select>
-                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
-                    <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
-                      @update:model-value="updateChart8Data">
+                    <v-row>
+                      <v-col cols="2.5"></v-col>
+                      <v-col cols="7">
+                        <v-card-title class="text-center text-white">英雄胜率、Ban率、Pick率柱状图</v-card-title>
+                      </v-col>
+                      <v-col cols="2.5">
+                        <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
+                          class="text-white" :items="['胜率', 'ban率', 'pick率',]">
+                        </v-select>
+                      </v-col>
+                    </v-row>
+                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 26vh;"></bpBarChart>
+                    <v-pagination v-model="Data.chart8.currentPage" :show-first="false" :show-last="false"
+                      :length="Data.chart8.totalPage" :total-visible="5" @update:model-value="updateChart8Data"
+                      class="text-white">
                     </v-pagination>
                   </template>
                   <template v-else>
@@ -169,6 +195,7 @@
 
                 <v-container class="chart-9-container">
                   <template v-if="Data.chart9.isChartVisible">
+                    <v-card-title class="text-center text-white">英雄对位图</v-card-title>
                     <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
                   </template>
                   <template v-else>

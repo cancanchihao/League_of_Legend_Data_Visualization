@@ -19,20 +19,20 @@
 
     </div>
     <item :line_name='"历史比分"' :data1="props.teamData[0].winCount" :data2="props.teamData[1].winCount"
-        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"
-        :color1="'#409EFF'" :color2="'#E6A23C'"></item>
+        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem" :color1="'#409EFF'"
+        :color2="'#E6A23C'"></item>
     <item :line_name='"   KDA   "' :data1="props.teamData[0].kda" :data2="props.teamData[1].kda"
-        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"
-        :color1="'#409EFF'" :color2="'#E6A23C'"></item>
+        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem" :color1="'#409EFF'"
+        :color2="'#E6A23C'"></item>
     <item :line_name='"场均大龙"' :data1="props.teamData[0].baron" :data2="props.teamData[1].baron"
-        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"
-        :color1="'#409EFF'" :color2="'#E6A23C'"></item>
+        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem" :color1="'#409EFF'"
+        :color2="'#E6A23C'"></item>
     <item :line_name='"场均小龙"' :data1="props.teamData[0].dragon" :data2="props.teamData[1].dragon"
-        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"
-        :color1="'#409EFF'" :color2="'#E6A23C'"></item>
+        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem" :color1="'#409EFF'"
+        :color2="'#E6A23C'"></item>
     <item :line_name='"场均推塔"' :data1="props.teamData[0].turts" :data2="props.teamData[1].turts"
-        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem"
-        :color1="'#409EFF'" :color2="'#E6A23C'"></item>
+        :obj1="props.teamData[0].name" :obj2="props.teamData[1].name" :selectedItem="selectedItem" :color1="'#409EFF'"
+        :color2="'#E6A23C'"></item>
 </template>
 
 <script setup>
