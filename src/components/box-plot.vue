@@ -90,9 +90,37 @@ const renderChart = () => {
         xAxis: {
             type: 'category',
             data: xAxisData,
+            axisLabel: {
+                color: 'white'
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'white', // x轴线条颜色白色
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'white', // x轴网格线颜色白色
+                }
+            },
         },
         yAxis: {
             type: 'value',
+            axisLabel: {
+                color: 'white'
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'white', // x轴线条颜色白色
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'white', // x轴网格线颜色白色
+                }
+            },
         },
         series: [
             {

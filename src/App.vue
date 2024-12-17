@@ -52,8 +52,11 @@
 
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
-                    <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      class="elevation-1" style="width: 100%;height:100%;background:'';">
+                    <v-data-table-virtual 
+                    :headers="Data.chart1.headers" 
+                    :items="Data.chart1.teams" 
+                    item-value="name"
+                    style="width: 100%;height:100%;background:transparent;color: aliceblue;">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
@@ -155,7 +158,7 @@
                     <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
                       class="ml-auto" :items="['胜率', 'ban率', 'pick率',]">
                     </v-select>
-                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 23vh;"></bpBarChart>
+                    <bpBarChart :herodata="Data.chart8.heroData"></bpBarChart>
                     <v-pagination v-model="Data.chart8.currentPage" :length="Data.chart8.totalPage" :total-visible="5"
                       @update:model-value="updateChart8Data">
                     </v-pagination>
@@ -230,7 +233,7 @@ header {
 .big-title {
   font-size: 24px;
   line-height: 100%;
-  color: #fff;
+  color: #000000;
   font-weight: bold;
 
   text-align: center;
@@ -273,15 +276,13 @@ header {
   }
 }
 
-
-
 .chart-1-container {
   height: 40vh;
   width: 33.3vw;
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -289,24 +290,24 @@ header {
 
 
 .chart-2-container {
-  height: 40vh;
+  height: 45vh;
   width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
 }
 
 .chart-3-container {
-  height: 40vh;
+  height: 35vh;
   width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -318,7 +319,7 @@ header {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -330,7 +331,7 @@ header {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -342,7 +343,7 @@ header {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -354,7 +355,7 @@ header {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding-top: 0 !important;
@@ -362,24 +363,24 @@ header {
 }
 
 .chart-8-container {
-  height: 40vh;
+  height: 45vh;
   width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
 }
 
 .chart-9-container {
-  height: 40vh;
+  height: 35vh;
   width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 1vh;
+  margin: 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;

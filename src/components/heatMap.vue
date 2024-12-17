@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- 给 div 元素设置一个 id 来引用 -->
-        <div id="heatmap" style="width: 100%; height: 40vh;"></div>
+        <div id="heatmap" style="width: 100%; height: 45vh;"></div>
     </div>
 </template>
 
@@ -91,6 +91,14 @@ export default defineComponent({
                                 data: props.data, // 使用生成的数据
                                 label: {
                                     show: true,
+                                    fontSize: 10, // 调整字体大小
+                                    color: 'white', // 设置字体颜色为白色
+                                },
+                                itemStyle: {
+                                    opacity: 0.8, // 设置单元格透明度
+                                    shadowBlur: 10, // 设置阴影的模糊度
+                                    shadowColor: 'rgba(0, 0, 0, 0.5)', // 设置阴影的颜色
+                                    color: 'rgba(255, 255, 255, 0.1)', // 调整颜色的透明度和色调
                                 },
                                 emphasis: {
                                     itemStyle: {

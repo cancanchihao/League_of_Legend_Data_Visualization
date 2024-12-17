@@ -1,5 +1,5 @@
 <template>
-    <div ref="chartContainer" style="width: 100%; height: 30vh;"></div>
+    <div ref="chartContainer" style="width: 100%; height: 36vh;"></div>
 </template>
 
 <script setup>
@@ -46,19 +46,56 @@ const updateChart = () => {
             name: props.xAxis,
             type: 'value',
             min: 'dataMin', // 动态根据数据设置最小值
-            max: 'dataMax'  // 动态根据数据设置最大值
+            max: 'dataMax',  // 动态根据数据设置最大值
+            axisLabel: {
+                color: 'white'
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'white', // x轴线条颜色白色
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'white', // x轴网格线颜色白色
+                }
+            },
+            nameTextStyle: {
+                color: 'white', // 横轴标题文字颜色白色
+            }
         },
         yAxis: {
             name: props.yAxis,
             type: 'value',
             min: 'dataMin', // 动态根据数据设置最小值
-            max: 'dataMax'  // 动态根据数据设置最大值
+            max: 'dataMax',  // 动态根据数据设置最大值
+            axisLabel: {
+                color: 'white'
+            },
+            axisLine: {
+                lineStyle: {
+                    color: 'white', // y轴线条颜色白色
+                }
+            },
+            splitLine: {
+                show: true,
+                lineStyle: {
+                    color: 'white', // y轴网格线颜色白色
+                }
+            },
+            nameTextStyle: {
+                color: 'white', // 横轴标题文字颜色白色
+            }
         },
         series: [
             {
                 symbolSize: 8, // 点的大小
                 data: seriesData, // 数据源
-                type: 'scatter'
+                type: 'scatter',
+                itemStyle: {
+                    color: 'yellow', // Customize color if needed
+                },
             }
         ]
     };

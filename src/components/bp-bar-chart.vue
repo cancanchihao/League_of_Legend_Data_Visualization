@@ -1,6 +1,6 @@
 <!-- BarChart.vue -->
 <template>
-  <div ref="chart" style="width: 100%; height: 400px;"></div>
+  <div ref="chart" style="width: 100%; height: 34vh; margin-top: -4vh;"></div>
 </template>
 
 <script setup>
@@ -37,7 +37,7 @@ onMounted(() => {
     },
     legend: {
       data: ['Ban率', 'Pick率', '胜率'],
-      orient: 'vertical', // 垂直排列
+      orient: 'horizontal',
       right: '10%', // 设置legend位置
       top: '10%',
       textStyle: {
@@ -55,14 +55,36 @@ onMounted(() => {
         fontSize: 12 // 设置字体大小
       },
       barCategoryGap: '5%', // 不同name之间的间隙为15%
-      barGap: '0%' // 同一系列柱子之间没有间隙
+      barGap: '0%', // 同一系列柱子之间没有间隙
+      axisLabel: {
+          color: 'white'
+      },
+      axisLine: {
+          lineStyle: {
+              color: 'white', // x轴线条颜色白色
+          }
+      },
     },
     yAxis: {
       type: 'value',
       max: 100,
       axisLabel: {
         fontSize: 12 // 设置字体大小
-      }
+      },
+      axisLabel: {
+          color: 'white'
+      },
+      axisLine: {
+          lineStyle: {
+              color: 'white', // x轴线条颜色白色
+          }
+      },
+      splitLine: {
+          show: true,
+          lineStyle: {
+              color: 'white', // x轴网格线颜色白色
+          }
+      },
     },
     series: [
       {
@@ -108,11 +130,6 @@ onMounted(() => {
 <style scoped>
 /* 样式根据需要调整 */
 </style>
-
-
-
-
-
 
 <!-- <template>
   <div class="bp-bar-chart" ref="chart"></div>
