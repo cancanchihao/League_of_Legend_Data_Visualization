@@ -17,5 +17,5 @@ The datasets made by ourseleves have been publicly uploaded to Kaggle: [League o
 数据集已公开上传至kaggle，欢迎贡献意见: [League of Legends （LOL） 精细数据集](https://www.kaggle.com/datasets/walagooose/league-of-legends-lol-fine-grained-datasets)
 
 <?-
-vue3+vite,视图使用echarts
+vue3+vite,视图使用echarts.
 ->
