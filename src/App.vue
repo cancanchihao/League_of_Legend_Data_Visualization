@@ -2,7 +2,7 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/overLay.jpg" cover class="overlay-image full-screen-image">
+      <v-img src="src/assets/background.jpg" cover class="overlay-image full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
             <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
@@ -130,7 +130,8 @@
             <v-container class="chart-6-container">
               <template v-if="Data.chart6.isChartVisible">
                 <!-- 图6 -->
-                <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData"></contestantRadarChart>
+                <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
+                </contestantRadarChart>
               </template>
               <template v-else>
                 <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
