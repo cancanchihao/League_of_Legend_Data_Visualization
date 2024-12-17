@@ -224,7 +224,7 @@ header {
 .wrapper {
   /* padding-bottom: 5px;
   margin-top: -20px; */
-  height: 6vh;
+  height: 7vh;
   background-color: #2e2e2e !important;
   /* 背景颜色 */
   border-radius: 5px;
@@ -262,7 +262,7 @@ header {
   font-size: 24px;
   font-weight: bold;
   color: #fff;
-  margin-bottom: 3.5vh;
+  margin-top: 1vh;
 }
 
 .mainbox {
@@ -293,7 +293,7 @@ header {
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 2vh 0;
+  margin: 1vh 0 2vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -330,7 +330,7 @@ header {
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 3.3vh 0;
+  margin: 1vh 0 3.3vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
@@ -366,7 +366,7 @@ header {
   background-color: rgba(135, 135, 135, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
-  margin: 3.3vh 0;
+  margin: 1vh 0 3.3vh 0;
   transition: transform 0.3s ease;
   position: relative;
   padding-top: 0 !important;
