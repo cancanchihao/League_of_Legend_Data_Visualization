@@ -99,7 +99,7 @@
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
-                    <v-card-title class="text-center text-white">选手击杀、死亡、助攻箱线图</v-card-title>
+                    <v-card-title class="text-center text-white">选手场均击杀、死亡、助攻箱线图</v-card-title>
                     <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
                   </template>
                   <template v-else>
