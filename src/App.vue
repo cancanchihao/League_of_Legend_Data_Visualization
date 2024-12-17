@@ -2,7 +2,7 @@
   <v-app>
     <!-- 全屏遮罩层 -->
     <div v-if="showOverlay" class="full-screen-overlay">
-      <v-img src="src/assets/background.jpg" class="full-screen-image" background-size: cover>
+      <v-img src="src/assets/background.jpg" cover class="full-screen-image">
         <div class="overlay-content centered-content">
           <div class="overlay-box">
             <h1 class="overlay-title">欢迎来到LOL比赛数据平台</h1>
@@ -21,7 +21,7 @@
     <!-- 主页面内容 -->
     <template v-else>
       <div>
-        <v-img src="src/assets/1.png" class="background-image">
+        <v-img src="src/assets/3.png" class="background-image">
           <v-app-bar class="wrapper">
             <v-container class="title-container">
               <span class="big-title">
@@ -53,7 +53,7 @@
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
                     <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      class="elevation-1" style="width: 100%;height:100%;">
+                      class="elevation-1" style="width: 100%;height:100%;background:'';">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
@@ -65,7 +65,7 @@
                 <v-container class="chart-2-container">
                   <template v-if="Data.chart2.isChartVisible">
                     <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"
-                      @wordClick="heatmapclick" style="position: relative;" title="战队对抗胜率热力图" />
+                      @wordClick="heatmapclick" style="position: relative;" />
                   </template>
                   <template v-else>
                     <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />

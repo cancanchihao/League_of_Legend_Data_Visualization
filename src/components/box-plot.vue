@@ -77,8 +77,11 @@ const renderChart = () => {
     myChart.setOption({
         backgroundColor: '',
         title: {
-            text: '箱线图',
-            position: 'mid'
+            text: '选手击杀、死亡、助攻箱线图',
+            left: "center",
+            textStyle: {
+                color: 'white',
+            }
         },
         tooltip: {
             trigger: 'item',

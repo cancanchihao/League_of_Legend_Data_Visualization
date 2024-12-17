@@ -31,12 +31,7 @@ const selectedGroup = ref([props.players[0], props.players[1]]); // 默认选中
 
 // ECharts配置
 const chartOptions = ref({
-  title: {
-    text: positions[0], // 默认标题
-    textStyle: {
-      color: 'white',
-    }
-  },
+  backgroundColor: '',
   legend: {
     data: selectedGroup.value.map(player => ({
       name: player.name,
@@ -128,7 +123,7 @@ const selectGroup = (group) => {
   } else {
     groupIndex = 5;
   }
-  
+
   chartOptions.value.title.text = `${positions[groupIndex - 1]}`; // 更新标题为位置1、2或3
 };
 
@@ -174,11 +169,16 @@ watch(() => props.players, () => {
   <div class="container">
     <div class="player-list">
       <ul>
-        <li @click="selectGroup([props.players[0], props.players[1]])" :class="{ clicked: clickedStates[0] }" >{{ positions[0] }}</li>
-        <li @click="selectGroup([props.players[2], props.players[3]])" :class="{ clicked: clickedStates[1] }" >{{ positions[1] }}</li>
-        <li @click="selectGroup([props.players[4], props.players[5]])" :class="{ clicked: clickedStates[2] }" >{{ positions[2] }}</li>
-        <li @click="selectGroup([props.players[6], props.players[7]])" :class="{ clicked: clickedStates[3] }" >{{ positions[3] }}</li>
-        <li @click="selectGroup([props.players[8], props.players[9]])" :class="{ clicked: clickedStates[4] }" >{{ positions[4] }}</li>
+        <li @click="selectGroup([props.players[0], props.players[1]])" :class="{ clicked: clickedStates[0] }">{{
+          positions[0] }}</li>
+        <li @click="selectGroup([props.players[2], props.players[3]])" :class="{ clicked: clickedStates[1] }">{{
+          positions[1] }}</li>
+        <li @click="selectGroup([props.players[4], props.players[5]])" :class="{ clicked: clickedStates[2] }">{{
+          positions[2] }}</li>
+        <li @click="selectGroup([props.players[6], props.players[7]])" :class="{ clicked: clickedStates[3] }">{{
+          positions[3] }}</li>
+        <li @click="selectGroup([props.players[8], props.players[9]])" :class="{ clicked: clickedStates[4] }">{{
+          positions[4] }}</li>
       </ul>
     </div>
     <div id="radar-chart">
