@@ -4,10 +4,10 @@
             <v-img :src="'http://192.168.198.10:8080/hero/heroImg?heroName=' + props.heroData[0].name"
                 :alt=props.heroData[0].name></v-img>
         </v-avatar>
-        <el-button type="success" class="elb" @click="change(1)">
+        <el-button type="success" class="elb button1" @click="change(1)">
             {{ props.heroData[0].name }}
         </el-button>
-        <el-button type="info" class="elb" @click="change(2)">
+        <el-button type="info" class="elb button2" @click="change(2)">
             {{ props.heroData[1].name }}
         </el-button>
         <v-avatar class="avatar1" color="grey-darken-1" size="48" style="cursor: pointer;">
@@ -16,24 +16,24 @@
         </v-avatar>
     </div>
     <item :line_name='"对位胜场"' :data1="props.heroData[0].winCount" :data2="props.heroData[1].winCount"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
-        :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+        :color1="'#fce38a'" :color2="'#f38181'">
     </item>
     <item :line_name='"   KDA   "' :data1="props.heroData[0].kda" :data2="props.heroData[1].kda"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
-        :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+        :color1="'#fce38a'" :color2="'#f38181'">
     </item>
     <item :line_name='"场均经济"' :data1="props.heroData[0].gold" :data2="props.heroData[1].gold"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
-        :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+        :color1="'#fce38a'" :color2="'#f38181'">
     </item>
     <item :line_name='"场均伤害"' :data1="props.heroData[0].damage" :data2="props.heroData[1].damage"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
-        :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+        :color1="'#fce38a'" :color2="'#f38181'">
     </item>
     <item :line_name='"场均承伤"' :data1="props.heroData[0].tanking" :data2="props.heroData[1].tanking"
-        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" :color1="'#67C23A'"
-        :color2="'#909399'">
+        :obj1="props.heroData[0].name" :obj2="props.heroData[1].name" :selectedItem="selectedItem" 
+        :color1="'#fce38a'" :color2="'#f38181'">
     </item>
 </template>
 
@@ -81,5 +81,15 @@ const change = (id) => {
     /* 使 z-index 生效 */
     z-index: 10;
     /* 设置更高的 z-index */
+}
+
+.button1 {
+    background-color: #fce38a; /* 设置第一个按钮的背景色 */
+    font-size: 18px;
+}
+
+.button2 {
+    background-color: #f38181; /* 设置第二个按钮的背景色 */
+    font-size: 18px;
 }
 </style>
