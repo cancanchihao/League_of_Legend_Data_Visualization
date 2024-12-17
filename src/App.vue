@@ -21,7 +21,7 @@
     <!-- 主页面内容 -->
     <template v-else>
       <div>
-        <v-img src="src/assets/3.png" class="background-image">
+        <v-img src="src/assets/1.png" class="background-image">
           <v-app-bar class="wrapper">
             <v-container class="title-container">
               <span class="big-title">
@@ -275,8 +275,8 @@ header {
 
 
 .chart-1-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(0, 0, 0, 0.1);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -288,8 +288,8 @@ header {
 
 
 .chart-2-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -300,8 +300,8 @@ header {
 }
 
 .chart-3-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -312,8 +312,8 @@ header {
 }
 
 .chart-4-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -324,8 +324,8 @@ header {
 }
 
 .chart-5-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -336,8 +336,8 @@ header {
 }
 
 .chart-6-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -348,8 +348,8 @@ header {
 }
 
 .chart-7-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -361,8 +361,8 @@ header {
 }
 
 .chart-8-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -373,8 +373,8 @@ header {
 }
 
 .chart-9-container {
-  height: 30vh;
-  width: 33.3vh;
+  height: 40vh;
+  width: 33.3vw;
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
@@ -382,9 +382,6 @@ header {
   transition: transform 0.3s ease;
   position: relative;
   padding: 0 !important;
-
-  background-color: rgba(255, 255, 255, 0.8);
-  /* 半透明白色背景 */
   padding: 16px;
   /* 增加内部间距 */
 }
