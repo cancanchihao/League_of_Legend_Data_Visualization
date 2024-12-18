@@ -97,7 +97,7 @@ const renderChart = () => {
                 label: {
                     show: true,
                     fontSize: 16,
-                    formatter: (params) => params.value,
+                    formatter: (params) => params.value === 0 ? '' : params.value,
                 },
                 emphasis: { focus: 'series' },
                 data: [props.data1],
@@ -112,7 +112,7 @@ const renderChart = () => {
                 label: {
                     show: true,
                     fontSize: 16,
-                    formatter: (params) => params.value
+                    formatter: (params) => params.value === 0 ? '' : params.value,
                 },
                 emphasis: { focus: 'series' },
                 data: [props.data2],
