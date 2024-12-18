@@ -88,15 +88,15 @@ export default defineComponent({
                                 data: props.data, // 使用生成的数据
                                 label: {
                                     show: true,
-                                    fontSize: 10, // 调整字体大小
+                                    fontSize: 0, // 调整字体大小
                                     color: 'white', // 设置字体颜色为白色
                                     formatter: (params) => {
                                         const value = params.value[2];
                                         if (value === "-") {
                                             return "N/A";
                                         }
-                                        return Number.isInteger(value) 
-                                            ? `${value}` 
+                                        return Number.isInteger(value)
+                                            ? `${value}`
                                             : `${value.toFixed(1)}`;
                                     },
                                 },
