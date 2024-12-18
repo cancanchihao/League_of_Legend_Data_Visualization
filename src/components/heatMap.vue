@@ -83,9 +83,9 @@ export default defineComponent({
                                 type: "heatmap",
                                 data: props.data, // 使用生成的数据
                                 label: {
-                                    show: true,
-                                    fontSize: 10, // 调整字体大小
-                                    color: 'white', // 设置字体颜色为白色
+                                    show: false,
+                                    // fontSize: 10, // 调整字体大小
+                                    // color: 'white', // 设置字体颜色为白色
                                 },
                                 itemStyle: {
                                     opacity: 0.8, // 设置单元格透明度

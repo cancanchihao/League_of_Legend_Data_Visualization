@@ -17,6 +17,7 @@
     "lodash": "^4.17.21",
     "vue": "^3.5.12",
     "vue-echarts": "^7.0.3",
+    "vue-project": "file:",
     "vue-router": "^4.4.5",
     "vuetify": "^3.7.5"
   },
