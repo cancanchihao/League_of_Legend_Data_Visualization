@@ -1,4 +1,4 @@
-# League of Legend(LoL) Data Visualization
+# League of Legend (LoL) Data Visualization
 
 This is the open code repository for the group project made by a student team _"Six Sixes"_ at Sichuan University, _"Data Visualization"_ course.
 
