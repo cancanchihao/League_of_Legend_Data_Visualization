@@ -92,9 +92,9 @@ const defaultSeries = [{
             return (
                 'rgb(' +
                 [
-                    Math.round(Math.random() * 160),
-                    Math.round(Math.random() * 160),
-                    Math.round(Math.random() * 160),
+                    Math.round(Math.random() * 155 + 70), // RGB值范围从100到255
+                    Math.round(Math.random() * 155 + 70),
+                    Math.round(Math.random() * 155 + 70),
                 ].join(',') +
                 ')'
             )
@@ -108,11 +108,11 @@ const defaultSeries = [{
             textShadowColor: '#999'
         },
         itemStyle: {
-          // 更亮的发光效果
-          shadowBlur: 4,          // 发光模糊程度
-          shadowColor: 'white',  // 发光颜色
-          shadowOffsetX: 0,       // 水平偏移
-          shadowOffsetY: 0,       // 垂直偏移
+            // 更亮的发光效果
+            shadowBlur: 4,          // 发光模糊程度
+            shadowColor: 'white',  // 发光颜色
+            shadowOffsetX: 0,       // 水平偏移
+            shadowOffsetY: 0,       // 垂直偏移
         }
     },
 
