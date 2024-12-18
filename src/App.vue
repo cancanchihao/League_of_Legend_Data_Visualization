@@ -10,9 +10,7 @@
             <p class="overlay-description">
               这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，帮助您快速了解赛事动态。
             </p>
-            <v-btn size="x-large" color="primary" large @click="startApp"
-              >开始</v-btn
-            >
+            <v-btn size="x-large" color="primary" large @click="startApp">开始</v-btn>
           </div>
         </div>
       </v-img>
@@ -26,24 +24,17 @@
             <v-row>
               <v-col cols="4"></v-col>
               <v-col cols="4">
-                <v-card-title
-                  class="text-center"
-                  :style="{
-                    color: '#d4a860',
-                    fontWeight: 'bold',
-                    fontSize: '34px',
-                  }"
-                >
+                <v-card-title class="text-center" :style="{
+                  color: '#d4a860',
+                  fontWeight: 'bold',
+                  fontSize: '34px',
+                }">
                   {{ topic }}
                 </v-card-title>
               </v-col>
               <v-col cols="2"></v-col>
               <v-col cols="2" class="d-flex justify-center align-center">
-                <v-select
-                  label="选择赛段"
-                  v-model="topic"
-                  class="ml-auto text-white"
-                  @update:model-value="getChart1Data"
+                <v-select label="选择赛段" v-model="topic" class="ml-auto text-white" @update:model-value="getChart1Data"
                   :items="[
                     '2017 LPL 春季赛',
                     '2017 LPL 夏季赛',
@@ -69,8 +60,7 @@
                     '2024 LPL 春季赛',
                     '2024 LPL 夏季赛',
                     '2024 全球总决赛',
-                  ]"
-                >
+                  ]">
                 </v-select>
               </v-col>
             </v-row>
@@ -86,73 +76,41 @@
 
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >战队排行</v-card-title
-                    >
-                    <v-data-table-virtual
-                      :headers="Data.chart1.headers"
-                      :items="Data.chart1.teams"
-                      item-value="name"
+                    <v-card-title class="text-center text-white">战队排行</v-card-title>
+                    <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
                       style="
                         width: 100%;
                         height: 33vh;
                         background: transparent;
                         color: aliceblue;
                         margin: 0;
-                      "
-                    >
+                      ">
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
                 <v-container class="chart-2-container">
                   <template v-if="Data.chart2.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >战队胜率热力图</v-card-title
-                    >
-                    <heatMap
-                      :teamNames="Data.chart2.teamNames"
-                      :data="Data.chart2.heatMapData"
-                      @wordClick="heatmapclick"
-                      style="position: relative"
-                    />
+                    <v-card-title class="text-center text-white">战队胜率热力图</v-card-title>
+                    <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"
+                      @wordClick="heatmapclick" style="position: relative" />
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
                 <v-container class="chart-3-container">
                   <template v-if="Data.chart3.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >战队对抗图</v-card-title
-                    >
-                    <teamAgainstChart
-                      :teamData="Data.chart3.teamData"
-                      :matchType="topic"
-                    >
+                    <v-card-title class="text-center text-white">战队对抗图</v-card-title>
+                    <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
                     </teamAgainstChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
               </div>
@@ -164,91 +122,46 @@
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >选手场均击杀、死亡、助攻箱线图</v-card-title
-                    >
+                    <v-card-title class="text-center text-white">选手场均击杀、死亡、助攻箱线图</v-card-title>
                     <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
-                <v-container
-                  class="chart-5-container"
-                  style="position: relative"
-                >
+                <v-container class="chart-5-container" style="position: relative">
                   <template v-if="Data.chart5.isChartVisible">
                     <v-row>
                       <v-col cols="2.7">
-                        <v-select
-                          v-model="Data.chart5.xAxis"
-                          :items="Data.chart5.axisOptions"
-                          dense
-                          outlined
-                          class="text-white"
-                          label="横坐标"
-                          style="max-height: 50px"
-                        />
+                        <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined
+                          class="text-white" label="横坐标" style="max-height: 50px" />
                       </v-col>
                       <v-col cols="6.6">
-                        <v-card-title class="text-center text-white"
-                          >选手数据散点图</v-card-title
-                        >
+                        <v-card-title class="text-center text-white">选手数据散点图</v-card-title>
                       </v-col>
                       <v-col cols="2.7">
-                        <v-select
-                          v-model="Data.chart5.yAxis"
-                          :items="Data.chart5.axisOptions"
-                          dense
-                          outlined
-                          class="text-white"
-                          label="纵坐标"
-                          style="max-height: 50px"
-                        />
+                        <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
+                          class="text-white" label="纵坐标" style="max-height: 50px" />
                       </v-col>
                     </v-row>
                     <br />
-                    <scatterChart
-                      :data="Data.chart5.scatterDiagramData"
-                      :x-axis="chart5Axis(Data.chart5.xAxis)"
-                      :y-axis="chart5Axis(Data.chart5.yAxis)"
-                      style="height: 39vh"
-                    />
+                    <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
+                      :y-axis="chart5Axis(Data.chart5.yAxis)" style="height: 39vh" />
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
                 <v-container class="chart-6-container">
                   <template v-if="Data.chart6.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >选手雷达图</v-card-title
-                    >
-                    <contestantRadarChart
-                      :players="Data.chart6.players"
-                      :team="Data.chart3.teamData"
-                    >
+                    <v-card-title class="text-center text-white">选手雷达图</v-card-title>
+                    <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
                     </contestantRadarChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
               </div>
@@ -260,22 +173,12 @@
 
                 <v-container class="chart-7-container">
                   <template v-if="Data.chart7.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >英雄bp数据词云图</v-card-title
-                    >
-                    <bpWordcloudChart
-                      :data="Data.chart7.bpWordCloudData"
-                      @wordClick="bpwordcloudclick"
-                    >
+                    <v-card-title class="text-center text-white">英雄bp数据词云图</v-card-title>
+                    <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick">
                     </bpWordcloudChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
@@ -287,52 +190,29 @@
                         <v-card-title class="text-center text-white">英雄胜率、bp率柱状图</v-card-title>
                       </v-col>
                       <v-col cols="3">
-                        <v-select label="排序方式" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
+                        <v-select label="排序" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
                           class="text-white" :items="['Ban率', 'Pick率', '胜率',]">
                         </v-select>
                       </v-col>
                     </v-row>
-                    <bpBarChart
-                      :herodata="Data.chart8.heroData"
-                      style="max-height: 26vh"
-                    ></bpBarChart>
-                    <v-pagination
-                      v-model="Data.chart8.currentPage"
-                      :show-first="false"
-                      :show-last="false"
-                      :length="Data.chart8.totalPage"
-                      :total-visible="5"
-                      @update:model-value="updateChart8Data"
-                      class="text-white"
-                    >
+                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 26vh"></bpBarChart>
+                    <v-pagination v-model="Data.chart8.currentPage" :show-first="false" :show-last="false"
+                      :length="Data.chart8.totalPage" :total-visible="5" @update:model-value="updateChart8Data"
+                      class="text-white">
                     </v-pagination>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
 
                 <v-container class="chart-9-container">
                   <template v-if="Data.chart9.isChartVisible">
-                    <v-card-title class="text-center text-white"
-                      >英雄对位图</v-card-title
-                    >
-                    <heroAgainstChart
-                      :heroData="Data.chart9.herodata"
-                    ></heroAgainstChart>
+                    <v-card-title class="text-center text-white">英雄对位图</v-card-title>
+                    <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular
-                      indeterminate
-                      color="primary"
-                      size="64"
-                      class="progress-center"
-                    />
+                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
                   </template>
                 </v-container>
               </div>
