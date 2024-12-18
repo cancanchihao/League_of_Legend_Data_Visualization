@@ -122,7 +122,7 @@
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
-                    <v-card-title class="text-center text-white">选手场均击杀、死亡、助攻箱线图</v-card-title>
+                    <v-card-title class="text-center text-white">选手击杀、死亡、助攻总数箱线图</v-card-title>
                     <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
                   </template>
                   <template v-else>
@@ -173,7 +173,7 @@
 
                 <v-container class="chart-7-container">
                   <template v-if="Data.chart7.isChartVisible">
-                    <v-card-title class="text-center text-white">英雄bp数据词云图</v-card-title>
+                    <v-card-title class="text-center text-white">英雄bp词云图</v-card-title>
                     <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick">
                     </bpWordcloudChart>
                   </template>
@@ -301,8 +301,8 @@ header {
   }
 }
 
-.v-data-table .v-table__wrapper > table > thead > tr > th.v-data-table__th--sortable:hover,
-.v-data-table .v-table__wrapper > table tbody > tr > th.v-data-table__th--sortable:hover {
+.v-data-table .v-table__wrapper>table>thead>tr>th.v-data-table__th--sortable:hover,
+.v-data-table .v-table__wrapper>table tbody>tr>th.v-data-table__th--sortable:hover {
   color: rgba(255, 251, 0, 0.87) !important;
 }
 
