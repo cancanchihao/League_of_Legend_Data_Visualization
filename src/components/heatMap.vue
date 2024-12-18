@@ -8,6 +8,7 @@
 <script lang="ts">
 import { defineComponent, onMounted, PropType, nextTick } from "vue";
 import * as echarts from "echarts";
+import { tr } from "element-plus/es/locale";
 
 export default defineComponent({
     name: "Heatmap",
@@ -76,6 +77,9 @@ export default defineComponent({
                             // inRange: {
                             //     color: ["#d4e157", "#ffee58", "#f57f17"],
                             // },
+                            formatter: (value) => {
+                                return value.toFixed(1); // 保留一位小数
+                            }
                         },
                         series: [
                             {
@@ -83,9 +87,18 @@ export default defineComponent({
                                 type: "heatmap",
                                 data: props.data, // 使用生成的数据
                                 label: {
-                                    show: false,
-                                    // fontSize: 10, // 调整字体大小
-                                    // color: 'white', // 设置字体颜色为白色
+                                    show: true,
+                                    fontSize: 10, // 调整字体大小
+                                    color: 'white', // 设置字体颜色为白色
+                                    formatter: (params) => {
+                                        const value = params.value[2];
+                                        if (value === "-") {
+                                            return "N/A";
+                                        }
+                                        return Number.isInteger(value) 
+                                            ? `${value}` 
+                                            : `${value.toFixed(1)}`;
+                                    },
                                 },
                                 itemStyle: {
                                     opacity: 0.8, // 设置单元格透明度
