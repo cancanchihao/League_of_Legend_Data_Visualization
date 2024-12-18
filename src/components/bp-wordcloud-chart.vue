@@ -106,6 +106,13 @@ const defaultSeries = [{
         textStyle: {
             textShadowBlur: 10,
             textShadowColor: '#999'
+        },
+        itemStyle: {
+          // 更亮的发光效果
+          shadowBlur: 4,          // 发光模糊程度
+          shadowColor: 'white',  // 发光颜色
+          shadowOffsetX: 0,       // 水平偏移
+          shadowOffsetY: 0,       // 垂直偏移
         }
     },
 
