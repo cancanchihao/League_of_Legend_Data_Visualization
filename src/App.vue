@@ -2242,7 +2242,7 @@ const Data = reactive({
     ],
     // heroData: [],
     item: "Ban率",
-    sortWay: "pick_rate",
+    sortWay: "ban_rate",
     totalPage: 12,
     currentPage: 1,
   },
