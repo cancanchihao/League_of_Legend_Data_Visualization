@@ -31,7 +31,7 @@ public class HeroCompResult {
             this.tanking = Math.round(heroVS.getHero1_tanking() / heroVS.getMatches_played() * 100.0) / 100.0;
         } else {
             this.winCount = heroVS.getMatches_won_2();
-            if (heroVS.getHero1_deaths() == 0) {
+            if (heroVS.getHero2_deaths() == 0) {
                 this.KDA = heroVS.getHero2_kills() + heroVS.getHero2_assists();
             } else {
                 this.KDA = Math.round(
