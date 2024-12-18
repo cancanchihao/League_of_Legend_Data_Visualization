@@ -10,7 +10,9 @@
             <p class="overlay-description">
               这里提供了多赛季比赛数据分析，包括战队对抗、选手表现、英雄统计等，帮助您快速了解赛事动态。
             </p>
-            <v-btn size="x-large" color="primary" large @click="startApp">开始</v-btn>
+            <v-btn size="x-large" color="primary" large @click="startApp"
+              >开始</v-btn
+            >
           </div>
         </div>
       </v-img>
@@ -24,183 +26,315 @@
             <v-row>
               <v-col cols="4"></v-col>
               <v-col cols="4">
-                <v-card-title class="text-center" :style="{ color: '#d4a860', fontWeight: 'bold', fontSize: '34px' }">
+                <v-card-title
+                  class="text-center"
+                  :style="{
+                    color: '#d4a860',
+                    fontWeight: 'bold',
+                    fontSize: '34px',
+                  }"
+                >
                   {{ topic }}
                 </v-card-title>
               </v-col>
               <v-col cols="2"></v-col>
               <v-col cols="2" class="d-flex justify-center align-center">
-                <v-select label="选择赛段" v-model='topic' class="ml-auto text-white" @update:model-value="getChart1Data"
+                <v-select
+                  label="选择赛段"
+                  v-model="topic"
+                  class="ml-auto text-white"
+                  @update:model-value="getChart1Data"
                   :items="[
-                    '2017 LPL 春季赛', '2017 LPL 夏季赛', '2017 全球总决赛',
-                    '2018 LPL 春季赛', '2018 LPL 夏季赛', '2018 全球总决赛',
-                    '2019 LPL 春季赛', '2019 LPL 夏季赛', '2019 全球总决赛',
-                    '2020 LPL 春季赛', '2020 LPL 夏季赛', '2020 全球总决赛',
-                    '2021 LPL 春季赛', '2021 LPL 夏季赛', '2021 全球总决赛',
-                    '2022 LPL 春季赛', '2022 LPL 夏季赛', '2022 全球总决赛',
-                    '2023 LPL 春季赛', '2023 LPL 夏季赛', '2023 全球总决赛',
-                    '2024 LPL 春季赛', '2024 LPL 夏季赛', '2024 全球总决赛',]">
+                    '2017 LPL 春季赛',
+                    '2017 LPL 夏季赛',
+                    '2017 全球总决赛',
+                    '2018 LPL 春季赛',
+                    '2018 LPL 夏季赛',
+                    '2018 全球总决赛',
+                    '2019 LPL 春季赛',
+                    '2019 LPL 夏季赛',
+                    '2019 全球总决赛',
+                    '2020 LPL 春季赛',
+                    '2020 LPL 夏季赛',
+                    '2020 全球总决赛',
+                    '2021 LPL 春季赛',
+                    '2021 LPL 夏季赛',
+                    '2021 全球总决赛',
+                    '2022 LPL 春季赛',
+                    '2022 LPL 夏季赛',
+                    '2022 全球总决赛',
+                    '2023 LPL 春季赛',
+                    '2023 LPL 夏季赛',
+                    '2023 全球总决赛',
+                    '2024 LPL 春季赛',
+                    '2024 LPL 夏季赛',
+                    '2024 全球总决赛',
+                  ]"
+                >
                 </v-select>
               </v-col>
             </v-row>
           </v-app-bar>
 
-
           <v-main>
             <section class="mainbox">
               <div class="column">
-                <div class="little-title">
-                  战队
-                </div>
-
+                <div class="little-title">战队</div>
 
                 <v-container class="chart-1-container">
                   <template v-if="Data.chart1.isChartVisible">
-                    <v-card-title class="text-center text-white">战队排行</v-card-title>
-                    <v-data-table-virtual :headers="Data.chart1.headers" :items="Data.chart1.teams" item-value="name"
-                      style="width: 100%; height: 33vh; background:transparent; color: aliceblue; margin: 0;">
+                    <v-card-title class="text-center text-white"
+                      >战队排行</v-card-title
+                    >
+                    <v-data-table-virtual
+                      :headers="Data.chart1.headers"
+                      :items="Data.chart1.teams"
+                      item-value="name"
+                      style="
+                        width: 100%;
+                        height: 33vh;
+                        background: transparent;
+                        color: aliceblue;
+                        margin: 0;
+                      "
+                    >
                     </v-data-table-virtual>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
 
                 <v-container class="chart-2-container">
                   <template v-if="Data.chart2.isChartVisible">
-                    <v-card-title class="text-center text-white">战队胜率热力图</v-card-title>
-                    <heatMap :teamNames="Data.chart2.teamNames" :data="Data.chart2.heatMapData"
-                      @wordClick="heatmapclick" style="position: relative;" />
+                    <v-card-title class="text-center text-white"
+                      >战队胜率热力图</v-card-title
+                    >
+                    <heatMap
+                      :teamNames="Data.chart2.teamNames"
+                      :data="Data.chart2.heatMapData"
+                      @wordClick="heatmapclick"
+                      style="position: relative"
+                    />
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
 
                 <v-container class="chart-3-container">
                   <template v-if="Data.chart3.isChartVisible">
-                    <v-card-title class="text-center text-white">战队对抗图</v-card-title>
-                    <teamAgainstChart :teamData="Data.chart3.teamData" :matchType="topic">
+                    <v-card-title class="text-center text-white"
+                      >战队对抗图</v-card-title
+                    >
+                    <teamAgainstChart
+                      :teamData="Data.chart3.teamData"
+                      :matchType="topic"
+                    >
                     </teamAgainstChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
               </div>
 
-
               <div class="column">
-                <div class="little-title">
-                  选手
-                </div>
+                <div class="little-title">选手</div>
 
                 <v-container class="chart-4-container">
                   <template v-if="Data.chart4.isChartVisible">
-                    <v-card-title class="text-center text-white">选手场均击杀、死亡、助攻箱线图</v-card-title>
+                    <v-card-title class="text-center text-white"
+                      >选手场均击杀、死亡、助攻箱线图</v-card-title
+                    >
                     <boxPlot :data="Data.chart4.playerBoxPlotData"></boxPlot>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
 
-
-                <v-container class="chart-5-container" style="position: relative;">
+                <v-container
+                  class="chart-5-container"
+                  style="position: relative"
+                >
                   <template v-if="Data.chart5.isChartVisible">
                     <v-row>
                       <v-col cols="2.7">
-                        <v-select v-model="Data.chart5.xAxis" :items="Data.chart5.axisOptions" dense outlined
-                          class="text-white" label="横坐标" style="max-height: 50px; " />
+                        <v-select
+                          v-model="Data.chart5.xAxis"
+                          :items="Data.chart5.axisOptions"
+                          dense
+                          outlined
+                          class="text-white"
+                          label="横坐标"
+                          style="max-height: 50px"
+                        />
                       </v-col>
                       <v-col cols="6.6">
-                        <v-card-title class="text-center text-white">选手数据散点图</v-card-title>
+                        <v-card-title class="text-center text-white"
+                          >选手数据散点图</v-card-title
+                        >
                       </v-col>
                       <v-col cols="2.7">
-                        <v-select v-model="Data.chart5.yAxis" :items="Data.chart5.axisOptions" dense outlined
-                          class="text-white" label="纵坐标" style="max-height: 50px; " />
+                        <v-select
+                          v-model="Data.chart5.yAxis"
+                          :items="Data.chart5.axisOptions"
+                          dense
+                          outlined
+                          class="text-white"
+                          label="纵坐标"
+                          style="max-height: 50px"
+                        />
                       </v-col>
-
                     </v-row>
-                    <br>
-                    <scatterChart :data="Data.chart5.scatterDiagramData" :x-axis="chart5Axis(Data.chart5.xAxis)"
-                      :y-axis="chart5Axis(Data.chart5.yAxis)" style="height: 39vh;" />
+                    <br />
+                    <scatterChart
+                      :data="Data.chart5.scatterDiagramData"
+                      :x-axis="chart5Axis(Data.chart5.xAxis)"
+                      :y-axis="chart5Axis(Data.chart5.yAxis)"
+                      style="height: 39vh"
+                    />
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
-
 
                 <v-container class="chart-6-container">
                   <template v-if="Data.chart6.isChartVisible">
-                    <v-card-title class="text-center text-white">选手雷达图</v-card-title>
-                    <contestantRadarChart :players="Data.chart6.players" :team="Data.chart3.teamData">
+                    <v-card-title class="text-center text-white"
+                      >选手雷达图</v-card-title
+                    >
+                    <contestantRadarChart
+                      :players="Data.chart6.players"
+                      :team="Data.chart3.teamData"
+                    >
                     </contestantRadarChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
               </div>
 
-
               <div class="column">
-                <div class="little-title">
-                  英雄
-                </div>
+                <div class="little-title">英雄</div>
 
                 <v-container class="chart-7-container">
                   <template v-if="Data.chart7.isChartVisible">
-                    <v-card-title class="text-center text-white">英雄bp数据词云图</v-card-title>
-                    <bpWordcloudChart :data="Data.chart7.bpWordCloudData" @wordClick="bpwordcloudclick">
+                    <v-card-title class="text-center text-white"
+                      >英雄bp数据词云图</v-card-title
+                    >
+                    <bpWordcloudChart
+                      :data="Data.chart7.bpWordCloudData"
+                      @wordClick="bpwordcloudclick"
+                    >
                     </bpWordcloudChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
 
                 <v-container class="chart-8-container">
                   <template v-if="Data.chart8.isChartVisible">
                     <v-row>
                       <v-col cols="2.5"></v-col>
                       <v-col cols="7">
-                        <v-card-title class="text-center text-white">英雄胜率、Ban率、Pick率柱状图</v-card-title>
+                        <v-card-title class="text-center text-white"
+                          >英雄胜率、Ban率、Pick率柱状图</v-card-title
+                        >
                       </v-col>
                       <v-col cols="2.5">
-                        <v-select label="排序方式(横向)" v-model='Data.chart8.item' @update:model-value="updateChart8Data"
-                          class="text-white" :items="['Ban率', 'Pick率', '胜率',]">
+                        <v-select
+                          label="排序方式(横向)"
+                          v-model="Data.chart8.item"
+                          @update:model-value="updateChart8Data"
+                          class="text-white"
+                          :items="['Ban率', 'Pick率', '胜率']"
+                        >
                         </v-select>
                       </v-col>
                     </v-row>
-                    <bpBarChart :herodata="Data.chart8.heroData" style="max-height: 26vh;"></bpBarChart>
-                    <v-pagination v-model="Data.chart8.currentPage" :show-first="false" :show-last="false"
-                      :length="Data.chart8.totalPage" :total-visible="5" @update:model-value="updateChart8Data"
-                      class="text-white">
+                    <bpBarChart
+                      :herodata="Data.chart8.heroData"
+                      style="max-height: 26vh"
+                    ></bpBarChart>
+                    <v-pagination
+                      v-model="Data.chart8.currentPage"
+                      :show-first="false"
+                      :show-last="false"
+                      :length="Data.chart8.totalPage"
+                      :total-visible="5"
+                      @update:model-value="updateChart8Data"
+                      class="text-white"
+                    >
                     </v-pagination>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
 
                 <v-container class="chart-9-container">
                   <template v-if="Data.chart9.isChartVisible">
-                    <v-card-title class="text-center text-white">英雄对位图</v-card-title>
-                    <heroAgainstChart :heroData="Data.chart9.herodata"></heroAgainstChart>
+                    <v-card-title class="text-center text-white"
+                      >英雄对位图</v-card-title
+                    >
+                    <heroAgainstChart
+                      :heroData="Data.chart9.herodata"
+                    ></heroAgainstChart>
                   </template>
                   <template v-else>
-                    <v-progress-circular indeterminate color="primary" size="64" class="progress-center" />
+                    <v-progress-circular
+                      indeterminate
+                      color="primary"
+                      size="64"
+                      class="progress-center"
+                    />
                   </template>
                 </v-container>
-
               </div>
             </section>
           </v-main>
@@ -209,7 +343,6 @@
     </template>
   </v-app>
 </template>
-
 
 <style>
 html,
@@ -238,7 +371,7 @@ header {
 }
 
 .title-container {
-  background-color: '';
+  background-color: "";
   position: absolute;
   /* 绝对定位，让标题位于父容器中央 */
   left: 50%;
@@ -299,7 +432,6 @@ header {
   position: relative;
   padding: 0 !important;
 }
-
 
 .chart-2-container {
   height: 45vh;
@@ -426,8 +558,6 @@ header {
   position: relative;
 } */
 
-
-
 .centered-content {
   position: absolute;
   top: 50%;
@@ -468,50 +598,45 @@ header {
 }
 </style>
 
-
-
-
 <script setup lang="ts">
-import { ref, reactive, onMounted, onBeforeMount } from 'vue'
-import axios from 'axios'
-import 'echarts-wordcloud';
+import { ref, reactive, onMounted, onBeforeMount } from "vue";
+import axios from "axios";
+import "echarts-wordcloud";
 
-import contestantRadarChart from './components/contestant-radar-chart.vue';
-import bpBarChart from './components/bp-bar-chart.vue';
-import bpWordcloudChart from './components/bp-wordcloud-chart.vue';
-import heroAgainstChart from './components/hero-against-chart.vue';
-import teamAgainstChart from './components/team-against-chart.vue';
-import heatMap from './components/heatMap.vue';
-import boxPlot from './components/box-plot.vue';
-import scatterChart from './components/scatter-chart.vue';
+import contestantRadarChart from "./components/contestant-radar-chart.vue";
+import bpBarChart from "./components/bp-bar-chart.vue";
+import bpWordcloudChart from "./components/bp-wordcloud-chart.vue";
+import heroAgainstChart from "./components/hero-against-chart.vue";
+import teamAgainstChart from "./components/team-against-chart.vue";
+import heatMap from "./components/heatMap.vue";
+import boxPlot from "./components/box-plot.vue";
+import scatterChart from "./components/scatter-chart.vue";
 
-
-
-const topic = ref('2024 全球总决赛')
-const showOverlay = ref(true)
+const topic = ref("2024 全球总决赛");
+const showOverlay = ref(true);
 
 function startApp() {
-  showOverlay.value = false
+  showOverlay.value = false;
 }
 
 function chart5Axis(axis) {
-  if (axis == '分均经济') {
-    return 'gold'
+  if (axis == "分均经济") {
+    return "gold";
   }
-  if (axis == '场均伤害') {
-    return 'damage'
+  if (axis == "场均伤害") {
+    return "damage";
   }
-  if (axis == '场均承伤') {
-    return 'tanking'
+  if (axis == "场均承伤") {
+    return "tanking";
   }
-  if (axis == '分均补刀') {
-    return 'cs'
+  if (axis == "分均补刀") {
+    return "cs";
   }
 }
 
 interface Header {
   title: string;
-  align: "start" | "end" | "center";  // 限定 align 的值
+  align: "start" | "end" | "center"; // 限定 align 的值
   key: string;
 }
 
@@ -519,108 +644,108 @@ const Data = reactive({
   chart1: {
     isChartVisible: ref(true),
     headers: [
-      { title: '战队', align: 'start', key: 'team', },
-      { title: '胜场', align: 'end', key: 'matches_won' },
-      { title: '负场', align: 'end', key: 'matches_lose' },
-      { title: '胜率%', align: 'end', key: 'win_rate', }
+      { title: "战队", align: "start", key: "team" },
+      { title: "胜场", align: "end", key: "matches_won" },
+      { title: "负场", align: "end", key: "matches_lose" },
+      { title: "胜率%", align: "end", key: "win_rate" },
     ] as Header[],
     teams: [
       {
-        "team": "T1",
-        "matches_won": 13,
-        "matches_lose": 4,
-        "win_rate": 76.47
+        team: "T1",
+        matches_won: 13,
+        matches_lose: 4,
+        win_rate: 76.47,
       },
       {
-        "team": "BLG",
-        "matches_won": 13,
-        "matches_lose": 6,
-        "win_rate": 68.42
+        team: "BLG",
+        matches_won: 13,
+        matches_lose: 6,
+        win_rate: 68.42,
       },
       {
-        "team": "LNG",
-        "matches_won": 4,
-        "matches_lose": 3,
-        "win_rate": 57.14
+        team: "LNG",
+        matches_won: 4,
+        matches_lose: 3,
+        win_rate: 57.14,
       },
       {
-        "team": "HLE",
-        "matches_won": 6,
-        "matches_lose": 5,
-        "win_rate": 54.55
+        team: "HLE",
+        matches_won: 6,
+        matches_lose: 5,
+        win_rate: 54.55,
       },
       {
-        "team": "GEN",
-        "matches_won": 7,
-        "matches_lose": 6,
-        "win_rate": 53.85
+        team: "GEN",
+        matches_won: 7,
+        matches_lose: 6,
+        win_rate: 53.85,
       },
       {
-        "team": "TL",
-        "matches_won": 5,
-        "matches_lose": 5,
-        "win_rate": 50
+        team: "TL",
+        matches_won: 5,
+        matches_lose: 5,
+        win_rate: 50,
       },
       {
-        "team": "FLY",
-        "matches_won": 7,
-        "matches_lose": 7,
-        "win_rate": 50
+        team: "FLY",
+        matches_won: 7,
+        matches_lose: 7,
+        win_rate: 50,
       },
       {
-        "team": "WBG",
-        "matches_won": 8,
-        "matches_lose": 8,
-        "win_rate": 50
+        team: "WBG",
+        matches_won: 8,
+        matches_lose: 8,
+        win_rate: 50,
       },
       {
-        "team": "TES",
-        "matches_won": 4,
-        "matches_lose": 4,
-        "win_rate": 50
+        team: "TES",
+        matches_won: 4,
+        matches_lose: 4,
+        win_rate: 50,
       },
       {
-        "team": "GAM",
-        "matches_won": 3,
-        "matches_lose": 5,
-        "win_rate": 37.5
+        team: "GAM",
+        matches_won: 3,
+        matches_lose: 5,
+        win_rate: 37.5,
       },
       {
-        "team": "G2",
-        "matches_won": 3,
-        "matches_lose": 5,
-        "win_rate": 37.5
+        team: "G2",
+        matches_won: 3,
+        matches_lose: 5,
+        win_rate: 37.5,
       },
       {
-        "team": "FNC",
-        "matches_won": 2,
-        "matches_lose": 4,
-        "win_rate": 33.33
+        team: "FNC",
+        matches_won: 2,
+        matches_lose: 4,
+        win_rate: 33.33,
       },
       {
-        "team": "DK",
-        "matches_won": 3,
-        "matches_lose": 6,
-        "win_rate": 33.33
+        team: "DK",
+        matches_won: 3,
+        matches_lose: 6,
+        win_rate: 33.33,
       },
       {
-        "team": "PSG",
-        "matches_won": 1,
-        "matches_lose": 4,
-        "win_rate": 20
+        team: "PSG",
+        matches_won: 1,
+        matches_lose: 4,
+        win_rate: 20,
       },
       {
-        "team": "MDK",
-        "matches_won": 1,
-        "matches_lose": 4,
-        "win_rate": 20
+        team: "MDK",
+        matches_won: 1,
+        matches_lose: 4,
+        win_rate: 20,
       },
       {
-        "team": "PNG",
-        "matches_won": 0,
-        "matches_lose": 4,
-        "win_rate": 0
-      }
+        team: "PNG",
+        matches_won: 0,
+        matches_lose: 4,
+        win_rate: 0,
+      },
     ],
   },
 
@@ -643,1289 +768,265 @@ const Data = reactive({
       "BLG",
       "TES",
       "MDK",
-      "DK"
+      "DK",
     ],
     heatMapData: [
-      [
-        0,
-        0,
-        "-"
-      ],
-      [
-        0,
-        1,
-        "-"
-      ],
-      [
-        0,
-        2,
-        "-"
-      ],
-      [
-        0,
-        3,
-        "-"
-      ],
-      [
-        0,
-        4,
-        "-"
-      ],
-      [
-        0,
-        5,
-        100.0
-      ],
-      [
-        0,
-        6,
-        "-"
-      ],
-      [
-        0,
-        7,
-        "-"
-      ],
-      [
-        0,
-        8,
-        "-"
-      ],
-      [
-        0,
-        9,
-        100.0
-      ],
-      [
-        0,
-        10,
-        "-"
-      ],
-      [
-        0,
-        11,
-        "-"
-      ],
-      [
-        0,
-        12,
-        100.0
-      ],
-      [
-        0,
-        13,
-        "-"
-      ],
-      [
-        0,
-        14,
-        0.0
-      ],
-      [
-        0,
-        15,
-        "-"
-      ],
-      [
-        1,
-        0,
-        "-"
-      ],
-      [
-        1,
-        1,
-        "-"
-      ],
-      [
-        1,
-        2,
-        "-"
-      ],
-      [
-        1,
-        3,
-        "-"
-      ],
-      [
-        1,
-        4,
-        25.0
-      ],
-      [
-        1,
-        5,
-        "-"
-      ],
-      [
-        1,
-        6,
-        "-"
-      ],
-      [
-        1,
-        7,
-        "-"
-      ],
-      [
-        1,
-        8,
-        0.0
-      ],
-      [
-        1,
-        9,
-        "-"
-      ],
-      [
-        1,
-        10,
-        "-"
-      ],
-      [
-        1,
-        11,
-        0.0
-      ],
-      [
-        1,
-        12,
-        33.33
-      ],
-      [
-        1,
-        13,
-        25.0
-      ],
-      [
-        1,
-        14,
-        "-"
-      ],
-      [
-        1,
-        15,
-        "-"
-      ],
-      [
-        2,
-        0,
-        "-"
-      ],
-      [
-        2,
-        1,
-        "-"
-      ],
-      [
-        2,
-        2,
-        "-"
-      ],
-      [
-        2,
-        3,
-        "-"
-      ],
-      [
-        2,
-        4,
-        "-"
-      ],
-      [
-        2,
-        5,
-        "-"
-      ],
-      [
-        2,
-        6,
-        0.0
-      ],
-      [
-        2,
-        7,
-        66.67
-      ],
-      [
-        2,
-        8,
-        "-"
-      ],
-      [
-        2,
-        9,
-        "-"
-      ],
-      [
-        2,
-        10,
-        "-"
-      ],
-      [
-        2,
-        11,
-        "-"
-      ],
-      [
-        2,
-        12,
-        "-"
-      ],
-      [
-        2,
-        13,
-        100.0
-      ],
-      [
-        2,
-        14,
-        "-"
-      ],
-      [
-        2,
-        15,
-        100.0
-      ],
-      [
-        3,
-        0,
-        "-"
-      ],
-      [
-        3,
-        1,
-        "-"
-      ],
-      [
-        3,
-        2,
-        "-"
-      ],
-      [
-        3,
-        3,
-        "-"
-      ],
-      [
-        3,
-        4,
-        "-"
-      ],
-      [
-        3,
-        5,
-        66.67
-      ],
-      [
-        3,
-        6,
-        33.33
-      ],
-      [
-        3,
-        7,
-        100.0
-      ],
-      [
-        3,
-        8,
-        "-"
-      ],
-      [
-        3,
-        9,
-        "-"
-      ],
-      [
-        3,
-        10,
-        100.0
-      ],
-      [
-        3,
-        11,
-        0.0
-      ],
-      [
-        3,
-        12,
-        "-"
-      ],
-      [
-        3,
-        13,
-        "-"
-      ],
-      [
-        3,
-        14,
-        "-"
-      ],
-      [
-        3,
-        15,
-        "-"
-      ],
-      [
-        4,
-        0,
-        "-"
-      ],
-      [
-        4,
-        1,
-        75.0
-      ],
-      [
-        4,
-        2,
-        "-"
-      ],
-      [
-        4,
-        3,
-        "-"
-      ],
-      [
-        4,
-        4,
-        "-"
-      ],
-      [
-        4,
-        5,
-        40.0
-      ],
-      [
-        4,
-        6,
-        "-"
-      ],
-      [
-        4,
-        7,
-        0.0
-      ],
-      [
-        4,
-        8,
-        "-"
-      ],
-      [
-        4,
-        9,
-        50.0
-      ],
-      [
-        4,
-        10,
-        "-"
-      ],
-      [
-        4,
-        11,
-        "-"
-      ],
-      [
-        4,
-        12,
-        "-"
-      ],
-      [
-        4,
-        13,
-        0.0
-      ],
-      [
-        4,
-        14,
-        "-"
-      ],
-      [
-        4,
-        15,
-        "-"
-      ],
-      [
-        5,
-        0,
-        0.0
-      ],
-      [
-        5,
-        1,
-        "-"
-      ],
-      [
-        5,
-        2,
-        "-"
-      ],
-      [
-        5,
-        3,
-        33.33
-      ],
-      [
-        5,
-        4,
-        60.0
-      ],
-      [
-        5,
-        5,
-        "-"
-      ],
-      [
-        5,
-        6,
-        0.0
-      ],
-      [
-        5,
-        7,
-        "-"
-      ],
-      [
-        5,
-        8,
-        "-"
-      ],
-      [
-        5,
-        9,
-        66.67
-      ],
-      [
-        5,
-        10,
-        "-"
-      ],
-      [
-        5,
-        11,
-        "-"
-      ],
-      [
-        5,
-        12,
-        "-"
-      ],
-      [
-        5,
-        13,
-        "-"
-      ],
-      [
-        5,
-        14,
-        "-"
-      ],
-      [
-        5,
-        15,
-        100.0
-      ],
-      [
-        6,
-        0,
-        "-"
-      ],
-      [
-        6,
-        1,
-        "-"
-      ],
-      [
-        6,
-        2,
-        100.0
-      ],
-      [
-        6,
-        3,
-        66.67
-      ],
-      [
-        6,
-        4,
-        "-"
-      ],
-      [
-        6,
-        5,
-        100.0
-      ],
-      [
-        6,
-        6,
-        "-"
-      ],
-      [
-        6,
-        7,
-        "-"
-      ],
-      [
-        6,
-        8,
-        "-"
-      ],
-      [
-        6,
-        9,
-        "-"
-      ],
-      [
-        6,
-        10,
-        "-"
-      ],
-      [
-        6,
-        11,
-        "-"
-      ],
-      [
-        6,
-        12,
-        "-"
-      ],
-      [
-        6,
-        13,
-        "-"
-      ],
-      [
-        6,
-        14,
-        33.33
-      ],
-      [
-        6,
-        15,
-        "-"
-      ],
-      [
-        7,
-        0,
-        "-"
-      ],
-      [
-        7,
-        1,
-        "-"
-      ],
-      [
-        7,
-        2,
-        33.33
-      ],
-      [
-        7,
-        3,
-        0.0
-      ],
-      [
-        7,
-        4,
-        100.0
-      ],
-      [
-        7,
-        5,
-        "-"
-      ],
-      [
-        7,
-        6,
-        "-"
-      ],
-      [
-        7,
-        7,
-        "-"
-      ],
-      [
-        7,
-        8,
-        100.0
-      ],
-      [
-        7,
-        9,
-        "-"
-      ],
-      [
-        7,
-        10,
-        25.0
-      ],
-      [
-        7,
-        11,
-        "-"
-      ],
-      [
-        7,
-        12,
-        100.0
-      ],
-      [
-        7,
-        13,
-        "-"
-      ],
-      [
-        7,
-        14,
-        "-"
-      ],
-      [
-        7,
-        15,
-        33.33
-      ],
-      [
-        8,
-        0,
-        "-"
-      ],
-      [
-        8,
-        1,
-        100.0
-      ],
-      [
-        8,
-        2,
-        "-"
-      ],
-      [
-        8,
-        3,
-        "-"
-      ],
-      [
-        8,
-        4,
-        "-"
-      ],
-      [
-        8,
-        5,
-        "-"
-      ],
-      [
-        8,
-        6,
-        "-"
-      ],
-      [
-        8,
-        7,
-        0.0
-      ],
-      [
-        8,
-        8,
-        "-"
-      ],
-      [
-        8,
-        9,
-        100.0
-      ],
-      [
-        8,
-        10,
-        "-"
-      ],
-      [
-        8,
-        11,
-        0.0
-      ],
-      [
-        8,
-        12,
-        66.67
-      ],
-      [
-        8,
-        13,
-        "-"
-      ],
-      [
-        8,
-        14,
-        "-"
-      ],
-      [
-        8,
-        15,
-        "-"
-      ],
-      [
-        9,
-        0,
-        0.0
-      ],
-      [
-        9,
-        1,
-        "-"
-      ],
-      [
-        9,
-        2,
-        "-"
-      ],
-      [
-        9,
-        3,
-        "-"
-      ],
-      [
-        9,
-        4,
-        50.0
-      ],
-      [
-        9,
-        5,
-        33.33
-      ],
-      [
-        9,
-        6,
-        "-"
-      ],
-      [
-        9,
-        7,
-        "-"
-      ],
-      [
-        9,
-        8,
-        0.0
-      ],
-      [
-        9,
-        9,
-        "-"
-      ],
-      [
-        9,
-        10,
-        "-"
-      ],
-      [
-        9,
-        11,
-        "-"
-      ],
-      [
-        9,
-        12,
-        75.0
-      ],
-      [
-        9,
-        13,
-        "-"
-      ],
-      [
-        9,
-        14,
-        "-"
-      ],
-      [
-        9,
-        15,
-        "-"
-      ],
-      [
-        10,
-        0,
-        "-"
-      ],
-      [
-        10,
-        1,
-        "-"
-      ],
-      [
-        10,
-        2,
-        "-"
-      ],
-      [
-        10,
-        3,
-        0.0
-      ],
-      [
-        10,
-        4,
-        "-"
-      ],
-      [
-        10,
-        5,
-        "-"
-      ],
-      [
-        10,
-        6,
-        "-"
-      ],
-      [
-        10,
-        7,
-        75.0
-      ],
-      [
-        10,
-        8,
-        "-"
-      ],
-      [
-        10,
-        9,
-        "-"
-      ],
-      [
-        10,
-        10,
-        "-"
-      ],
-      [
-        10,
-        11,
-        "-"
-      ],
-      [
-        10,
-        12,
-        "-"
-      ],
-      [
-        10,
-        13,
-        "-"
-      ],
-      [
-        10,
-        14,
-        "-"
-      ],
-      [
-        10,
-        15,
-        0.0
-      ],
-      [
-        11,
-        0,
-        "-"
-      ],
-      [
-        11,
-        1,
-        100.0
-      ],
-      [
-        11,
-        2,
-        "-"
-      ],
-      [
-        11,
-        3,
-        100.0
-      ],
-      [
-        11,
-        4,
-        "-"
-      ],
-      [
-        11,
-        5,
-        "-"
-      ],
-      [
-        11,
-        6,
-        "-"
-      ],
-      [
-        11,
-        7,
-        "-"
-      ],
-      [
-        11,
-        8,
-        100.0
-      ],
-      [
-        11,
-        9,
-        "-"
-      ],
-      [
-        11,
-        10,
-        "-"
-      ],
-      [
-        11,
-        11,
-        "-"
-      ],
-      [
-        11,
-        12,
-        "-"
-      ],
-      [
-        11,
-        13,
-        "-"
-      ],
-      [
-        11,
-        14,
-        "-"
-      ],
-      [
-        11,
-        15,
-        "-"
-      ],
-      [
-        12,
-        0,
-        0.0
-      ],
-      [
-        12,
-        1,
-        66.67
-      ],
-      [
-        12,
-        2,
-        "-"
-      ],
-      [
-        12,
-        3,
-        "-"
-      ],
-      [
-        12,
-        4,
-        "-"
-      ],
-      [
-        12,
-        5,
-        "-"
-      ],
-      [
-        12,
-        6,
-        "-"
-      ],
-      [
-        12,
-        7,
-        0.0
-      ],
-      [
-        12,
-        8,
-        33.33
-      ],
-      [
-        12,
-        9,
-        25.0
-      ],
-      [
-        12,
-        10,
-        "-"
-      ],
-      [
-        12,
-        11,
-        "-"
-      ],
-      [
-        12,
-        12,
-        "-"
-      ],
-      [
-        12,
-        13,
-        "-"
-      ],
-      [
-        12,
-        14,
-        0.0
-      ],
-      [
-        12,
-        15,
-        "-"
-      ],
-      [
-        13,
-        0,
-        "-"
-      ],
-      [
-        13,
-        1,
-        75.0
-      ],
-      [
-        13,
-        2,
-        0.0
-      ],
-      [
-        13,
-        3,
-        "-"
-      ],
-      [
-        13,
-        4,
-        100.0
-      ],
-      [
-        13,
-        5,
-        "-"
-      ],
-      [
-        13,
-        6,
-        "-"
-      ],
-      [
-        13,
-        7,
-        "-"
-      ],
-      [
-        13,
-        8,
-        "-"
-      ],
-      [
-        13,
-        9,
-        "-"
-      ],
-      [
-        13,
-        10,
-        "-"
-      ],
-      [
-        13,
-        11,
-        "-"
-      ],
-      [
-        13,
-        12,
-        "-"
-      ],
-      [
-        13,
-        13,
-        "-"
-      ],
-      [
-        13,
-        14,
-        "-"
-      ],
-      [
-        13,
-        15,
-        0.0
-      ],
-      [
-        14,
-        0,
-        100.0
-      ],
-      [
-        14,
-        1,
-        "-"
-      ],
-      [
-        14,
-        2,
-        "-"
-      ],
-      [
-        14,
-        3,
-        "-"
-      ],
-      [
-        14,
-        4,
-        "-"
-      ],
-      [
-        14,
-        5,
-        "-"
-      ],
-      [
-        14,
-        6,
-        66.67
-      ],
-      [
-        14,
-        7,
-        "-"
-      ],
-      [
-        14,
-        8,
-        "-"
-      ],
-      [
-        14,
-        9,
-        "-"
-      ],
-      [
-        14,
-        10,
-        "-"
-      ],
-      [
-        14,
-        11,
-        "-"
-      ],
-      [
-        14,
-        12,
-        100.0
-      ],
-      [
-        14,
-        13,
-        "-"
-      ],
-      [
-        14,
-        14,
-        "-"
-      ],
-      [
-        14,
-        15,
-        "-"
-      ],
-      [
-        15,
-        0,
-        "-"
-      ],
-      [
-        15,
-        1,
-        "-"
-      ],
-      [
-        15,
-        2,
-        0.0
-      ],
-      [
-        15,
-        3,
-        "-"
-      ],
-      [
-        15,
-        4,
-        "-"
-      ],
-      [
-        15,
-        5,
-        0.0
-      ],
-      [
-        15,
-        6,
-        "-"
-      ],
-      [
-        15,
-        7,
-        66.67
-      ],
-      [
-        15,
-        8,
-        "-"
-      ],
-      [
-        15,
-        9,
-        "-"
-      ],
-      [
-        15,
-        10,
-        100.0
-      ],
-      [
-        15,
-        11,
-        "-"
-      ],
-      [
-        15,
-        12,
-        "-"
-      ],
-      [
-        15,
-        13,
-        100.0
-      ],
-      [
-        15,
-        14,
-        "-"
-      ],
-      [
-        15,
-        15,
-        "-"
-      ]
+      [0, 0, "-"],
+      [0, 1, "-"],
+      [0, 2, "-"],
+      [0, 3, "-"],
+      [0, 4, "-"],
+      [0, 5, 100.0],
+      [0, 6, "-"],
+      [0, 7, "-"],
+      [0, 8, "-"],
+      [0, 9, 100.0],
+      [0, 10, "-"],
+      [0, 11, "-"],
+      [0, 12, 100.0],
+      [0, 13, "-"],
+      [0, 14, 0.0],
+      [0, 15, "-"],
+      [1, 0, "-"],
+      [1, 1, "-"],
+      [1, 2, "-"],
+      [1, 3, "-"],
+      [1, 4, 25.0],
+      [1, 5, "-"],
+      [1, 6, "-"],
+      [1, 7, "-"],
+      [1, 8, 0.0],
+      [1, 9, "-"],
+      [1, 10, "-"],
+      [1, 11, 0.0],
+      [1, 12, 33.33],
+      [1, 13, 25.0],
+      [1, 14, "-"],
+      [1, 15, "-"],
+      [2, 0, "-"],
+      [2, 1, "-"],
+      [2, 2, "-"],
+      [2, 3, "-"],
+      [2, 4, "-"],
+      [2, 5, "-"],
+      [2, 6, 0.0],
+      [2, 7, 66.67],
+      [2, 8, "-"],
+      [2, 9, "-"],
+      [2, 10, "-"],
+      [2, 11, "-"],
+      [2, 12, "-"],
+      [2, 13, 100.0],
+      [2, 14, "-"],
+      [2, 15, 100.0],
+      [3, 0, "-"],
+      [3, 1, "-"],
+      [3, 2, "-"],
+      [3, 3, "-"],
+      [3, 4, "-"],
+      [3, 5, 66.67],
+      [3, 6, 33.33],
+      [3, 7, 100.0],
+      [3, 8, "-"],
+      [3, 9, "-"],
+      [3, 10, 100.0],
+      [3, 11, 0.0],
+      [3, 12, "-"],
+      [3, 13, "-"],
+      [3, 14, "-"],
+      [3, 15, "-"],
+      [4, 0, "-"],
+      [4, 1, 75.0],
+      [4, 2, "-"],
+      [4, 3, "-"],
+      [4, 4, "-"],
+      [4, 5, 40.0],
+      [4, 6, "-"],
+      [4, 7, 0.0],
+      [4, 8, "-"],
+      [4, 9, 50.0],
+      [4, 10, "-"],
+      [4, 11, "-"],
+      [4, 12, "-"],
+      [4, 13, 0.0],
+      [4, 14, "-"],
+      [4, 15, "-"],
+      [5, 0, 0.0],
+      [5, 1, "-"],
+      [5, 2, "-"],
+      [5, 3, 33.33],
+      [5, 4, 60.0],
+      [5, 5, "-"],
+      [5, 6, 0.0],
+      [5, 7, "-"],
+      [5, 8, "-"],
+      [5, 9, 66.67],
+      [5, 10, "-"],
+      [5, 11, "-"],
+      [5, 12, "-"],
+      [5, 13, "-"],
+      [5, 14, "-"],
+      [5, 15, 100.0],
+      [6, 0, "-"],
+      [6, 1, "-"],
+      [6, 2, 100.0],
+      [6, 3, 66.67],
+      [6, 4, "-"],
+      [6, 5, 100.0],
+      [6, 6, "-"],
+      [6, 7, "-"],
+      [6, 8, "-"],
+      [6, 9, "-"],
+      [6, 10, "-"],
+      [6, 11, "-"],
+      [6, 12, "-"],
+      [6, 13, "-"],
+      [6, 14, 33.33],
+      [6, 15, "-"],
+      [7, 0, "-"],
+      [7, 1, "-"],
+      [7, 2, 33.33],
+      [7, 3, 0.0],
+      [7, 4, 100.0],
+      [7, 5, "-"],
+      [7, 6, "-"],
+      [7, 7, "-"],
+      [7, 8, 100.0],
+      [7, 9, "-"],
+      [7, 10, 25.0],
+      [7, 11, "-"],
+      [7, 12, 100.0],
+      [7, 13, "-"],
+      [7, 14, "-"],
+      [7, 15, 33.33],
+      [8, 0, "-"],
+      [8, 1, 100.0],
+      [8, 2, "-"],
+      [8, 3, "-"],
+      [8, 4, "-"],
+      [8, 5, "-"],
+      [8, 6, "-"],
+      [8, 7, 0.0],
+      [8, 8, "-"],
+      [8, 9, 100.0],
+      [8, 10, "-"],
+      [8, 11, 0.0],
+      [8, 12, 66.67],
+      [8, 13, "-"],
+      [8, 14, "-"],
+      [8, 15, "-"],
+      [9, 0, 0.0],
+      [9, 1, "-"],
+      [9, 2, "-"],
+      [9, 3, "-"],
+      [9, 4, 50.0],
+      [9, 5, 33.33],
+      [9, 6, "-"],
+      [9, 7, "-"],
+      [9, 8, 0.0],
+      [9, 9, "-"],
+      [9, 10, "-"],
+      [9, 11, "-"],
+      [9, 12, 75.0],
+      [9, 13, "-"],
+      [9, 14, "-"],
+      [9, 15, "-"],
+      [10, 0, "-"],
+      [10, 1, "-"],
+      [10, 2, "-"],
+      [10, 3, 0.0],
+      [10, 4, "-"],
+      [10, 5, "-"],
+      [10, 6, "-"],
+      [10, 7, 75.0],
+      [10, 8, "-"],
+      [10, 9, "-"],
+      [10, 10, "-"],
+      [10, 11, "-"],
+      [10, 12, "-"],
+      [10, 13, "-"],
+      [10, 14, "-"],
+      [10, 15, 0.0],
+      [11, 0, "-"],
+      [11, 1, 100.0],
+      [11, 2, "-"],
+      [11, 3, 100.0],
+      [11, 4, "-"],
+      [11, 5, "-"],
+      [11, 6, "-"],
+      [11, 7, "-"],
+      [11, 8, 100.0],
+      [11, 9, "-"],
+      [11, 10, "-"],
+      [11, 11, "-"],
+      [11, 12, "-"],
+      [11, 13, "-"],
+      [11, 14, "-"],
+      [11, 15, "-"],
+      [12, 0, 0.0],
+      [12, 1, 66.67],
+      [12, 2, "-"],
+      [12, 3, "-"],
+      [12, 4, "-"],
+      [12, 5, "-"],
+      [12, 6, "-"],
+      [12, 7, 0.0],
+      [12, 8, 33.33],
+      [12, 9, 25.0],
+      [12, 10, "-"],
+      [12, 11, "-"],
+      [12, 12, "-"],
+      [12, 13, "-"],
+      [12, 14, 0.0],
+      [12, 15, "-"],
+      [13, 0, "-"],
+      [13, 1, 75.0],
+      [13, 2, 0.0],
+      [13, 3, "-"],
+      [13, 4, 100.0],
+      [13, 5, "-"],
+      [13, 6, "-"],
+      [13, 7, "-"],
+      [13, 8, "-"],
+      [13, 9, "-"],
+      [13, 10, "-"],
+      [13, 11, "-"],
+      [13, 12, "-"],
+      [13, 13, "-"],
+      [13, 14, "-"],
+      [13, 15, 0.0],
+      [14, 0, 100.0],
+      [14, 1, "-"],
+      [14, 2, "-"],
+      [14, 3, "-"],
+      [14, 4, "-"],
+      [14, 5, "-"],
+      [14, 6, 66.67],
+      [14, 7, "-"],
+      [14, 8, "-"],
+      [14, 9, "-"],
+      [14, 10, "-"],
+      [14, 11, "-"],
+      [14, 12, 100.0],
+      [14, 13, "-"],
+      [14, 14, "-"],
+      [14, 15, "-"],
+      [15, 0, "-"],
+      [15, 1, "-"],
+      [15, 2, 0.0],
+      [15, 3, "-"],
+      [15, 4, "-"],
+      [15, 5, 0.0],
+      [15, 6, "-"],
+      [15, 7, 66.67],
+      [15, 8, "-"],
+      [15, 9, "-"],
+      [15, 10, 100.0],
+      [15, 11, "-"],
+      [15, 12, "-"],
+      [15, 13, 100.0],
+      [15, 14, "-"],
+      [15, 15, "-"],
     ],
   },
 
@@ -1934,21 +1035,21 @@ const Data = reactive({
     isChartVisible: ref(true),
     teamData: [
       {
-        "name": "BLG",
-        "baron": 0.74,
-        "dragon": 2.11,
-        "turts": 7.26,
-        "winCount": 2,
-        "kda": 4.345
+        name: "BLG",
+        baron: 0.74,
+        dragon: 2.11,
+        turts: 7.26,
+        winCount: 2,
+        kda: 4.345,
       },
       {
-        "name": "T1",
-        "baron": 0.88,
-        "dragon": 2.59,
-        "turts": 7.35,
-        "winCount": 4,
-        "kda": 5.271
-      }
+        name: "T1",
+        baron: 0.88,
+        dragon: 2.59,
+        turts: 7.35,
+        winCount: 4,
+        kda: 5.271,
+      },
     ],
   },
 
@@ -1957,1073 +1058,1070 @@ const Data = reactive({
     isChartVisible: true,
     playerBoxPlotData: [
       {
-        "player": "369",
-        "kills": 20,
-        "deaths": 19,
-        "assists": 39
+        player: "369",
+        kills: 20,
+        deaths: 19,
+        assists: 39,
       },
       {
-        "player": "Azhi",
-        "kills": 11,
-        "deaths": 15,
-        "assists": 24
+        player: "Azhi",
+        kills: 11,
+        deaths: 15,
+        assists: 24,
       },
       {
-        "player": "Bin",
-        "kills": 66,
-        "deaths": 38,
-        "assists": 99
+        player: "Bin",
+        kills: 66,
+        deaths: 38,
+        assists: 99,
       },
       {
-        "player": "Breathe",
-        "kills": 61,
-        "deaths": 44,
-        "assists": 85
+        player: "Breathe",
+        kills: 61,
+        deaths: 44,
+        assists: 85,
       },
       {
-        "player": "Brokenblade",
-        "kills": 27,
-        "deaths": 20,
-        "assists": 47
+        player: "Brokenblade",
+        kills: 27,
+        deaths: 20,
+        assists: 47,
       },
       {
-        "player": "Bwipo",
-        "kills": 30,
-        "deaths": 58,
-        "assists": 68
+        player: "Bwipo",
+        kills: 30,
+        deaths: 58,
+        assists: 68,
       },
       {
-        "player": "Doran",
-        "kills": 36,
-        "deaths": 31,
-        "assists": 62
+        player: "Doran",
+        kills: 36,
+        deaths: 31,
+        assists: 62,
       },
       {
-        "player": "Impact",
-        "kills": 25,
-        "deaths": 29,
-        "assists": 47
+        player: "Impact",
+        kills: 25,
+        deaths: 29,
+        assists: 47,
       },
       {
-        "player": "Kiin",
-        "kills": 25,
-        "deaths": 33,
-        "assists": 75
+        player: "Kiin",
+        kills: 25,
+        deaths: 33,
+        assists: 75,
       },
       {
-        "player": "Kingen",
-        "kills": 15,
-        "deaths": 32,
-        "assists": 42
+        player: "Kingen",
+        kills: 15,
+        deaths: 32,
+        assists: 42,
       },
       {
-        "player": "Myrwn",
-        "kills": 11,
-        "deaths": 18,
-        "assists": 11
+        player: "Myrwn",
+        kills: 11,
+        deaths: 18,
+        assists: 11,
       },
       {
-        "player": "Oscarinin",
-        "kills": 12,
-        "deaths": 21,
-        "assists": 29
+        player: "Oscarinin",
+        kills: 12,
+        deaths: 21,
+        assists: 29,
       },
       {
-        "player": "Wizer",
-        "kills": 12,
-        "deaths": 13,
-        "assists": 9
+        player: "Wizer",
+        kills: 12,
+        deaths: 13,
+        assists: 9,
       },
       {
-        "player": "Zeus",
-        "kills": 44,
-        "deaths": 32,
-        "assists": 108
+        player: "Zeus",
+        kills: 44,
+        deaths: 32,
+        assists: 108,
       },
       {
-        "player": "Zika",
-        "kills": 31,
-        "deaths": 23,
-        "assists": 47
+        player: "Zika",
+        kills: 31,
+        deaths: 23,
+        assists: 47,
       },
       {
-        "player": "Canyon",
-        "kills": 26,
-        "deaths": 26,
-        "assists": 97
+        player: "Canyon",
+        kills: 26,
+        deaths: 26,
+        assists: 97,
       },
       {
-        "player": "Cariok",
-        "kills": 2,
-        "deaths": 17,
-        "assists": 24
+        player: "Cariok",
+        kills: 2,
+        deaths: 17,
+        assists: 24,
       },
       {
-        "player": "Elyoya",
-        "kills": 6,
-        "deaths": 18,
-        "assists": 27
+        player: "Elyoya",
+        kills: 6,
+        deaths: 18,
+        assists: 27,
       },
       {
-        "player": "Inspired",
-        "kills": 15,
-        "deaths": 29,
-        "assists": 121
+        player: "Inspired",
+        kills: 15,
+        deaths: 29,
+        assists: 121,
       },
       {
-        "player": "Junjia",
-        "kills": 9,
-        "deaths": 18,
-        "assists": 40
+        player: "Junjia",
+        kills: 9,
+        deaths: 18,
+        assists: 40,
       },
       {
-        "player": "Lucid",
-        "kills": 17,
-        "deaths": 41,
-        "assists": 54
+        player: "Lucid",
+        kills: 17,
+        deaths: 41,
+        assists: 54,
       },
       {
-        "player": "Oner",
-        "kills": 45,
-        "deaths": 29,
-        "assists": 127
+        player: "Oner",
+        kills: 45,
+        deaths: 29,
+        assists: 127,
       },
       {
-        "player": "Peanut",
-        "kills": 12,
-        "deaths": 35,
-        "assists": 120
+        player: "Peanut",
+        kills: 12,
+        deaths: 35,
+        assists: 120,
       },
       {
-        "player": "Razork",
-        "kills": 12,
-        "deaths": 19,
-        "assists": 47
+        player: "Razork",
+        kills: 12,
+        deaths: 19,
+        assists: 47,
       },
       {
-        "player": "Tarzan",
-        "kills": 26,
-        "deaths": 49,
-        "assists": 145
+        player: "Tarzan",
+        kills: 26,
+        deaths: 49,
+        assists: 145,
       },
       {
-        "player": "Tian",
-        "kills": 16,
-        "deaths": 18,
-        "assists": 63
+        player: "Tian",
+        kills: 16,
+        deaths: 18,
+        assists: 63,
       },
       {
-        "player": "Umti",
-        "kills": 24,
-        "deaths": 24,
-        "assists": 66
+        player: "Umti",
+        kills: 24,
+        deaths: 24,
+        assists: 66,
       },
       {
-        "player": "Wei",
-        "kills": 3,
-        "deaths": 6,
-        "assists": 27
+        player: "Wei",
+        kills: 3,
+        deaths: 6,
+        assists: 27,
       },
       {
-        "player": "Weiwei",
-        "kills": 16,
-        "deaths": 24,
-        "assists": 72
+        player: "Weiwei",
+        kills: 16,
+        deaths: 24,
+        assists: 72,
       },
       {
-        "player": "Xun",
-        "kills": 37,
-        "deaths": 38,
-        "assists": 157
+        player: "Xun",
+        kills: 37,
+        deaths: 38,
+        assists: 157,
       },
       {
-        "player": "Yike",
-        "kills": 25,
-        "deaths": 19,
-        "assists": 61
+        player: "Yike",
+        kills: 25,
+        deaths: 19,
+        assists: 61,
       },
       {
-        "player": "Apa",
-        "kills": 35,
-        "deaths": 32,
-        "assists": 42
+        player: "Apa",
+        kills: 35,
+        deaths: 32,
+        assists: 42,
       },
       {
-        "player": "Caps",
-        "kills": 19,
-        "deaths": 22,
-        "assists": 60
+        player: "Caps",
+        kills: 19,
+        deaths: 22,
+        assists: 60,
       },
       {
-        "player": "Chovy",
-        "kills": 53,
-        "deaths": 18,
-        "assists": 65
+        player: "Chovy",
+        kills: 53,
+        deaths: 18,
+        assists: 65,
       },
       {
-        "player": "Creme",
-        "kills": 25,
-        "deaths": 19,
-        "assists": 43
+        player: "Creme",
+        kills: 25,
+        deaths: 19,
+        assists: 43,
       },
       {
-        "player": "Dynquedo",
-        "kills": 14,
-        "deaths": 12,
-        "assists": 15
+        player: "Dynquedo",
+        kills: 14,
+        deaths: 12,
+        assists: 15,
       },
       {
-        "player": "Faker",
-        "kills": 60,
-        "deaths": 36,
-        "assists": 97
+        player: "Faker",
+        kills: 60,
+        deaths: 36,
+        assists: 97,
       },
       {
-        "player": "Fresskowy",
-        "kills": 18,
-        "deaths": 21,
-        "assists": 9
+        player: "Fresskowy",
+        kills: 18,
+        deaths: 21,
+        assists: 9,
       },
       {
-        "player": "Humanoid",
-        "kills": 14,
-        "deaths": 20,
-        "assists": 29
+        player: "Humanoid",
+        kills: 14,
+        deaths: 20,
+        assists: 29,
       },
       {
-        "player": "Knight",
-        "kills": 91,
-        "deaths": 35,
-        "assists": 130
+        player: "Knight",
+        kills: 91,
+        deaths: 35,
+        assists: 130,
       },
       {
-        "player": "Maple",
-        "kills": 17,
-        "deaths": 18,
-        "assists": 23
+        player: "Maple",
+        kills: 17,
+        deaths: 18,
+        assists: 23,
       },
       {
-        "player": "Quad",
-        "kills": 56,
-        "deaths": 25,
-        "assists": 75
+        player: "Quad",
+        kills: 56,
+        deaths: 25,
+        assists: 75,
       },
       {
-        "player": "Scout",
-        "kills": 27,
-        "deaths": 9,
-        "assists": 52
+        player: "Scout",
+        kills: 27,
+        deaths: 9,
+        assists: 52,
       },
       {
-        "player": "Showmaker",
-        "kills": 32,
-        "deaths": 24,
-        "assists": 43
+        player: "Showmaker",
+        kills: 32,
+        deaths: 24,
+        assists: 43,
       },
       {
-        "player": "Xiaohu",
-        "kills": 59,
-        "deaths": 37,
-        "assists": 117
+        player: "Xiaohu",
+        kills: 59,
+        deaths: 37,
+        assists: 117,
       },
       {
-        "player": "Zeka",
-        "kills": 42,
-        "deaths": 29,
-        "assists": 70
+        player: "Zeka",
+        kills: 42,
+        deaths: 29,
+        assists: 70,
       },
       {
-        "player": "Aiming",
-        "kills": 45,
-        "deaths": 18,
-        "assists": 42
+        player: "Aiming",
+        kills: 45,
+        deaths: 18,
+        assists: 42,
       },
       {
-        "player": "Betty",
-        "kills": 22,
-        "deaths": 10,
-        "assists": 22
+        player: "Betty",
+        kills: 22,
+        deaths: 10,
+        assists: 22,
       },
       {
-        "player": "Elk",
-        "kills": 87,
-        "deaths": 48,
-        "assists": 116
+        player: "Elk",
+        kills: 87,
+        deaths: 48,
+        assists: 116,
       },
       {
-        "player": "Gala",
-        "kills": 34,
-        "deaths": 11,
-        "assists": 43
+        player: "Gala",
+        kills: 34,
+        deaths: 11,
+        assists: 43,
       },
       {
-        "player": "Gumayusi",
-        "kills": 73,
-        "deaths": 25,
-        "assists": 88
+        player: "Gumayusi",
+        kills: 73,
+        deaths: 25,
+        assists: 88,
       },
       {
-        "player": "Hans Sama",
-        "kills": 38,
-        "deaths": 25,
-        "assists": 39
+        player: "Hans Sama",
+        kills: 38,
+        deaths: 25,
+        assists: 39,
       },
       {
-        "player": "Jackeylove",
-        "kills": 32,
-        "deaths": 21,
-        "assists": 40
+        player: "Jackeylove",
+        kills: 32,
+        deaths: 21,
+        assists: 40,
       },
       {
-        "player": "Light",
-        "kills": 75,
-        "deaths": 31,
-        "assists": 84
+        player: "Light",
+        kills: 75,
+        deaths: 31,
+        assists: 84,
       },
       {
-        "player": "Massu",
-        "kills": 59,
-        "deaths": 29,
-        "assists": 70
+        player: "Massu",
+        kills: 59,
+        deaths: 29,
+        assists: 70,
       },
       {
-        "player": "Noah",
-        "kills": 27,
-        "deaths": 9,
-        "assists": 26
+        player: "Noah",
+        kills: 27,
+        deaths: 9,
+        assists: 26,
       },
       {
-        "player": "Peyz",
-        "kills": 50,
-        "deaths": 16,
-        "assists": 78
+        player: "Peyz",
+        kills: 50,
+        deaths: 16,
+        assists: 78,
       },
       {
-        "player": "Supa",
-        "kills": 13,
-        "deaths": 20,
-        "assists": 19
+        player: "Supa",
+        kills: 13,
+        deaths: 20,
+        assists: 19,
       },
       {
-        "player": "Titan",
-        "kills": 7,
-        "deaths": 12,
-        "assists": 15
+        player: "Titan",
+        kills: 7,
+        deaths: 12,
+        assists: 15,
       },
       {
-        "player": "Viper",
-        "kills": 64,
-        "deaths": 25,
-        "assists": 56
+        player: "Viper",
+        kills: 64,
+        deaths: 25,
+        assists: 56,
       },
       {
-        "player": "Yeon",
-        "kills": 38,
-        "deaths": 18,
-        "assists": 50
+        player: "Yeon",
+        kills: 38,
+        deaths: 18,
+        assists: 50,
       },
       {
-        "player": "Alvaro",
-        "kills": 1,
-        "deaths": 22,
-        "assists": 31
+        player: "Alvaro",
+        kills: 1,
+        deaths: 22,
+        assists: 31,
       },
       {
-        "player": "Busio",
-        "kills": 15,
-        "deaths": 35,
-        "assists": 113
+        player: "Busio",
+        kills: 15,
+        deaths: 35,
+        assists: 113,
       },
       {
-        "player": "Corejj",
-        "kills": 8,
-        "deaths": 29,
-        "assists": 97
+        player: "Corejj",
+        kills: 8,
+        deaths: 29,
+        assists: 97,
       },
       {
-        "player": "Crisp",
-        "kills": 7,
-        "deaths": 52,
-        "assists": 170
+        player: "Crisp",
+        kills: 7,
+        deaths: 52,
+        assists: 170,
       },
       {
-        "player": "Delight",
-        "kills": 5,
-        "deaths": 35,
-        "assists": 112
+        player: "Delight",
+        kills: 5,
+        deaths: 35,
+        assists: 112,
       },
       {
-        "player": "Hang",
-        "kills": 3,
-        "deaths": 30,
-        "assists": 79
+        player: "Hang",
+        kills: 3,
+        deaths: 30,
+        assists: 79,
       },
       {
-        "player": "Jun",
-        "kills": 4,
-        "deaths": 19,
-        "assists": 51
+        player: "Jun",
+        kills: 4,
+        deaths: 19,
+        assists: 51,
       },
       {
-        "player": "Keria",
-        "kills": 8,
-        "deaths": 33,
-        "assists": 167
+        player: "Keria",
+        kills: 8,
+        deaths: 33,
+        assists: 167,
       },
       {
-        "player": "Kuri",
-        "kills": 4,
-        "deaths": 14,
-        "assists": 24
+        player: "Kuri",
+        kills: 4,
+        deaths: 14,
+        assists: 24,
       },
       {
-        "player": "Lehends",
-        "kills": 6,
-        "deaths": 48,
-        "assists": 114
+        player: "Lehends",
+        kills: 6,
+        deaths: 48,
+        assists: 114,
       },
       {
-        "player": "Meiko",
-        "kills": 3,
-        "deaths": 25,
-        "assists": 75
+        player: "Meiko",
+        kills: 3,
+        deaths: 25,
+        assists: 75,
       },
       {
-        "player": "Mikyx",
-        "kills": 5,
-        "deaths": 45,
-        "assists": 75
+        player: "Mikyx",
+        kills: 5,
+        deaths: 45,
+        assists: 75,
       },
       {
-        "player": "Moham",
-        "kills": 4,
-        "deaths": 46,
-        "assists": 83
+        player: "Moham",
+        kills: 4,
+        deaths: 46,
+        assists: 83,
       },
       {
-        "player": "On",
-        "kills": 10,
-        "deaths": 67,
-        "assists": 185
+        player: "On",
+        kills: 10,
+        deaths: 67,
+        assists: 185,
       },
       {
-        "player": "Woody",
-        "kills": 5,
-        "deaths": 16,
-        "assists": 48
+        player: "Woody",
+        kills: 5,
+        deaths: 16,
+        assists: 48,
       },
       {
-        "player": "Kiaya",
-        "kills": 27,
-        "deaths": 21,
-        "assists": 42
+        player: "Kiaya",
+        kills: 27,
+        deaths: 21,
+        assists: 42,
       },
       {
-        "player": "Levi",
-        "kills": 18,
-        "deaths": 29,
-        "assists": 49
+        player: "Levi",
+        kills: 18,
+        deaths: 29,
+        assists: 49,
       },
       {
-        "player": "Emo",
-        "kills": 22,
-        "deaths": 19,
-        "assists": 38
+        player: "Emo",
+        kills: 22,
+        deaths: 19,
+        assists: 38,
       },
       {
-        "player": "Easylove",
-        "kills": 31,
-        "deaths": 19,
-        "assists": 34
+        player: "Easylove",
+        kills: 31,
+        deaths: 19,
+        assists: 34,
       },
       {
-        "player": "Elio",
-        "kills": 5,
-        "deaths": 25,
-        "assists": 66
-      }
-    ]
-
+        player: "Elio",
+        kills: 5,
+        deaths: 25,
+        assists: 66,
+      },
+    ],
   },
 
   // 散点图数据
   chart5: {
     isChartVisible: ref(true),
-    xAxis: ref('分均经济'),
-    yAxis: ref('场均伤害'),
-    axisOptions: ['分均经济', '场均伤害', '场均承伤', '分均补刀'],
+    xAxis: ref("分均经济"),
+    yAxis: ref("场均伤害"),
+    axisOptions: ["分均经济", "场均伤害", "场均承伤", "分均补刀"],
     scatterDiagramData: [
       {
-        "player": "369",
-        "gold": 365.6,
-        "damage": 16723.4,
-        "tanking": 21500.4,
-        "cs": 7.5
+        player: "369",
+        gold: 365.6,
+        damage: 16723.4,
+        tanking: 21500.4,
+        cs: 7.5,
       },
       {
-        "player": "Azhi",
-        "gold": 360.4,
-        "damage": 17605.9,
-        "tanking": 20437.7,
-        "cs": 7.6
+        player: "Azhi",
+        gold: 360.4,
+        damage: 17605.9,
+        tanking: 20437.7,
+        cs: 7.6,
       },
       {
-        "player": "Bin",
-        "gold": 393.2,
-        "damage": 15968.1,
-        "tanking": 19708.8,
-        "cs": 7.9
+        player: "Bin",
+        gold: 393.2,
+        damage: 15968.1,
+        tanking: 19708.8,
+        cs: 7.9,
       },
       {
-        "player": "Breathe",
-        "gold": 412.3,
-        "damage": 18924.3,
-        "tanking": 27014.9,
-        "cs": 8.0
+        player: "Breathe",
+        gold: 412.3,
+        damage: 18924.3,
+        tanking: 27014.9,
+        cs: 8.0,
       },
       {
-        "player": "Brokenblade",
-        "gold": 377.2,
-        "damage": 17809.4,
-        "tanking": 30175.0,
-        "cs": 7.7
+        player: "Brokenblade",
+        gold: 377.2,
+        damage: 17809.4,
+        tanking: 30175.0,
+        cs: 7.7,
       },
       {
-        "player": "Bwipo",
-        "gold": 379.8,
-        "damage": 17222.0,
-        "tanking": 33643.5,
-        "cs": 8.0
+        player: "Bwipo",
+        gold: 379.8,
+        damage: 17222.0,
+        tanking: 33643.5,
+        cs: 8.0,
       },
       {
-        "player": "Doran",
-        "gold": 389.1,
-        "damage": 15466.8,
-        "tanking": 26332.8,
-        "cs": 7.9
+        player: "Doran",
+        gold: 389.1,
+        damage: 15466.8,
+        tanking: 26332.8,
+        cs: 7.9,
       },
       {
-        "player": "Impact",
-        "gold": 380.2,
-        "damage": 15484.6,
-        "tanking": 25146.7,
-        "cs": 7.3
+        player: "Impact",
+        gold: 380.2,
+        damage: 15484.6,
+        tanking: 25146.7,
+        cs: 7.3,
       },
       {
-        "player": "Kiin",
-        "gold": 372.6,
-        "damage": 17044.8,
-        "tanking": 24267.9,
-        "cs": 7.9
+        player: "Kiin",
+        gold: 372.6,
+        damage: 17044.8,
+        tanking: 24267.9,
+        cs: 7.9,
       },
       {
-        "player": "Kingen",
-        "gold": 361.2,
-        "damage": 17356.0,
-        "tanking": 25510.5,
-        "cs": 7.4
+        player: "Kingen",
+        gold: 361.2,
+        damage: 17356.0,
+        tanking: 25510.5,
+        cs: 7.4,
       },
       {
-        "player": "Myrwn",
-        "gold": 338.9,
-        "damage": 12736.1,
-        "tanking": 23216.4,
-        "cs": 6.9
+        player: "Myrwn",
+        gold: 338.9,
+        damage: 12736.1,
+        tanking: 23216.4,
+        cs: 6.9,
       },
       {
-        "player": "Oscarinin",
-        "gold": 355.3,
-        "damage": 11521.6,
-        "tanking": 23502.4,
-        "cs": 7.3
+        player: "Oscarinin",
+        gold: 355.3,
+        damage: 11521.6,
+        tanking: 23502.4,
+        cs: 7.3,
       },
       {
-        "player": "Wizer",
-        "gold": 372.1,
-        "damage": 12302.1,
-        "tanking": 22574.4,
-        "cs": 8.2
+        player: "Wizer",
+        gold: 372.1,
+        damage: 12302.1,
+        tanking: 22574.4,
+        cs: 8.2,
       },
       {
-        "player": "Zeus",
-        "gold": 401.0,
-        "damage": 14177.6,
-        "tanking": 19482.6,
-        "cs": 8.0
+        player: "Zeus",
+        gold: 401.0,
+        damage: 14177.6,
+        tanking: 19482.6,
+        cs: 8.0,
       },
       {
-        "player": "Zika",
-        "gold": 432.0,
-        "damage": 18590.3,
-        "tanking": 34016.3,
-        "cs": 8.4
+        player: "Zika",
+        gold: 432.0,
+        damage: 18590.3,
+        tanking: 34016.3,
+        cs: 8.4,
       },
       {
-        "player": "Canyon",
-        "gold": 339.2,
-        "damage": 11454.2,
-        "tanking": 35890.7,
-        "cs": 6.2
+        player: "Canyon",
+        gold: 339.2,
+        damage: 11454.2,
+        tanking: 35890.7,
+        cs: 6.2,
       },
       {
-        "player": "Cariok",
-        "gold": 293.6,
-        "damage": 9058.6,
-        "tanking": 34006.0,
-        "cs": 5.4
+        player: "Cariok",
+        gold: 293.6,
+        damage: 9058.6,
+        tanking: 34006.0,
+        cs: 5.4,
       },
       {
-        "player": "Elyoya",
-        "gold": 302.3,
-        "damage": 7979.3,
-        "tanking": 28585.0,
-        "cs": 5.6
+        player: "Elyoya",
+        gold: 302.3,
+        damage: 7979.3,
+        tanking: 28585.0,
+        cs: 5.6,
       },
       {
-        "player": "Inspired",
-        "gold": 333.7,
-        "damage": 11527.1,
-        "tanking": 31182.4,
-        "cs": 6.2
+        player: "Inspired",
+        gold: 333.7,
+        damage: 11527.1,
+        tanking: 31182.4,
+        cs: 6.2,
       },
       {
-        "player": "Junjia",
-        "gold": 322.3,
-        "damage": 9856.7,
-        "tanking": 39455.7,
-        "cs": 5.8
+        player: "Junjia",
+        gold: 322.3,
+        damage: 9856.7,
+        tanking: 39455.7,
+        cs: 5.8,
       },
       {
-        "player": "Lucid",
-        "gold": 304.1,
-        "damage": 10010.0,
-        "tanking": 38647.1,
-        "cs": 5.2
+        player: "Lucid",
+        gold: 304.1,
+        damage: 10010.0,
+        tanking: 38647.1,
+        cs: 5.2,
       },
       {
-        "player": "Oner",
-        "gold": 362.5,
-        "damage": 10463.5,
-        "tanking": 29986.9,
-        "cs": 6.6
+        player: "Oner",
+        gold: 362.5,
+        damage: 10463.5,
+        tanking: 29986.9,
+        cs: 6.6,
       },
       {
-        "player": "Peanut",
-        "gold": 321.3,
-        "damage": 10396.6,
-        "tanking": 33551.4,
-        "cs": 5.7
+        player: "Peanut",
+        gold: 321.3,
+        damage: 10396.6,
+        tanking: 33551.4,
+        cs: 5.7,
       },
       {
-        "player": "Razork",
-        "gold": 345.8,
-        "damage": 13044.5,
-        "tanking": 28566.9,
-        "cs": 6.6
+        player: "Razork",
+        gold: 345.8,
+        damage: 13044.5,
+        tanking: 28566.9,
+        cs: 6.6,
       },
       {
-        "player": "Tarzan",
-        "gold": 312.8,
-        "damage": 12110.8,
-        "tanking": 31534.8,
-        "cs": 5.4
+        player: "Tarzan",
+        gold: 312.8,
+        damage: 12110.8,
+        tanking: 31534.8,
+        cs: 5.4,
       },
       {
-        "player": "Tian",
-        "gold": 322.9,
-        "damage": 10040.4,
-        "tanking": 33943.2,
-        "cs": 5.9
+        player: "Tian",
+        gold: 322.9,
+        damage: 10040.4,
+        tanking: 33943.2,
+        cs: 5.9,
       },
       {
-        "player": "Umti",
-        "gold": 335.6,
-        "damage": 11311.5,
-        "tanking": 37138.0,
-        "cs": 5.9
+        player: "Umti",
+        gold: 335.6,
+        damage: 11311.5,
+        tanking: 37138.0,
+        cs: 5.9,
       },
       {
-        "player": "Wei",
-        "gold": 341.6,
-        "damage": 16187.4,
-        "tanking": 31824.9,
-        "cs": 5.6
+        player: "Wei",
+        gold: 341.6,
+        damage: 16187.4,
+        tanking: 31824.9,
+        cs: 5.6,
       },
       {
-        "player": "Weiwei",
-        "gold": 328.1,
-        "damage": 10474.9,
-        "tanking": 35198.7,
-        "cs": 5.8
+        player: "Weiwei",
+        gold: 328.1,
+        damage: 10474.9,
+        tanking: 35198.7,
+        cs: 5.8,
       },
       {
-        "player": "Xun",
-        "gold": 334.8,
-        "damage": 11710.1,
-        "tanking": 30734.5,
-        "cs": 5.7
+        player: "Xun",
+        gold: 334.8,
+        damage: 11710.1,
+        tanking: 30734.5,
+        cs: 5.7,
       },
       {
-        "player": "Yike",
-        "gold": 341.3,
-        "damage": 14977.3,
-        "tanking": 36204.5,
-        "cs": 6.0
+        player: "Yike",
+        gold: 341.3,
+        damage: 14977.3,
+        tanking: 36204.5,
+        cs: 6.0,
       },
       {
-        "player": "Apa",
-        "gold": 409.3,
-        "damage": 20244.8,
-        "tanking": 17639.8,
-        "cs": 8.6
+        player: "Apa",
+        gold: 409.3,
+        damage: 20244.8,
+        tanking: 17639.8,
+        cs: 8.6,
       },
       {
-        "player": "Caps",
-        "gold": 382.6,
-        "damage": 21740.1,
-        "tanking": 24905.2,
-        "cs": 8.3
+        player: "Caps",
+        gold: 382.6,
+        damage: 21740.1,
+        tanking: 24905.2,
+        cs: 8.3,
       },
       {
-        "player": "Chovy",
-        "gold": 428.5,
-        "damage": 20467.7,
-        "tanking": 19712.1,
-        "cs": 9.3
+        player: "Chovy",
+        gold: 428.5,
+        damage: 20467.7,
+        tanking: 19712.1,
+        cs: 9.3,
       },
       {
-        "player": "Creme",
-        "gold": 380.0,
-        "damage": 22232.8,
-        "tanking": 21105.6,
-        "cs": 8.0
+        player: "Creme",
+        gold: 380.0,
+        damage: 22232.8,
+        tanking: 21105.6,
+        cs: 8.0,
       },
       {
-        "player": "Dynquedo",
-        "gold": 388.8,
-        "damage": 18064.4,
-        "tanking": 17104.7,
-        "cs": 8.5
+        player: "Dynquedo",
+        gold: 388.8,
+        damage: 18064.4,
+        tanking: 17104.7,
+        cs: 8.5,
       },
       {
-        "player": "Faker",
-        "gold": 404.3,
-        "damage": 16110.5,
-        "tanking": 19988.3,
-        "cs": 8.2
+        player: "Faker",
+        gold: 404.3,
+        damage: 16110.5,
+        tanking: 19988.3,
+        cs: 8.2,
       },
       {
-        "player": "Fresskowy",
-        "gold": 384.7,
-        "damage": 20547.7,
-        "tanking": 21162.2,
-        "cs": 8.4
+        player: "Fresskowy",
+        gold: 384.7,
+        damage: 20547.7,
+        tanking: 21162.2,
+        cs: 8.4,
       },
       {
-        "player": "Humanoid",
-        "gold": 397.8,
-        "damage": 17413.0,
-        "tanking": 22651.9,
-        "cs": 9.1
+        player: "Humanoid",
+        gold: 397.8,
+        damage: 17413.0,
+        tanking: 22651.9,
+        cs: 9.1,
       },
       {
-        "player": "Knight",
-        "gold": 412.5,
-        "damage": 22252.9,
-        "tanking": 19086.7,
-        "cs": 8.3
+        player: "Knight",
+        gold: 412.5,
+        damage: 22252.9,
+        tanking: 19086.7,
+        cs: 8.3,
       },
       {
-        "player": "Maple",
-        "gold": 404.5,
-        "damage": 24002.0,
-        "tanking": 22960.9,
-        "cs": 8.8
+        player: "Maple",
+        gold: 404.5,
+        damage: 24002.0,
+        tanking: 22960.9,
+        cs: 8.8,
       },
       {
-        "player": "Quad",
-        "gold": 402.1,
-        "damage": 21174.2,
-        "tanking": 16527.9,
-        "cs": 8.4
+        player: "Quad",
+        gold: 402.1,
+        damage: 21174.2,
+        tanking: 16527.9,
+        cs: 8.4,
       },
       {
-        "player": "Scout",
-        "gold": 415.5,
-        "damage": 18250.5,
-        "tanking": 22116.9,
-        "cs": 8.8
+        player: "Scout",
+        gold: 415.5,
+        damage: 18250.5,
+        tanking: 22116.9,
+        cs: 8.8,
       },
       {
-        "player": "Showmaker",
-        "gold": 384.0,
-        "damage": 22350.0,
-        "tanking": 21806.9,
-        "cs": 8.0
+        player: "Showmaker",
+        gold: 384.0,
+        damage: 22350.0,
+        tanking: 21806.9,
+        cs: 8.0,
       },
       {
-        "player": "Xiaohu",
-        "gold": 402.0,
-        "damage": 22554.4,
-        "tanking": 19425.1,
-        "cs": 8.4
+        player: "Xiaohu",
+        gold: 402.0,
+        damage: 22554.4,
+        tanking: 19425.1,
+        cs: 8.4,
       },
       {
-        "player": "Zeka",
-        "gold": 415.0,
-        "damage": 22983.5,
-        "tanking": 23853.9,
-        "cs": 9.0
+        player: "Zeka",
+        gold: 415.0,
+        damage: 22983.5,
+        tanking: 23853.9,
+        cs: 9.0,
       },
       {
-        "player": "Aiming",
-        "gold": 442.7,
-        "damage": 23427.8,
-        "tanking": 16429.4,
-        "cs": 9.9
+        player: "Aiming",
+        gold: 442.7,
+        damage: 23427.8,
+        tanking: 16429.4,
+        cs: 9.9,
       },
       {
-        "player": "Betty",
-        "gold": 444.5,
-        "damage": 26280.7,
-        "tanking": 16828.0,
-        "cs": 10.0
+        player: "Betty",
+        gold: 444.5,
+        damage: 26280.7,
+        tanking: 16828.0,
+        cs: 10.0,
       },
       {
-        "player": "Elk",
-        "gold": 434.8,
-        "damage": 24383.6,
-        "tanking": 14102.8,
-        "cs": 9.1
+        player: "Elk",
+        gold: 434.8,
+        damage: 24383.6,
+        tanking: 14102.8,
+        cs: 9.1,
       },
       {
-        "player": "Gala",
-        "gold": 448.3,
-        "damage": 27205.2,
-        "tanking": 13335.0,
-        "cs": 9.8
+        player: "Gala",
+        gold: 448.3,
+        damage: 27205.2,
+        tanking: 13335.0,
+        cs: 9.8,
       },
       {
-        "player": "Gumayusi",
-        "gold": 469.7,
-        "damage": 20139.1,
-        "tanking": 11701.9,
-        "cs": 10.3
+        player: "Gumayusi",
+        gold: 469.7,
+        damage: 20139.1,
+        tanking: 11701.9,
+        cs: 10.3,
       },
       {
-        "player": "Hans Sama",
-        "gold": 418.2,
-        "damage": 21089.3,
-        "tanking": 16849.9,
-        "cs": 8.8
+        player: "Hans Sama",
+        gold: 418.2,
+        damage: 21089.3,
+        tanking: 16849.9,
+        cs: 8.8,
       },
       {
-        "player": "Jackeylove",
-        "gold": 428.0,
-        "damage": 19858.7,
-        "tanking": 12708.9,
-        "cs": 9.5
+        player: "Jackeylove",
+        gold: 428.0,
+        damage: 19858.7,
+        tanking: 12708.9,
+        cs: 9.5,
       },
       {
-        "player": "Light",
-        "gold": 440.3,
-        "damage": 21660.3,
-        "tanking": 14838.9,
-        "cs": 9.6
+        player: "Light",
+        gold: 440.3,
+        damage: 21660.3,
+        tanking: 14838.9,
+        cs: 9.6,
       },
       {
-        "player": "Massu",
-        "gold": 428.4,
-        "damage": 21901.3,
-        "tanking": 15883.7,
-        "cs": 9.2
+        player: "Massu",
+        gold: 428.4,
+        damage: 21901.3,
+        tanking: 15883.7,
+        cs: 9.2,
       },
       {
-        "player": "Noah",
-        "gold": 445.3,
-        "damage": 21082.7,
-        "tanking": 10157.4,
-        "cs": 9.7
+        player: "Noah",
+        gold: 445.3,
+        damage: 21082.7,
+        tanking: 10157.4,
+        cs: 9.7,
       },
       {
-        "player": "Peyz",
-        "gold": 431.7,
-        "damage": 21587.2,
-        "tanking": 12350.9,
-        "cs": 9.4
+        player: "Peyz",
+        gold: 431.7,
+        damage: 21587.2,
+        tanking: 12350.9,
+        cs: 9.4,
       },
       {
-        "player": "Supa",
-        "gold": 394.3,
-        "damage": 18908.8,
-        "tanking": 15619.2,
-        "cs": 9.0
+        player: "Supa",
+        gold: 394.3,
+        damage: 18908.8,
+        tanking: 15619.2,
+        cs: 9.0,
       },
       {
-        "player": "Titan",
-        "gold": 386.7,
-        "damage": 14612.2,
-        "tanking": 15613.2,
-        "cs": 9.6
+        player: "Titan",
+        gold: 386.7,
+        damage: 14612.2,
+        tanking: 15613.2,
+        cs: 9.6,
       },
       {
-        "player": "Viper",
-        "gold": 465.2,
-        "damage": 27876.1,
-        "tanking": 15002.2,
-        "cs": 10.4
+        player: "Viper",
+        gold: 465.2,
+        damage: 27876.1,
+        tanking: 15002.2,
+        cs: 10.4,
       },
       {
-        "player": "Yeon",
-        "gold": 439.7,
-        "damage": 24385.6,
-        "tanking": 15395.7,
-        "cs": 9.9
+        player: "Yeon",
+        gold: 439.7,
+        damage: 24385.6,
+        tanking: 15395.7,
+        cs: 9.9,
       },
       {
-        "player": "Alvaro",
-        "gold": 221.5,
-        "damage": 4897.7,
-        "tanking": 18565.9,
-        "cs": 1.2
+        player: "Alvaro",
+        gold: 221.5,
+        damage: 4897.7,
+        tanking: 18565.9,
+        cs: 1.2,
       },
       {
-        "player": "Busio",
-        "gold": 242.6,
-        "damage": 5418.3,
-        "tanking": 13753.3,
-        "cs": 1.1
+        player: "Busio",
+        gold: 242.6,
+        damage: 5418.3,
+        tanking: 13753.3,
+        cs: 1.1,
       },
       {
-        "player": "Corejj",
-        "gold": 245.9,
-        "damage": 5535.4,
-        "tanking": 13862.4,
-        "cs": 1.0
+        player: "Corejj",
+        gold: 245.9,
+        damage: 5535.4,
+        tanking: 13862.4,
+        cs: 1.0,
       },
       {
-        "player": "Crisp",
-        "gold": 241.8,
-        "damage": 5702.6,
-        "tanking": 17653.2,
-        "cs": 1.1
+        player: "Crisp",
+        gold: 241.8,
+        damage: 5702.6,
+        tanking: 17653.2,
+        cs: 1.1,
       },
       {
-        "player": "Delight",
-        "gold": 241.6,
-        "damage": 5163.0,
-        "tanking": 14787.7,
-        "cs": 1.2
+        player: "Delight",
+        gold: 241.6,
+        damage: 5163.0,
+        tanking: 14787.7,
+        cs: 1.2,
       },
       {
-        "player": "Hang",
-        "gold": 237.6,
-        "damage": 5286.8,
-        "tanking": 16107.0,
-        "cs": 1.1
+        player: "Hang",
+        gold: 237.6,
+        damage: 5286.8,
+        tanking: 16107.0,
+        cs: 1.1,
       },
       {
-        "player": "Jun",
-        "gold": 235.5,
-        "damage": 4662.3,
-        "tanking": 14276.2,
-        "cs": 1.0
+        player: "Jun",
+        gold: 235.5,
+        damage: 4662.3,
+        tanking: 14276.2,
+        cs: 1.0,
       },
       {
-        "player": "Keria",
-        "gold": 255.5,
-        "damage": 6263.7,
-        "tanking": 12998.1,
-        "cs": 1.2
+        player: "Keria",
+        gold: 255.5,
+        damage: 6263.7,
+        tanking: 12998.1,
+        cs: 1.2,
       },
       {
-        "player": "Kuri",
-        "gold": 223.5,
-        "damage": 5319.1,
-        "tanking": 15341.3,
-        "cs": 1.1
+        player: "Kuri",
+        gold: 223.5,
+        damage: 5319.1,
+        tanking: 15341.3,
+        cs: 1.1,
       },
       {
-        "player": "Lehends",
-        "gold": 238.1,
-        "damage": 5756.0,
-        "tanking": 15936.1,
-        "cs": 1.0
+        player: "Lehends",
+        gold: 238.1,
+        damage: 5756.0,
+        tanking: 15936.1,
+        cs: 1.0,
       },
       {
-        "player": "Meiko",
-        "gold": 234.4,
-        "damage": 5256.1,
-        "tanking": 15102.8,
-        "cs": 1.2
+        player: "Meiko",
+        gold: 234.4,
+        damage: 5256.1,
+        tanking: 15102.8,
+        cs: 1.2,
       },
       {
-        "player": "Mikyx",
-        "gold": 231.6,
-        "damage": 4354.0,
-        "tanking": 21198.4,
-        "cs": 1.0
+        player: "Mikyx",
+        gold: 231.6,
+        damage: 4354.0,
+        tanking: 21198.4,
+        cs: 1.0,
       },
       {
-        "player": "Moham",
-        "gold": 234.1,
-        "damage": 5371.3,
-        "tanking": 20135.5,
-        "cs": 1.0
+        player: "Moham",
+        gold: 234.1,
+        damage: 5371.3,
+        tanking: 20135.5,
+        cs: 1.0,
       },
       {
-        "player": "On",
-        "gold": 241.5,
-        "damage": 4747.9,
-        "tanking": 14681.1,
-        "cs": 1.2
+        player: "On",
+        gold: 241.5,
+        damage: 4747.9,
+        tanking: 14681.1,
+        cs: 1.2,
       },
       {
-        "player": "Woody",
-        "gold": 236.0,
-        "damage": 4257.5,
-        "tanking": 15693.2,
-        "cs": 0.9
+        player: "Woody",
+        gold: 236.0,
+        damage: 4257.5,
+        tanking: 15693.2,
+        cs: 0.9,
       },
       {
-        "player": "Kiaya",
-        "gold": 379.7,
-        "damage": 18304.7,
-        "tanking": 23246.4,
-        "cs": 7.7
+        player: "Kiaya",
+        gold: 379.7,
+        damage: 18304.7,
+        tanking: 23246.4,
+        cs: 7.7,
       },
       {
-        "player": "Levi",
-        "gold": 339.4,
-        "damage": 11555.1,
-        "tanking": 32249.5,
-        "cs": 6.2
+        player: "Levi",
+        gold: 339.4,
+        damage: 11555.1,
+        tanking: 32249.5,
+        cs: 6.2,
       },
       {
-        "player": "Emo",
-        "gold": 386.4,
-        "damage": 15049.6,
-        "tanking": 19670.4,
-        "cs": 8.8
+        player: "Emo",
+        gold: 386.4,
+        damage: 15049.6,
+        tanking: 19670.4,
+        cs: 8.8,
       },
       {
-        "player": "Easylove",
-        "gold": 400.8,
-        "damage": 17620.5,
-        "tanking": 13165.4,
-        "cs": 9.0
+        player: "Easylove",
+        gold: 400.8,
+        damage: 17620.5,
+        tanking: 13165.4,
+        cs: 9.0,
       },
       {
-        "player": "Elio",
-        "gold": 232.7,
-        "damage": 5018.7,
-        "tanking": 15533.8,
-        "cs": 1.2
-      }
-    ]
-
+        player: "Elio",
+        gold: 232.7,
+        damage: 5018.7,
+        tanking: 15533.8,
+        cs: 1.2,
+      },
+    ],
   },
-
 
   //选手雷达图数据
   chart6: {
@@ -3031,107 +2129,46 @@ const Data = reactive({
     //KDA  CS   gold  damage   tanking
     players: [
       {
-        "name": "Bin",
-        "stats": [
-          4.3,
-          7.9,
-          393.2,
-          15968.1,
-          19708.8
-        ]
+        name: "Bin",
+        stats: [4.3, 7.9, 393.2, 15968.1, 19708.8],
       },
       {
-        "name": "Zeus",
-        "stats": [
-          4.8,
-          8.0,
-          401.0,
-          14177.6,
-          19482.6
-        ]
+        name: "Zeus",
+        stats: [4.8, 8.0, 401.0, 14177.6, 19482.6],
       },
       {
-        "name": "Xun",
-        "stats": [
-          5.1,
-          5.7,
-          334.8,
-          11710.1,
-          30734.5
-        ]
+        name: "Xun",
+        stats: [5.1, 5.7, 334.8, 11710.1, 30734.5],
       },
       {
-        "name": "Oner",
-        "stats": [
-          5.9,
-          6.6,
-          362.5,
-          10463.5,
-          29986.9
-        ]
+        name: "Oner",
+        stats: [5.9, 6.6, 362.5, 10463.5, 29986.9],
       },
       {
-        "name": "Knight",
-        "stats": [
-          6.3,
-          8.3,
-          412.5,
-          22252.9,
-          19086.7
-        ]
+        name: "Knight",
+        stats: [6.3, 8.3, 412.5, 22252.9, 19086.7],
       },
       {
-        "name": "Faker",
-        "stats": [
-          4.4,
-          8.2,
-          404.3,
-          16110.5,
-          19988.3
-        ]
+        name: "Faker",
+        stats: [4.4, 8.2, 404.3, 16110.5, 19988.3],
       },
       {
-        "name": "Elk",
-        "stats": [
-          4.2,
-          9.1,
-          434.8,
-          24383.6,
-          14102.8
-        ]
+        name: "Elk",
+        stats: [4.2, 9.1, 434.8, 24383.6, 14102.8],
       },
       {
-        "name": "Gumayusi",
-        "stats": [
-          6.4,
-          10.3,
-          469.7,
-          20139.1,
-          11701.9
-        ]
+        name: "Gumayusi",
+        stats: [6.4, 10.3, 469.7, 20139.1, 11701.9],
       },
       {
-        "name": "On",
-        "stats": [
-          2.9,
-          1.2,
-          241.5,
-          4747.9,
-          14681.1
-        ]
+        name: "On",
+        stats: [2.9, 1.2, 241.5, 4747.9, 14681.1],
       },
       {
-        "name": "Keria",
-        "stats": [
-          5.3,
-          1.2,
-          255.5,
-          6263.7,
-          12998.1
-        ]
-      }
+        name: "Keria",
+        stats: [5.3, 1.2, 255.5, 6263.7, 12998.1],
+      },
     ],
-
   },
 
   // bp词云图数据
@@ -3139,190 +2176,188 @@ const Data = reactive({
     isChartVisible: ref(true),
     bpWordCloudData: [
       {
-        "name": "双界灵兔",
-        "value": 77
+        name: "双界灵兔",
+        value: 77,
       },
       {
-        "name": "封魔剑魂",
-        "value": 76
+        name: "封魔剑魂",
+        value: 76,
       },
       {
-        "name": "上古领主",
-        "value": 70
+        name: "上古领主",
+        value: 70,
       },
       {
-        "name": "武器大师",
-        "value": 66
+        name: "武器大师",
+        value: 66,
       },
       {
-        "name": "寒冰射手",
-        "value": 64
+        name: "寒冰射手",
+        value: 64,
       },
       {
-        "name": "复仇之矛",
-        "value": 60
+        name: "复仇之矛",
+        value: 60,
       },
       {
-        "name": "镕铁少女",
-        "value": 59
+        name: "镕铁少女",
+        value: 59,
       },
       {
-        "name": "虚空之女",
-        "value": 55
+        name: "虚空之女",
+        value: 55,
       },
       {
-        "name": "迷失之牙",
-        "value": 51
+        name: "迷失之牙",
+        value: 51,
       },
       {
-        "name": "机械公敌",
-        "value": 45
+        name: "机械公敌",
+        value: 45,
       },
       {
-        "name": "皮城执法官",
-        "value": 45
+        name: "皮城执法官",
+        value: 45,
       },
       {
-        "name": "爆破鬼才",
-        "value": 45
+        name: "爆破鬼才",
+        value: 45,
       },
       {
-        "name": "圣锤之毅",
-        "value": 43
+        name: "圣锤之毅",
+        value: 43,
       },
       {
-        "name": "发条魔灵",
-        "value": 42
+        name: "发条魔灵",
+        value: 42,
       },
       {
-        "name": "幻翎",
-        "value": 42
+        name: "幻翎",
+        value: 42,
       },
       {
-        "name": "探险家",
-        "value": 41
+        name: "探险家",
+        value: 41,
       },
       {
-        "name": "北地之怒",
-        "value": 38
+        name: "北地之怒",
+        value: 38,
       },
       {
-        "name": "荒漠屠夫",
-        "value": 37
+        name: "荒漠屠夫",
+        value: 37,
       },
       {
-        "name": "炼金男爵",
-        "value": 34
+        name: "炼金男爵",
+        value: 34,
       },
       {
-        "name": "九尾妖狐",
-        "value": 33
+        name: "九尾妖狐",
+        value: 33,
       },
       {
-        "name": "曙光女神",
-        "value": 32
+        name: "曙光女神",
+        value: 32,
       },
       {
-        "name": "解脱者",
-        "value": 31
+        name: "解脱者",
+        value: 31,
       },
       {
-        "name": "逆羽",
-        "value": 29
+        name: "逆羽",
+        value: 29,
       },
       {
-        "name": "戏命师",
-        "value": 27
+        name: "戏命师",
+        value: 27,
       },
       {
-        "name": "炽炎雏龙",
-        "value": 27
+        name: "炽炎雏龙",
+        value: 27,
       },
       {
-        "name": "永恒梦魇",
-        "value": 26
+        name: "永恒梦魇",
+        value: 26,
       },
       {
-        "name": "扭曲树精",
-        "value": 24
+        name: "扭曲树精",
+        value: 24,
       },
       {
-        "name": "翠神",
-        "value": 22
+        name: "翠神",
+        value: 22,
       },
       {
-        "name": "纳祖芒荣耀",
-        "value": 22
+        name: "纳祖芒荣耀",
+        value: 22,
       },
       {
-        "name": "牛头酋长",
-        "value": 21
+        name: "牛头酋长",
+        value: 21,
       },
       {
-        "name": "万花通灵",
-        "value": 20
+        name: "万花通灵",
+        value: 20,
       },
     ],
-
   },
-
 
   //bp柱状图数据
   chart8: {
     isChartVisible: ref(true),
     heroData: [
       {
-        "name": "双界灵兔",
-        "banRate": 80.0,
-        "pickRate": 16.25,
-        "winRate": 62.0
+        name: "双界灵兔",
+        banRate: 80.0,
+        pickRate: 16.25,
+        winRate: 62.0,
       },
       {
-        "name": "封魔剑魂",
-        "banRate": 60.0,
-        "pickRate": 35.0,
-        "winRate": 61.0
+        name: "封魔剑魂",
+        banRate: 60.0,
+        pickRate: 35.0,
+        winRate: 61.0,
       },
       {
-        "name": "寒冰射手",
-        "banRate": 55.0,
-        "pickRate": 25.0,
-        "winRate": 70.0
+        name: "寒冰射手",
+        banRate: 55.0,
+        pickRate: 25.0,
+        winRate: 70.0,
       },
       {
-        "name": "复仇之矛",
-        "banRate": 51.25,
-        "pickRate": 23.75,
-        "winRate": 63.0
+        name: "复仇之矛",
+        banRate: 51.25,
+        pickRate: 23.75,
+        winRate: 63.0,
       },
       {
-        "name": "上古领主",
-        "banRate": 46.25,
-        "pickRate": 41.25,
-        "winRate": 73.0
+        name: "上古领主",
+        banRate: 46.25,
+        pickRate: 41.25,
+        winRate: 73.0,
       },
       {
-        "name": "爆破鬼才",
-        "banRate": 43.75,
-        "pickRate": 12.5,
-        "winRate": 40.0
+        name: "爆破鬼才",
+        banRate: 43.75,
+        pickRate: 12.5,
+        winRate: 40.0,
       },
       {
-        "name": "武器大师",
-        "banRate": 36.25,
-        "pickRate": 46.25,
-        "winRate": 51.0
+        name: "武器大师",
+        banRate: 36.25,
+        pickRate: 46.25,
+        winRate: 51.0,
       },
       {
-        "name": "圣锤之毅",
-        "banRate": 33.75,
-        "pickRate": 20.0,
-        "winRate": 31.0
-      }
+        name: "圣锤之毅",
+        banRate: 33.75,
+        pickRate: 20.0,
+        winRate: 31.0,
+      },
     ],
     // heroData: [],
-    item: 'Ban率',
-    sortWay: 'win_Rate',
+    item: "Ban率",
+    sortWay: "win_Rate",
     totalPage: 12,
     currentPage: 1,
   },
@@ -3332,378 +2367,407 @@ const Data = reactive({
     isChartVisible: ref(true),
     herodata: [
       {
-        "name": "封魔剑魂",
-        "winCount": 4,
-        "gold": 417.0,
-        "damage": 27125.08,
-        "tanking": 21456.43,
-        "kda": 6.0
+        name: "封魔剑魂",
+        winCount: 4,
+        gold: 417.0,
+        damage: 27125.08,
+        tanking: 21456.43,
+        kda: 6.0,
       },
       {
-        "name": "双界灵兔",
-        "winCount": 2,
-        "gold": 402.0,
-        "damage": 18101.18,
-        "tanking": 24212.35,
-        "kda": 3.0
-      }
+        name: "双界灵兔",
+        winCount: 2,
+        gold: 402.0,
+        damage: 18101.18,
+        tanking: 24212.35,
+        kda: 3.0,
+      },
     ],
   },
-})
+});
 
 //两个图的点击事件
 const bpwordcloudclick = (clickname: string) => {
-  console.log('点击英雄：', clickname);
-  console.log('当前 heroagainst.herodata:', Data.chart9.herodata);
+  console.log("点击英雄：", clickname);
+  console.log("当前 heroagainst.herodata:", Data.chart9.herodata);
 
-  [Data.chart9.herodata[0].name, Data.chart9.herodata[1].name] = [clickname, Data.chart9.herodata[0].name];
+  [Data.chart9.herodata[0].name, Data.chart9.herodata[1].name] = [
+    clickname,
+    Data.chart9.herodata[0].name,
+  ];
   getChart9Data();
 };
 
 const heatmapclick = (team1: string, team2: string) => {
-  console.log('点击队伍：', team1, team2);
-  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
+  console.log("点击队伍：", team1, team2);
+  console.log(
+    "当前队伍:",
+    Data.chart3.teamData[0].name,
+    Data.chart3.teamData[1].name
+  );
 
   [Data.chart3.teamData[0].name, Data.chart3.teamData[1].name] = [team1, team2];
-  console.log('当前队伍:', Data.chart3.teamData[0].name, Data.chart3.teamData[1].name);
+  console.log(
+    "当前队伍:",
+    Data.chart3.teamData[0].name,
+    Data.chart3.teamData[1].name
+  );
   updateChart3Data();
   updateChart6Data();
 };
 
-
 //获取数据的函数
 function getChart1Data() {
   // newValue 可以替换topic
-  console.log('正在获取图1的数据')
-  Data.chart1.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/team/getWinRate', {
-    params: {
-      matchType: topic.value
-    }
-  }).then(response => {
-    console.log('图1的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart1.teams = response.data.data
-      Data.chart1.isChartVisible = true
-      //图1获取到再获取图2的数据
-      getChart2Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图1的数据");
+  Data.chart1.isChartVisible = false;
+  axios
+    .get("http://1.14.45.200:8080/team/getWinRate", {
+      params: {
+        matchType: topic.value,
+      },
+    })
+    .then((response) => {
+      console.log("图1的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart1.teams = response.data.data;
+        Data.chart1.isChartVisible = true;
+        //图1获取到再获取图2的数据
+        getChart2Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
-
 
 function getChart2Data() {
-  console.log('正在获取图2的数据')
-  Data.chart2.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/team/getHeatMap', {
-    params: {
-      matchType: topic.value
-    }
-  }).then(response => {
-    console.log('图2的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart2.teamNames = response.data.data.teams
-      Data.chart2.heatMapData = response.data.data.heatMapDatas
-      Data.chart3.teamData[0].name = Data.chart2.teamNames[0]
-      Data.chart3.teamData[1].name = Data.chart2.teamNames[1]
-      Data.chart2.isChartVisible = true
-      //图2获取到再获取图3的数据
-      getChart3Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图2的数据");
+  Data.chart2.isChartVisible = false;
+  axios
+    .get("http://1.14.45.200:8080/team/getHeatMap", {
+      params: {
+        matchType: topic.value,
+      },
+    })
+    .then((response) => {
+      console.log("图2的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart2.teamNames = response.data.data.teams;
+        Data.chart2.heatMapData = response.data.data.heatMapDatas;
+        Data.chart3.teamData[0].name = Data.chart2.teamNames[0];
+        Data.chart3.teamData[1].name = Data.chart2.teamNames[1];
+        Data.chart2.isChartVisible = true;
+        //图2获取到再获取图3的数据
+        getChart3Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
-
 
 function getChart4Data() {
-  console.log('正在获取图4的数据')
-  Data.chart4.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/player/getBoxPlot', {
-    params: {
-      matchType: topic.value
-    }
-  }).then(response => {
-    console.log('图4的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart4.playerBoxPlotData = response.data.data
-      Data.chart4.isChartVisible = true
-      //图4获取到再获取图5的数据
-      getChart5Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图4的数据");
+  Data.chart4.isChartVisible = false;
+  axios
+    .get("http://1.14.45.200:8080/player/getBoxPlot", {
+      params: {
+        matchType: topic.value,
+      },
+    })
+    .then((response) => {
+      console.log("图4的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart4.playerBoxPlotData = response.data.data;
+        Data.chart4.isChartVisible = true;
+        //图4获取到再获取图5的数据
+        getChart5Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
-
 
 function getChart5Data() {
-  console.log('正在获取图5的数据')
-  Data.chart5.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/player/getScatterDiagram', {
-    params: {
-      matchType: topic.value
-    }
-  }).then(response => {
-    console.log('图5的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart5.scatterDiagramData = response.data.data
-      Data.chart5.isChartVisible = true
-      //图5获取到再获取图6的数据
-      getChart6Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图5的数据");
+  Data.chart5.isChartVisible = false;
+  axios
+    .get("http://1.14.45.200:8080/player/getScatterDiagram", {
+      params: {
+        matchType: topic.value,
+      },
+    })
+    .then((response) => {
+      console.log("图5的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart5.scatterDiagramData = response.data.data;
+        Data.chart5.isChartVisible = true;
+        //图5获取到再获取图6的数据
+        getChart6Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
-
 
 function getChart7Data() {
-  console.log('正在获取图7的数据')
-  Data.chart7.isChartVisible = false
-  axios.get('http://192.168.198.10:8080/hero/getCloudDiagram', {
-    params: {
-      matchType: topic.value
-    }
-  }).then(response => {
-    console.log('图7的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart7.bpWordCloudData = response.data.data
-      Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name
-      Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name
-      Data.chart7.isChartVisible = true
-      //图7获取到再获取图8的数据
-      getChart8Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图7的数据");
+  Data.chart7.isChartVisible = false;
+  axios
+    .get("http://1.14.45.200:8080/hero/getCloudDiagram", {
+      params: {
+        matchType: topic.value,
+      },
+    })
+    .then((response) => {
+      console.log("图7的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart7.bpWordCloudData = response.data.data;
+        Data.chart9.herodata[0].name = Data.chart7.bpWordCloudData[0].name;
+        Data.chart9.herodata[1].name = Data.chart7.bpWordCloudData[1].name;
+        Data.chart7.isChartVisible = true;
+        //图7获取到再获取图8的数据
+        getChart8Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
-
 function getChart8Data() {
-  console.log('正在获取图8的数据')
-  Data.chart8.isChartVisible = false
-  if (Data.chart8.item == '胜率') {
-    Data.chart8.sortWay = 'win_rate'
-  } else if (Data.chart8.item == 'pick率') {
-    Data.chart8.sortWay = 'pick_rate'
-  } else if (Data.chart8.item == 'ban率') {
-    Data.chart8.sortWay = 'ban_rate'
+  console.log("正在获取图8的数据");
+  Data.chart8.isChartVisible = false;
+  if (Data.chart8.item == "胜率") {
+    Data.chart8.sortWay = "win_rate";
+  } else if (Data.chart8.item == "pick率") {
+    Data.chart8.sortWay = "pick_rate";
+  } else if (Data.chart8.item == "ban率") {
+    Data.chart8.sortWay = "ban_rate";
   }
-  Data.chart8.currentPage = 1
-  axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
-    params: {
-      matchType: topic.value,
-      currentPage: Data.chart8.currentPage,
-      sortWay: Data.chart8.sortWay,
-    }
-  }).then(response => {
-    console.log('图8的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart8.totalPage = response.data.data.totalPage
-      Data.chart8.heroData = response.data.data.herodatas
-      Data.chart8.isChartVisible = true
-      //图8获取到再获取图9的数据
-      getChart9Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  Data.chart8.currentPage = 1;
+  axios
+    .get("http://1.14.45.200:8080/hero/getBarDiagram", {
+      params: {
+        matchType: topic.value,
+        currentPage: Data.chart8.currentPage,
+        sortWay: Data.chart8.sortWay,
+      },
+    })
+    .then((response) => {
+      console.log("图8的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart8.totalPage = response.data.data.totalPage;
+        Data.chart8.heroData = response.data.data.herodatas;
+        Data.chart8.isChartVisible = true;
+        //图8获取到再获取图9的数据
+        getChart9Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function updateChart8Data() {
-  console.log('正在更新图8的数据')
-  Data.chart8.isChartVisible = false
-  if (Data.chart8.item == '胜率') {
-    Data.chart8.sortWay = 'win_rate'
-  } else if (Data.chart8.item == 'Pick率') {
-    Data.chart8.sortWay = 'pick_rate'
-  } else if (Data.chart8.item == 'Ban率') {
-    Data.chart8.sortWay = 'ban_rate'
+  console.log("正在更新图8的数据");
+  Data.chart8.isChartVisible = false;
+  if (Data.chart8.item == "胜率") {
+    Data.chart8.sortWay = "win_rate";
+  } else if (Data.chart8.item == "Pick率") {
+    Data.chart8.sortWay = "pick_rate";
+  } else if (Data.chart8.item == "Ban率") {
+    Data.chart8.sortWay = "ban_rate";
   }
-  axios.get('http://192.168.198.10:8080/hero/getBarDiagram', {
-    params: {
-      matchType: topic.value,
-      currentPage: Data.chart8.currentPage,
-      sortWay: Data.chart8.sortWay,
-    }
-  }).then(response => {
-    console.log('图8的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart8.totalPage = response.data.data.totalPage
-      Data.chart8.heroData = response.data.data.herodatas
-      Data.chart8.isChartVisible = true
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  axios
+    .get("http://1.14.45.200:8080/hero/getBarDiagram", {
+      params: {
+        matchType: topic.value,
+        currentPage: Data.chart8.currentPage,
+        sortWay: Data.chart8.sortWay,
+      },
+    })
+    .then((response) => {
+      console.log("图8的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart8.totalPage = response.data.data.totalPage;
+        Data.chart8.heroData = response.data.data.herodatas;
+        Data.chart8.isChartVisible = true;
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function getChart3Data() {
-  console.log('正在获取图3的数据')
-  Data.chart3.isChartVisible = false
-  console.log(topic.value)
-  console.log(Data.chart3.teamData[0].name)
-  console.log(Data.chart3.teamData[1].name)
-  axios.get('http://192.168.198.10:8080/team/getTeamComp', {
-    params: {
-      matchType: topic.value,
-      team1: Data.chart3.teamData[0].name,
-      team2: Data.chart3.teamData[1].name,
-    }
-  }).then(response => {
-    console.log('图3的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart3.teamData = response.data.data
-      Data.chart3.isChartVisible = true
-      //图3获取到再获取图4的数据
-      getChart4Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图3的数据");
+  Data.chart3.isChartVisible = false;
+  console.log(topic.value);
+  console.log(Data.chart3.teamData[0].name);
+  console.log(Data.chart3.teamData[1].name);
+  axios
+    .get("http://1.14.45.200:8080/team/getTeamComp", {
+      params: {
+        matchType: topic.value,
+        team1: Data.chart3.teamData[0].name,
+        team2: Data.chart3.teamData[1].name,
+      },
+    })
+    .then((response) => {
+      console.log("图3的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart3.teamData = response.data.data;
+        Data.chart3.isChartVisible = true;
+        //图3获取到再获取图4的数据
+        getChart4Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function updateChart3Data() {
-  console.log('正在更新图3的数据')
-  Data.chart3.isChartVisible = false
-  console.log(topic.value)
-  console.log(Data.chart3.teamData[0].name)
-  console.log(Data.chart3.teamData[1].name)
-  axios.get('http://192.168.198.10:8080/team/getTeamComp', {
-    params: {
-      matchType: topic.value,
-      team1: Data.chart3.teamData[0].name,
-      team2: Data.chart3.teamData[1].name,
-    }
-  }).then(response => {
-    console.log('图3的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart3.teamData = response.data.data
-      Data.chart3.isChartVisible = true
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在更新图3的数据");
+  Data.chart3.isChartVisible = false;
+  console.log(topic.value);
+  console.log(Data.chart3.teamData[0].name);
+  console.log(Data.chart3.teamData[1].name);
+  axios
+    .get("http://1.14.45.200:8080/team/getTeamComp", {
+      params: {
+        matchType: topic.value,
+        team1: Data.chart3.teamData[0].name,
+        team2: Data.chart3.teamData[1].name,
+      },
+    })
+    .then((response) => {
+      console.log("图3的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart3.teamData = response.data.data;
+        Data.chart3.isChartVisible = true;
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function getChart6Data() {
-  console.log('正在获取图6的数据')
-  Data.chart6.isChartVisible = false
-  console.log(Data.chart3.teamData[0].name)
-  console.log(Data.chart3.teamData[1].name)
-  axios.get('http://192.168.198.10:8080/player/getPlayerComp', {
-    params: {
-      matchType: topic.value,
-      team1: Data.chart3.teamData[0].name,
-      team2: Data.chart3.teamData[1].name,
-    }
-  }).then(response => {
-    console.log('图6的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart6.players = response.data.data
-      Data.chart6.isChartVisible = true
-      //图6获取到再获取图7的数据
-      getChart7Data()
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图6的数据");
+  Data.chart6.isChartVisible = false;
+  console.log(Data.chart3.teamData[0].name);
+  console.log(Data.chart3.teamData[1].name);
+  axios
+    .get("http://1.14.45.200:8080/player/getPlayerComp", {
+      params: {
+        matchType: topic.value,
+        team1: Data.chart3.teamData[0].name,
+        team2: Data.chart3.teamData[1].name,
+      },
+    })
+    .then((response) => {
+      console.log("图6的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart6.players = response.data.data;
+        Data.chart6.isChartVisible = true;
+        //图6获取到再获取图7的数据
+        getChart7Data();
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function updateChart6Data() {
-  console.log('正在更新图6的数据')
-  Data.chart6.isChartVisible = false
-  console.log(Data.chart3.teamData[0].name)
-  console.log(Data.chart3.teamData[1].name)
-  axios.get('http://192.168.198.10:8080/player/getPlayerComp', {
-    params: {
-      matchType: topic.value,
-      team1: Data.chart3.teamData[0].name,
-      team2: Data.chart3.teamData[1].name,
-    }
-  }).then(response => {
-    console.log('图6的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart6.players = response.data.data
-      Data.chart6.isChartVisible = true
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在更新图6的数据");
+  Data.chart6.isChartVisible = false;
+  console.log(Data.chart3.teamData[0].name);
+  console.log(Data.chart3.teamData[1].name);
+  axios
+    .get("http://1.14.45.200:8080/player/getPlayerComp", {
+      params: {
+        matchType: topic.value,
+        team1: Data.chart3.teamData[0].name,
+        team2: Data.chart3.teamData[1].name,
+      },
+    })
+    .then((response) => {
+      console.log("图6的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart6.players = response.data.data;
+        Data.chart6.isChartVisible = true;
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 
 function getChart9Data() {
-  console.log('正在获取图9的数据')
-  Data.chart9.isChartVisible = false
-  console.log(Data.chart9.herodata[0].name)
-  console.log(Data.chart9.herodata[1].name)
-  axios.get('http://192.168.198.10:8080/hero/getHeroComp', {
-    params: {
-      matchType: topic.value,
-      hero1: Data.chart9.herodata[0].name,
-      hero2: Data.chart9.herodata[1].name,
-    }
-  }).then(response => {
-    console.log('图9的数据:', response)
-    if (response.data.code == 200) {
-      console.log('code=200')
-      Data.chart9.herodata = response.data.data
-      Data.chart9.isChartVisible = true
-      //数据全部获取完毕
-    }
-    else {
-      console.log("code=", response.data.code)
-    }
-  }).catch(error => {
-    console.log(error)
-  })
+  console.log("正在获取图9的数据");
+  Data.chart9.isChartVisible = false;
+  console.log(Data.chart9.herodata[0].name);
+  console.log(Data.chart9.herodata[1].name);
+  axios
+    .get("http://1.14.45.200:8080/hero/getHeroComp", {
+      params: {
+        matchType: topic.value,
+        hero1: Data.chart9.herodata[0].name,
+        hero2: Data.chart9.herodata[1].name,
+      },
+    })
+    .then((response) => {
+      console.log("图9的数据:", response);
+      if (response.data.code == 200) {
+        console.log("code=200");
+        Data.chart9.herodata = response.data.data;
+        Data.chart9.isChartVisible = true;
+        //数据全部获取完毕
+      } else {
+        console.log("code=", response.data.code);
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 }
 </script>
