@@ -301,6 +301,11 @@ header {
   }
 }
 
+.v-data-table .v-table__wrapper > table > thead > tr > th.v-data-table__th--sortable:hover,
+.v-data-table .v-table__wrapper > table tbody > tr > th.v-data-table__th--sortable:hover {
+  color: rgba(255, 251, 0, 0.87) !important;
+}
+
 .chart-1-container {
   height: 40vh;
   width: 33.3vw;
