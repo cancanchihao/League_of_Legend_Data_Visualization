@@ -47,59 +47,62 @@
 </template>
 
 <script setup>
-import {
-    onMounted,
-    ref
-} from 'vue';
-import * as echarts from 'echarts';
-import item from './against-chart-item.vue';
+import { onMounted, ref } from "vue";
+import * as echarts from "echarts";
+import item from "./against-chart-item.vue";
 
 const props = defineProps({
-    heroData: {
-        type: Array,
-        required: true,
-    },
+  heroData: {
+    type: Array,
+    required: true,
+  },
 });
 
 const selectedItem = ref(0); // 响应式的 selectedItem
 
 // 更新 selectedItem
 const change = (id) => {
-    if (selectedItem.value === id) {
-        selectedItem.value += 2;
-    } else {
-        selectedItem.value = id;
-    }
+  if (selectedItem.value === id) {
+    selectedItem.value += 2;
+  } else {
+    selectedItem.value = id;
+  }
 };
-
 </script>
 
 <style scoped>
 .hero {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    padding: 0 3vw;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 0 3vw;
 }
 
 .elb {
-    display: inline-flex;
-    align-items: center;
-    position: relative;
-    /* 使 z-index 生效 */
-    z-index: 10;
-    /* 设置更高的 z-index */
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  /* 使 z-index 生效 */
+  z-index: 10;
+  /* 设置更高的 z-index */
 }
 
 .button1 {
-    background-color: #fce38a; /* 设置第一个按钮的背景色 */
-    font-size: 18px;
+  background-color: #fce38a; /* 设置第一个按钮的背景色 */
+  font-size: 18px;
 }
 
 .button2 {
-    background-color: #f38181; /* 设置第二个按钮的背景色 */
-    font-size: 18px;
+  background-color: #f38181; /* 设置第二个按钮的背景色 */
+  font-size: 18px;
+}
+
+.no-matches {
+  font-size: 20px;
+  text-align: center;
+  color: white;
+  padding-top: 10vh;
 }
 
 .no-matches {
